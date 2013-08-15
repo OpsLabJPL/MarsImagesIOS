@@ -8,9 +8,22 @@ Getting Started
 
 The app is provided as an XCode 4 project for iOS 5 or greater. If you are developing on Mac with XCode 4 installed, you should have everything you need. Just open this project in XCode and run it in the iOS simulator.
 
+Features
+========
+
+![Mars Images app iPad screenshot](http://opslabjpl.github.io/MarsImagesIOS/images/iPhoneMSLNavcam2.png?raw=true) ![Mars Images app iPad screenshot](http://opslabjpl.github.io/MarsImagesIOS/images/iPadMastcamColor7.png?raw=true)
+
+- Browse images from the Spirit, Opportunity, and Curiosity missions
+- Search for images within a mission by time or type
+- Full screen image viewing
+- Share images with others
+- Mission clock for Opportunity and Curiosity
+- View drive maps for Spirit and Opportunity
 
 LICENSE
 =======
+
+The software is available under the [Apache V2.0 license](https://github.com/OpsLabJPL/MarsImagesIOS/blob/master/LICENSE.txt).
 
 Copyright © 2011-2013 California Institute of Technology. ALL RIGHTS 
 RESERVED. United States Government Sponsorship Acknowledged. Any 
