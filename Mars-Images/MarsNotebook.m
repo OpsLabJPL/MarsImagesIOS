@@ -135,6 +135,7 @@ static MarsNotebook *instance = nil;
         sampleTypeIndex = 12;
         titleImageIdPosition = 2; // "Sol 123 1F123456789...."
         [Evernote sharedInstance].publicUser = @"marsrovers";
+        //Android uses userStore.publicUserInfo(username) to get the shard...a cleaner way to do this?
         [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s139/notestore";
     } else if ([currentMission isEqualToString:@"Spirit"]) {
         currentEpochDate = spiritEpochDate;
