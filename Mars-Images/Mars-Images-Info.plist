@@ -18,10 +18,6 @@
 				<string>MarsImagesiPhone4.png</string>
 				<string>MarsImagesiPad.png</string>
 				<string>MarsImagesIpadRetina.png</string>
-				<string>MarsImagesApp57.png</string>
-				<string>MarsImagesApp114.png</string>
-				<string>MarsImagesApp72.png</string>
-				<string>MarsImagesApp144.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
