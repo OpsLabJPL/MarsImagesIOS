@@ -39,7 +39,6 @@
 		4A39DFCA16595096001FFD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFC916595096001FFD0C /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
 		4A39DFCF165957D7001FFD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFC916595096001FFD0C /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4A39DFD116595943001FFD0C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A39DFD016595943001FFD0C /* QuartzCore.framework */; };
-		4A465EC717B5D152004DBFA0 /* MarsImagesApp144.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A87076C17B5CE7500514A37 /* MarsImagesApp144.png */; };
 		4A465EC917B6BB8B004DBFA0 /* marstime~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A465EC817B6BB8B004DBFA0 /* marstime~ipad.png */; };
 		4A4969E51772B4DF008B9946 /* marstime-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E21772B4DF008B9946 /* marstime-568h@2x~iphone.png */; };
 		4A4969E61772B4DF008B9946 /* marstime~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E31772B4DF008B9946 /* marstime~iphone.png */; };
@@ -60,9 +59,11 @@
 		4A5D9C4A166B122C001C5B47 /* UIButtonBarSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C47166B122C001C5B47 /* UIButtonBarSearch.png */; };
 		4A5D9C4B166B122C001C5B47 /* UIButtonTypeInfoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C48166B122C001C5B47 /* UIButtonTypeInfoDark.png */; };
 		4A5D9C4E166B2925001C5B47 /* UIButtonBarCompose.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C4D166B2925001C5B47 /* UIButtonBarCompose.png */; };
-		4A87076717B5CE4800514A37 /* MarsImagesApp57.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A87076617B5CE4800514A37 /* MarsImagesApp57.png */; };
-		4A87076917B5CE6700514A37 /* MarsImagesApp114.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A87076817B5CE6700514A37 /* MarsImagesApp114.png */; };
-		4A87076B17B5CE7100514A37 /* MarsImagesApp72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A87076A17B5CE7100514A37 /* MarsImagesApp72.png */; };
+		4A61959917C463EF00036B16 /* MarsImagesiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959517C463EF00036B16 /* MarsImagesiPad.png */; };
+		4A61959A17C463EF00036B16 /* MarsImagesIpadRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959617C463EF00036B16 /* MarsImagesIpadRetina.png */; };
+		4A61959B17C463EF00036B16 /* MarsImagesiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959717C463EF00036B16 /* MarsImagesiPhone.png */; };
+		4A61959C17C463EF00036B16 /* MarsImagesiPhone4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959817C463EF00036B16 /* MarsImagesiPhone4.png */; };
+		4A61959F17C4640700036B16 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959E17C4640700036B16 /* LICENSE */; };
 		4A9F463F1773CA1800F8D689 /* 1371788537_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9F463E1773CA1800F8D689 /* 1371788537_clock.png */; };
 		4A9F46411773CA2300F8D689 /* 1371788555_magnifyingglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9F46401773CA2300F8D689 /* 1371788555_magnifyingglass.png */; };
 		4A9F46431773CD0E00F8D689 /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9F46421773CD0E00F8D689 /* 71-compass.png */; };
@@ -217,10 +218,12 @@
 		4A5D9C47166B122C001C5B47 /* UIButtonBarSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarSearch.png; sourceTree = "<group>"; };
 		4A5D9C48166B122C001C5B47 /* UIButtonTypeInfoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonTypeInfoDark.png; sourceTree = "<group>"; };
 		4A5D9C4D166B2925001C5B47 /* UIButtonBarCompose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarCompose.png; sourceTree = "<group>"; };
-		4A87076617B5CE4800514A37 /* MarsImagesApp57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesApp57.png; sourceTree = "<group>"; };
-		4A87076817B5CE6700514A37 /* MarsImagesApp114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesApp114.png; sourceTree = "<group>"; };
-		4A87076A17B5CE7100514A37 /* MarsImagesApp72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesApp72.png; sourceTree = "<group>"; };
-		4A87076C17B5CE7500514A37 /* MarsImagesApp144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesApp144.png; sourceTree = "<group>"; };
+		4A61959517C463EF00036B16 /* MarsImagesiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesiPad.png; sourceTree = "<group>"; };
+		4A61959617C463EF00036B16 /* MarsImagesIpadRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesIpadRetina.png; sourceTree = "<group>"; };
+		4A61959717C463EF00036B16 /* MarsImagesiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesiPhone.png; sourceTree = "<group>"; };
+		4A61959817C463EF00036B16 /* MarsImagesiPhone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesiPhone4.png; sourceTree = "<group>"; };
+		4A61959D17C4640700036B16 /* evernote-sdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "evernote-sdk-ios-Prefix.pch"; path = "Evernote/evernote-sdk-ios-Prefix.pch"; sourceTree = "<group>"; };
+		4A61959E17C4640700036B16 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = Evernote/LICENSE; sourceTree = "<group>"; };
 		4A9F463E1773CA1800F8D689 /* 1371788537_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1371788537_clock.png; sourceTree = "<group>"; };
 		4A9F46401773CA2300F8D689 /* 1371788555_magnifyingglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1371788555_magnifyingglass.png; sourceTree = "<group>"; };
 		4A9F46421773CD0E00F8D689 /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
@@ -229,7 +232,6 @@
 		4A9F46481773DECA00F8D689 /* marstime-landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime-landscape~ipad.png"; sourceTree = "<group>"; };
 		4AA888AC17BAEBD000D262D4 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		4AA888AD17BAEC9000D262D4 /* NOTICE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.txt; sourceTree = "<group>"; };
-		4AA888AE17BB402000D262D4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4AC5DCF9165864F400A79555 /* Mars-Images.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mars-Images.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC5DCFD165864F400A79555 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4AC5DCFF165864F400A79555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -300,7 +302,6 @@
 		4AC5DD7A16588C6E00A79555 /* EDAMTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMTypes.m; sourceTree = "<group>"; };
 		4AC5DD7B16588C6E00A79555 /* EDAMUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMUserStore.h; sourceTree = "<group>"; };
 		4AC5DD7C16588C6E00A79555 /* EDAMUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMUserStore.m; sourceTree = "<group>"; };
-		4AC5DD7D16588C6E00A79555 /* evernote-sdk-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "evernote-sdk-ios-Prefix.pch"; sourceTree = "<group>"; };
 		4AC5DD8716588C6E00A79555 /* ENAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENAPI.h; sourceTree = "<group>"; };
 		4AC5DD8816588C6E00A79555 /* ENAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENAPI.m; sourceTree = "<group>"; };
 		4AC5DD8916588C6E00A79555 /* ENCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENCredentials.h; sourceTree = "<group>"; };
@@ -371,10 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				4A11FB6917BC4BCE00439C1E /* README.md */,
-				4A87076C17B5CE7500514A37 /* MarsImagesApp144.png */,
-				4A87076A17B5CE7100514A37 /* MarsImagesApp72.png */,
-				4A87076817B5CE6700514A37 /* MarsImagesApp114.png */,
-				4A87076617B5CE4800514A37 /* MarsImagesApp57.png */,
 				4AA888AC17BAEBD000D262D4 /* LICENSE.txt */,
 				4AA888AD17BAEC9000D262D4 /* NOTICE.txt */,
 				4A39DFD016595943001FFD0C /* QuartzCore.framework */,
@@ -452,6 +449,10 @@
 		4AC5DD04165864F400A79555 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A61959517C463EF00036B16 /* MarsImagesiPad.png */,
+				4A61959617C463EF00036B16 /* MarsImagesIpadRetina.png */,
+				4A61959717C463EF00036B16 /* MarsImagesiPhone.png */,
+				4A61959817C463EF00036B16 /* MarsImagesiPhone4.png */,
 				4A9F463E1773CA1800F8D689 /* 1371788537_clock.png */,
 				4A9F46401773CA2300F8D689 /* 1371788555_magnifyingglass.png */,
 				4A9F46441773CDDF00F8D689 /* 103-map.png */,
@@ -641,7 +642,8 @@
 		4AC5DDAD16588C9B00A79555 /* Evernote */ = {
 			isa = PBXGroup;
 			children = (
-				4AA888AE17BB402000D262D4 /* LICENSE */,
+				4A61959D17C4640700036B16 /* evernote-sdk-ios-Prefix.pch */,
+				4A61959E17C4640700036B16 /* LICENSE */,
 				4A26D627176542A600F824E8 /* Evernote.h */,
 				4A26D628176542A600F824E8 /* Evernote.m */,
 				4A26D629176542A600F824E8 /* EvernoteNoteStore.h */,
@@ -652,7 +654,6 @@
 				4A26D62E176542A600F824E8 /* EvernoteSession.m */,
 				4A26D62F176542A600F824E8 /* EvernoteUserStore.h */,
 				4A26D630176542A600F824E8 /* EvernoteUserStore.m */,
-				4AC5DD7D16588C6E00A79555 /* evernote-sdk-ios-Prefix.pch */,
 				4AC5DD7116588C6E00A79555 /* EDAM */,
 				4AC5DD8616588C6E00A79555 /* internal */,
 				4AC5DD4816588C6E00A79555 /* 3rdParty */,
@@ -771,12 +772,13 @@
 				4A9F46451773CDDF00F8D689 /* 103-map.png in Resources */,
 				4A9F46471773DE9500F8D689 /* marstime-landscape@2x~ipad.png in Resources */,
 				4A9F46491773DECB00F8D689 /* marstime-landscape~ipad.png in Resources */,
-				4A87076717B5CE4800514A37 /* MarsImagesApp57.png in Resources */,
-				4A87076917B5CE6700514A37 /* MarsImagesApp114.png in Resources */,
-				4A87076B17B5CE7100514A37 /* MarsImagesApp72.png in Resources */,
-				4A465EC717B5D152004DBFA0 /* MarsImagesApp144.png in Resources */,
 				4A465EC917B6BB8B004DBFA0 /* marstime~ipad.png in Resources */,
 				4A11FB6A17BC4BCE00439C1E /* README.md in Resources */,
+				4A61959917C463EF00036B16 /* MarsImagesiPad.png in Resources */,
+				4A61959A17C463EF00036B16 /* MarsImagesIpadRetina.png in Resources */,
+				4A61959B17C463EF00036B16 /* MarsImagesiPhone.png in Resources */,
+				4A61959C17C463EF00036B16 /* MarsImagesiPhone4.png in Resources */,
+				4A61959F17C4640700036B16 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
