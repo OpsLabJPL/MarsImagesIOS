@@ -26,7 +26,7 @@
 @property(nonatomic, strong) NSArray*             missionNames;
 @property(nonatomic, strong) NSMutableDictionary* imageCache;
 @property(nonatomic, strong) NSMutableArray*      noteTitles;
-@property(nonatomic, strong) NSMutableArray*      noteGUIDs;
+@property(nonatomic, strong) NSMutableDictionary* noteGUIDs;
 @property(nonatomic, strong) NSDate*              lastSleepTime;
 @property(nonatomic, strong) NSDate*              currentEpochDate;
 @property(nonatomic, strong) NSDate*              spiritEpochDate;
@@ -61,7 +61,17 @@
 
 - (BOOL) isNumeric: (char) c;
 
+- (NSArray*) parseTitleChunks: (NSString*) title;
+
 - (NSString*) getSolForNote: (EDAMNote*) note;
+
+- (int) getSolForTitle: (NSString*) title;
+
+- (NSString*) getImageIDForTitle: (NSString*) title;
+
+- (NSString*) getAnaglyphTitle: (NSString*) title;
+
+- (BOOL) isImageIdLeftEye: (NSString*) imageID;
 
 - (void) checkNetworkStatus:(NSNotification *)notice;
 

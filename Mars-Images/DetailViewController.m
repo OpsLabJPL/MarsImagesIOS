@@ -145,6 +145,8 @@
         FullscreenImageViewController *vc = [segue destinationViewController];
         [vc setNoteGUID: note.guid];
         [vc setNote: note];
+        NSString *anaglyphTitle = [[MarsNotebook instance] getAnaglyphTitle: note.title];
+        [vc setAnaglyphNoteGUID: [[MarsNotebook instance].noteGUIDs objectForKey: anaglyphTitle]];
         [self hideMasterView];
     } else if ([[segue identifier] isEqualToString:@"coursePlotFromDetail"]) {
         CoursePlotViewController* vc = segue.destinationViewController;

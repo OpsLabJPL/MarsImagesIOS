@@ -133,8 +133,11 @@ NSString* previousSearch;
     if ([[segue identifier] isEqualToString:@"viewImageFullscreen"]) {
         FullscreenImageViewController *vc = [segue destinationViewController];
         NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
-        NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectAtIndex: path.row];
+        NSString *title = [[MarsNotebook instance].noteTitles objectAtIndex: path.row];
+        NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectForKey: title];
         [vc setNoteGUID: noteGUID];
+        NSString *anaglyphTitle = [[MarsNotebook instance] getAnaglyphTitle: title];
+        [vc setAnaglyphNoteGUID: [[MarsNotebook instance].noteGUIDs objectForKey: anaglyphTitle]];
     } else if ([[segue identifier] isEqualToString:@"coursePlotFromTableCell"]) {
         CoursePlotViewController* vc = segue.destinationViewController;
         NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
@@ -172,16 +175,8 @@ NSString* previousSearch;
     
     NSString *cellValue = [[[MarsNotebook instance] noteTitles] objectAtIndex:indexPath.row];
     //returns "Sol 1234 1F123456789EFF...". We want the last bit.
-    NSArray *chunks = [cellValue componentsSeparatedByString: @" "];
-    int sol = [[chunks objectAtIndex: 1] intValue];
-    NSString* imageID = nil;
-    if ([chunks count] < 4) {
-        imageID = [chunks objectAtIndex:2];
-    }
-    else {
-        imageID = [chunks objectAtIndex:[MarsNotebook instance].titleImageIdPosition];
-    }
-    
+    NSString* imageID = [[MarsNotebook instance] getImageIDForTitle: cellValue];
+    int sol = [[MarsNotebook instance] getSolForTitle: cellValue];
     [cell.textLabel setText: [[MarsNotebook instance] getUpperCellText: imageID withTitle:cellValue]];
     [cell.detailTextLabel setText: [[MarsNotebook instance] getLowerCellText: imageID withSol: sol]];
     
@@ -201,7 +196,8 @@ NSString* previousSearch;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.detailViewController) {
         NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
-        NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectAtIndex: path.row];
+        NSString *title = [[MarsNotebook instance].noteTitles objectAtIndex: path.row];
+        NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectForKey: title];
         [self.detailViewController setDetailItem: noteGUID];
     }
 }

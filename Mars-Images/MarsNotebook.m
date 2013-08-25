@@ -102,7 +102,7 @@ static MarsNotebook *instance = nil;
     [self.internetReachable startNotifier];
     
     self.noteTitles = [[NSMutableArray alloc] init];
-    self.noteGUIDs = [[NSMutableArray alloc] init];
+    self.noteGUIDs = [[NSMutableDictionary alloc] init];
     self.imageCache = [[NSMutableDictionary alloc] init];
     self.missionNames = [[NSArray alloc] initWithArray: [NSArray arrayWithObjects:
                                                     @"Curiosity",
@@ -256,7 +256,7 @@ static MarsNotebook *instance = nil;
             for (int j = 0; j < [[metadataList notes] count]; j++) {
                 EDAMNoteMetadata* note = (EDAMNoteMetadata*)[[metadataList notes] objectAtIndex:j];
                 [noteTitles addObject:note.title];
-                [noteGUIDs addObject:note.guid];
+                [noteGUIDs setObject:note.guid forKey:note.title];
             }
             
             viewController.reloading = NO;
@@ -572,6 +572,71 @@ static MarsNotebook *instance = nil;
     }
     else
         return @"UNKNOWN";
+}
+
+- (NSArray*) parseTitleChunks: (NSString*) title {
+    return [title componentsSeparatedByString: @" "];
+}
+
+- (NSString*) getAnaglyphTitle: (NSString*) title {
+    NSString* imageID = [self getImageIDForTitle:title];
+    
+    if ([currentMission isEqualToString:@"Curiosity"]) {
+        //early out on MSSS images
+        BOOL isMSSS = ([self isNumeric:[imageID characterAtIndex:0]]);
+        if (isMSSS)
+            return nil;
+
+        //only Hazcams and Navcams are anaglyph capable for now
+        NSArray* chunks = [self parseTitleChunks:title];
+        char eye = [imageID characterAtIndex:1];
+        NSMutableString* anaglyphId = [[NSMutableString alloc] initWithString: imageID];
+        NSString* otherEye = (eye == 'R') ? @"L" : @"R";
+        [anaglyphId replaceCharactersInRange:NSMakeRange(1,1) withString:otherEye];
+        return [NSString stringWithFormat:@"%@ %@ %@ %@", [chunks objectAtIndex:0], [chunks objectAtIndex:1], [chunks objectAtIndex: 2], anaglyphId];
+        
+    } else if ([currentMission isEqualToString:@"Opportunity"] || [currentMission isEqualToString:@"Spirit"]) {
+        //early out on MIs, Course Plots and false color Pancams
+        BOOL isMERColorPancam = [@"P" isEqualToString: [imageID substringWithRange:NSMakeRange(0,1)]];
+        BOOL isMI = [@"M" isEqualToString:[imageID substringWithRange:NSMakeRange(1,2)]];
+        BOOL isCoursePlot = [imageID isEqualToString:@"Course"];
+        if (isMI || isMERColorPancam || isCoursePlot)
+            return nil;
+    
+        //any Hazcams, Navcams, or Pancams with the same SCLK, SeqID and filter number may anaglyph
+        NSArray* chunks = [self parseTitleChunks:title];
+        char eye = [imageID characterAtIndex:23];
+        NSMutableString* anaglyphId = [[NSMutableString alloc] initWithString: imageID];
+        NSString* otherEye = (eye == 'R') ? @"L" : @"R";
+        [anaglyphId replaceCharactersInRange:NSMakeRange(23,1) withString:otherEye];
+        return [NSString stringWithFormat:@"%@ %@ %@", [chunks objectAtIndex:0], [chunks objectAtIndex:1], anaglyphId];
+    }
+    
+    return nil;
+}
+
+- (BOOL) isImageIdLeftEye: (NSString*) imageID {
+    char eye = 'R';
+    if ([currentMission isEqualToString: @"Curiosity"]) {
+        eye = [imageID characterAtIndex:1];
+    } else if ([currentMission isEqualToString:@"Opportunity"] || [currentMission isEqualToString:@"Spirit"]) {
+        eye = [imageID characterAtIndex:23];
+    }
+    return eye == 'L';
+}
+
+- (NSString*) getImageIDForTitle: (NSString *) title {
+    NSArray* chunks = [self parseTitleChunks: title];
+    if ([chunks count] < 4) {
+        return [chunks objectAtIndex:2];
+    }
+    return [chunks objectAtIndex:titleImageIdPosition];
+}
+
+- (int) getSolForTitle : (NSString*) title {
+    NSArray* chunks = [self parseTitleChunks: title];
+    int sol = [[chunks objectAtIndex: 1] intValue];
+    return sol;
 }
 
 @end

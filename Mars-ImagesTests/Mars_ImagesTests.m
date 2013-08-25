@@ -8,6 +8,7 @@
 
 #import "Mars_ImagesTests.h"
 #import "MarsTime.h"
+#import "MarsNotebook.h"
 
 #define SPIRIT_WEST_LONGITUDE 184.702
 #define SPIRIT_LANDING_SECONDS_SINCE_1970_EPOCH 1073137591
@@ -40,7 +41,7 @@
     
     NSArray* marsTimes = [MarsTime getMarsTimes:spiritLanding longitude:SPIRIT_WEST_LONGITUDE];
     STAssertNotNil(marsTimes, @"MarsTimes should not be nil");
-    STAssertEquals(13u, [marsTimes count], @"MarsTimes should have 13 elements");
+    STAssertEquals(14u, [marsTimes count], @"MarsTimes should have 13 elements");
     
     double jdut = [[marsTimes objectAtIndex:0] doubleValue];
     STAssertEqualsWithAccuracy(2453008.07397, jdut, 0.00001, @"Spirit landing jdut invalid");
@@ -71,15 +72,19 @@
     
     double eot = [[marsTimes objectAtIndex: 9] doubleValue];
     STAssertEqualsWithAccuracy(-12.77557, eot, 0.00001, @"Spirit EOT invalid");
+}
+
+- (void) testGetAnaglyphTitle {
     
-    double mtc = [[marsTimes objectAtIndex: 10] doubleValue];
-    STAssertEqualsWithAccuracy(13.16542, mtc, 0.00001, @"Spirit MTC invalid");
+    [MarsNotebook instance].currentMission = @"Opportunity";
     
-    double lmst = [[marsTimes objectAtIndex:11] doubleValue];
-    STAssertEqualsWithAccuracy(0.85196, lmst, 0.00001, @"Invalid value for Spirit landing LMST");
+    NSString* hazcamAnaglyphTitle = [[MarsNotebook instance] getAnaglyphTitle:@"Sol 3405 1R430479366EFFC7DGP1311R0M1"];
+    STAssertEqualObjects(hazcamAnaglyphTitle, @"Sol 3405 1R430479366EFFC7DGP1311L0M1", @"Right rear Hazcam anaglyph error");
+
+    [MarsNotebook instance].currentMission = @"Curiosity";
     
-    double ltst = [[marsTimes objectAtIndex:12] doubleValue];
-    STAssertEqualsWithAccuracy(0.00025, ltst, 0.00001, @"Invalid value for Spirit landing LTST");
+    NSString* navcamAnaglyphTitle = [[MarsNotebook instance] getAnaglyphTitle:@"Sol 0373 430609363 NRB_430609363EDR_F0140000NCAM00320M_"];
+    STAssertEqualObjects(navcamAnaglyphTitle, @"Sol 0373 430609363 NLB_430609363EDR_F0140000NCAM00320M_", @"Right rear Hazcam anaglyph error");
 }
 
 @end
