@@ -182,6 +182,12 @@
                                 <action selector="mailImage:" destination="oOl-pu-Ywb" id="mLK-h9-2Kg"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="9fb-WQ-3FW"/>
+                        <barButtonItem image="glasses.png" style="plain" id="Fhh-2m-fIy">
+                            <connections>
+                                <action selector="toggleAnaglyphImage" destination="oOl-pu-Ywb" id="0iu-Fp-7FK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="bq0-fJ-j77"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="4He-eb-U3l"/>
@@ -478,80 +484,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="103-map.png" width="26" height="21"/>
+        <image name="103-map.png" width="20" height="20"/>
         <image name="1371788537_clock.png" width="26" height="26"/>
         <image name="71-compass.png" width="24" height="24"/>
+        <image name="glasses.png" width="36" height="36"/>
         <image name="marstime~iphone.png" width="320" height="432"/>
         <image name="rovericon.png" width="22" height="28"/>
     </resources>
-    <classes>
-        <class className="AboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webview" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="CoursePlotViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoursePlotViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="FixedWidthImageTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FixedWidthImageTableViewCell.h"/>
-        </class>
-        <class className="FullscreenImageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FullscreenImageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="mailImage:"/>
-                <relationship kind="outlet" name="coursePlotButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="coursePlotFlexibleSpace" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="iPadCoursePlotButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ImageInfoTextViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageInfoTextViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textview" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="reloadButton:"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="MissionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MissionViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="SearchTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchTableViewController.h"/>
-        </class>
-        <class className="TimeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimeViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="clockView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="curiositySeconds" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="curiositySolLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="curiosityTimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="curiosityTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="opportunitySolLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="opportunityTimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="opportunityTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="oppySeconds" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="utcLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
