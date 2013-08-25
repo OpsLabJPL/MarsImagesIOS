@@ -22,9 +22,11 @@
 @synthesize anaglyphNote;
 @synthesize coursePlotButton;
 @synthesize coursePlotFlexibleSpace;
-@synthesize iPadCoursePlotButton;
+@synthesize anaglyphButton;
+@synthesize anaglyphFlexibleSpace;
 @synthesize isAnaglyphDisplayMode;
 @synthesize toolbarButtonItem;
+@synthesize iPadToolbar;
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,13 +39,30 @@
     
     //set the initial visibility of the course plot button: shown if mission is Oppy or Spirit, hidden if not
     if (!([currentMission isEqualToString:@"Opportunity"] || [currentMission isEqualToString:@"Spirit"])) {
-        if (iPadCoursePlotButton) { //on the iPad this button lives on the detailViewController
-            iPadCoursePlotButton.hidden = YES;
+        if (iPadToolbar) { //on the iPad this button lives on the detailViewController
+            NSMutableArray* newItemsInToolbar = [[NSMutableArray alloc] initWithArray:iPadToolbar.items];
+            [newItemsInToolbar removeObjectIdenticalTo: coursePlotButton];
+            [newItemsInToolbar removeObjectIdenticalTo: coursePlotFlexibleSpace];
+            iPadToolbar.items =  newItemsInToolbar;
         } else { //on the iPhone this button lives in our own toolbar
             NSMutableArray* newItemsInToolbar = [[NSMutableArray alloc] initWithArray:[self toolbarItems]];
             [newItemsInToolbar removeObjectIdenticalTo: coursePlotButton];
             [newItemsInToolbar removeObjectIdenticalTo: coursePlotFlexibleSpace];
             [self setToolbarItems:newItemsInToolbar animated:YES];
+        }
+    }
+    //hide the anaglyph button if we don't have an image pair
+    if (!anaglyphNoteGUID) {
+        if (iPadToolbar) {
+            NSMutableArray* newItemsInToolbar = [[NSMutableArray alloc] initWithArray: iPadToolbar.items];
+            [newItemsInToolbar removeObjectIdenticalTo: anaglyphButton];
+            [newItemsInToolbar removeObjectIdenticalTo: anaglyphFlexibleSpace];
+            iPadToolbar.items = newItemsInToolbar;
+        } else {
+            NSMutableArray* newItemsInToolbar = [[NSMutableArray alloc] initWithArray:[self toolbarItems]];
+            [newItemsInToolbar removeObjectIdenticalTo: anaglyphButton];
+            [newItemsInToolbar removeObjectIdenticalTo: anaglyphFlexibleSpace];
+            [self setToolbarItems:newItemsInToolbar animated:YES];            
         }
     }
     
@@ -56,7 +75,9 @@
     [self setInfoButton:nil];
     [self setCoursePlotButton:nil];
     [self setCoursePlotFlexibleSpace:nil];
-    [self setIPadCoursePlotButton:nil];
+    [self setAnaglyphButton: nil];
+    [self setAnaglyphFlexibleSpace: nil];
+    [self setIPadToolbar:nil];
     [super viewDidUnload];
 }
 
