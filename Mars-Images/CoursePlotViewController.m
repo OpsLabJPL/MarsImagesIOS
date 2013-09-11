@@ -69,7 +69,6 @@
             }
         });
     });
-    dispatch_release(downloadQueue);
 }
 
 #pragma mark - scroll view delegate
