@@ -971,7 +971,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mars-Images/Mars-Images-Prefix.pch";
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Mars-Images";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1056,7 +1056,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mars-Images/Mars-Images-Prefix.pch";
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Mars-Images";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1070,7 +1070,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mars-Images/Mars-Images-Prefix.pch";
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Mars-Images";
 				PROVISIONING_PROFILE = "C5B8842B-19DD-4F99-9EE6-EFFE03588F5A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C5B8842B-19DD-4F99-9EE6-EFFE03588F5A";
