@@ -267,7 +267,6 @@ static MarsNotebook *instance = nil;
                 });
             }
         });
-        dispatch_release(downloadQueue);
     }
 }
 
