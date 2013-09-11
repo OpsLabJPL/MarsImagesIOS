@@ -87,7 +87,6 @@
             }
         }
     });
-    dispatch_release(downloadQueue);
 }
 
 - (void)awakeFromNib {
