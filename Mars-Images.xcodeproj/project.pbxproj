@@ -36,8 +36,6 @@
 		4A39DFC516595088001FFD0C /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFBD16595088001FFD0C /* grayArrow@2x.png */; };
 		4A39DFC616595088001FFD0C /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFBE16595088001FFD0C /* whiteArrow.png */; };
 		4A39DFC716595088001FFD0C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFBF16595088001FFD0C /* whiteArrow@2x.png */; };
-		4A39DFCA16595096001FFD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFC916595096001FFD0C /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-checker"; }; };
-		4A39DFCF165957D7001FFD0C /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFC916595096001FFD0C /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4A39DFD116595943001FFD0C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A39DFD016595943001FFD0C /* QuartzCore.framework */; };
 		4A465EC917B6BB8B004DBFA0 /* marstime~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A465EC817B6BB8B004DBFA0 /* marstime~ipad.png */; };
 		4A4969E51772B4DF008B9946 /* marstime-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E21772B4DF008B9946 /* marstime-568h@2x~iphone.png */; };
@@ -188,8 +186,6 @@
 		4A39DFBD16595088001FFD0C /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		4A39DFBE16595088001FFD0C /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		4A39DFBF16595088001FFD0C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		4A39DFC816595096001FFD0C /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = "Mars-Images/EGORefreshTableHeaderView.h"; sourceTree = "<group>"; };
-		4A39DFC916595096001FFD0C /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = "Mars-Images/EGORefreshTableHeaderView.m"; sourceTree = "<group>"; };
 		4A39DFD016595943001FFD0C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4A465EC817B6BB8B004DBFA0 /* marstime~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marstime~ipad.png"; path = "../../../Documents/marsmobileapp/marstime images/marstime~ipad.png"; sourceTree = "<group>"; };
 		4A4969E21772B4DF008B9946 /* marstime-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime-568h@2x~iphone.png"; sourceTree = "<group>"; };
@@ -355,8 +351,6 @@
 			children = (
 				4A26D636176542C800F824E8 /* Reachability.h */,
 				4A26D637176542C800F824E8 /* Reachability.m */,
-				4A39DFC816595096001FFD0C /* EGORefreshTableHeaderView.h */,
-				4A39DFC916595096001FFD0C /* EGORefreshTableHeaderView.m */,
 				4A5836F5166A8ABD00E349B6 /* UIImage+Resize.h */,
 				4A5836F6166A8ABD00E349B6 /* UIImage+Resize.m */,
 				4A5836F8166A8AD600E349B6 /* UIImage+Alpha.h */,
@@ -814,7 +808,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A39DFCF165957D7001FFD0C /* EGORefreshTableHeaderView.m in Sources */,
 				4AC5DDD316589D1300A79555 /* ENAPI.m in Sources */,
 				4AC5DDD416589D1300A79555 /* ENCredentials.m in Sources */,
 				4AC5DDD516589D1300A79555 /* ENCredentialStore.m in Sources */,
@@ -889,7 +882,6 @@
 				4AC5DDA916588C6E00A79555 /* ENCredentials.m in Sources */,
 				4AC5DDAA16588C6E00A79555 /* ENCredentialStore.m in Sources */,
 				4AC5DDAB16588C6E00A79555 /* ENOAuthViewController.m in Sources */,
-				4A39DFCA16595096001FFD0C /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
