@@ -65,7 +65,7 @@
         /* update current mission in app settings (informs listeners to refresh UI) */
         [prefs setObject:mission forKey:@"mission"];
         [prefs synchronize];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
