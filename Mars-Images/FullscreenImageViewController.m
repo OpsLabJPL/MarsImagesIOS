@@ -44,7 +44,20 @@
         }
     }
 
+    // anti-IB-autolayout: needed to prevent jerky zoom behavior with imageView contained in scrollView
+    [self.imageView removeConstraints:self.imageView.constraints];
+    [self.scrollView removeConstraints:self.scrollView.constraints];
+    self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
+    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     [self loadMyImage];
+}
+
+// we need this in addition to anti-IB-autolayoutto counter jerky zoom behavior
+- (void) scrollViewDidZoom:(UIScrollView *)scrollView {
+    CGRect cFrame = self.imageView.frame;
+    cFrame.origin = CGPointZero;
+    self.imageView.frame = cFrame;
 }
 
 - (void) viewDidUnload {
@@ -65,12 +78,6 @@
 
 #pragma mark - device rotation support
 
-//IOS 5
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation { //chain to IOS 6 implementation, requires converting the argument enum value to a bit mask value to compare
-    return (1 << toInterfaceOrientation) & [self supportedInterfaceOrientationsForWindow];
-}
-
-//IOS 6 (returns a bit mask of accepted orientation values
 - (NSUInteger) supportedInterfaceOrientationsForWindow {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
@@ -104,7 +111,8 @@
                     UIImage* tmpImage = [[UIImage alloc] initWithData:resource.data.body];
                     dispatch_async(dispatch_get_main_queue(), ^{ // Assign image to view in UI thread
                         self.imageView.image = tmpImage;
-                        self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height);
+                        self.scrollView.contentSize = self.imageView.bounds.size;
+                        
                         if (spinner) { //end progress spinner
                             [[self navigationItem] setRightBarButtonItem:nil];
                             [spinner stopAnimating];
