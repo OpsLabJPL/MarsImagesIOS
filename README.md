@@ -6,7 +6,7 @@ Mars image browsing app for iOS to view the latest from NASA's robotic surface m
 Getting Started
 ===============
 
-The app is provided as an XCode 4 project for iOS 5 or greater. If you are developing on Mac with XCode 4 installed, you should have everything you need. Just open this project in XCode and run it in the iOS simulator.
+The app is provided as an XCode 5 project for iOS 6 or greater. If you are developing on Mac with XCode 5 installed, you should have everything you need. Just open this project in XCode and run it in the iOS simulator.
 
 Features
 ========
