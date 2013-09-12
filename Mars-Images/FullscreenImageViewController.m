@@ -150,13 +150,13 @@
     [controller addAttachmentData: imageData
                          mimeType: @"image/jpeg"
                          fileName: [NSString stringWithFormat:@"%@.JPG", noteTitle]];
-    if (controller) [self presentModalViewController:controller animated:YES];
+    if (controller) [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError*)error {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - scroll view delegate
