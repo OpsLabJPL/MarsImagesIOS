@@ -517,7 +517,6 @@
         <image name="71-compass.png" width="24" height="24"/>
         <image name="marstime.png" width="320" height="432"/>
         <image name="rovericon.png" width="22" height="28"/>
-        <image name="rovericon.png" width="22" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
