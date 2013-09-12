@@ -18,11 +18,6 @@ This product includes the Evernote SDK for IOS version 1.2.1. The Evernote
 SDK for IOS is free distributable under the terms of a FreeBSD-style license.
 For details see https://github.com/evernote/evernote-sdk-ios
 
-This product includes the EGORefreshTableHeaderView created by Devin Doty 
-on 10/14/09. EGORefreshTableHeaderView is freely distributable under the
-terms of an MIT-style license. For details see 
-https://github.com/enormego/EGOTableViewPullRefresh
-
 This product includes UIImage category methods posted online by Trevor 
 Harmon here:
 http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
