@@ -33,12 +33,6 @@
 
 #pragma mark - device rotation support
 
-//IOS 5
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation { //chain to IOS 6 implementation, requires converting the argument enum value to a bit mask value to compare
-    return (1 << toInterfaceOrientation) & [self supportedInterfaceOrientationsForWindow];
-}
-
-//IOS 6 (returns a bit mask of accepted orientation values
 - (NSUInteger) supportedInterfaceOrientationsForWindow {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
