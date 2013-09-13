@@ -219,15 +219,15 @@
                         <viewControllerLayoutGuide type="top" id="NGA-0j-coc"/>
                         <viewControllerLayoutGuide type="bottom" id="Avb-FF-dDk"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MN1-qX-c02">
+                    <view key="view" contentMode="TopLeft" id="MN1-qX-c02">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="Za3-C8-cGl">
-                                <rect key="frame" x="0.0" y="-44" width="320" height="460"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="Za3-C8-cGl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-vQ-vsH">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                     </imageView>
                                 </subviews>
                                 <connections>
@@ -236,6 +236,12 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Za3-C8-cGl" secondAttribute="bottom" id="8RY-2a-ixm"/>
+                            <constraint firstItem="Za3-C8-cGl" firstAttribute="leading" secondItem="MN1-qX-c02" secondAttribute="leading" id="gEB-60-EMQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Za3-C8-cGl" secondAttribute="trailing" id="vad-mj-7Ze"/>
+                            <constraint firstItem="Za3-C8-cGl" firstAttribute="top" secondItem="MN1-qX-c02" secondAttribute="top" id="zrR-px-zri"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="jG8-Ij-xKP"/>

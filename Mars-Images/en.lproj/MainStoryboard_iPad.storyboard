@@ -563,7 +563,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="F8A-Mb-keX">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="F8A-Mb-keX">
                                 <rect key="frame" x="0.0" y="43" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -578,6 +578,12 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F8A-Mb-keX" firstAttribute="top" secondItem="0Te-nz-f5F" secondAttribute="top" constant="43" id="3uM-J9-fuh"/>
+                            <constraint firstItem="F8A-Mb-keX" firstAttribute="leading" secondItem="0Te-nz-f5F" secondAttribute="leading" id="Wlk-yG-zgW"/>
+                            <constraint firstAttribute="bottom" secondItem="F8A-Mb-keX" secondAttribute="bottom" constant="-43" id="Wyn-f3-7Ni"/>
+                            <constraint firstAttribute="trailing" secondItem="F8A-Mb-keX" secondAttribute="trailing" id="gs8-gf-N4u"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="f04-DX-w5L"/>
                     <connections>

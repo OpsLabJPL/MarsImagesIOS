@@ -25,7 +25,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // anti-IB-autolayout: needed to prevent jerky zoom behavior with imageView contained in scrollView
+    [self.imageView removeConstraints:self.imageView.constraints];
+    [self.scrollView removeConstraints:self.scrollView.constraints];
+    self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
+    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     [self loadMyImage];
+}
+
+// we need this in addition to anti-IB-autolayoutto counter jerky zoom behavior
+- (void) scrollViewDidZoom:(UIScrollView *)scrollView {
+    CGRect cFrame = self.imageView.frame;
+    cFrame.origin = CGPointZero;
+    self.imageView.frame = cFrame;
 }
 
 - (void)viewDidUnload {
