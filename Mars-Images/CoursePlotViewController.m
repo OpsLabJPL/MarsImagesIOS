@@ -56,7 +56,6 @@
         else if ([[[MarsNotebook instance] currentMission] isEqualToString:@"Spirit"])
             missionDir = @"mera";
         NSString* path = [NSString stringWithFormat:@"http://merpublic.s3.amazonaws.com/oss/%@/ops/ops/surface/tactical/sol/%@/sret/mobidd/mot-all-report/cache-mot-all-report/hyperplots/raw_north_vs_raw_east.png", missionDir, solDirectory];
-//        NSLog(@"%@", path);
         NSURL *url = [NSURL URLWithString:path];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *tmpImage = [[UIImage alloc] initWithData:data];
