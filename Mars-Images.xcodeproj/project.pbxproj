@@ -37,6 +37,7 @@
 		4A4969EC1772B4F4008B9946 /* marstime-landscape~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E91772B4F4008B9946 /* marstime-landscape~iphone.png */; };
 		4A4969ED1772B4F4008B9946 /* marstime-landscape@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969EA1772B4F4008B9946 /* marstime-landscape@2x~iphone.png */; };
 		4A4969F01772C183008B9946 /* marstime@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969EE1772C182008B9946 /* marstime@2x~ipad.png */; };
+		4A51D7D917E28F7500E8E0D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A51D7D817E28F7500E8E0D6 /* Images.xcassets */; };
 		4A5836EB16693A4300E349B6 /* FullscreenImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5836EA16693A4300E349B6 /* FullscreenImageViewController.m */; };
 		4A5836EE166976DC00E349B6 /* ImageInfoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5836ED166976DC00E349B6 /* ImageInfoTextViewController.m */; };
 		4A5836F116699DB000E349B6 /* Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5836F016699DB000E349B6 /* Search.m */; };
@@ -179,6 +180,7 @@
 		4A4969E91772B4F4008B9946 /* marstime-landscape~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime-landscape~iphone.png"; sourceTree = "<group>"; };
 		4A4969EA1772B4F4008B9946 /* marstime-landscape@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime-landscape@2x~iphone.png"; sourceTree = "<group>"; };
 		4A4969EE1772C182008B9946 /* marstime@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime@2x~ipad.png"; sourceTree = "<group>"; };
+		4A51D7D817E28F7500E8E0D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A5836E916693A4300E349B6 /* FullscreenImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullscreenImageViewController.h; sourceTree = "<group>"; };
 		4A5836EA16693A4300E349B6 /* FullscreenImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullscreenImageViewController.m; sourceTree = "<group>"; };
 		4A5836EC166976DB00E349B6 /* ImageInfoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageInfoTextViewController.h; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				4A5836FE166A8CEF00E349B6 /* ThirdParty */,
 				4AC5DD04165864F400A79555 /* Supporting Files */,
 				4A39DFA31658B8DB001FFD0C /* Settings.bundle */,
+				4A51D7D817E28F7500E8E0D6 /* Images.xcassets */,
 			);
 			path = "Mars-Images";
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC5DD08165864F400A79555 /* InfoPlist.strings in Resources */,
+				4A51D7D917E28F7500E8E0D6 /* Images.xcassets in Resources */,
 				4AC5DD17165864F400A79555 /* MainStoryboard_iPhone.storyboard in Resources */,
 				4AC5DD1A165864F400A79555 /* MainStoryboard_iPad.storyboard in Resources */,
 				4AC5DD441658718900A79555 /* rovericon.png in Resources */,
@@ -928,6 +932,8 @@
 		4A9EB733168B848C000DB4DF /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mars-Images/Mars-Images-Prefix.pch";
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
@@ -1013,6 +1019,8 @@
 		4AC5DD39165864F500A79555 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mars-Images/Mars-Images-Prefix.pch";
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
@@ -1025,6 +1033,8 @@
 		4AC5DD3A165864F500A79555 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Mark Powell";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mark Powell";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
