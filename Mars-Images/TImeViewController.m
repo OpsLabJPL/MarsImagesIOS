@@ -31,6 +31,7 @@
 @synthesize curiositySeconds;
 @synthesize utcLabel;
 @synthesize timer;
+@synthesize constraints;
 
 NSDateFormatter *timeFormat, *dateFormat;
 
@@ -41,7 +42,7 @@ NSDateFormatter *timeFormat, *dateFormat;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    constraints = [[NSMutableArray alloc] init];
     dateFormat = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormat setTimeZone:timeZone];
@@ -60,61 +61,36 @@ NSDateFormatter *timeFormat, *dateFormat;
     [self repositionLabels:[self interfaceOrientation]];
 }
 
+- (void) putConstraintIntoArray: (NSString*) visualFormatString {
+    NSDictionary* views = NSDictionaryOfVariableBindings(imageView, curiosityTitleLabel, opportunityTitleLabel, curiositySolLabel, opportunitySolLabel);
+    [constraints addObjectsFromArray: [NSLayoutConstraint constraintsWithVisualFormat:visualFormatString options:nil metrics:nil views:views]];
+}
+
 - (void) repositionLabels:(UIDeviceOrientation) orientation {
-    CGRect bounds = [[self clockView] bounds];
+    //clear old programmatically-managed layout constraints
+    [clockView removeConstraints:constraints];
+    [constraints removeAllObjects];
     
+    CGRect bounds = [[self clockView] bounds];
     int view_width = bounds.size.width;
     int view_height = bounds.size.height;
     
-    CGRect labelBounds = utcLabel.frame;
-    utcLabel.frame = CGRectMake(labelBounds.origin.x, labelBounds.origin.y, view_width, labelBounds.size.height);
-    
     if (UIDeviceOrientationIsLandscape(orientation)) {
         
-        labelBounds = opportunityTitleLabel.frame;
-        opportunityTitleLabel.frame = CGRectMake(view_width/4-labelBounds.size.width/2, bounds.origin.y, labelBounds.size.width, labelBounds.size.height);
+        //center each title in its respective column of the image view and align them at the top
         
-        labelBounds = curiosityTitleLabel.frame;
-        curiosityTitleLabel.frame = CGRectMake(3*view_width/4-labelBounds.size.width/2, bounds.origin.y, labelBounds.size.width, labelBounds.size.height);
+        [self putConstraintIntoArray: [[NSString alloc] initWithFormat:@"H:|-(%d)-[opportunityTitleLabel]", (int)(view_width/4-opportunityTitleLabel.intrinsicContentSize.width/2)]];
+        [self putConstraintIntoArray: [[NSString alloc] initWithFormat:@"H:|-(%d)-[curiosityTitleLabel]", (int)(3*view_width/4-curiosityTitleLabel.intrinsicContentSize.width/2)]];
+        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"V:|-(%d)-[curiosityTitleLabel]", (int)(bounds.origin.y)]];
         
-        labelBounds = opportunitySolLabel.frame;
-        opportunitySolLabel.frame = CGRectMake(view_width/2-100, opportunityTitleLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
+        //horizontally align sol labels in their respective columns
         
-        labelBounds = curiositySolLabel.frame;
-        curiositySolLabel.frame = CGRectMake(view_width-100, curiosityTitleLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = opportunityTimeLabel.frame;
-        opportunityTimeLabel.frame = CGRectMake(view_width/2-100, opportunitySolLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = curiosityTimeLabel.frame;
-        curiosityTimeLabel.frame = CGRectMake(view_width-100, curiositySolLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
-        
+        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"H:|-(%d)-[opportunitySolLabel]", (int)(view_width/2-100)]];
+        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"H:|-(%d)-[curiositySolLabel]", (int)(view_width-100)]];
     } else {
-        labelBounds = opportunityTitleLabel.frame;
-        opportunityTitleLabel.frame = CGRectMake(view_width/2-labelBounds.size.width/2, bounds.origin.y, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = curiosityTitleLabel.frame;
-        curiosityTitleLabel.frame = CGRectMake(view_width/2-labelBounds.size.width/2, bounds.origin.y+view_height/2, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = opportunitySolLabel.frame;
-        opportunitySolLabel.frame = CGRectMake(view_width-100, opportunityTitleLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = curiositySolLabel.frame;
-        curiositySolLabel.frame = CGRectMake(view_width-100, curiosityTitleLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = opportunityTimeLabel.frame;
-        opportunityTimeLabel.frame = CGRectMake(view_width-100, opportunitySolLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
-        
-        labelBounds = curiosityTimeLabel.frame;
-        curiosityTimeLabel.frame = CGRectMake(view_width-100, curiositySolLabel.frame.origin.y+30, labelBounds.size.width, labelBounds.size.height);
+        [self putConstraintIntoArray: [[NSString alloc] initWithFormat:@"V:|-(%d)-[curiosityTitleLabel]", (int)(bounds.origin.y+view_height/2)]];
     }
-    
-    labelBounds = oppySeconds.frame;
-    oppySeconds.frame = CGRectMake(opportunityTimeLabel.frame.origin.x+60, opportunityTimeLabel.frame.origin.y+3, labelBounds.size.width, labelBounds.size.height);
-    
-    labelBounds = curiositySeconds.frame;
-    curiositySeconds.frame = CGRectMake(curiosityTimeLabel.frame.origin.x+60, curiosityTimeLabel.frame.origin.y+3, labelBounds.size.width, labelBounds.size.height);
-
+    [clockView addConstraints:constraints];
 }
 
 - (void) updateImageView:(UIDeviceOrientation) orientation {

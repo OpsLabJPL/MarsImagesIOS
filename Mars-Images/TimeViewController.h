@@ -22,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *curiositySeconds;
 @property (weak, nonatomic) IBOutlet UILabel *utcLabel;
 @property (strong, nonatomic) NSTimer* timer;
+@property (strong, nonatomic) NSMutableArray* constraints;
 
 - (void) updateImageView: (UIDeviceOrientation) orientation;
 - (NSString*) getBestImageAssetName: (NSString*) assetRootName;
+- (void) putConstraintIntoArray: (NSString*) visualFormatString;
 @end
