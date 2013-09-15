@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGORefreshTableHeaderView.h"
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <EGORefreshTableHeaderDelegate> {
-	EGORefreshTableHeaderView *_refreshHeaderView;
+@interface MasterViewController : UITableViewController {
 }
 
 @property BOOL reloading;
@@ -30,17 +28,5 @@
 - (void) reloadImagesImpl;
 
 - (void) reloadTableViewDataSource; //pull to refresh
-
-- (void) doneLoadingTableViewData; //pull to refresh
-
-- (void) scrollViewDidScroll:(UIScrollView *) scrollView;
-
-- (void) scrollViewDidEndDragging:(UIScrollView *) scrollView willDecelerate:(BOOL)decelerate;
-
-- (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view;
-
-- (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view;
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view;
 
 @end

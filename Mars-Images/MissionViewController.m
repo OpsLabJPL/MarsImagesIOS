@@ -21,6 +21,7 @@
 }
 
 - (void) viewDidLoad {
+    [self.view layoutIfNeeded];
     //set the initial selection of the picker row for the currently selected mission
     NSArray *missionNames = [MarsNotebook instance].missionNames;
     for (int i = 0; i < [missionNames count]; i++) {
@@ -33,12 +34,6 @@
 
 #pragma mark - device rotation support
 
-//IOS 5
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation { //chain to IOS 6 implementation, requires converting the argument enum value to a bit mask value to compare
-    return (1 << toInterfaceOrientation) & [self supportedInterfaceOrientationsForWindow];
-}
-
-//IOS 6 (returns a bit mask of accepted orientation values
 - (NSUInteger) supportedInterfaceOrientationsForWindow {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
@@ -65,7 +60,7 @@
         /* update current mission in app settings (informs listeners to refresh UI) */
         [prefs setObject:mission forKey:@"mission"];
         [prefs synchronize];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -87,7 +82,7 @@
 
 // tell the picker the width of each row for a given component
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return 300; //sectionWidth
+    return 150; //sectionWidth
 }
 
 - (void)viewDidUnload {

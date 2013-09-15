@@ -69,16 +69,13 @@
                     float yScale = [[self view] frame].size.height / (float)tmpImage.size.height;
                     int newWidth = tmpImage.size.width;
                     int newHeight = tmpImage.size.height;
-                    newWidth *= MIN(xScale, yScale);
-                    newHeight *= MIN(xScale, yScale);
+                    float scale = MIN(xScale, yScale);
+                    newWidth *= scale;
+                    newHeight *= scale;
                     UIImage* resizedImage = [tmpImage resizedImage:CGSizeMake(newWidth, newHeight) interpolationQuality:kCGInterpolationHigh];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.imageButton setImage:resizedImage forState: UIControlStateNormal];
-                        int x = 0;
-                        int y = ([[self view] frame].size.height - resizedImage.size.height) / 2;
-                        self.imageButton.frame = CGRectMake(x, y, resizedImage.size.width, resizedImage.size.height);
-
                         [self.navigationItem setRightBarButtonItem:nil];
                         [spinner stopAnimating];
                     });
@@ -87,7 +84,6 @@
             }
         }
     });
-    dispatch_release(downloadQueue);
 }
 
 - (void)awakeFromNib {
@@ -114,12 +110,6 @@
     [self configureView];
 }
 
-//IOS 5
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return YES;
-}
-
-//IOS 6
 - (NSUInteger) supportedOrientationsForWindow {
     return UIInterfaceOrientationMaskAll;
 }

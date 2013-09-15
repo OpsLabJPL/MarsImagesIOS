@@ -331,7 +331,7 @@
 
 - (BOOL)handleOpenURL:(NSURL *)url
 {
-    [self.viewController dismissModalViewControllerAnimated:YES];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 
     // only handle our specific oauth_callback URLs
     if (![[url absoluteString] hasPrefix:[self oauthCallback]]) {
@@ -462,7 +462,7 @@
         oauthNavController.modalPresentationStyle = UIModalPresentationFormSheet;
     }
     
-    [self.viewController presentModalViewController:oauthNavController animated:YES];
+    [self.viewController presentViewController:oauthNavController animated:YES completion:nil];
 }
 
 - (void)saveCredentialsWithEdamUserId:(NSString *)edamUserId 
@@ -520,19 +520,19 @@
 
 - (void)oauthViewControllerDidCancel:(ENOAuthViewController *)sender
 {
-    [self.viewController dismissModalViewControllerAnimated:YES];    
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 	[self completeAuthenticationWithError:nil];
 }
 
 - (void)oauthViewController:(ENOAuthViewController *)sender didFailWithError:(NSError *)error
 {
-    [self.viewController dismissModalViewControllerAnimated:YES];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
     [self completeAuthenticationWithError:error];
 }
 
 - (void)oauthViewController:(ENOAuthViewController *)sender receivedOAuthCallbackURL:(NSURL *)url
 {
-    [self.viewController dismissModalViewControllerAnimated:YES];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
     
     // OAuth step 3: got authorization from the user, now get a real token.
     NSDictionary *parameters = [EvernoteSession parametersFromQueryString:url.query];

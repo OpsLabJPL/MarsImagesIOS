@@ -25,7 +25,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // anti-IB-autolayout: needed to prevent jerky zoom behavior with imageView contained in scrollView
+    [self.imageView removeConstraints:self.imageView.constraints];
+    [self.scrollView removeConstraints:self.scrollView.constraints];
+    self.imageView.translatesAutoresizingMaskIntoConstraints = YES;
+    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     [self loadMyImage];
+}
+
+// we need this in addition to anti-IB-autolayoutto counter jerky zoom behavior
+- (void) scrollViewDidZoom:(UIScrollView *)scrollView {
+    CGRect cFrame = self.imageView.frame;
+    cFrame.origin = CGPointZero;
+    self.imageView.frame = cFrame;
 }
 
 - (void)viewDidUnload {
@@ -56,7 +70,6 @@
         else if ([[[MarsNotebook instance] currentMission] isEqualToString:@"Spirit"])
             missionDir = @"mera";
         NSString* path = [NSString stringWithFormat:@"http://merpublic.s3.amazonaws.com/oss/%@/ops/ops/surface/tactical/sol/%@/sret/mobidd/mot-all-report/cache-mot-all-report/hyperplots/raw_north_vs_raw_east.png", missionDir, solDirectory];
-//        NSLog(@"%@", path);
         NSURL *url = [NSURL URLWithString:path];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *tmpImage = [[UIImage alloc] initWithData:data];
@@ -69,7 +82,6 @@
             }
         });
     });
-    dispatch_release(downloadQueue);
 }
 
 #pragma mark - scroll view delegate
