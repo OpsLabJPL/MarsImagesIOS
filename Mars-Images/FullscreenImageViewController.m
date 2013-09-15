@@ -196,7 +196,6 @@
             }
         }
     });
-    dispatch_release(downloadQueue);
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
