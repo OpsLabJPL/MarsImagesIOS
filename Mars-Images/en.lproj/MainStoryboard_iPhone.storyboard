@@ -196,10 +196,18 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="bq0-fJ-j77"/>
+                        <barButtonItem image="glasses.png" id="IGx-Od-LQo">
+                            <connections>
+                                <action selector="toggleAnaglyphImage" destination="oOl-pu-Ywb" id="ypr-Pw-4K3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="h2y-5E-yFk"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="4He-eb-U3l"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="anaglyphButton" destination="IGx-Od-LQo" id="bbE-9F-xJx"/>
+                        <outlet property="anaglyphFlexibleSpace" destination="h2y-5E-yFk" id="3rE-gy-zlA"/>
                         <outlet property="coursePlotButton" destination="VAJ-be-Bvv" id="z1N-JK-rum"/>
                         <outlet property="coursePlotFlexibleSpace" destination="1xp-ly-H01" id="Doa-QL-aSn"/>
                         <outlet property="imageView" destination="Yyc-m5-VXh" id="way-o0-wG4"/>
@@ -570,9 +578,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="103-map.png" width="26" height="21"/>
+        <image name="103-map.png" width="20" height="20"/>
         <image name="1371788537_clock.png" width="26" height="26"/>
         <image name="71-compass.png" width="24" height="24"/>
+        <image name="glasses.png" width="20" height="20"/>
         <image name="marstime.png" width="320" height="432"/>
         <image name="rovericon.png" width="22" height="28"/>
     </resources>
@@ -582,6 +591,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WWB-h6-h6Q"/>
+        <segue reference="nUB-AH-SXy"/>
     </inferredMetricsTieBreakers>
 </document>

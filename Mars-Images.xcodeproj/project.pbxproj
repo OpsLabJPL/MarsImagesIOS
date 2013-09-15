@@ -29,7 +29,6 @@
 		4A39DFA91658C7DA001FFD0C /* MissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFA81658C7D9001FFD0C /* MissionViewController.m */; };
 		4A39DFAC1659465B001FFD0C /* FixedWidthImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */; };
 		4A39DFD116595943001FFD0C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A39DFD016595943001FFD0C /* QuartzCore.framework */; };
-		4A465EC917B6BB8B004DBFA0 /* marstime~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A465EC817B6BB8B004DBFA0 /* marstime~ipad.png */; };
 		4A4969E51772B4DF008B9946 /* marstime-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E21772B4DF008B9946 /* marstime-568h@2x~iphone.png */; };
 		4A4969E61772B4DF008B9946 /* marstime~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E31772B4DF008B9946 /* marstime~iphone.png */; };
 		4A4969E71772B4DF008B9946 /* marstime@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A4969E41772B4DF008B9946 /* marstime@2x~iphone.png */; };
@@ -175,7 +174,6 @@
 		4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedWidthImageTableViewCell.h; sourceTree = "<group>"; };
 		4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedWidthImageTableViewCell.m; sourceTree = "<group>"; };
 		4A39DFD016595943001FFD0C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4A465EC817B6BB8B004DBFA0 /* marstime~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marstime~ipad.png"; path = "../../../Documents/marsmobileapp/marstime images/marstime~ipad.png"; sourceTree = "<group>"; };
 		4A4969E21772B4DF008B9946 /* marstime-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		4A4969E31772B4DF008B9946 /* marstime~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime~iphone.png"; sourceTree = "<group>"; };
 		4A4969E41772B4DF008B9946 /* marstime@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marstime@2x~iphone.png"; sourceTree = "<group>"; };
@@ -448,7 +446,6 @@
 				4AB0004417C9506200DCF5B2 /* glasses.png */,
 				4A8DFF4617C9896D0060D73C /* glasses@2x.png */,
 				4A4969E31772B4DF008B9946 /* marstime~iphone.png */,
-				4A465EC817B6BB8B004DBFA0 /* marstime~ipad.png */,
 				4A4969E41772B4DF008B9946 /* marstime@2x~iphone.png */,
 				4A4969EE1772C182008B9946 /* marstime@2x~ipad.png */,
 				4A4969E21772B4DF008B9946 /* marstime-568h@2x~iphone.png */,
@@ -747,7 +744,6 @@
 				4A9F46451773CDDF00F8D689 /* 103-map.png in Resources */,
 				4A9F46471773DE9500F8D689 /* marstime-landscape@2x~ipad.png in Resources */,
 				4A9F46491773DECB00F8D689 /* marstime-landscape~ipad.png in Resources */,
-				4A465EC917B6BB8B004DBFA0 /* marstime~ipad.png in Resources */,
 				4A11FB6A17BC4BCE00439C1E /* README.md in Resources */,
 				4A61959917C463EF00036B16 /* MarsImagesiPad.png in Resources */,
 				4A61959A17C463EF00036B16 /* MarsImagesIpadRetina.png in Resources */,

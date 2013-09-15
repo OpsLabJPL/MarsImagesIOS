@@ -323,45 +323,42 @@
                     <navigationItem key="navigationItem" id="U0h-ku-1W7">
                         <barButtonItem key="rightBarButtonItem" id="z9p-hv-k8X">
                             <view key="customView" contentMode="scaleToFill" id="MFV-Ym-rUN">
-                                <rect key="frame" x="602" y="5" width="150" height="33"/>
+                                <rect key="frame" x="552" y="5" width="200" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-BC-VpA">
-                                        <rect key="frame" x="8" y="6" width="22" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Jy5-ff-SQx" kind="popover" identifier="imageInfo" popoverAnchorView="bNv-BC-VpA" id="C9Y-4Q-bIh">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyn-q1-r3S">
-                                        <rect key="frame" x="60" y="1" width="31" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="UIButtonBarCompose.png"/>
-                                        <connections>
-                                            <action selector="mailImage:" destination="ua8-4A-BJy" eventType="touchUpInside" id="Rhp-Jg-yy9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q1-Lb-Vwr">
-                                        <rect key="frame" x="115" y="3" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="103-map.png"/>
-                                        <connections>
-                                            <segue destination="8ZZ-i7-zR4" kind="push" identifier="coursePlot" id="6l6-KB-Lzx"/>
-                                        </connections>
-                                    </button>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="WbY-7g-8tQ">
+                                        <rect key="frame" x="0.0" y="-5" width="200" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="P9p-Rt-3c6"/>
+                                            <barButtonItem image="103-map.png" style="plain" id="Oy2-vB-3YE">
+                                                <connections>
+                                                    <segue destination="8ZZ-i7-zR4" kind="push" identifier="coursePlot" id="vM3-lg-wYH"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Y3s-lY-IW6"/>
+                                            <barButtonItem image="rovericon.png" style="plain" id="BwC-uO-g9d">
+                                                <connections>
+                                                    <segue destination="Jy5-ff-SQx" kind="popover" identifier="imageInfo" popoverAnchorBarButtonItem="BwC-uO-g9d" id="cj7-x3-QCB">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="r4s-Qm-9Rp"/>
+                                            <barButtonItem style="plain" systemItem="compose" id="F99-Ol-bgc">
+                                                <connections>
+                                                    <action selector="mailImage:" destination="ua8-4A-BJy" id="vke-5W-sEU"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="xvx-fn-oJ2"/>
+                                            <barButtonItem image="glasses.png" style="plain" id="FLE-7D-gKR">
+                                                <connections>
+                                                    <action selector="toggleAnaglyphImage" destination="ua8-4A-BJy" id="2vu-GG-xah"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="UXD-e3-kj5"/>
+                                        </items>
+                                    </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -371,9 +368,15 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="iPadCoursePlotButton" destination="6q1-Lb-Vwr" id="TtS-Ja-Y65"/>
+                        <outlet property="anaglyphButton" destination="FLE-7D-gKR" id="r8B-EM-PnQ"/>
+                        <outlet property="anaglyphFlexibleSpace" destination="UXD-e3-kj5" id="LAn-Rm-uOv"/>
+                        <outlet property="coursePlotButton" destination="Oy2-vB-3YE" id="ebj-Ak-xyD"/>
+                        <outlet property="coursePlotFlexibleSpace" destination="Y3s-lY-IW6" id="Eaw-U3-uoH"/>
+                        <outlet property="iPadToolbar" destination="WbY-7g-8tQ" id="efB-l0-3FQ"/>
                         <outlet property="imageView" destination="AYq-tc-LGT" id="f2g-0q-mYR"/>
+                        <outlet property="infoButton" destination="BwC-uO-g9d" id="l8Z-FD-h9V"/>
                         <outlet property="scrollView" destination="Xna-40-fxr" id="cZd-82-Qrv"/>
+                        <outlet property="toolbarButtonItem" destination="z9p-hv-k8X" id="RPC-rf-1MR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mF9-qA-rz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,11 +504,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2Ui-Gf-P2t"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xKc-cP-pDh">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="479-gd-2tX">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -739,12 +742,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="103-map.png" width="26" height="21"/>
+        <image name="103-map.png" width="20" height="20"/>
         <image name="1371788537_clock.png" width="26" height="26"/>
         <image name="1371788555_magnifyingglass.png" width="26" height="26"/>
-        <image name="UIButtonBarCompose.png" width="29" height="24"/>
         <image name="UIButtonBarRefresh.png" width="29" height="24"/>
-        <image name="marstime.png" width="448" height="930"/>
+        <image name="glasses.png" width="20" height="20"/>
+        <image name="marstime.png" width="439" height="1024"/>
+        <image name="rovericon.png" width="22" height="28"/>
         <image name="rovericonwhite.png" width="22" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -753,6 +757,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QWt-Bb-Zhc"/>
+        <segue reference="vM3-lg-wYH"/>
     </inferredMetricsTieBreakers>
 </document>
