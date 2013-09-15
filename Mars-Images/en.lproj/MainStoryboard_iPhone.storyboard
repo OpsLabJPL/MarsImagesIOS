@@ -496,19 +496,20 @@
         <!--Mission View Controller-->
         <scene sceneID="nmr-Lm-98d">
             <objects>
-                <viewController id="QBN-qo-NVf" customClass="MissionViewController" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="QBN-qo-NVf" customClass="MissionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ksB-ZL-9tL"/>
                         <viewControllerLayoutGuide type="bottom" id="P8k-9w-IhB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFit" id="n2o-9p-iF0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="njB-XF-AwA">
-                                <rect key="frame" x="0.0" y="84" width="320" height="216"/>
+                                <rect key="frame" x="0.0" y="240" width="320" height="216"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="DGU-qO-Btf"/>
+                                    <constraint firstAttribute="width" constant="320" id="J9e-ny-gaa"/>
+                                    <constraint firstAttribute="height" constant="240" id="dME-SK-Ro8"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="QBN-qo-NVf" id="CfW-J8-g0X"/>
@@ -517,20 +518,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="njB-XF-AwA" firstAttribute="leading" secondItem="n2o-9p-iF0" secondAttribute="leading" id="G0a-ds-rDq"/>
-                            <constraint firstAttribute="trailing" secondItem="njB-XF-AwA" secondAttribute="trailing" id="VbE-vE-dI5"/>
-                            <constraint firstAttribute="bottom" secondItem="njB-XF-AwA" secondAttribute="bottom" id="seY-hb-qMT"/>
+                            <constraint firstAttribute="bottom" secondItem="njB-XF-AwA" secondAttribute="bottom" id="ASU-gJ-izU"/>
+                            <constraint firstAttribute="centerX" secondItem="njB-XF-AwA" secondAttribute="centerX" id="DJ9-sE-aSC"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="vFI-8c-fcw"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="pickerView" destination="njB-XF-AwA" id="0u1-5n-rT7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIc-Pz-pxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1407" y="806"/>
+            <point key="canvasLocation" x="1496" y="771"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="xQx-CY-xZS">
@@ -544,7 +544,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baw-hb-eP8">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baw-hb-eP8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -552,6 +552,12 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="baw-hb-eP8" secondAttribute="bottom" id="ORG-4X-1XK"/>
+                            <constraint firstItem="baw-hb-eP8" firstAttribute="top" secondItem="tzT-Ie-78U" secondAttribute="top" id="bhL-Zc-MBx"/>
+                            <constraint firstItem="baw-hb-eP8" firstAttribute="leading" secondItem="tzT-Ie-78U" secondAttribute="leading" id="oYn-rS-dCE"/>
+                            <constraint firstAttribute="trailing" secondItem="baw-hb-eP8" secondAttribute="trailing" id="uhx-ce-GJH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kNb-Km-ezf"/>
                     <connections>

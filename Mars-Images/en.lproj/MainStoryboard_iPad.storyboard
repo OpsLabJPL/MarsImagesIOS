@@ -41,15 +41,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV1-wd-wNe">
-                                <rect key="frame" x="369" y="443" width="30" height="30"/>
+                                <rect key="frame" x="0.0" y="443" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -59,8 +55,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NV1-wd-wNe" firstAttribute="leading" secondItem="26" secondAttribute="leading" id="PJO-DO-QQC"/>
                             <constraint firstAttribute="centerY" secondItem="NV1-wd-wNe" secondAttribute="centerY" id="XQC-LD-eHf"/>
-                            <constraint firstAttribute="centerX" secondItem="NV1-wd-wNe" secondAttribute="centerX" id="kJa-1D-Ogv"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -77,6 +73,7 @@
                                             <constraint firstAttribute="width" constant="22" id="jVg-6g-w8e"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,14 +91,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="mpy-9e-Vhe"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="UIButtonBarRefresh.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" image="UIButtonBarRefresh.png"/>
                                         <connections>
                                             <action selector="refreshButtonPress:" destination="4" eventType="touchUpInside" id="lKi-Eo-WfM"/>
                                         </connections>
@@ -113,31 +103,19 @@
                                             <constraint firstAttribute="width" constant="30" id="IuZ-va-X9s"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="1371788555_magnifyingglass.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" image="1371788555_magnifyingglass.png"/>
                                         <connections>
                                             <segue destination="F4H-Qm-EgR" kind="push" identifier="search" id="zSG-oh-Hy6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYW-8w-Qof">
-                                        <rect key="frame" x="125" y="1" width="30" height="31"/>
+                                        <rect key="frame" x="125" y="1" width="30" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="eoc-XD-344"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="rovericonwhite.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" image="rovericonwhite.png"/>
                                         <connections>
                                             <segue destination="16z-rj-G4D" kind="popover" identifier="mission" popoverAnchorView="dYW-8w-Qof" id="6i1-nw-tAR">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -145,16 +123,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjl-x5-kJS">
-                                        <rect key="frame" x="165" y="-5" width="30" height="44"/>
+                                        <rect key="frame" x="165" y="-5" width="30" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="1371788537_clock.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" image="1371788537_clock.png"/>
                                         <connections>
                                             <segue destination="R7R-3P-R16" kind="push" identifier="time" id="4mH-gM-DfG"/>
                                         </connections>
@@ -191,6 +163,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="imageButton" destination="NV1-wd-wNe" id="dPh-wW-v0F"/>
                         <outlet property="toolbarButtonView" destination="N0V-gZ-RZv" id="A3T-qL-Enb"/>
@@ -357,6 +330,7 @@
                                         <rect key="frame" x="8" y="6" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,13 +348,7 @@
                                         <rect key="frame" x="60" y="1" width="31" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="UIButtonBarCompose.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" image="UIButtonBarCompose.png"/>
                                         <connections>
                                             <action selector="mailImage:" destination="ua8-4A-BJy" eventType="touchUpInside" id="Rhp-Jg-yy9"/>
                                         </connections>
@@ -389,13 +357,7 @@
                                         <rect key="frame" x="115" y="3" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="103-map.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" image="103-map.png"/>
                                         <connections>
                                             <segue destination="8ZZ-i7-zR4" kind="push" identifier="coursePlot" id="6l6-KB-Lzx"/>
                                         </connections>
@@ -505,7 +467,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mrk-aS-3Tn">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mrk-aS-3Tn">
                                 <rect key="frame" x="0.0" y="42" width="768" height="982"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -513,6 +475,12 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="mrk-aS-3Tn" secondAttribute="bottom" id="0FN-I4-xHy"/>
+                            <constraint firstAttribute="trailing" secondItem="mrk-aS-3Tn" secondAttribute="trailing" id="GMz-rH-ejS"/>
+                            <constraint firstItem="mrk-aS-3Tn" firstAttribute="top" secondItem="22Q-yC-pAn" secondAttribute="top" constant="42" id="a7p-TX-qmK"/>
+                            <constraint firstItem="mrk-aS-3Tn" firstAttribute="leading" secondItem="22Q-yC-pAn" secondAttribute="leading" id="lFA-hW-KUX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5Vf-26-FK5"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
@@ -536,7 +504,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="479-gd-2tX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="479-gd-2tX">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -545,8 +513,15 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="479-gd-2tX" secondAttribute="bottom" id="4it-YL-dOJ"/>
+                            <constraint firstItem="479-gd-2tX" firstAttribute="leading" secondItem="xKc-cP-pDh" secondAttribute="leading" id="5ZX-xD-cwP"/>
+                            <constraint firstAttribute="trailing" secondItem="479-gd-2tX" secondAttribute="trailing" id="qx6-yX-VzX"/>
+                            <constraint firstItem="479-gd-2tX" firstAttribute="top" secondItem="xKc-cP-pDh" secondAttribute="top" id="xeJ-yk-xOk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="C3K-La-EwG"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="400"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
                         <outlet property="textview" destination="479-gd-2tX" id="Uv8-EN-PHU"/>
@@ -778,6 +753,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6l6-KB-Lzx"/>
+        <segue reference="QWt-Bb-Zhc"/>
     </inferredMetricsTieBreakers>
 </document>

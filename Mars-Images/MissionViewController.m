@@ -21,6 +21,7 @@
 }
 
 - (void) viewDidLoad {
+    [self.view layoutIfNeeded];
     //set the initial selection of the picker row for the currently selected mission
     NSArray *missionNames = [MarsNotebook instance].missionNames;
     for (int i = 0; i < [missionNames count]; i++) {
@@ -81,7 +82,7 @@
 
 // tell the picker the width of each row for a given component
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return 300; //sectionWidth
+    return 150; //sectionWidth
 }
 
 - (void)viewDidUnload {
