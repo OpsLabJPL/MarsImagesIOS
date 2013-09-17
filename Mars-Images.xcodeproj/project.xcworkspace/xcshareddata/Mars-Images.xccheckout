@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2658D77A-6142-4074-9E9C-B26F6798636B</string>
+	<string>C8EEF073-82E3-4611-8F45-339E420D20E8</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Mars-Images</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>25B1B597-786B-4339-AF61-65744B037277</key>
+		<key>FB5A2BB7-5ADA-452C-9315-E270DC87B529</key>
 		<string>https://github.com/OpsLabJPL/MarsImagesIOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Mars-Images.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>25B1B597-786B-4339-AF61-65744B037277</key>
+		<key>FB5A2BB7-5ADA-452C-9315-E270DC87B529</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>25B1B597-786B-4339-AF61-65744B037277</string>
+	<string>FB5A2BB7-5ADA-452C-9315-E270DC87B529</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>25B1B597-786B-4339-AF61-65744B037277</string>
+			<string>FB5A2BB7-5ADA-452C-9315-E270DC87B529</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MarsImagesIOS</string>
 		</dict>
