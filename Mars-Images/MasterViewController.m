@@ -13,7 +13,7 @@
 #import "FullscreenImageViewController.h"
 #import "CoursePlotViewController.h"
 
-#define TITLE_PREFIX @"Mars Images: "
+#define TITLE_PREFIX @""
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
