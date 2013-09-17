@@ -2,91 +2,97 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "60x60"
+      "size" : "29x29",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "40x40",
+      "scale" : "2x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "MarsImagesiPhone.png",
+      "filename" : "MarsImagesAppIcon57pt.png",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "MarsImagesiPhone4.png",
+      "filename" : "MarsImagesAppIcon114pt.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "MarsImagesAppIcon120pt.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "50x50",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "50x50",
       "scale" : "2x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "MarsImagesiPad.png",
+      "filename" : "MarsImagesAppIcon72pt.png",
       "scale" : "1x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "MarsImagesIpadRetina.png",
+      "filename" : "MarsImagesAppIcon144pt.png",
       "scale" : "2x"
     },
     {
+      "size" : "76x76",
       "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "76x76"
+      "filename" : "MarsImagesAppIcon76pt.png",
+      "scale" : "1x"
     },
     {
+      "size" : "76x76",
       "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "76x76"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "1x",
-      "size" : "29x29"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "29x29"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "40x40"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "50x50"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "50x50"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "40x40"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "40x40"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x",
-      "size" : "29x29"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x",
-      "size" : "29x29"
+      "filename" : "MarsImagesAppIcon152pt.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "pre-rendered" : true
   }
 }
