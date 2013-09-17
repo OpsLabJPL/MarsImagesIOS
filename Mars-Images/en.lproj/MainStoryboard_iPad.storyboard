@@ -88,7 +88,7 @@
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="dfC-eN-2KL"/>
-                                            <barButtonItem image="rovericonwhite.png" style="plain" id="Aql-l0-Fdk">
+                                            <barButtonItem image="rovericon.png" style="plain" id="Aql-l0-Fdk">
                                                 <connections>
                                                     <segue destination="16z-rj-G4D" kind="popover" popoverAnchorBarButtonItem="Aql-l0-Fdk" id="HWE-uh-mGa">
                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -702,7 +702,6 @@
         <image name="glasses.png" width="20" height="20"/>
         <image name="marstime.png" width="439" height="1024"/>
         <image name="rovericon.png" width="22" height="28"/>
-        <image name="rovericonwhite.png" width="22" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

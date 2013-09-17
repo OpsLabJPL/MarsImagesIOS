@@ -16,7 +16,6 @@
 		4A26D634176542A600F824E8 /* EvernoteSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26D62E176542A600F824E8 /* EvernoteSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4A26D635176542A600F824E8 /* EvernoteUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26D630176542A600F824E8 /* EvernoteUserStore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4A26D638176542C800F824E8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26D637176542C800F824E8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4A26D6411765437800F824E8 /* coursePlot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D6391765437800F824E8 /* coursePlot.png */; };
 		4A26D6421765437800F824E8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D63A1765437800F824E8 /* Default-568h@2x.png */; };
 		4A26D6431765437800F824E8 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D63B1765437800F824E8 /* Default-Landscape@2x~ipad.png */; };
 		4A26D6441765437800F824E8 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D63C1765437800F824E8 /* Default-Landscape~ipad.png */; };
@@ -44,11 +43,6 @@
 		4A5836F7166A8ABD00E349B6 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5836F6166A8ABD00E349B6 /* UIImage+Resize.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		4A5836FA166A8AD600E349B6 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5836F9166A8AD600E349B6 /* UIImage+Alpha.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
 		4A5836FD166A8AF300E349B6 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5836FC166A8AF300E349B6 /* UIImage+RoundedCorner.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-checker"; }; };
-		4A583700166AE03900E349B6 /* rovericonwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5836FF166AE03900E349B6 /* rovericonwhite.png */; };
-		4A5D9C49166B122C001C5B47 /* UIButtonBarRefresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C46166B122C001C5B47 /* UIButtonBarRefresh.png */; };
-		4A5D9C4A166B122C001C5B47 /* UIButtonBarSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C47166B122C001C5B47 /* UIButtonBarSearch.png */; };
-		4A5D9C4B166B122C001C5B47 /* UIButtonTypeInfoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C48166B122C001C5B47 /* UIButtonTypeInfoDark.png */; };
-		4A5D9C4E166B2925001C5B47 /* UIButtonBarCompose.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D9C4D166B2925001C5B47 /* UIButtonBarCompose.png */; };
 		4A61959917C463EF00036B16 /* MarsImagesiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959517C463EF00036B16 /* MarsImagesiPad.png */; };
 		4A61959A17C463EF00036B16 /* MarsImagesIpadRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959617C463EF00036B16 /* MarsImagesIpadRetina.png */; };
 		4A61959B17C463EF00036B16 /* MarsImagesiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959717C463EF00036B16 /* MarsImagesiPhone.png */; };
@@ -129,7 +123,6 @@
 		4ACFF6C8174C3344004F5D46 /* MarsTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACFF6C7174C3344004F5D46 /* MarsTime.m */; };
 		4ACFF6CA174C7E6B004F5D46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A39DFD016595943001FFD0C /* QuartzCore.framework */; };
 		4ACFF6CB174C7E7E004F5D46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC5DDB216588F3C00A79555 /* Security.framework */; };
-		4AFAD8B2174558F00061F753 /* coursePlot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAD8B1174558F00061F753 /* coursePlot2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,7 +153,6 @@
 		4A26D630176542A600F824E8 /* EvernoteUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EvernoteUserStore.m; path = Evernote/EvernoteUserStore.m; sourceTree = "<group>"; };
 		4A26D636176542C800F824E8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = 3rdParty/Reachability.h; sourceTree = "<group>"; };
 		4A26D637176542C800F824E8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = 3rdParty/Reachability.m; sourceTree = "<group>"; };
-		4A26D6391765437800F824E8 /* coursePlot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursePlot.png; sourceTree = "<group>"; };
 		4A26D63A1765437800F824E8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4A26D63B1765437800F824E8 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		4A26D63C1765437800F824E8 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -196,11 +188,6 @@
 		4A5836F9166A8AD600E349B6 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "Mars-Images/UIImage+Alpha.m"; sourceTree = "<group>"; };
 		4A5836FB166A8AF300E349B6 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "Mars-Images/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		4A5836FC166A8AF300E349B6 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "Mars-Images/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		4A5836FF166AE03900E349B6 /* rovericonwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rovericonwhite.png; sourceTree = "<group>"; };
-		4A5D9C46166B122C001C5B47 /* UIButtonBarRefresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarRefresh.png; sourceTree = "<group>"; };
-		4A5D9C47166B122C001C5B47 /* UIButtonBarSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarSearch.png; sourceTree = "<group>"; };
-		4A5D9C48166B122C001C5B47 /* UIButtonTypeInfoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonTypeInfoDark.png; sourceTree = "<group>"; };
-		4A5D9C4D166B2925001C5B47 /* UIButtonBarCompose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarCompose.png; sourceTree = "<group>"; };
 		4A61959517C463EF00036B16 /* MarsImagesiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesiPad.png; sourceTree = "<group>"; };
 		4A61959617C463EF00036B16 /* MarsImagesIpadRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesIpadRetina.png; sourceTree = "<group>"; };
 		4A61959717C463EF00036B16 /* MarsImagesiPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarsImagesiPhone.png; sourceTree = "<group>"; };
@@ -303,7 +290,6 @@
 		4AC5DDB9165891DF00A79555 /* MarsNotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsNotebook.m; sourceTree = "<group>"; };
 		4ACFF6C6174C3344004F5D46 /* MarsTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsTime.h; sourceTree = "<group>"; };
 		4ACFF6C7174C3344004F5D46 /* MarsTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsTime.m; sourceTree = "<group>"; };
-		4AFAD8B1174558F00061F753 /* coursePlot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coursePlot2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,7 +440,6 @@
 				4A4969EA1772B4F4008B9946 /* marstime-landscape@2x~iphone.png */,
 				4A9F46461773DE9500F8D689 /* marstime-landscape@2x~ipad.png */,
 				4A4969E81772B4F4008B9946 /* marstime-landscape-568h@2x~iphone.png */,
-				4A26D6391765437800F824E8 /* coursePlot.png */,
 				4A26D63A1765437800F824E8 /* Default-568h@2x.png */,
 				4A26D63B1765437800F824E8 /* Default-Landscape@2x~ipad.png */,
 				4A26D63C1765437800F824E8 /* Default-Landscape~ipad.png */,
@@ -462,17 +447,11 @@
 				4A26D63E1765437800F824E8 /* Default-Portrait~ipad.png */,
 				4A26D63F1765437800F824E8 /* Default.png */,
 				4A26D6401765437800F824E8 /* Default@2x.png */,
-				4AFAD8B1174558F00061F753 /* coursePlot2.png */,
 				4AC5DD05165864F400A79555 /* Mars-Images-Info.plist */,
 				4AC5DD06165864F400A79555 /* InfoPlist.strings */,
 				4AC5DD09165864F400A79555 /* main.m */,
 				4AC5DD0B165864F400A79555 /* Mars-Images-Prefix.pch */,
 				4AC5DD431658718900A79555 /* rovericon.png */,
-				4A5836FF166AE03900E349B6 /* rovericonwhite.png */,
-				4A5D9C46166B122C001C5B47 /* UIButtonBarRefresh.png */,
-				4A5D9C47166B122C001C5B47 /* UIButtonBarSearch.png */,
-				4A5D9C48166B122C001C5B47 /* UIButtonTypeInfoDark.png */,
-				4A5D9C4D166B2925001C5B47 /* UIButtonBarCompose.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -722,13 +701,6 @@
 				4AC5DD1A165864F400A79555 /* MainStoryboard_iPad.storyboard in Resources */,
 				4AC5DD441658718900A79555 /* rovericon.png in Resources */,
 				4A39DFA41658B8DB001FFD0C /* Settings.bundle in Resources */,
-				4A583700166AE03900E349B6 /* rovericonwhite.png in Resources */,
-				4A5D9C49166B122C001C5B47 /* UIButtonBarRefresh.png in Resources */,
-				4A5D9C4A166B122C001C5B47 /* UIButtonBarSearch.png in Resources */,
-				4A5D9C4B166B122C001C5B47 /* UIButtonTypeInfoDark.png in Resources */,
-				4A5D9C4E166B2925001C5B47 /* UIButtonBarCompose.png in Resources */,
-				4AFAD8B2174558F00061F753 /* coursePlot2.png in Resources */,
-				4A26D6411765437800F824E8 /* coursePlot.png in Resources */,
 				4A26D6421765437800F824E8 /* Default-568h@2x.png in Resources */,
 				4A26D6431765437800F824E8 /* Default-Landscape@2x~ipad.png in Resources */,
 				4A26D6441765437800F824E8 /* Default-Landscape~ipad.png in Resources */,
