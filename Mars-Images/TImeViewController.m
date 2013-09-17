@@ -85,8 +85,8 @@ NSDateFormatter *timeFormat, *dateFormat;
         
         //horizontally align sol labels in their respective columns
         
-        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"H:|-(%d)-[opportunitySolLabel]", (int)(view_width/2-100)]];
-        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"H:|-(%d)-[curiositySolLabel]", (int)(view_width-100)]];
+        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"H:|-(%d)-[opportunitySolLabel]", (int)(view_width/2-110)]];
+        [self putConstraintIntoArray:[[NSString alloc] initWithFormat:@"H:|-(%d)-[curiositySolLabel]", (int)(view_width-110)]];
     } else {
         [self putConstraintIntoArray: [[NSString alloc] initWithFormat:@"V:|-(%d)-[curiosityTitleLabel]", (int)(bounds.origin.y+view_height/2)]];
     }
