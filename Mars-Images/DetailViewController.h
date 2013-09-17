@@ -12,6 +12,7 @@
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *toolbarButtonView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 - (IBAction)refreshButtonPress:(id)sender;

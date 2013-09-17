@@ -90,6 +90,11 @@
     //make sure master view is showing on initialization
     self.showMaster = YES;
     self.note = nil;
+    
+    //set the info icon image on the info button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [self.infoButton setImage:button.currentImage];
+    [self.toolbarButtonView setNeedsLayout];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
