@@ -33,7 +33,7 @@
 
 - (UIImage*) anaglyphImages: (UIImage*)leftImage right:(UIImage*)rightImage;
 - (uint8_t*) getGrayscalePixelArray: (UIImage*)image;
-- (IBAction) mailImage: (id) sender;
+- (IBAction) shareImage: (id) sender;
 - (IBAction) toggleAnaglyphImage;
 
 @end

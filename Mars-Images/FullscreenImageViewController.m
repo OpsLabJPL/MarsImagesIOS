@@ -227,27 +227,29 @@
     }
 }
 
-- (IBAction) mailImage:(id)sender {
+- (IBAction) shareImage:(id)sender {
     if (!self.imageView.image) return;
     
     NSString* mission = [MarsNotebook instance].currentMission;
-    //present a modal MFMailComposeViewController here
-    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
-    controller.mailComposeDelegate = self;
-    NSString* noteTitle = note.title;
-    [controller setSubject: [NSString stringWithFormat: @"%@ image %@", mission, noteTitle]];
-    [controller setMessageBody:[NSString stringWithFormat: @"%@ image %@ sent from Mars images", mission, noteTitle] isHTML:YES];
-    NSData* imageData = UIImageJPEGRepresentation(self.imageView.image, 1.0);
-    [controller addAttachmentData: imageData
-                         mimeType: @"image/jpeg"
-                         fileName: [NSString stringWithFormat:@"%@.JPG", noteTitle]];
-    if (controller) [self presentViewController:controller animated:YES completion:nil];
-}
+    NSArray* activities = [NSArray arrayWithObjects: [NSString stringWithFormat: @"%@ image %@ sent from Mars images", mission, note.title], self.imageView.image, nil];
+    UIActivityViewController* activityView = [[UIActivityViewController alloc] initWithActivityItems:activities applicationActivities:nil];
+    [activityView setValue: [NSString stringWithFormat: @"%@ image %@", mission, note.title] forKey: @"subject"];
+    activityView.excludedActivityTypes = [NSArray arrayWithObjects: UIActivityTypeAssignToContact, nil];
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller
-          didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError*)error {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    activityView.completionHandler = ^(NSString *activityType, BOOL completed) {
+        NSLog(@"Activity Type selected: %@", activityType);
+        if (completed) {
+            NSLog(@"Selected activity was performed.");
+        } else {
+            if (activityType == NULL) {
+                NSLog(@"User dismissed the view controller without making a selection.");
+            } else {
+                NSLog(@"Activity was not performed.");
+            }
+        }
+    };
+    
+    [self presentViewController:activityView animated:YES completion:nil];
 }
 
 #pragma mark - scroll view delegate

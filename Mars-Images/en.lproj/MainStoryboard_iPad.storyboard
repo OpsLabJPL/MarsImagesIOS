@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="5">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -298,7 +298,7 @@
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="r4s-Qm-9Rp"/>
                                             <barButtonItem style="plain" systemItem="compose" id="F99-Ol-bgc">
                                                 <connections>
-                                                    <action selector="mailImage:" destination="ua8-4A-BJy" id="vke-5W-sEU"/>
+                                                    <action selector="shareImage:" destination="ua8-4A-BJy" id="EEs-On-QW0"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="xvx-fn-oJ2"/>
