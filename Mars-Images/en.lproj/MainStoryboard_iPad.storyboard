@@ -296,7 +296,7 @@
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="r4s-Qm-9Rp"/>
-                                            <barButtonItem style="plain" systemItem="compose" id="F99-Ol-bgc">
+                                            <barButtonItem style="plain" systemItem="action" id="F99-Ol-bgc">
                                                 <connections>
                                                     <action selector="shareImage:" destination="ua8-4A-BJy" id="EEs-On-QW0"/>
                                                 </connections>
@@ -701,6 +701,8 @@
         <image name="1371788537_clock.png" width="26" height="26"/>
         <image name="glasses.png" width="20" height="20"/>
         <image name="marstime.png" width="439" height="1024"/>
+        <image name="rovericon.png" width="22" height="28"/>
+        <image name="rovericon.png" width="22" height="28"/>
         <image name="rovericon.png" width="22" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
