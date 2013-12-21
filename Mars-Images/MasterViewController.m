@@ -12,6 +12,7 @@
 #import "FixedWidthImageTableViewCell.h"
 #import "FullscreenImageViewController.h"
 #import "CoursePlotViewController.h"
+#import "MWPhotoBrowser.h"
 
 #define TITLE_PREFIX @""
 
@@ -21,7 +22,6 @@
 @end
 
 @implementation MasterViewController
-@synthesize infoButton;
 @synthesize reloading;
 
 static NSString* currentMission;
@@ -70,14 +70,11 @@ NSString* previousSearch;
 }
 
 - (void) viewDidUnload {
-    [self setInfoButton:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
 
 - (void) awakeFromNib {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    [infoButton setImage:button.currentImage];
 }
 
 - (IBAction) reloadButton:(id)sender {
@@ -122,21 +119,26 @@ NSString* previousSearch;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"viewImageFullscreen"]) {
-        FullscreenImageViewController *vc = [segue destinationViewController];
-        NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
-        NSString *title = [[MarsNotebook instance].noteTitles objectAtIndex: path.row];
-        NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectForKey: title];
-        [vc setNoteGUID: noteGUID];
-        NSString *anaglyphTitle = [[MarsNotebook instance] getAnaglyphTitle: title];
-        [vc setAnaglyphNoteGUID: [[MarsNotebook instance].noteGUIDs objectForKey: anaglyphTitle]];
-    } else if ([[segue identifier] isEqualToString:@"coursePlotFromTableCell"]) {
-        CoursePlotViewController* vc = segue.destinationViewController;
-        NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
-        NSString* selectedTitle = [[[MarsNotebook instance] noteTitles] objectAtIndex:path.row];
-        NSMutableArray* tokens = (NSMutableArray*)[selectedTitle componentsSeparatedByString:@" "];
-        int sol = [[tokens objectAtIndex:1] integerValue];
-        [vc setSolDirectory: [NSString stringWithFormat:@"%03d", sol ]];
+//    if ([[segue identifier] isEqualToString:@"viewImageFullscreen"]) {
+//        FullscreenImageViewController *vc = [segue destinationViewController];
+//        NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
+//        NSString *title = [[MarsNotebook instance].noteTitles objectAtIndex: path.row];
+//        NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectForKey: title];
+//        [vc setNoteGUID: noteGUID];
+//        NSString *anaglyphTitle = [[MarsNotebook instance] getAnaglyphTitle: title];
+//        [vc setAnaglyphNoteGUID: [[MarsNotebook instance].noteGUIDs objectForKey: anaglyphTitle]];
+//    } else if ([[segue identifier] isEqualToString:@"coursePlotFromTableCell"]) {
+//        CoursePlotViewController* vc = segue.destinationViewController;
+//        NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
+//        NSString* selectedTitle = [[[MarsNotebook instance] noteTitles] objectAtIndex:path.row];
+//        NSMutableArray* tokens = (NSMutableArray*)[selectedTitle componentsSeparatedByString:@" "];
+//        int sol = [[tokens objectAtIndex:1] integerValue];
+//        [vc setSolDirectory: [NSString stringWithFormat:@"%03d", sol ]];
+//    }
+    if ([[segue identifier] isEqualToString:@"swiper"]) {
+        MWPhotoBrowser* browser = [segue destinationViewController];
+        [browser setDelegate:self];
+        [browser setWantsFullScreenLayout:FALSE];
     }
 }
 
@@ -192,6 +194,23 @@ NSString* previousSearch;
         NSString *noteGUID = [[MarsNotebook instance].noteGUIDs objectForKey: title];
         [self.detailViewController setDetailItem: noteGUID];
     }
+}
+
+#pragma mark-
+#pragma mark MWPhotoBrowserDelegate methods
+
+- (NSUInteger) numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return [[[MarsNotebook instance] noteTitles] count];
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    return [MWPhoto photoWithURL:[NSURL URLWithString:@"https://www.evernote.com/shard/s139/res/2b569b46-2549-4c70-b64d-491d183c0d44/"]];
+}
+
+- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+    MWPhoto *photo = [self.photos objectAtIndex:index];
+    MarsImageCaptionView *captionView = [[MarsImageCaptionView alloc] initWithPhoto:photo];
+    return captionView;
 }
 
 #pragma mark -

@@ -1,0 +1,13 @@
+//
+//  MarsImageViewController.h
+//  Mars-Images
+//
+//  Created by Mark Powell on 10/26/13.
+//  Copyright (c) 2013 Powellware. All rights reserved.
+//
+
+#import "MWPhotoBrowser.h"
+
+@interface MarsImageViewController : MWPhotoBrowser
+
+@end

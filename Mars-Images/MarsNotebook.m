@@ -57,7 +57,7 @@ static MarsNotebook *instance = nil;
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs stringForKey:missionKey] == nil) {
-        [prefs setObject:@"Curiosity" forKey: missionKey];
+        [prefs setObject:@"Opportunity" forKey: missionKey];
         [prefs synchronize];
     }
     self.currentMission = [prefs stringForKey: missionKey];

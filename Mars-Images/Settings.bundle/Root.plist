@@ -12,7 +12,7 @@
 			<key>Key</key>
 			<string>mission</string>
 			<key>DefaultValue</key>
-			<string>Curiosity</string>
+			<string>Opportunity</string>
 			<key>Titles</key>
 			<array>
 				<string>Curiosity</string>

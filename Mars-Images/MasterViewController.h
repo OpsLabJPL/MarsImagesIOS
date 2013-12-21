@@ -7,17 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MWPhotoBrowser.h>
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController {
+@interface MasterViewController : UITableViewController <MWPhotoBrowserDelegate> {
 }
 
 @property BOOL reloading;
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
-
-- (IBAction)reloadButton:(id)sender;
 
 - (void) defaultsChanged:(id)sender;
 
