@@ -10,4 +10,10 @@
 
 @interface MarsImageTableViewController : UITableViewController
 
+- (void) notesLoaded: (NSNotification*) notification;
+- (void) imageSelected: (NSNotification*) notification;
+- (void) updateNotes;
+- (void) defaultsChanged:(id)sender;
+- (void) enteredForegroundAfterLongSleep:(id)sender;
+- (void) selectAndScrollToRow:(int)index;
 @end

@@ -8,9 +8,16 @@
 
 #import "MarsNotebook.h"
 #import "Evernote.h"
+#import "MWPhoto.h"
 
-#define OPPY_NOTEBOOK_ID @"758b3821-6e6d-484d-b297-f4bdfa2aabdc"
-#define MSL_NOTEBOOK_ID @"c5ddfcb6-6878-4f9f-96ef-04fe50da1c10"
+//#define OPPY_NOTEBOOK_ID @"758b3821-6e6d-484d-b297-f4bdfa2aabdc" marsrovers Opportunity images public notebook
+
+//drmarkpowell sandbox dev Opportunity images public notebook
+//#define OPPY_NOTEBOOK_ID   @"485d29de-c11a-483b-aefd-117a1fbe68b7"
+
+//opportunitymars public notebook
+#define OPPY_NOTEBOOK_ID   @"a7271bf8-0b06-495a-bb48-7c0c7af29f70"
+#define MSL_NOTEBOOK_ID    @"c5ddfcb6-6878-4f9f-96ef-04fe50da1c10"
 #define SPIRIT_NOTEBOOK_ID @"7db68065-53c3-4211-be9b-79dfa4a7a2be"
 
 #define EARTH_SECS_PER_MARS_SEC 1.027491252;
@@ -35,6 +42,7 @@
 @synthesize oppyEpochDate;
 @synthesize mslEpochDate;
 @synthesize formatter;
+@synthesize notePhotos;
 
 static MarsNotebook *instance = nil;
 
@@ -53,7 +61,7 @@ static MarsNotebook *instance = nil;
     
     // SPIRIT(254, "MER-A", 'A', "Spirit", "/mera/", new Date("03 Jan 2004 13:36:15 UTC")),
     // OPPORTUNITY(253, "MER-B", 'B', "Opportunity", "/merb/", new Date("24 Jan 2004 15:08:59 UTC")),
-    // CURIOSITY new Date("6 Aug 2012 6:30:00 UTC")
+    // CURIOSITY new Date("6 Aug 2012 5:17:29 UTC")
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs stringForKey:missionKey] == nil) {
@@ -86,9 +94,9 @@ static MarsNotebook *instance = nil;
     [comps setDay:6];
     [comps setMonth:8];
     [comps setYear:2012];
-    [comps setHour:6];
-    [comps setMinute:30];
-    [comps setSecond:00];
+    [comps setHour:5];
+    [comps setMinute:17];
+    [comps setSecond:29];
     [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     self.mslEpochDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
     
@@ -102,6 +110,7 @@ static MarsNotebook *instance = nil;
     [self.internetReachable startNotifier];
     
     self.noteTitles = [[NSMutableArray alloc] init];
+    self.notePhotos = [[NSMutableArray alloc] init];
     self.noteGUIDs = [[NSMutableDictionary alloc] init];
     self.imageCache = [[NSMutableDictionary alloc] init];
     self.missionNames = [[NSArray alloc] initWithArray: [NSArray arrayWithObjects:
@@ -134,9 +143,9 @@ static MarsNotebook *instance = nil;
         eyeIndex = 23;
         sampleTypeIndex = 12;
         titleImageIdPosition = 2; // "Sol 123 1F123456789...."
-        [Evernote sharedInstance].publicUser = @"marsrovers";
+        [Evernote instance].publicUser = @"opportunitymars";
         //Android uses userStore.publicUserInfo(username) to get the shard...a cleaner way to do this?
-        [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s139/notestore";
+//        [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s333/notestore";
     } else if ([currentMission isEqualToString:@"Spirit"]) {
         currentEpochDate = spiritEpochDate;
         currentNotebookId = SPIRIT_NOTEBOOK_ID;
@@ -144,8 +153,8 @@ static MarsNotebook *instance = nil;
         eyeIndex = 23;
         sampleTypeIndex = 12; // "Sol 123 2F123456789...."
         titleImageIdPosition = 2;
-        [Evernote sharedInstance].publicUser = @"spiritrover";
-        [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s209/notestore";
+        [Evernote instance].publicUser = @"spiritrover";
+//        [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s209/notestore";
     }
     else {
         currentEpochDate = mslEpochDate;
@@ -154,8 +163,8 @@ static MarsNotebook *instance = nil;
         eyeIndex = 1;
         sampleTypeIndex = 17;
         titleImageIdPosition = 3; // "Sol 12345 123456789 FLB_123456789...
-        [Evernote sharedInstance].publicUser = @"curiosityrover";
-        [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s241/notestore";
+        [Evernote instance].publicUser = @"curiosityrover";
+//        [Evernote sharedInstance].uriPrefix = @"https://www.evernote.com/shard/s241/notestore";
     }
 }
 
@@ -171,12 +180,12 @@ static MarsNotebook *instance = nil;
         return note;
     }
     @try {
-        note = [[Evernote sharedInstance] getNote:guid];
+        note = [[Evernote instance] getNote:guid];
         return note;
     }
     @catch (NSException *e) {
         @try {
-            note = [[Evernote sharedInstance] getNote:guid reauthenticate:YES];
+            note = [[Evernote instance] getNote:guid reauthenticate:YES];
             return note;
         }
         @catch (NSException *e) {
@@ -229,12 +238,13 @@ static MarsNotebook *instance = nil;
             EDAMNotesMetadataList* metadataList = nil;
             EDAMNotesMetadataResultSpec* metadata = [[EDAMNotesMetadataResultSpec alloc] init];
             [metadata setIncludeTitle:YES];
+            [metadata setIncludeAttributes:YES];
             @try {
-                metadataList = [[Evernote sharedInstance] findNotesMetadata: filter withStartIndex:startIndex withTotal:total withMetadata:metadata];
+                metadataList = [[Evernote instance] findNotesMetadata: filter withStartIndex:startIndex withTotal:total withMetadata:metadata];
             }
             @catch (NSException *e) {
                 NSLog(@"Exception listing note metadata: %@ %@", e.name, e.description);
-                [[Evernote sharedInstance] setNoteStore: nil];
+                [[Evernote instance] setNoteStore: nil];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Service Unavailable"
                                                                       message:@"The Mars image service is currently unavailable. Please try again later."
@@ -257,6 +267,10 @@ static MarsNotebook *instance = nil;
                 EDAMNoteMetadata* note = (EDAMNoteMetadata*)[[metadataList notes] objectAtIndex:j];
                 [noteTitles addObject:note.title];
                 [noteGUIDs setObject:note.guid forKey:note.title];
+                NSString* resGUID = [[Evernote instance] getApplicationDataEntry:note.guid forKey:@"curiosityrover"];
+                NSString* imageURL =
+                    [NSString stringWithFormat:@"https://sandbox.evernote.com/shard/s1/res/%@", resGUID];
+                [notePhotos addObject:[[MWPhoto alloc] initWithURL:[NSURL URLWithString:imageURL]]];
             }
             
             viewController.reloading = NO;

@@ -34,7 +34,7 @@ static Evernote *sharedEvernoteManager = nil;
  *
  ************************************************************/
 
-+ (Evernote *)sharedInstance {
++ (Evernote *)instance {
     
     if (sharedEvernoteManager == nil) {
         sharedEvernoteManager = [[Evernote alloc] init];
@@ -83,9 +83,10 @@ static Evernote *sharedEvernoteManager = nil;
         EDAMUserStoreClient* userStore = [[EDAMUserStoreClient alloc] initWithProtocol:userStoreProtocol];
         
         self.user = [userStore getPublicUserInfo: publicUser]; //e.g. @"marsrovers"
+        NSLog(@"userStore %@", self.user);
         
-        NSURL* noteStoreUri = [[NSURL alloc] initWithString: uriPrefix]; //e.g. @"https://www.evernote.com/shard/s139/notestore"
-        NSString* agentString = [NSString stringWithFormat:@"Mars Images/1.3;iOS/%@", [UIDevice currentDevice].systemVersion];
+        NSURL* noteStoreUri = [[NSURL alloc] initWithString: user.noteStoreUrl];
+        NSString* agentString = [NSString stringWithFormat:@"Mars Images/2.0;iOS/%@", [UIDevice currentDevice].systemVersion];
         THTTPClient* noteStoreHttpClient = [[THTTPClient alloc] initWithURL:noteStoreUri userAgent:agentString timeout:15000];
         
         TBinaryProtocol* noteStoreProtocol = [[TBinaryProtocol alloc] initWithTransport:noteStoreHttpClient];
@@ -121,7 +122,7 @@ static Evernote *sharedEvernoteManager = nil;
     [self connect];
     
     // Calling a function in the API
-    return [noteStore findNotes:@"":filter:0:100];
+    return [noteStore findNotes:@"" filter:filter offset:0 maxNotes:100];
 }
 
 /************************************************************
@@ -135,13 +136,13 @@ static Evernote *sharedEvernoteManager = nil;
     [self connect];
     
     // Calling a function in the API
-    return [noteStore findNotes:@"":filter:start:total];
+    return [noteStore findNotes:@"" filter:filter offset:start maxNotes:total];
 }
 
 - (EDAMNotesMetadataList*) findNotesMetadata: (EDAMNoteFilter*) filter withStartIndex: (int) start withTotal: (int)total withMetadata: (EDAMNotesMetadataResultSpec*) metadata {
     [self connect];
     
-    return [noteStore findNotesMetadata:@"":filter:start:total:metadata];
+    return [noteStore findNotesMetadata:@"" filter:filter offset:start maxNotes:total resultSpec:metadata];
 }
 
 - (EDAMNote*) getNote:(NSString *)guid {
@@ -165,7 +166,7 @@ static Evernote *sharedEvernoteManager = nil;
     [self connect];
     
     // Calling a function in the API
-    return [noteStore getNote:@"":guid:YES:YES:NO:NO];
+    return [noteStore getNote:@"" guid:guid withContent:YES withResourcesData:YES withResourcesRecognition:NO withResourcesAlternateData:NO];
 }
 
 
@@ -180,7 +181,7 @@ static Evernote *sharedEvernoteManager = nil;
     [self connect];
     
     // Calling a function in the API
-    [noteStore deleteNote:@"":guid];
+    [noteStore deleteNote:@"" guid:guid];
 }
 
 /************************************************************
@@ -194,7 +195,12 @@ static Evernote *sharedEvernoteManager = nil;
     [self connect];
     
     // Calling a function in the API
-    [noteStore createNote:@"":note];
+    [noteStore createNote:@"" note:note];
+}
+
+- (NSString *) getApplicationDataEntry: (NSString*) guid
+                                forKey: (NSString *)applicationKey {
+    return [noteStore getNoteApplicationDataEntry:@"" guid:guid key:applicationKey];
 }
 
 @end

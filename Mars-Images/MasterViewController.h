@@ -15,6 +15,7 @@
 }
 
 @property BOOL reloading;
+@property NSUInteger selectedRow;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 - (void) defaultsChanged:(id)sender;

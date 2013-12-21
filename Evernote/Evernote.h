@@ -19,9 +19,8 @@
 @property(strong) EDAMNoteStoreClient* noteStore;
 @property(strong) EDAMPublicUserInfo* user;
 @property(strong) NSString* publicUser;
-@property(strong) NSString* uriPrefix;
 
-+ (Evernote *)sharedInstance;
++ (Evernote *)instance;
 
 - (void) connect;
 
@@ -33,5 +32,7 @@
 - (EDAMNote *) getNote: (NSString *) guid reauthenticate: (BOOL) reauth;
 - (void) deleteNote: (NSString *) guid;
 - (void) createNote: (EDAMNote *) note;
+- (NSString *) getApplicationDataEntry: (NSString*) guid
+                                forKey: (NSString *)applicationKey;
 
 @end

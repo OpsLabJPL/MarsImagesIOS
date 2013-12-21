@@ -6,33 +6,48 @@
 //  Copyright (c) 2013 Powellware. All rights reserved.
 //
 
-#import "MarsViewDeck.h"
+#import "MarsSidePanelController.h"
+#import "MarsImageNotebook.h"
+#import "MarsImageTableViewController.h"
 
-@interface MarsViewDeck ()
+#define LEFT_PANEL_WIDTH 200
+
+@interface MarsSidePanelController ()
 
 @end
 
-@implementation MarsViewDeck
+@implementation MarsSidePanelController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void) viewDidLoad {
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    NSLog(@"Side panel controller loaded.");
+    UIStoryboard* storyboard = self.storyboard;
+    
+    UINavigationController* imageNavVC = (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"imageNavController"];
+    UINavigationController* tableVC = (UINavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"tableNavController"];
+    
+    self.leftPanel = tableVC;
+    self.centerPanel = imageNavVC;
+    
+    self.leftFixedWidth = LEFT_PANEL_WIDTH;
+    self.shouldResizeLeftPanel = YES;
+    
+    //load first notes in background
+    [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:15];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) imageSelected:(int)index
+                  from:(UIViewController*) sender {
+    _imageIndex = index;
+    NSLog(@"Image %d was selected from %@.", index, sender);
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithInt:index], IMAGE_INDEX, sender, SENDER, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IMAGE_SELECTED object:nil userInfo:dict];
+}
+
+- (void)stylePanel:(UIView *)panel {
+    [super stylePanel:panel];
+    panel.layer.cornerRadius = 0.0f;
 }
 
 @end

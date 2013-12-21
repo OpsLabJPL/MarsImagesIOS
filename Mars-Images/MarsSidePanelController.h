@@ -6,8 +6,16 @@
 //  Copyright (c) 2013 Powellware. All rights reserved.
 //
 
-#import "IIViewDeckController.h"
+#import "JASidePanelController.h"
 
-@interface MarsViewDeck : IIViewDeckController
+#define IMAGE_SELECTED @"imageSelected"
+#define IMAGE_INDEX @"imageIndex"
+#define SENDER @"sender"
+
+@interface MarsSidePanelController : JASidePanelController
+
+@property int imageIndex;
+
+- (void) imageSelected:(int)index from:(id)sender;
 
 @end

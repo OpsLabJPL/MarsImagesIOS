@@ -27,6 +27,7 @@
 @property(nonatomic, strong) NSMutableDictionary* imageCache;
 @property(nonatomic, strong) NSMutableArray*      noteTitles;
 @property(nonatomic, strong) NSMutableDictionary* noteGUIDs;
+@property(nonatomic, strong) NSMutableArray*      notePhotos;
 @property(nonatomic, strong) NSDate*              lastSleepTime;
 @property(nonatomic, strong) NSDate*              currentEpochDate;
 @property(nonatomic, strong) NSDate*              spiritEpochDate;

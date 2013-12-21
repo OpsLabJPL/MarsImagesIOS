@@ -13,6 +13,7 @@
 #import "FullscreenImageViewController.h"
 #import "CoursePlotViewController.h"
 #import "MWPhotoBrowser.h"
+#import "MarsImageCaptionView.h"
 
 #define TITLE_PREFIX @""
 
@@ -23,12 +24,14 @@
 
 @implementation MasterViewController
 @synthesize reloading;
+@synthesize selectedRow;
 
 static NSString* currentMission;
 NSString* previousSearch;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -101,6 +104,7 @@ NSString* previousSearch;
     //clear all notes out of app delegate, scroll table to top and start over loading images
     [[[MarsNotebook instance] noteTitles ] removeAllObjects];
     [[[MarsNotebook instance] noteGUIDs ] removeAllObjects];
+    [[[MarsNotebook instance] notePhotos] removeAllObjects];
     [[self tableView] reloadData];
     //reload the initial set of notes
     [[MarsNotebook instance] loadMoreNotes:0 withTotal:15
@@ -137,8 +141,16 @@ NSString* previousSearch;
 //    }
     if ([[segue identifier] isEqualToString:@"swiper"]) {
         MWPhotoBrowser* browser = [segue destinationViewController];
+        
+        browser.displayActionButton = YES;
+        browser.displayNavArrows = NO;
+        browser.wantsFullScreenLayout = YES;
+        browser.zoomPhotosToFill = YES;
+
         [browser setDelegate:self];
-        [browser setWantsFullScreenLayout:FALSE];
+        UITableViewCell *cell = (UITableViewCell*) sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        [browser setCurrentPhotoIndex: indexPath.row];
     }
 }
 
@@ -188,6 +200,7 @@ NSString* previousSearch;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    selectedRow = indexPath.row;
     if (self.detailViewController) {
         NSIndexPath *path = [[self tableView] indexPathForSelectedRow];
         NSString *title = [[MarsNotebook instance].noteTitles objectAtIndex: path.row];
@@ -204,14 +217,14 @@ NSString* previousSearch;
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    return [MWPhoto photoWithURL:[NSURL URLWithString:@"https://www.evernote.com/shard/s139/res/2b569b46-2549-4c70-b64d-491d183c0d44/"]];
+    return [[[MarsNotebook instance] notePhotos] objectAtIndex:index];
 }
 
-- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
-    MWPhoto *photo = [self.photos objectAtIndex:index];
-    MarsImageCaptionView *captionView = [[MarsImageCaptionView alloc] initWithPhoto:photo];
-    return captionView;
-}
+//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+//    MWPhoto *photo = [[[MarsNotebook instance] notePhotos] objectAtIndex:index];
+//    MarsImageCaptionView *captionView = [[MarsImageCaptionView alloc] initWithPhoto:photo];
+//    return captionView;
+//}
 
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods

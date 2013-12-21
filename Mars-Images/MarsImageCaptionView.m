@@ -10,6 +10,7 @@
 
 @implementation MarsImageCaptionView
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,5 +28,11 @@
     // Drawing code
 }
 */
-
+- (void) setupCaption {
+    [super setupCaption];
+//    UILabel* stupidLabel = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(5,5,150,20))];
+//    stupidLabel.text = @"Hello, world!";
+//    stupidLabel.font = [UIFont systemFontOfSize:10];
+//    [self addSubview:stupidLabel];
+}
 @end

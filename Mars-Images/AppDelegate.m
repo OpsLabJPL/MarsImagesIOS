@@ -13,14 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.lastSleepTime = nil;
-    
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-    }
+    _lastSleepTime = nil;
     return YES;
 }
 							
@@ -35,7 +28,7 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     self.lastSleepTime = [[NSDate date] copy];
-    NSLog(@"sleeptime %f", self.lastSleepTime.timeIntervalSince1970);
+    NSLog(@"sleeptime %f", _lastSleepTime.timeIntervalSince1970);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

@@ -1,0 +1,1 @@
+../../UIImage-Categories/UIImage+Resize.h
