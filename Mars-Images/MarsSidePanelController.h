@@ -7,6 +7,7 @@
 //
 
 #import "IIViewDeckController.h"
+#import "IISideController.h"
 
 #define IMAGE_SELECTED @"imageSelected"
 #define IMAGE_INDEX @"imageIndex"
@@ -17,6 +18,6 @@
 @property int imageIndex;
 
 - (void) imageSelected:(int)index from:(id)sender;
-- (void) setLeftPanelWidth: (UIInterfaceOrientation) interfaceOrientation;
+- (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation;
 
 @end

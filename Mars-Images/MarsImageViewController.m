@@ -46,7 +46,6 @@
     [_imageNameButton addTarget:self action:@selector(imageSelectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     _imageNameButton.frame = CGRectMake(0,0,100,44);
     _imageSelectionButton = [[UIBarButtonItem alloc] initWithCustomView:_imageNameButton];
-
     [PSMenuItem installMenuHandlerForObject:self];
     self.wantsFullScreenLayout = NO; //otherwise we get an unsightly gap between the nav and status bar
     
@@ -97,6 +96,8 @@
 }
 
 - (void) imageSelectionButtonPressed: (id)sender {
+    NSLog(@"selection button pressed.");
+    [self becomeFirstResponder];
     int noteIndex = [self currentIndex];
     NSArray* resources = [[MarsImageNotebook instance] getResources:noteIndex];
     if (!resources || [resources count] <=1) {
@@ -118,7 +119,9 @@
     
     if ([menuItems count] > 1) {
         [UIMenuController sharedMenuController].menuItems = menuItems;
-        [[UIMenuController sharedMenuController] setTargetRect:_imageSelectionButton.customView.bounds inView:_imageSelectionButton.customView];
+        CGRect bounds = _imageSelectionButton.customView.bounds;
+        NSLog(@"%f %f %f %f", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
+        [[UIMenuController sharedMenuController] setTargetRect:bounds inView:_imageSelectionButton.customView];
         [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
     }
 }

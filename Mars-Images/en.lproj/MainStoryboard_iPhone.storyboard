@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MrQ-8p-0ro">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xiv-P8-OSc">
     <dependencies>
         <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Mars Side Panel Controller-->
-        <scene sceneID="p1l-MC-mcn">
-            <objects>
-                <viewController id="MrQ-8p-0ro" customClass="MarsSidePanelController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RA8-qt-7yM"/>
-                        <viewControllerLayoutGuide type="bottom" id="QUW-uM-DT6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oVX-jT-ZgS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XUr-rm-yMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="634" y="285"/>
-        </scene>
         <!--Mars Image Table View Controller-->
         <scene sceneID="VRA-d4-fRK">
             <objects>
@@ -87,6 +69,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableViewButton" destination="e9a-ZY-UTe" id="f5v-VQ-Ktw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIX-kW-Gzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

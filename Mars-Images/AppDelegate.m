@@ -7,16 +7,29 @@
 //
 
 #import "AppDelegate.h"
-#import "MarsNotebook.h"
+#import "IISideController.h"
+#import "MarsSidePanelController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _lastSleepTime = nil;
+    
+    UIStoryboard* storyboard = self.window.rootViewController.storyboard; 
+    
+    UINavigationController* tableNavVC = (UINavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"tableNavController"];
+    UINavigationController* imageNavVC = (UINavigationController *) self.window.rootViewController;
+    
+    IISideController* leftSideController = [[IISideController alloc] initWithViewController: tableNavVC];
+    MarsSidePanelController* viewDeckController =  [[MarsSidePanelController alloc] initWithCenterViewController:imageNavVC leftViewController:leftSideController rightViewController:nil];
+    self.window.rootViewController = viewDeckController;
+    viewDeckController.resizesCenterView = YES;
+    viewDeckController.sizeMode = IIViewDeckViewSizeMode;
+    [self.window makeKeyAndVisible];
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
