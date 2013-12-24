@@ -6,16 +6,17 @@
 //  Copyright (c) 2013 Powellware. All rights reserved.
 //
 
-#import "JASidePanelController.h"
+#import "IIViewDeckController.h"
 
 #define IMAGE_SELECTED @"imageSelected"
 #define IMAGE_INDEX @"imageIndex"
 #define SENDER @"sender"
 
-@interface MarsSidePanelController : JASidePanelController
+@interface MarsSidePanelController : IIViewDeckController
 
 @property int imageIndex;
 
 - (void) imageSelected:(int)index from:(id)sender;
+- (void) setLeftPanelWidth: (UIInterfaceOrientation) interfaceOrientation;
 
 @end

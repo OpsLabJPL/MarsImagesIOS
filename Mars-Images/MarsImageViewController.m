@@ -9,10 +9,10 @@
 #import "MarsImageViewController.h"
 #import "Evernote.h"
 #import "MarsImageNotebook.h"
-#import "MarsRovers.h"
+#import "MarsPhoto.h"
 #import "MarsSidePanelController.h"
 #import "PSMenuItem.h"
-#import "UIViewController+JASidePanel.h"
+#import "IIViewDeckController.h"
 
 @interface MarsImageViewController ()
 
@@ -41,14 +41,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIButton* imageNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [imageNameButton setTitle:@"FooBarBaz" forState:UIControlStateNormal];
-    [imageNameButton addTarget:self action:@selector(imageSelectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    imageNameButton.frame = CGRectMake(0,0,100,44);
-    _imageSelectionButton = [[UIBarButtonItem alloc] initWithCustomView:imageNameButton];
+    _imageNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_imageNameButton setTitle:@"FooBarBaz" forState:UIControlStateNormal];
+    [_imageNameButton addTarget:self action:@selector(imageSelectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    _imageNameButton.frame = CGRectMake(0,0,100,44);
+    _imageSelectionButton = [[UIBarButtonItem alloc] initWithCustomView:_imageNameButton];
 
     [PSMenuItem installMenuHandlerForObject:self];
-    self.wantsFullScreenLayout = NO; //otherwise we get a nasty gap between the nav and status bar
+    self.wantsFullScreenLayout = NO; //otherwise we get an unsightly gap between the nav and status bar
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageSelected:) name:IMAGE_SELECTED object:nil];
@@ -68,7 +68,7 @@
 }
 
 - (IBAction) toggleTableView: (id)sender {
-    [self.sidePanelController toggleLeftPanel:self];
+    [self.viewDeckController toggleLeftViewAnimated:YES];
 }
 
 - (void) notesLoaded: (NSNotification*) notification {
@@ -93,6 +93,7 @@
     if (sender != self && index != [self currentIndex]) {
         [self setCurrentPhotoIndex: index];
     }
+    [self configureToolbarAndNavbar];
 }
 
 - (void) imageSelectionButtonPressed: (id)sender {
@@ -105,29 +106,43 @@
     int resourceIndex = 0;
     NSMutableArray* menuItems = [[NSMutableArray alloc] init];
     for (EDAMResource* resource in resources) {
-        NSLog(@"First resource %@", resource.guid);
-        PSMenuItem *menuItem = [[PSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"%d", resourceIndex]
+        NSString* imageName = [[MarsImageNotebook instance].mission imageName:resource];
+        PSMenuItem *menuItem = [[PSMenuItem alloc] initWithTitle:imageName
                                                            block:^{
-                                                               NSLog(@"change to image %d", resourceIndex);
                                                                [[MarsImageNotebook instance] changeToImage:resourceIndex forNote:noteIndex];
                                                                [self reloadData];
                                                            }];
         [menuItems addObject:menuItem];
-        resourceIndex+=1;
+        resourceIndex += 1;
     }
+    
     if ([menuItems count] > 1) {
         [UIMenuController sharedMenuController].menuItems = menuItems;
         [[UIMenuController sharedMenuController] setTargetRect:_imageSelectionButton.customView.bounds inView:_imageSelectionButton.customView];
         [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
     }
-    
 }
 
 - (void) configureToolbarAndNavbar {
+    int resourceCount = 0;
+    MarsPhoto* photo;
+    NSArray* notes = [MarsImageNotebook instance].notes;
+    if (notes.count > 0) {
+        EDAMNote* note = [[MarsImageNotebook instance].notes objectAtIndex:self.currentIndex];
+        resourceCount = note.resources.count;
+        photo = [[MarsImageNotebook instance].notePhotos objectAtIndex:[self currentIndex]];
+    }
     for (UIView* view in [self.view subviews]) {
         BOOL isToolbar = [view isKindOfClass:[UIToolbar class]];
         if (isToolbar) {
-            [(UIToolbar*)view setItems:[NSArray arrayWithObjects:_imageSelectionButton, nil]];
+            if (resourceCount > 1) {
+                NSString* imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
+                [_imageNameButton setTitle:imageName forState:UIControlStateNormal];
+                [(UIToolbar*)view setItems:[NSArray arrayWithObjects:_imageSelectionButton, nil]];
+            }
+            else {
+                [(UIToolbar*)view setItems:nil];
+            }
         }
     }
     self.navigationItem.rightBarButtonItem = nil;
@@ -152,7 +167,7 @@
     if (index == count-1) {
         [[MarsImageNotebook instance] loadMoreNotes:count withTotal:15];
     }
-    [(MarsSidePanelController*)self.sidePanelController imageSelected:index from:self];
+    [(MarsSidePanelController*)self.viewDeckController imageSelected:index from:self];
 }
 
 @end

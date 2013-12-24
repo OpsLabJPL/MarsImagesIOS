@@ -7,9 +7,11 @@
 //
 
 #import "MarsImageNotebook.h"
+#import "Curiosity.h"
 #import "Evernote.h"
-#import "MarsRovers.h"
-#import "MWPhoto.h"
+#import "MarsPhoto.h"
+#import "Opportunity.h"
+#import "Spirit.h"
 
 @implementation MarsImageNotebook
 
@@ -33,17 +35,22 @@ static dispatch_queue_t noteDownloadQueue = nil;
     _lastRequestedStartIndexToLoad = -1;
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs stringForKey:MISSION] == nil) {
-        [prefs setObject:@"Opportunity" forKey: MISSION];
+        [prefs setObject:OPPORTUNITY forKey: MISSION];
         [prefs synchronize];
     }
-    self.mission = [prefs stringForKey: MISSION];
+    self.missionName = [prefs stringForKey: MISSION];
+    _missions = [NSDictionary dictionaryWithObjectsAndKeys:
+                 [[Opportunity alloc] init], OPPORTUNITY,
+                 [[Spirit alloc] init], SPIRIT,
+                 [[Curiosity alloc] init], CURIOSITY,
+                 nil];
     NSArray* notebookGUIDs = [NSArray arrayWithObjects:OPPY_NOTEBOOK_ID, SPIRIT_NOTEBOOK_ID, MSL_NOTEBOOK_ID, nil];
-    NSArray* missions = [NSArray arrayWithObjects:OPPORTUNITY, SPIRIT, CURIOSITY, nil];
-    _notebookIDs = [NSDictionary dictionaryWithObjects:notebookGUIDs forKeys:missions];
+    NSArray* missionKeys = [NSArray arrayWithObjects:OPPORTUNITY, SPIRIT, CURIOSITY, nil];
+    _notebookIDs = [NSDictionary dictionaryWithObjects:notebookGUIDs forKeys:missionKeys];
     NSArray* users = [NSArray arrayWithObjects:@"opportunitymars", @"spiritmars", @"curiositymars", nil];
-    _evernoteUsers = [NSDictionary dictionaryWithObjects:users forKeys:missions];
+    _evernoteUsers = [NSDictionary dictionaryWithObjects:users forKeys:missionKeys];
 
-    [Evernote instance].publicUser = [_evernoteUsers valueForKey:self.mission];
+    [Evernote instance].publicUser = [_evernoteUsers valueForKey:self.missionName];
 
     // check for internet connection
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
@@ -64,6 +71,10 @@ static dispatch_queue_t noteDownloadQueue = nil;
 + (void) notifyNotesReturned: (int) total {
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithInt:total], NUM_NOTES_RETURNED, nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:END_NOTE_LOADING object:nil userInfo:dict];
+}
+
+- (id<MarsRover>) mission {
+    return [_missions objectForKey:_missionName];
 }
 
 - (void) loadMoreNotes: (int) startIndex
@@ -93,7 +104,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
         dispatch_async(noteDownloadQueue, ^{
             EDAMNoteFilter* filter = [[EDAMNoteFilter alloc] init];
             
-            filter.notebookGuid = [_notebookIDs valueForKey:_mission];
+            filter.notebookGuid = [_notebookIDs valueForKey:_missionName];
             filter.order = NoteSortOrder_TITLE;
             filter.ascending = NO;
             if (_searchWords != nil && [_searchWords length]>0) {
@@ -137,9 +148,10 @@ static dispatch_queue_t noteDownloadQueue = nil;
     if (imageIndex >= note.resources.count) {
         NSLog(@"Brown alert: requested image index is out of bounds.");
     }
-    NSString* resGUID = ((EDAMResource*)[note.resources objectAtIndex:imageIndex]).guid;
+    EDAMResource* resource = [note.resources objectAtIndex:imageIndex];
+    NSString* resGUID = resource.guid;
     NSString* imageURL = [NSString stringWithFormat:@"%@res/%@", Evernote.instance.user.webApiUrlPrefix, resGUID];
-    return [[MWPhoto alloc] initWithURL:[NSURL URLWithString:imageURL]];
+    return [[MarsPhoto alloc] initWithResource:resource note:note url:[NSURL URLWithString:imageURL]];
 }
 
 - (void) changeToImage: (int)imageIndex

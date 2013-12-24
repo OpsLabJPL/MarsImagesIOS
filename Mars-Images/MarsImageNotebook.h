@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MarsRover.h"
 #import "MWPhoto.h"
 #import "Reachability.h"
+
+#define MISSION @"mission"
+#define OPPORTUNITY @"Opportunity"
+#define SPIRIT @"Spirit"
+#define CURIOSITY @"Curiosity"
 
 #define BEGIN_NOTE_LOADING @"beginNoteLoading"
 #define END_NOTE_LOADING   @"endNoteLoading"
@@ -24,13 +30,16 @@
 @property(nonatomic, strong) Reachability*        internetReachable;
 @property(nonatomic, readonly) int                lastRequestedStartIndexToLoad;
 @property(nonatomic, strong) NSDate*              lastSleepTime;
-@property(nonatomic, strong) NSString*            mission;
+@property(nonatomic, strong) NSDictionary*        missions;
+@property(nonatomic, strong) NSString*            missionName;
 @property(nonatomic, strong) NSDictionary*        notebookIDs;
 @property(nonatomic, strong) NSMutableArray*      notes;
 @property(nonatomic, strong) NSMutableArray*      notePhotos;
 @property(nonatomic, strong) NSString*            searchWords;
 
 + (MarsImageNotebook*) instance;
+
+- (id<MarsRover>) mission;
 
 - (void) loadMoreNotes: (int) startIndex
              withTotal: (int) total;

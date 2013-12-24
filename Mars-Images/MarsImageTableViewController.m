@@ -9,10 +9,9 @@
 #import "MarsImageTableViewController.h"
 #import "Evernote.h"
 #import "MarsImageNotebook.h"
-#import "MarsRovers.h"
 #import "MarsSidePanelController.h"
 #import "UIImageView+WebCache.h"
-#import "UIViewController+JASidePanel.h"
+#import "IIViewDeckController.h"
 
 #define IMAGE_CELL @"ImageCell"
 
@@ -59,7 +58,7 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     [self.tableView reloadData];
-    MarsSidePanelController* sidePanel = (MarsSidePanelController*)self.sidePanelController;
+    MarsSidePanelController* sidePanel = (MarsSidePanelController*)[self viewDeckController];
     [self selectAndScrollToRow:sidePanel.imageIndex];
 }
 
@@ -152,14 +151,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IMAGE_CELL];
     }
     // Configure the cell...
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    
     EDAMNote* note = [[MarsImageNotebook instance].notes objectAtIndex:indexPath.row];
-    [cell.textLabel setText:note.title];
+    id<MarsRover> mission = [MarsImageNotebook instance].mission;
+    [cell.textLabel setText:[mission labelText:note]];
+    [cell.detailTextLabel setText:[mission detailLabelText:note]];
     
     EDAMResource* resource = [note.resources objectAtIndex:0];
     if (resource) {
         NSString* resGUID = resource.guid;
         NSString* thumbnailUrl = [NSString stringWithFormat:@"%@thm/res/%@?size=50", Evernote.instance.user.webApiUrlPrefix, resGUID];
-        NSLog(@"thumbnailUrl: %@", thumbnailUrl);
         [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     }
     
@@ -173,7 +175,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MarsSidePanelController* sidePanel = (MarsSidePanelController*)self.sidePanelController;
+    MarsSidePanelController* sidePanel = (MarsSidePanelController*)self.viewDeckController;
     [sidePanel imageSelected: indexPath.row from:self];
 }
 

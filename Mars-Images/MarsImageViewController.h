@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tableViewButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *imageSelectionButton;
+@property (strong, nonatomic) IBOutlet UIButton *imageNameButton;
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
 - (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;
