@@ -41,7 +41,7 @@ typedef enum {
     formatter = [[NSDateFormatter alloc] init];
 	[formatter setTimeStyle:NSDateFormatterNoStyle];
     [formatter setDateStyle:NSDateFormatterLongStyle];
-
+    stereoInstruments = [[NSSet alloc] initWithObjects:@"F", @"R", @"N", @"P", nil];
 }
 
 - (NSString*) labelText: (EDAMNote*) note {
@@ -88,6 +88,32 @@ typedef enum {
     //TODO more text is too much for iPhone. Should we use two different versions?
 //    [caption appendFormat:@"%d at %@ local Mars time by the ", title.sol, title.marsLocalTime];
 //    [caption appendFormat:@"%@ rover on its mission at %@.", _roverName, _regionName];
+}
+
+- (NSArray*) stereoForImages:(NSArray *)resources {
+    if (resources.count == 0)
+        return [[NSArray alloc] initWithObjects:nil];
+    NSString* imageid = [MER imageID:[resources objectAtIndex:0]];
+    NSString* instrument = [imageid substringWithRange:NSMakeRange(_instrumentIndex, 1)];
+    if (![stereoInstruments containsObject:instrument])
+        return [[NSArray alloc] initWithObjects:nil];
+    
+    int leftImageIndex = -1;
+    int rightImageIndex = -1;
+    int index = 0;
+    for (EDAMResource* resource in resources) {
+        NSString* imageid = [MER imageID:resource];
+        NSString* eye = [imageid substringWithRange:NSMakeRange(_eyeIndex, 1)];
+        if (leftImageIndex == -1 && [eye isEqualToString:@"L"])
+            leftImageIndex = index;
+        if (rightImageIndex == -1 && [eye isEqualToString:@"R"])
+            rightImageIndex = index;
+        index += 1;
+    }
+    if (leftImageIndex >= 0 && rightImageIndex >= 0) {
+        return [[NSArray alloc] initWithObjects:[resources objectAtIndex:leftImageIndex], [resources objectAtIndex:rightImageIndex], nil];
+    }
+    return [[NSArray alloc] initWithObjects: nil];
 }
 
 + (NSString*) imageID:(EDAMResource*) resource {

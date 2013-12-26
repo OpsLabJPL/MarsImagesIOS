@@ -23,4 +23,5 @@
 - (NSString*) imageName: (EDAMResource*) resource;
 - (NSString*) captionText:(EDAMResource*) resource
                      note:(EDAMNote*) note;
+- (NSArray*) stereoForImages:(NSArray*) resources;
 @end

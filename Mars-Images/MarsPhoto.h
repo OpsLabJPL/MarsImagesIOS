@@ -12,9 +12,18 @@
 @interface MarsPhoto : MWPhoto
 
 @property EDAMResource* resource;
+@property (strong, nonatomic) NSArray* leftAndRight;
+@property (weak) UIImage* leftImage;
+@property (weak) UIImage* rightImage;
 
 - (id) initWithResource: (EDAMResource*) resource
                    note: (EDAMNote*) note
                     url: (NSURL*) url;
+
+- (id) initAnaglyph: (NSArray*) leftAndRight
+               note: (EDAMNote*) note;
+
+- (UIImage*) anaglyphImages: (UIImage*)leftImage right:(UIImage*)rightImage;
+- (uint8_t*) getGrayscalePixelArray: (UIImage*)image;
 
 @end

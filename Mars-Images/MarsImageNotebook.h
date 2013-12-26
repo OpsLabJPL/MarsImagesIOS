@@ -52,6 +52,9 @@
 - (void) changeToImage: (int)imageIndex
                forNote: (int)noteIndex;
 
+- (void) changeToAnaglyph: (NSArray*) leftAndRight
+                noteIndex: (int)noteIndex;
+
 - (void) reloadNotes;
 
 - (void) checkNetworkStatus:(NSNotification *)notice;

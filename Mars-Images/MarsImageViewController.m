@@ -23,7 +23,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"setting image view delegate.");
         self.delegate = self;
     }
     return self;
@@ -32,7 +31,6 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSLog(@"setting image view delegate.");
         self.delegate = self;
     }
     return self;
@@ -76,7 +74,6 @@
     if (num != nil) {
         numNotesReturned = [num intValue];
     }
-    NSLog(@"Image view notified of %d notes loaded.", numNotesReturned);
     if (numNotesReturned > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self reloadData];
@@ -88,7 +85,6 @@
     NSNumber* num = [notification.userInfo valueForKey:IMAGE_INDEX];
     int index = [num intValue];
     UIViewController* sender = [notification.userInfo valueForKey:SENDER];
-    NSLog(@"in image view, image %d is current and image %d needs to be selected.", [self currentIndex], index);
     if (sender != self && index != [self currentIndex]) {
         [self setCurrentPhotoIndex: index];
     }
@@ -96,7 +92,6 @@
 }
 
 - (void) imageSelectionButtonPressed: (id)sender {
-    NSLog(@"selection button pressed.");
     [self becomeFirstResponder];
     int noteIndex = [self currentIndex];
     NSArray* resources = [[MarsImageNotebook instance] getResources:noteIndex];
@@ -117,10 +112,20 @@
         resourceIndex += 1;
     }
     
+    NSArray* leftAndRight = [[MarsImageNotebook instance].mission stereoForImages:resources];
+    if (leftAndRight.count > 0) {
+        PSMenuItem* menuItem = [[PSMenuItem alloc] initWithTitle:@"Anaglyph"
+                                                             block:^{
+                                                                 NSLog(@"Anaglyph was pressed.");
+                                                                 [[MarsImageNotebook instance] changeToAnaglyph: leftAndRight noteIndex:noteIndex];
+                                                                 [self reloadData];
+                                                             }];
+        [menuItems addObject:menuItem];
+    }
+    
     if ([menuItems count] > 1) {
         [UIMenuController sharedMenuController].menuItems = menuItems;
         CGRect bounds = _imageSelectionButton.customView.bounds;
-        NSLog(@"%f %f %f %f", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
         [[UIMenuController sharedMenuController] setTargetRect:bounds inView:_imageSelectionButton.customView];
         [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
     }
@@ -139,7 +144,11 @@
         BOOL isToolbar = [view isKindOfClass:[UIToolbar class]];
         if (isToolbar) {
             if (resourceCount > 1) {
-                NSString* imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
+                NSString* imageName = @"";
+                if (photo.leftAndRight)
+                    imageName = @"Anaglyph";
+                else
+                    imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
                 [_imageNameButton setTitle:imageName forState:UIControlStateNormal];
                 [(UIToolbar*)view setItems:[NSArray arrayWithObjects:_imageSelectionButton, nil]];
             }

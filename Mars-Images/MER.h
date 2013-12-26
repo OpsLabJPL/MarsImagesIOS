@@ -12,6 +12,7 @@
 
 static NSCharacterSet* slashAndDot;
 static NSDateFormatter* formatter;
+static NSSet* stereoInstruments;
 
 @interface MER : NSObject
 
@@ -27,6 +28,7 @@ static NSDateFormatter* formatter;
 - (NSString*) imageName: (EDAMResource*) resource;
 - (NSString*) captionText: (EDAMResource*) resource
                      note:(EDAMNote*) note;
+- (NSArray*) stereoForImages: (NSArray*)resources;
 + (MERTitle*) tokenize: (NSString*) title;
 + (NSString*) imageID:(EDAMResource*) resource;
 + (MERTitle*) parseCoursePlotTitle: (NSString*)title

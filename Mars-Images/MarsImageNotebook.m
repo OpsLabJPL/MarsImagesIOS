@@ -142,12 +142,10 @@ static dispatch_queue_t noteDownloadQueue = nil;
 - (MWPhoto*) getNotePhoto: (int) noteIndex
                 withIndex: (int) imageIndex {
     EDAMNote* note = [_notes objectAtIndex:noteIndex];
-    if (!note) {
-        return nil;
-    }
-    if (imageIndex >= note.resources.count) {
+    if (!note) return nil;
+    if (imageIndex >= note.resources.count)
         NSLog(@"Brown alert: requested image index is out of bounds.");
-    }
+
     EDAMResource* resource = [note.resources objectAtIndex:imageIndex];
     NSString* resGUID = resource.guid;
     NSString* imageURL = [NSString stringWithFormat:@"%@res/%@", Evernote.instance.user.webApiUrlPrefix, resGUID];
@@ -159,10 +157,17 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [_notePhotos replaceObjectAtIndex:noteIndex withObject:[self getNotePhoto:noteIndex withIndex:imageIndex]];
 }
 
+- (void) changeToAnaglyph: (NSArray*) leftAndRight
+                noteIndex:(int)noteIndex {
+    EDAMNote* note = [_notes objectAtIndex:noteIndex];
+    if (!note) return;
+    MarsPhoto* anaglyph = [[MarsPhoto alloc] initAnaglyph: leftAndRight note:note];
+    [_notePhotos replaceObjectAtIndex:noteIndex withObject:anaglyph];
+}
+
 - (NSArray*) getResources: (int) noteIndex {
-    if (noteIndex >= _notes.count) {
+    if (noteIndex >= _notes.count)
         return [NSArray arrayWithObjects:nil];
-    }
     EDAMNote* note = [_notes objectAtIndex:noteIndex];
     return [NSArray arrayWithArray:[note resources]];
 }
