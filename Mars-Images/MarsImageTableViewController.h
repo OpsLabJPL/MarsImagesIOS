@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MarsImageTableViewController : UITableViewController
+@interface MarsImageTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+
+@property (strong, nonatomic) IBOutlet UISearchBar* searchBar;
 
 - (void) notesLoaded: (NSNotification*) notification;
 - (void) imageSelected: (NSNotification*) notification;

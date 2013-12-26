@@ -179,4 +179,15 @@
     [sidePanel imageSelected: indexPath.row from:self];
 }
 
+#pragma mark UISearchBarDelegate
+
+#pragma mark UISearchDisplayDelegate
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    return NO;
+}
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    return NO;
+}
+
 @end
