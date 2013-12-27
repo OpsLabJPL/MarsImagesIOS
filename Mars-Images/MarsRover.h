@@ -17,7 +17,8 @@
 - (int) sampleTypeIndex;
 - (NSString*) roverName;
 - (NSString*) regionName;
-
+- (int) sol: (EDAMNote*) note;
+- (NSString*) sectionTitle: (int) section;
 - (NSString*) labelText: (EDAMNote*) note;
 - (NSString*) detailLabelText: (EDAMNote*) note;
 - (NSString*) imageName: (EDAMResource*) resource;

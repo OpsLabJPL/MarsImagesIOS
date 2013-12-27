@@ -24,6 +24,7 @@
                    note: (EDAMNote*) note
                     url: (NSURL*) url {
     self = [super initWithURL:url];
+    _note = note;
     _resource = resource;
     self.caption = [[MarsImageNotebook instance].mission captionText:resource note:note];
     return self;
@@ -32,6 +33,7 @@
 - (id) initAnaglyph: (NSArray*) leftAndRight
                note: (EDAMNote*) note {
     self = [super init];
+    _note = note;
     _leftAndRight = leftAndRight;
     EDAMResource* resource = [leftAndRight objectAtIndex:0];
     self.caption = [[MarsImageNotebook instance].mission captionText:resource note:note];

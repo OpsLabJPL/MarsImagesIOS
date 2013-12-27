@@ -29,8 +29,11 @@ static dispatch_queue_t noteDownloadQueue = nil;
 - (MarsImageNotebook*) init {
     MarsImageNotebook *notebook = [super init];
     instance = self;
-    _notePhotos = [[NSMutableArray alloc] init];
-    _notes = [[NSMutableArray alloc] init];
+    _notes = [[NSMutableDictionary alloc] init];
+    _notePhotosArray = [[NSMutableArray alloc] init];
+    _notesArray = [[NSMutableArray alloc] init];
+    _sections = [[NSMutableDictionary alloc] init];
+    _sols = [[NSMutableArray alloc] init];
     _lastSleepTime = nil;
     _lastRequestedStartIndexToLoad = -1;
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -85,7 +88,6 @@ static dispatch_queue_t noteDownloadQueue = nil;
         
         //if we already have these notes, don't load them again.
         if (startIndex == _lastRequestedStartIndexToLoad) {
-            [MarsImageNotebook notifyNotesReturned:0];
             return;
         }
         _lastRequestedStartIndexToLoad = startIndex;
@@ -108,7 +110,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
             filter.order = NoteSortOrder_TITLE;
             filter.ascending = NO;
             if (_searchWords != nil && [_searchWords length]>0) {
-                filter.words = _searchWords;
+                filter.words = [self formatSearch:_searchWords];
             }
             EDAMNoteList* notelist = [[EDAMNoteList alloc] init];
             @try {
@@ -129,9 +131,25 @@ static dispatch_queue_t noteDownloadQueue = nil;
                 return;
             }
 
-            [_notes addObjectsFromArray: notelist.notes];
+            [(NSMutableArray*)_notesArray addObjectsFromArray: notelist.notes];
             for (int j = 0; j < notelist.notes.count; j++) {
-                [_notePhotos addObject:[self getNotePhoto:j+startIndex withIndex:0]];
+                EDAMNote* note = [notelist.notes objectAtIndex:j];
+                NSNumber* sol = [NSNumber numberWithInt:[self.mission sol:note]];
+                int lastSolIndex = _sols.count-1;
+                if (lastSolIndex < 0 || ![[_sols objectAtIndex:lastSolIndex] isEqualToNumber: sol])
+                    [(NSMutableArray*)_sols addObject:sol];
+                NSMutableArray* notesForSol = [_notes objectForKey:sol];
+                if (!notesForSol)
+                    notesForSol = [[NSMutableArray alloc] init];
+                [notesForSol addObject:note];
+                [(NSMutableDictionary*)_notes setObject:notesForSol forKey:sol];
+                MarsPhoto* photo = [self getNotePhoto:j+startIndex withIndex:0];
+                [(NSMutableArray*)_notePhotosArray addObject:photo];
+                [(NSMutableDictionary*)_sections removeObjectForKey:sol];
+                [(NSMutableDictionary*)_sections setObject:[NSNumber numberWithInt:_sections.count] forKey:sol];
+                if (_sections.count != _sols.count) {
+                    NSLog(@"Brown alert: sections and sols counts don't match each other.");
+                }
             }
             
             [MarsImageNotebook notifyNotesReturned:notelist.notes.count];
@@ -139,9 +157,27 @@ static dispatch_queue_t noteDownloadQueue = nil;
     }
 }
 
-- (MWPhoto*) getNotePhoto: (int) noteIndex
+- (NSString*) formatSearch: (NSString*) text {
+    NSArray* words = [text componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSMutableString* formattedText = [[NSMutableString alloc] init];
+    for (NSString* w in words) {
+        NSString* word = [NSString stringWithString:w];
+        
+        if ([word intValue] > 0 && ![word hasSuffix:@"*"])
+            word = [NSString stringWithFormat:@"\"Sol %05d\"", [word intValue]];
+        
+        if (formattedText.length > 0)
+            [formattedText appendString:@" "];
+        
+        [formattedText appendString: [NSString stringWithFormat:@"intitle:%@", word]];
+    }
+    NSLog(@"formatted text: %@", formattedText);
+    return formattedText;
+}
+
+- (MarsPhoto*) getNotePhoto: (int) noteIndex
                 withIndex: (int) imageIndex {
-    EDAMNote* note = [_notes objectAtIndex:noteIndex];
+    EDAMNote* note = [_notesArray objectAtIndex:noteIndex];
     if (!note) return nil;
     if (imageIndex >= note.resources.count)
         NSLog(@"Brown alert: requested image index is out of bounds.");
@@ -154,27 +190,25 @@ static dispatch_queue_t noteDownloadQueue = nil;
 
 - (void) changeToImage: (int)imageIndex
                forNote: (int)noteIndex {
-    [_notePhotos replaceObjectAtIndex:noteIndex withObject:[self getNotePhoto:noteIndex withIndex:imageIndex]];
+    MarsPhoto* photo = [self getNotePhoto:noteIndex withIndex:imageIndex];
+    [(NSMutableArray*)_notePhotosArray replaceObjectAtIndex:noteIndex withObject:photo];
 }
 
 - (void) changeToAnaglyph: (NSArray*) leftAndRight
-                noteIndex:(int)noteIndex {
-    EDAMNote* note = [_notes objectAtIndex:noteIndex];
+                noteIndex: (int) noteIndex {
+    EDAMNote* note = [_notesArray objectAtIndex:noteIndex];
     if (!note) return;
     MarsPhoto* anaglyph = [[MarsPhoto alloc] initAnaglyph: leftAndRight note:note];
-    [_notePhotos replaceObjectAtIndex:noteIndex withObject:anaglyph];
-}
-
-- (NSArray*) getResources: (int) noteIndex {
-    if (noteIndex >= _notes.count)
-        return [NSArray arrayWithObjects:nil];
-    EDAMNote* note = [_notes objectAtIndex:noteIndex];
-    return [NSArray arrayWithArray:[note resources]];
+    [(NSMutableArray*)_notePhotosArray replaceObjectAtIndex:noteIndex withObject:anaglyph];
 }
 
 - (void) reloadNotes {
-    [_notes removeAllObjects];
-    [_notePhotos removeAllObjects];
+    [(NSMutableDictionary*)_notes removeAllObjects];
+    [(NSMutableArray*)_notesArray removeAllObjects];
+    [(NSMutableArray*)_notePhotosArray removeAllObjects];
+    [(NSMutableDictionary*) _sections removeAllObjects];
+    [(NSMutableArray*) _sols removeAllObjects];
+    _lastRequestedStartIndexToLoad = -1;
     [self loadMoreNotes:0 withTotal:15];
 }
 

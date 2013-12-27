@@ -17,5 +17,5 @@
 - (void) updateNotes;
 - (void) defaultsChanged:(id)sender;
 - (void) enteredForegroundAfterLongSleep:(id)sender;
-- (void) selectAndScrollToRow:(int)index;
+- (void) selectAndScrollToRow:(int)imageIndex;
 @end

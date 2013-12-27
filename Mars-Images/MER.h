@@ -23,6 +23,9 @@ static NSSet* stereoInstruments;
 @property (nonatomic) NSString* roverName;
 @property (nonatomic) NSString* regionName;
 
+- (int) sol: (EDAMNote*) note;
+- (NSString*) sectionTitle: (int) section;
+- (NSString*) solAndDate: (int)sol;
 - (NSString*) labelText: (EDAMNote*) note;
 - (NSString*) detailLabelText: (EDAMNote*) note;
 - (NSString*) imageName: (EDAMResource*) resource;

@@ -11,7 +11,8 @@
 
 @interface MarsPhoto : MWPhoto
 
-@property EDAMResource* resource;
+@property (strong, nonatomic) EDAMNote* note;
+@property (strong, nonatomic) EDAMResource* resource;
 @property (strong, nonatomic) NSArray* leftAndRight;
 @property (weak) UIImage* leftImage;
 @property (weak) UIImage* rightImage;

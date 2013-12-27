@@ -7,6 +7,7 @@
 //
 
 #import "MWPhotoBrowser.h"
+#import "MarsPhoto.h"
 
 @interface MarsImageViewController : MWPhotoBrowser<MWPhotoBrowserDelegate>
 
@@ -16,13 +17,13 @@
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
 - (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;
+
 - (void) notesLoaded: (NSNotification*) notification;
+- (MarsPhoto*) currentPhoto;
+
 - (void) imageSelected: (NSNotification*) notification;
-
 - (IBAction) toggleTableView: (id)sender;
-
 - (void) configureToolbarAndNavbar;
-
 - (void) imageSelectionButtonPressed: (id)sender;
 
 @end

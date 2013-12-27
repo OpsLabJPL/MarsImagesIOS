@@ -11,7 +11,7 @@
 #import "MarsImageNotebook.h"
 #import "MarsImageViewController.h"
 
-#define LEFT_PANEL_WIDTH 256
+#define LEFT_PANEL_WIDTH 275
 #define LEFT_PANEL_NARROW_WIDTH 50
 
 @interface MarsSidePanelController ()

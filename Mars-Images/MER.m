@@ -7,6 +7,7 @@
 //
 
 #import "MER.h"
+#import "MarsImageNotebook.h"
 
 #define SOL @"Sol"
 #define LMST @"LTST"
@@ -52,17 +53,36 @@ typedef enum {
         return [NSString stringWithFormat:@"Drive for %.2f meters", merTitle.distance];
 }
 
-- (NSString*) detailLabelText: (EDAMNote*) note {
-    //TODO refactor this method to get Earth date for sol
-    MERTitle* merTitle = [MER tokenize: note.title];
-    double interval = merTitle.sol*24*60*60*EARTH_SECS_PER_MARS_SEC;
+- (int) sol: (EDAMNote*) note {
+    NSArray* tokens = [note.title componentsSeparatedByString:@" "];
+    if (tokens.count >= 2)
+        return ((NSString*)[tokens objectAtIndex:1]).intValue;
+    return 0;
+}
+
+- (NSString*) sectionTitle: (int) section {
+    NSNumber* sol = [[MarsImageNotebook instance].sols objectAtIndex:section];
+    return [self solAndDate:sol.intValue];
+}
+
+- (NSString*) solAndDate: (int)sol {
+    double interval = sol*24*60*60*EARTH_SECS_PER_MARS_SEC;
     NSDate* imageDate = [NSDate dateWithTimeInterval:interval sinceDate:_epoch];
     NSString* formattedDate = [formatter stringFromDate:imageDate];
-    return [NSString stringWithFormat:@"Sol %d %@", merTitle.sol, formattedDate];
+    return [NSString stringWithFormat:@"Sol %d %@", sol, formattedDate];
+}
+
+- (NSString*) detailLabelText: (EDAMNote*) note {
+    int sol = [MER tokenize: note.title].sol;
+    return [self solAndDate:sol];
 }
 
 - (NSString*) imageName:(EDAMResource*) resource {
     NSString* imageid = [MER imageID:resource];
+    
+    if ([resource.attributes.sourceURL rangeOfString:@"False"].location != NSNotFound)
+        return @"Color";
+    
     NSString* instrument = [imageid substringWithRange:NSMakeRange(_instrumentIndex, 1)];
     if ([instrument isEqualToString:@"N"] || [instrument isEqualToString:@"F"] || [instrument isEqualToString:@"R"]) {
         NSString* eye = [imageid substringWithRange:NSMakeRange(_eyeIndex, 1)];
@@ -95,7 +115,7 @@ typedef enum {
         return [[NSArray alloc] initWithObjects:nil];
     NSString* imageid = [MER imageID:[resources objectAtIndex:0]];
     NSString* instrument = [imageid substringWithRange:NSMakeRange(_instrumentIndex, 1)];
-    if (![stereoInstruments containsObject:instrument])
+    if (![stereoInstruments containsObject:instrument] && ![imageid hasPrefix:@"Sol"])
         return [[NSArray alloc] initWithObjects:nil];
     
     int leftImageIndex = -1;
@@ -104,7 +124,7 @@ typedef enum {
     for (EDAMResource* resource in resources) {
         NSString* imageid = [MER imageID:resource];
         NSString* eye = [imageid substringWithRange:NSMakeRange(_eyeIndex, 1)];
-        if (leftImageIndex == -1 && [eye isEqualToString:@"L"])
+        if (leftImageIndex == -1 && [eye isEqualToString:@"L"] && ![imageid hasPrefix:@"Sol"])
             leftImageIndex = index;
         if (rightImageIndex == -1 && [eye isEqualToString:@"R"])
             rightImageIndex = index;
@@ -119,7 +139,8 @@ typedef enum {
 + (NSString*) imageID:(EDAMResource*) resource {
     NSString* url = resource.attributes.sourceURL;
     NSArray* tokens = [url componentsSeparatedByCharactersInSet:slashAndDot];
-    NSString* imageid = [tokens objectAtIndex:tokens.count-2];
+    int numTokens = tokens.count;
+    NSString* imageid = [tokens objectAtIndex:numTokens-2];
     return imageid;
 }
 

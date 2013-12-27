@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MarsRover.h"
-#import "MWPhoto.h"
+#import "MarsPhoto.h"
 #import "Reachability.h"
 
 #define MISSION @"mission"
@@ -26,16 +26,19 @@
 
 @interface MarsImageNotebook : NSObject
 
-@property(nonatomic, strong) NSDictionary*        evernoteUsers;
-@property(nonatomic, strong) Reachability*        internetReachable;
-@property(nonatomic, readonly) int                lastRequestedStartIndexToLoad;
-@property(nonatomic, strong) NSDate*              lastSleepTime;
-@property(nonatomic, strong) NSDictionary*        missions;
-@property(nonatomic, strong) NSString*            missionName;
-@property(nonatomic, strong) NSDictionary*        notebookIDs;
-@property(nonatomic, strong) NSMutableArray*      notes;
-@property(nonatomic, strong) NSMutableArray*      notePhotos;
-@property(nonatomic, strong) NSString*            searchWords;
+@property(nonatomic, strong) NSDictionary* evernoteUsers;
+@property(nonatomic, strong) Reachability* internetReachable;
+@property(nonatomic, readonly) int         lastRequestedStartIndexToLoad;
+@property(nonatomic, strong) NSDate*       lastSleepTime;
+@property(nonatomic, strong) NSDictionary* missions;
+@property(nonatomic, strong) NSString*     missionName;
+@property(nonatomic, strong) NSDictionary* notebookIDs;
+@property(nonatomic, strong) NSDictionary* notes;
+@property(nonatomic, strong) NSArray*      sols;
+@property(nonatomic, strong) NSDictionary* sections;
+@property(nonatomic, strong) NSArray*      notesArray;
+@property(nonatomic, strong) NSArray*      notePhotosArray;
+@property(nonatomic, strong) NSString*     searchWords;
 
 + (MarsImageNotebook*) instance;
 
@@ -44,16 +47,16 @@
 - (void) loadMoreNotes: (int) startIndex
              withTotal: (int) total;
 
-- (MWPhoto*) getNotePhoto: (int) noteIndex
+- (MarsPhoto*) getNotePhoto: (int) noteIndex
                 withIndex: (int) imageIndex;
-
-- (NSArray*) getResources: (int) noteIndex;
 
 - (void) changeToImage: (int)imageIndex
                forNote: (int)noteIndex;
 
 - (void) changeToAnaglyph: (NSArray*) leftAndRight
-                noteIndex: (int)noteIndex;
+                     noteIndex: (int)noteIndex;
+
+- (NSString*) formatSearch: (NSString*) text;
 
 - (void) reloadNotes;
 
