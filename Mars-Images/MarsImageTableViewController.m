@@ -46,6 +46,14 @@
     // Uncomment the following line to disable preservation of selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
+    _menu = [[MarsPullDownMenu alloc] initWithNavigationController:self.navigationController];
+    [self.navigationController.view insertSubview:_menu belowSubview:self.navigationController.navigationBar];
+    for (NSString* menuItemName in _menu.menuItemNames) {
+         [_menu insertButton:menuItemName];
+    }
+    _menu.delegate = _menu;
+    [_menu loadMenu];
+    
     //listen for preference changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
@@ -145,6 +153,10 @@
     if (sender != self) {
         [self selectAndScrollToRow:index];
     }
+}
+
+- (IBAction) togglePullDownMenu {
+    [_menu animateDropDown];
 }
 
 - (void) defaultsChanged:(id)sender {

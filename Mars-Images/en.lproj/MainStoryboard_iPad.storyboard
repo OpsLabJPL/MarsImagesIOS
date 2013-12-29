@@ -45,7 +45,13 @@
                             <outlet property="delegate" destination="4Q7-W8-XMA" id="ol2-Xe-dzI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jYB-Fk-p7e"/>
+                    <navigationItem key="navigationItem" id="jYB-Fk-p7e">
+                        <barButtonItem key="leftBarButtonItem" image="rovericon.png" id="9y5-7L-3HG">
+                            <connections>
+                                <action selector="togglePullDownMenu" destination="4Q7-W8-XMA" id="Mh1-r9-rtj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="NTS-gE-j8k" id="IB2-ES-z2w"/>
                         <outlet property="searchDisplayController" destination="60E-Ax-tGX" id="w1q-01-lTq"/>
@@ -93,6 +99,115 @@
             </objects>
             <point key="canvasLocation" x="1578" y="323"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="D3a-WK-5gb">
+            <objects>
+                <viewController storyboardIdentifier="about" id="8sf-ro-0Gj" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d7Y-t5-PcX"/>
+                        <viewControllerLayoutGuide type="bottom" id="Te8-DN-X7y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gqL-ei-KfX">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="piT-pc-8Tn">
+                                <rect key="frame" x="-3" y="2" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="piT-pc-8Tn" secondAttribute="bottom" constant="-2" id="QZu-d4-J8o"/>
+                            <constraint firstItem="piT-pc-8Tn" firstAttribute="leading" secondItem="gqL-ei-KfX" secondAttribute="leading" constant="-3" id="Ssi-ZH-QPA"/>
+                            <constraint firstItem="piT-pc-8Tn" firstAttribute="top" secondItem="gqL-ei-KfX" secondAttribute="top" constant="2" id="XhU-Zm-kF5"/>
+                            <constraint firstAttribute="trailing" secondItem="piT-pc-8Tn" secondAttribute="trailing" constant="3" id="iE8-Tz-t38"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="piT-pc-8Tn" id="3wR-AB-t6C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0z-aZ-WuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2507" y="324"/>
+        </scene>
+        <!--Mars Time View-->
+        <scene sceneID="AGC-kV-Sy3">
+            <objects>
+                <viewController storyboardIdentifier="time" id="x8O-5P-fMq" customClass="MarsTimeView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IwE-Vp-nqS"/>
+                        <viewControllerLayoutGuide type="bottom" id="utb-gk-eLv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OvY-yz-UZ5">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mars Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZx-F6-qK7">
+                                <rect key="frame" x="312" y="102" width="145" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2013-365T00:00:00 UTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiI-Lq-9Rh">
+                                <rect key="frame" x="254" y="159" width="261" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opportunity at Meridiani Planum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCF-JM-w5u">
+                                <rect key="frame" x="206" y="244" width="357" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 3530 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11J-CP-kqR">
+                                <rect key="frame" x="288" y="293" width="192" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Curiosity at Gale Crater" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fq5-7H-Evf">
+                                <rect key="frame" x="255" y="369" width="258" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 1000 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMh-cR-tBd">
+                                <rect key="frame" x="288" y="413" width="192" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fq5-7H-Evf" firstAttribute="centerX" secondItem="gMh-cR-tBd" secondAttribute="centerX" id="632-hk-lOE"/>
+                            <constraint firstItem="qZx-F6-qK7" firstAttribute="top" secondItem="OvY-yz-UZ5" secondAttribute="top" constant="102" id="7G3-fe-hF6"/>
+                            <constraint firstItem="fq5-7H-Evf" firstAttribute="top" secondItem="OvY-yz-UZ5" secondAttribute="top" constant="369" id="FFt-1W-1y1"/>
+                            <constraint firstItem="ZCF-JM-w5u" firstAttribute="top" secondItem="OvY-yz-UZ5" secondAttribute="top" constant="244" id="KgE-nG-cYJ"/>
+                            <constraint firstItem="DiI-Lq-9Rh" firstAttribute="top" secondItem="qZx-F6-qK7" secondAttribute="bottom" constant="21" id="SfY-3y-W0a"/>
+                            <constraint firstItem="fq5-7H-Evf" firstAttribute="centerX" secondItem="ZCF-JM-w5u" secondAttribute="centerX" id="VWb-Ub-cYu"/>
+                            <constraint firstItem="fq5-7H-Evf" firstAttribute="centerX" secondItem="qZx-F6-qK7" secondAttribute="centerX" id="ZcE-CH-Odt"/>
+                            <constraint firstItem="fq5-7H-Evf" firstAttribute="centerX" secondItem="DiI-Lq-9Rh" secondAttribute="centerX" id="aWB-ks-5YZ"/>
+                            <constraint firstAttribute="centerX" secondItem="qZx-F6-qK7" secondAttribute="centerX" id="ggH-qn-sdf"/>
+                            <constraint firstItem="fq5-7H-Evf" firstAttribute="centerX" secondItem="11J-CP-kqR" secondAttribute="centerX" id="idd-Q0-37I"/>
+                            <constraint firstItem="gMh-cR-tBd" firstAttribute="top" secondItem="fq5-7H-Evf" secondAttribute="bottom" constant="15" id="iee-EW-cN9"/>
+                            <constraint firstItem="11J-CP-kqR" firstAttribute="top" secondItem="ZCF-JM-w5u" secondAttribute="bottom" constant="20" id="lN5-vR-edC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="curiosityTimeLabel" destination="gMh-cR-tBd" id="U6i-wN-Prg"/>
+                        <outlet property="opportunityTimeLabel" destination="11J-CP-kqR" id="pYb-bf-02H"/>
+                        <outlet property="utcLabel" destination="DiI-Lq-9Rh" id="P22-sS-6xg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-MT-zZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2507" y="1470"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pFO-aW-G4G">
             <objects>
@@ -132,6 +247,7 @@
     </scenes>
     <resources>
         <image name="icon_list_bullets.png" width="30" height="30"/>
+        <image name="rovericon.png" width="22" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

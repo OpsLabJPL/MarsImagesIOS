@@ -45,7 +45,13 @@
                             <outlet property="delegate" destination="NKJ-K0-Z5E" id="Mqn-LM-hxY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9N5-Q0-aCz"/>
+                    <navigationItem key="navigationItem" id="9N5-Q0-aCz">
+                        <barButtonItem key="leftBarButtonItem" image="rovericon.png" id="HvM-Zg-W2F">
+                            <connections>
+                                <action selector="togglePullDownMenu" destination="NKJ-K0-Z5E" id="GQ2-fu-gAz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="6A5-Jv-8Vq" id="GP0-CG-f1s"/>
                         <outlet property="searchDisplayController" destination="PNU-nL-G1c" id="S00-Mz-DRf"/>
@@ -91,6 +97,120 @@
             </objects>
             <point key="canvasLocation" x="1557" y="871"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="PTY-om-32q">
+            <objects>
+                <viewController storyboardIdentifier="about" id="yVV-y0-poR" customClass="AboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5zX-HX-8VU"/>
+                        <viewControllerLayoutGuide type="bottom" id="7fP-WQ-yi1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mGV-51-xrM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CR2-SB-Nuh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="CR2-SB-Nuh" secondAttribute="bottom" id="4dQ-4J-8ad"/>
+                            <constraint firstItem="CR2-SB-Nuh" firstAttribute="leading" secondItem="mGV-51-xrM" secondAttribute="leading" id="CPr-c3-gIU"/>
+                            <constraint firstItem="CR2-SB-Nuh" firstAttribute="top" secondItem="mGV-51-xrM" secondAttribute="top" id="omk-gF-JUz"/>
+                            <constraint firstAttribute="trailing" secondItem="CR2-SB-Nuh" secondAttribute="trailing" id="tXY-QC-KWd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="CR2-SB-Nuh" id="x38-wm-3Ve"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HwR-mo-54b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="871"/>
+        </scene>
+        <!--Mars Time View-->
+        <scene sceneID="AeR-Bd-rOk">
+            <objects>
+                <viewController storyboardIdentifier="time" id="Nye-Jv-WtJ" customClass="MarsTimeView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k6u-Kx-scT"/>
+                        <viewControllerLayoutGuide type="bottom" id="lNw-fm-jrO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A6S-lr-GkD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mars Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-Jm-oFV">
+                                <rect key="frame" x="92" y="63" width="136" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2013-365T00:00:00 UTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75n-cO-ghw">
+                                <rect key="frame" x="30" y="99" width="261" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opportunity at Meridiani Planum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIP-Bs-12L">
+                                <rect key="frame" x="25" y="138" width="270" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 3530 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gD-8Z-HuP">
+                                <rect key="frame" x="64" y="163" width="192" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 1000 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrL-IR-hw8">
+                                <rect key="frame" x="64" y="228" width="192" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Curiosity at Gale Crater" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INH-41-6u3">
+                                <rect key="frame" x="63" y="203" width="195" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="75n-cO-ghw" firstAttribute="top" secondItem="hhe-Jm-oFV" secondAttribute="bottom" constant="2" id="0Av-Jz-KXs"/>
+                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="7gD-8Z-HuP" secondAttribute="centerX" id="283-f4-qjm"/>
+                            <constraint firstItem="INH-41-6u3" firstAttribute="top" secondItem="7gD-8Z-HuP" secondAttribute="bottom" constant="11" id="7OR-qY-H1M"/>
+                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="75n-cO-ghw" secondAttribute="centerX" id="FCK-2U-CXU"/>
+                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="BrL-IR-hw8" secondAttribute="centerX" id="Ru7-On-NkP"/>
+                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="MIP-Bs-12L" secondAttribute="centerX" id="VCB-cj-SYz"/>
+                            <constraint firstItem="hhe-Jm-oFV" firstAttribute="centerX" secondItem="A6S-lr-GkD" secondAttribute="centerX" id="XbZ-C8-Feo"/>
+                            <constraint firstItem="MIP-Bs-12L" firstAttribute="top" secondItem="75n-cO-ghw" secondAttribute="bottom" constant="10" id="Z7C-Qt-oer"/>
+                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="hhe-Jm-oFV" secondAttribute="centerX" id="Zjd-ml-CLv"/>
+                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="INH-41-6u3" secondAttribute="centerX" id="b2D-Is-9aT"/>
+                            <constraint firstItem="hhe-Jm-oFV" firstAttribute="top" secondItem="A6S-lr-GkD" secondAttribute="top" constant="63" id="cPL-Kn-zZS"/>
+                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="7gD-8Z-HuP" secondAttribute="centerX" id="eJ6-sR-dF5"/>
+                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="75n-cO-ghw" secondAttribute="centerX" id="edr-Mn-lBu"/>
+                            <constraint firstItem="BrL-IR-hw8" firstAttribute="top" secondItem="INH-41-6u3" secondAttribute="bottom" constant="3" id="gkt-VC-h1d"/>
+                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="hhe-Jm-oFV" secondAttribute="centerX" id="hCz-to-K96"/>
+                            <constraint firstItem="7gD-8Z-HuP" firstAttribute="top" secondItem="MIP-Bs-12L" secondAttribute="bottom" constant="3" id="kbc-eU-RBm"/>
+                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="BrL-IR-hw8" secondAttribute="centerX" id="p9i-En-IAy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="curiosityTimeLabel" destination="BrL-IR-hw8" id="Dc9-MC-v40"/>
+                        <outlet property="opportunityTimeLabel" destination="7gD-8Z-HuP" id="bje-CG-DiE"/>
+                        <outlet property="utcLabel" destination="75n-cO-ghw" id="La5-ax-kOK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGu-Gi-xGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="1460"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="JFz-im-z2e">
             <objects>
@@ -130,6 +250,7 @@
     </scenes>
     <resources>
         <image name="icon_list_bullets.png" width="30" height="30"/>
+        <image name="rovericon.png" width="22" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

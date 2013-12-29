@@ -8,13 +8,12 @@
 
 #import "MER.h"
 #import "MarsImageNotebook.h"
+#import "MarsTime.h"
 
 #define SOL @"Sol"
 #define LMST @"LTST"
 #define RMC @"RMC"
 #define COURSE @"Course"
-
-#define EARTH_SECS_PER_MARS_SEC 1.027491252
 
 @implementation MER
 

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A036669174AB72000DC108B /* TImeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A036668174AB72000DC108B /* TImeViewController.m */; };
+		4A0C815F186F4DC700E2DFC4 /* PulldownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C815E186F4DC700E2DFC4 /* PulldownMenu.m */; };
+		4A0C8162186F4DE800E2DFC4 /* MarsPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C8161186F4DE800E2DFC4 /* MarsPullDownMenu.m */; };
+		4A0C8165186FA53100E2DFC4 /* MarsTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */; };
 		4A0EEAA5173AC206000FC458 /* CoursePlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0EEAA4173AC206000FC458 /* CoursePlotViewController.m */; };
 		4A11FB6A17BC4BCE00439C1E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A11FB6917BC4BCE00439C1E /* README.md */; };
 		4A26D631176542A600F824E8 /* Evernote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26D628176542A600F824E8 /* Evernote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -98,6 +101,12 @@
 /* Begin PBXFileReference section */
 		4A036667174AB72000DC108B /* TimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeViewController.h; sourceTree = "<group>"; };
 		4A036668174AB72000DC108B /* TImeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImeViewController.m; sourceTree = "<group>"; };
+		4A0C815D186F4DC700E2DFC4 /* PulldownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulldownMenu.h; sourceTree = "<group>"; };
+		4A0C815E186F4DC700E2DFC4 /* PulldownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulldownMenu.m; sourceTree = "<group>"; };
+		4A0C8160186F4DE800E2DFC4 /* MarsPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsPullDownMenu.h; sourceTree = "<group>"; };
+		4A0C8161186F4DE800E2DFC4 /* MarsPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsPullDownMenu.m; sourceTree = "<group>"; };
+		4A0C8163186FA53100E2DFC4 /* MarsTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsTimeView.h; sourceTree = "<group>"; };
+		4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsTimeView.m; sourceTree = "<group>"; };
 		4A0EEAA3173AC206000FC458 /* CoursePlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CoursePlotViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4A0EEAA4173AC206000FC458 /* CoursePlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CoursePlotViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4A11FB6917BC4BCE00439C1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -304,12 +313,16 @@
 				4AC5DD18165864F400A79555 /* MainStoryboard_iPad.storyboard */,
 				4A31DD04185FB82300174A4A /* MarsSidePanelController.h */,
 				4A31DD05185FB82300174A4A /* MarsSidePanelController.m */,
+				4A0C8160186F4DE800E2DFC4 /* MarsPullDownMenu.h */,
+				4A0C8161186F4DE800E2DFC4 /* MarsPullDownMenu.m */,
 				4A31DCF5185AB52800174A4A /* MarsImageTableViewController.h */,
 				4A31DCF6185AB52800174A4A /* MarsImageTableViewController.m */,
 				4A5A1E6B181C963A00EC2020 /* MarsImageViewController.h */,
 				4A5A1E6C181C963A00EC2020 /* MarsImageViewController.m */,
 				4A5A1E6E181CC60B00EC2020 /* MarsImageCaptionView.h */,
 				4A5A1E6F181CC60B00EC2020 /* MarsImageCaptionView.m */,
+				4A0C8163186FA53100E2DFC4 /* MarsTimeView.h */,
+				4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */,
 				4AC5DD1B165864F400A79555 /* MasterViewController.h */,
 				4AC5DD1C165864F400A79555 /* MasterViewController.m */,
 				4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */,
@@ -332,6 +345,8 @@
 				4A0EEAA4173AC206000FC458 /* CoursePlotViewController.m */,
 				4A036667174AB72000DC108B /* TimeViewController.h */,
 				4A036668174AB72000DC108B /* TImeViewController.m */,
+				4A0C815D186F4DC700E2DFC4 /* PulldownMenu.h */,
+				4A0C815E186F4DC700E2DFC4 /* PulldownMenu.m */,
 				4AC5DD04165864F400A79555 /* Supporting Files */,
 				4A39DFA31658B8DB001FFD0C /* Settings.bundle */,
 				4A51D7D817E28F7500E8E0D6 /* Images.xcassets */,
@@ -589,6 +604,7 @@
 				4A5A1E70181CC60B00EC2020 /* MarsImageCaptionView.m in Sources */,
 				4AC5DD1D165864F400A79555 /* MasterViewController.m in Sources */,
 				4AC5DD20165864F400A79555 /* DetailViewController.m in Sources */,
+				4A0C8162186F4DE800E2DFC4 /* MarsPullDownMenu.m in Sources */,
 				4A31DD06185FB82300174A4A /* MarsSidePanelController.m in Sources */,
 				4AC5DD47165889C900A79555 /* AboutViewController.m in Sources */,
 				4A31DCF7185AB52800174A4A /* MarsImageTableViewController.m in Sources */,
@@ -596,9 +612,11 @@
 				4A4998F61866681800A78F67 /* Spirit.m in Sources */,
 				4A39DFA91658C7DA001FFD0C /* MissionViewController.m in Sources */,
 				4A39DFAC1659465B001FFD0C /* FixedWidthImageTableViewCell.m in Sources */,
+				4A0C815F186F4DC700E2DFC4 /* PulldownMenu.m in Sources */,
 				4A4998F01866670500A78F67 /* Curiosity.m in Sources */,
 				4A5A1E6D181C963A00EC2020 /* MarsImageViewController.m in Sources */,
 				4A4998F31866680F00A78F67 /* Opportunity.m in Sources */,
+				4A0C8165186FA53100E2DFC4 /* MarsTimeView.m in Sources */,
 				4A5836EB16693A4300E349B6 /* FullscreenImageViewController.m in Sources */,
 				4A5836EE166976DC00E349B6 /* ImageInfoTextViewController.m in Sources */,
 				4A5836F116699DB000E349B6 /* Search.m in Sources */,

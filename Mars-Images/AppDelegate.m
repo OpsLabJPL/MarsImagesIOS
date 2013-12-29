@@ -23,9 +23,11 @@
     
     IISideController* leftSideController = [[IISideController alloc] initWithViewController: tableNavVC];
     MarsSidePanelController* viewDeckController =  [[MarsSidePanelController alloc] initWithCenterViewController:imageNavVC leftViewController:leftSideController rightViewController:nil];
+    viewDeckController.leftSideController = leftSideController;
     self.window.rootViewController = viewDeckController;
     viewDeckController.resizesCenterView = YES;
     viewDeckController.sizeMode = IIViewDeckViewSizeMode;
+    viewDeckController.elastic = NO;
     [self.window makeKeyAndVisible];
     return YES;
 }

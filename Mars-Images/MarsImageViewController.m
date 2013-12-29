@@ -20,6 +20,11 @@
 
 @implementation MarsImageViewController
 
+typedef enum {
+    CLOCK_BUTTON,
+    ABOUT_BUTTON
+} Buttons;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -40,18 +45,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _imageNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_imageNameButton setTitle:@"FooBarBaz" forState:UIControlStateNormal];
+    [_imageNameButton setTitle:@"" forState:UIControlStateNormal];
     [_imageNameButton addTarget:self action:@selector(imageSelectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     _imageNameButton.frame = CGRectMake(0,0,150,44);
     _imageSelectionButton = [[UIBarButtonItem alloc] initWithCustomView:_imageNameButton];
+    _shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareImage:)];
     [PSMenuItem installMenuHandlerForObject:self];
     self.wantsFullScreenLayout = NO; //otherwise we get an unsightly gap between the nav and status bar
+    
+    _segmentedControl = [[UISegmentedControl alloc] init];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"1371788537_clock"] atIndex:CLOCK_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
+    _segmentedControl.momentary = YES;
+    _segmentedControl.tintColor = [UIColor whiteColor];
+    [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [_segmentedControl sizeToFit];
+    [_segmentedControl addTarget:self action:@selector(segmentedControlButtonPressed:) forControlEvents:UIControlEventValueChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageSelected:) name:IMAGE_SELECTED object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     [self configureToolbarAndNavbar];
 }
 
@@ -64,8 +80,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self configureToolbarAndNavbar];
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
 - (IBAction) toggleTableView: (id)sender {
     [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
+- (void) segmentedControlButtonPressed: (id)sender {
+    UIViewController* vc;
+    UIStoryboard* storyboard = self.navigationController.storyboard;
+    self.navigationItem.title = nil;
+    switch (_segmentedControl.selectedSegmentIndex) {
+        case ABOUT_BUTTON:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"about"];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        case CLOCK_BUTTON:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"time"];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+    }
 }
 
 - (void) notesLoaded: (NSNotification*) notification {
@@ -94,8 +131,8 @@
     UIViewController* sender = [notification.userInfo valueForKey:SENDER];
     if (sender != self && index != [self currentIndex]) {
         [self setCurrentPhotoIndex: index];
+        [self configureToolbarAndNavbar];
     }
-    [self configureToolbarAndNavbar];
 }
 
 - (void) imageSelectionButtonPressed: (id)sender {
@@ -141,8 +178,11 @@
     MarsPhoto* photo = [self currentPhoto];
     resourceCount = photo.note.resources.count;
     for (UIView* view in [self.view subviews]) {
-        BOOL isToolbar = [view isKindOfClass:[UIToolbar class]];
-        if (isToolbar) {
+        if ([view isKindOfClass:[UIToolbar class]]) {
+            UIBarButtonItem *flexibleItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+            UIBarButtonItem *flexibleItem2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+            UIToolbar* toolbar = (UIToolbar*)view;
+            toolbar.hidden = NO;
             if (resourceCount > 1) {
                 NSString* imageName = @"";
                 if (photo.leftAndRight)
@@ -150,15 +190,50 @@
                 else
                     imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
                 [_imageNameButton setTitle:[NSString stringWithFormat:@"Filter: %@", imageName] forState:UIControlStateNormal];
-                [(UIToolbar*)view setItems:[NSArray arrayWithObjects:_imageSelectionButton, nil]];
-            }
-            else {
-                [(UIToolbar*)view setItems:nil];
+                
+                
+                [toolbar setItems:[NSArray arrayWithObjects:flexibleItem1, _imageSelectionButton, flexibleItem2, nil]];
             }
         }
     }
-    self.navigationItem.rightBarButtonItem = nil;
-    self.navigationItem.title = nil;
+    self.navigationItem.rightBarButtonItem = _shareButton;
+    self.navigationItem.titleView = _segmentedControl;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            self.navigationItem.leftBarButtonItem = nil;
+        }
+        else {
+            self.navigationItem.leftBarButtonItem = _tableViewButton;
+        }
+    }
+}
+
+- (IBAction) shareImage:(id)sender {
+    MarsPhoto* marsImage = [self currentPhoto];
+    if (!marsImage) return;
+    EDAMNote* note = marsImage.note;
+    UIImage* image = marsImage.underlyingImage;
+    
+    NSString* missionName = [MarsImageNotebook instance].missionName;
+    NSArray* activities = [NSArray arrayWithObjects: [NSString stringWithFormat: @"%@ image sent from Mars images", missionName], image, nil];
+    UIActivityViewController* activityView = [[UIActivityViewController alloc] initWithActivityItems:activities applicationActivities:nil];
+    [activityView setValue: [NSString stringWithFormat: @"%@ image %@", missionName, note.title] forKey: @"subject"];
+    activityView.excludedActivityTypes = [NSArray arrayWithObjects: UIActivityTypeAssignToContact, nil];
+    
+    activityView.completionHandler = ^(NSString *activityType, BOOL completed) {
+        NSLog(@"Activity Type selected: %@", activityType);
+        if (completed) {
+            NSLog(@"Selected activity was performed.");
+        } else {
+            if (activityType == NULL) {
+                NSLog(@"User dismissed the view controller without making a selection.");
+            } else {
+                NSLog(@"Activity was not performed.");
+            }
+        }
+    };
+    
+    [self presentViewController:activityView animated:YES completion:nil];
 }
 
 #pragma mark MWPhotoBrowserDelegate

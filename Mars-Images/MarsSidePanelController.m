@@ -12,7 +12,6 @@
 #import "MarsImageViewController.h"
 
 #define LEFT_PANEL_WIDTH 275
-#define LEFT_PANEL_NARROW_WIDTH 50
 
 @interface MarsSidePanelController ()
 
@@ -22,8 +21,8 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    [self setDelegate: self];
     [self configureLeftPanel: [UIApplication sharedApplication].statusBarOrientation];
-    
     //load first notes in background
     [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:15];
 }
@@ -35,10 +34,12 @@
 
 - (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone &&
-        UIInterfaceOrientationIsPortrait(interfaceOrientation))
-        self.leftSize = LEFT_PANEL_NARROW_WIDTH;
-    else
-        self.leftSize = LEFT_PANEL_WIDTH;
+        UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        [self setLeftSize:1];
+    }
+    else {
+        [self setLeftSize:LEFT_PANEL_WIDTH];
+    }
 }
 
 - (void) imageSelected:(int)index
@@ -47,6 +48,24 @@
     NSLog(@"Image %d was selected from %@.", index, sender);
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithInt:index], IMAGE_INDEX, sender, SENDER, nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:IMAGE_SELECTED object:nil userInfo:dict];
+}
+
+#pragma mark IIViewDeckControllerDelegate
+
+- (void) viewDeckController:(IIViewDeckController *)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    for (UIViewController* vc in self.centerController.childViewControllers) {
+        if ([vc isKindOfClass:[MarsImageViewController class]]) {
+            [(MarsImageViewController*)vc configureToolbarAndNavbar];
+        }
+    }
+}
+
+- (void) viewDeckController:(IIViewDeckController *)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    for (UIViewController* vc in self.centerController.childViewControllers) {
+        if ([vc isKindOfClass:[MarsImageViewController class]]) {
+            [(MarsImageViewController*)vc configureToolbarAndNavbar];
+        }
+    }
 }
 
 @end
