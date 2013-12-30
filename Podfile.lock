@@ -15,7 +15,6 @@ PODS:
     - SDWebImage/Core
   - SDWebImage/Core (3.5.1)
   - SSKeychain (0.2.1)
-  - UIImage-Categories (0.0.1)
   - ViewDeck (0.0.1)
 
 DEPENDENCIES:
@@ -23,7 +22,6 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 0.0.1)
   - PSMenuItem (~> 0.0.1)
   - Reachability (~> 3.1.1)
-  - UIImage-Categories (~> 0.0.1)
   - ViewDeck (~> 0.0.1)
 
 SPEC CHECKSUMS:
@@ -36,7 +34,6 @@ SPEC CHECKSUMS:
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   SDWebImage: a408b548a634b792372e07e753fc1079aff5032a
   SSKeychain: ffa1a79eb716d9ed1ca184fb0cf218087ca28486
-  UIImage-Categories: d9f10e0afb9b281b35a3c2b0c7d16d1ca251d824
   ViewDeck: fdc0c15606fd029e071a3e48dd14129654cbb9f7
 
 COCOAPODS: 0.28.0

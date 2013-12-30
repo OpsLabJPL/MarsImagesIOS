@@ -66,12 +66,6 @@
 #define COCOAPODS_VERSION_MINOR_SSKeychain 2
 #define COCOAPODS_VERSION_PATCH_SSKeychain 1
 
-// UIImage-Categories
-#define COCOAPODS_POD_AVAILABLE_UIImage_Categories
-#define COCOAPODS_VERSION_MAJOR_UIImage_Categories 0
-#define COCOAPODS_VERSION_MINOR_UIImage_Categories 0
-#define COCOAPODS_VERSION_PATCH_UIImage_Categories 1
-
 // ViewDeck
 #define COCOAPODS_POD_AVAILABLE_ViewDeck
 #define COCOAPODS_VERSION_MAJOR_ViewDeck 0
