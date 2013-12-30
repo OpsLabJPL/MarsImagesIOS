@@ -72,8 +72,9 @@ typedef enum {
 }
 
 - (NSString*) detailLabelText: (EDAMNote*) note {
-    int sol = [MER tokenize: note.title].sol;
-    return [self solAndDate:sol];
+//    int sol = [MER tokenize: note.title].sol;
+//    return [self solAndDate:sol];
+    return [MER tokenize: note.title].marsLocalTime;
 }
 
 - (NSString*) imageName:(EDAMResource*) resource {

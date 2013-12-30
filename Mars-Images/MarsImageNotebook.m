@@ -27,7 +27,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
 }
 
 - (MarsImageNotebook*) init {
-    MarsImageNotebook *notebook = [super init];
+    self = [super init];
     instance = self;
     _notes = [[NSMutableDictionary alloc] init];
     _notePhotosArray = [[NSMutableArray alloc] init];
@@ -60,7 +60,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [self setInternetReachable:[Reachability reachabilityForInternetConnection]];
     [self.internetReachable startNotifier];
 
-    return notebook;
+    return self;
 }
 
 - (void) dealloc {

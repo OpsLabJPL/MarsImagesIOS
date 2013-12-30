@@ -57,7 +57,7 @@ typedef enum {
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"1371788537_clock"] atIndex:CLOCK_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
-    _segmentedControl.tintColor = [UIColor whiteColor];
+//    _segmentedControl.tintColor = [UIColor whiteColor];
     [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segmentedControl sizeToFit];
     [_segmentedControl addTarget:self action:@selector(segmentedControlButtonPressed:) forControlEvents:UIControlEventValueChanged];
@@ -189,7 +189,7 @@ typedef enum {
                     imageName = @"Anaglyph";
                 else
                     imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
-                [_imageNameButton setTitle:[NSString stringWithFormat:@"Filter: %@", imageName] forState:UIControlStateNormal];
+                [_imageNameButton setTitle:[NSString stringWithFormat:@"Image: %@", imageName] forState:UIControlStateNormal];
                 
                 
                 [toolbar setItems:[NSArray arrayWithObjects:flexibleItem1, _imageSelectionButton, flexibleItem2, nil]];

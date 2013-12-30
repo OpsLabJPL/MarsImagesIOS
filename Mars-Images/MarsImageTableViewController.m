@@ -188,7 +188,7 @@
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:IMAGE_CELL forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IMAGE_CELL];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:IMAGE_CELL];
     }
     
     // Configure the cell...
