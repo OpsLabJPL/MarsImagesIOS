@@ -25,4 +25,5 @@
 - (NSString*) captionText:(EDAMResource*) resource
                      note:(EDAMNote*) note;
 - (NSArray*) stereoForImages:(NSArray*) resources;
+- (NSString*) getSortableImageFilename: (NSString*) imageurl;
 @end

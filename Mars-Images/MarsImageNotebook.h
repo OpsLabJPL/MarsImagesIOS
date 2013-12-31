@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Evernote.h"
 #import "MarsRover.h"
 #import "MarsPhoto.h"
 #import "Reachability.h"
@@ -63,5 +64,7 @@
 - (void) checkNetworkStatus:(NSNotification *)notice;
 
 + (void) notify: (NSString*) message;
+
++ (EDAMNote*) reorderResources: (EDAMNote*) note;
 
 @end

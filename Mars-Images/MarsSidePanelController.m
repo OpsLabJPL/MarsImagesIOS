@@ -35,7 +35,7 @@
 - (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone &&
         UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        [self setLeftSize:1];
+        [self setLeftSize:0.25]; //nearly zero but not quite makes the table view invisible in portrait mode without making the ViewDeck flip out and resize the image view badly :)
     }
     else {
         [self setLeftSize:LEFT_PANEL_WIDTH];

@@ -134,6 +134,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
             [(NSMutableArray*)_notesArray addObjectsFromArray: notelist.notes];
             for (int j = 0; j < notelist.notes.count; j++) {
                 EDAMNote* note = [notelist.notes objectAtIndex:j];
+                note = [MarsImageNotebook reorderResources:note];
                 NSNumber* sol = [NSNumber numberWithInt:[self.mission sol:note]];
                 int lastSolIndex = _sols.count-1;
                 if (lastSolIndex < 0 || ![[_sols objectAtIndex:lastSolIndex] isEqualToNumber: sol])
@@ -231,6 +232,27 @@ static dispatch_queue_t noteDownloadQueue = nil;
         }
     }
     NSLog(@"end checkNetwork");
+}
+
++ (EDAMNote*) reorderResources: (EDAMNote*) note {
+    NSMutableArray* sortedResources = [[NSMutableArray alloc] init];
+    NSMutableArray* resourceFilenames = [[NSMutableArray alloc] init];
+    NSMutableDictionary* resourcesByFile = [[NSMutableDictionary alloc] init];
+    
+    for (EDAMResource* resource in note.resources) {
+        NSString* filename = [[MarsImageNotebook instance].mission getSortableImageFilename:resource.attributes.sourceURL];
+        [resourceFilenames addObject:filename];
+        [resourcesByFile setObject:resource forKey:filename];
+    }
+    
+    NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:nil ascending:YES];
+    NSArray* sortedFilenames = [resourceFilenames sortedArrayUsingDescriptors:@[sd]];
+    for (NSString* filename in sortedFilenames) {
+        [sortedResources addObject: [resourcesByFile objectForKey:filename]];
+    }
+    
+    note.resources = sortedResources;
+    return note;
 }
 
 @end

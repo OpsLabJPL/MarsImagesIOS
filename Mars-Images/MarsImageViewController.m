@@ -22,7 +22,8 @@
 
 typedef enum {
     CLOCK_BUTTON,
-    ABOUT_BUTTON
+    ABOUT_BUTTON,
+    MOSAIC_BUTTON
 } Buttons;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -56,8 +57,8 @@ typedef enum {
     _segmentedControl = [[UISegmentedControl alloc] init];
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"1371788537_clock"] atIndex:CLOCK_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
+//    [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeContactAdd] currentImage] atIndex:MOSAIC_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
-//    _segmentedControl.tintColor = [UIColor whiteColor];
     [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segmentedControl sizeToFit];
     [_segmentedControl addTarget:self action:@selector(segmentedControlButtonPressed:) forControlEvents:UIControlEventValueChanged];
@@ -100,6 +101,10 @@ typedef enum {
             break;
         case CLOCK_BUTTON:
             vc = [storyboard instantiateViewControllerWithIdentifier:@"time"];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        case MOSAIC_BUTTON:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"mosaic"];
             [self.navigationController pushViewController:vc animated:YES];
             break;
     }
@@ -194,6 +199,8 @@ typedef enum {
                 
                 [toolbar setItems:[NSArray arrayWithObjects:flexibleItem1, _imageSelectionButton, flexibleItem2, nil]];
             }
+            else
+                [toolbar setItems:[NSArray arrayWithObjects:nil]];
         }
     }
     self.navigationItem.rightBarButtonItem = _shareButton;

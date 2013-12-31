@@ -36,4 +36,5 @@ static NSSet* stereoInstruments;
 + (NSString*) imageID:(EDAMResource*) resource;
 + (MERTitle*) parseCoursePlotTitle: (NSString*)title
                           merTitle: (MERTitle*)mer;
+- (NSString*) getSortableImageFilename: (NSString*) imageurl;
 @end

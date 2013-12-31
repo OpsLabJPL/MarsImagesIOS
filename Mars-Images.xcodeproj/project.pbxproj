@@ -10,6 +10,10 @@
 		4A0C815F186F4DC700E2DFC4 /* PulldownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C815E186F4DC700E2DFC4 /* PulldownMenu.m */; };
 		4A0C8162186F4DE800E2DFC4 /* MarsPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C8161186F4DE800E2DFC4 /* MarsPullDownMenu.m */; };
 		4A0C8165186FA53100E2DFC4 /* MarsTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */; };
+		4A0C8168187237C000E2DFC4 /* MosaicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C8167187237C000E2DFC4 /* MosaicViewController.m */; };
+		4A0C816B1872387E00E2DFC4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C81691872387E00E2DFC4 /* GLKit.framework */; };
+		4A0C816C1872387E00E2DFC4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C816A1872387E00E2DFC4 /* OpenGLES.framework */; };
+		4A0C816F1872443500E2DFC4 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */; };
 		4A11FB6A17BC4BCE00439C1E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A11FB6917BC4BCE00439C1E /* README.md */; };
 		4A26D631176542A600F824E8 /* Evernote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26D628176542A600F824E8 /* Evernote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4A26D6421765437800F824E8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D63A1765437800F824E8 /* Default-568h@2x.png */; };
@@ -83,6 +87,12 @@
 		4A0C8161186F4DE800E2DFC4 /* MarsPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsPullDownMenu.m; sourceTree = "<group>"; };
 		4A0C8163186FA53100E2DFC4 /* MarsTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsTimeView.h; sourceTree = "<group>"; };
 		4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsTimeView.m; sourceTree = "<group>"; };
+		4A0C8166187237C000E2DFC4 /* MosaicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicViewController.h; sourceTree = "<group>"; };
+		4A0C8167187237C000E2DFC4 /* MosaicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicViewController.m; sourceTree = "<group>"; };
+		4A0C81691872387E00E2DFC4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		4A0C816A1872387E00E2DFC4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4A0C816D1872443500E2DFC4 /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollView.h; sourceTree = "<group>"; };
+		4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollView.m; sourceTree = "<group>"; };
 		4A11FB6917BC4BCE00439C1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		4A26D627176542A600F824E8 /* Evernote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Evernote.h; path = Evernote/Evernote.h; sourceTree = "<group>"; };
 		4A26D628176542A600F824E8 /* Evernote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Evernote.m; path = Evernote/Evernote.m; sourceTree = "<group>"; };
@@ -165,6 +175,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0C816B1872387E00E2DFC4 /* GLKit.framework in Frameworks */,
+				4A0C816C1872387E00E2DFC4 /* OpenGLES.framework in Frameworks */,
 				4A39DFD116595943001FFD0C /* QuartzCore.framework in Frameworks */,
 				4AC5DDB716588F4D00A79555 /* MessageUI.framework in Frameworks */,
 				4AC5DDB516588F4500A79555 /* SystemConfiguration.framework in Frameworks */,
@@ -219,6 +231,8 @@
 		4AC5DCFC165864F400A79555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A0C81691872387E00E2DFC4 /* GLKit.framework */,
+				4A0C816A1872387E00E2DFC4 /* OpenGLES.framework */,
 				4AC5DDB616588F4D00A79555 /* MessageUI.framework */,
 				4AC5DDB416588F4500A79555 /* SystemConfiguration.framework */,
 				4AC5DDB216588F3C00A79555 /* Security.framework */,
@@ -241,6 +255,8 @@
 				4A4998FB1867766300A78F67 /* MarsPhoto.h */,
 				4A4998FC1867766300A78F67 /* MarsPhoto.m */,
 				4A4998F71866688F00A78F67 /* MarsRover.h */,
+				4ACFF6C6174C3344004F5D46 /* MarsTime.h */,
+				4ACFF6C7174C3344004F5D46 /* MarsTime.m */,
 				4A4998EB186666FA00A78F67 /* MER.h */,
 				4A4998EC186666FA00A78F67 /* MER.m */,
 				4A4998F81866C0B600A78F67 /* MERTitle.h */,
@@ -251,8 +267,6 @@
 				4A4998F21866680F00A78F67 /* Opportunity.m */,
 				4A4998F41866681800A78F67 /* Spirit.h */,
 				4A4998F51866681800A78F67 /* Spirit.m */,
-				4ACFF6C6174C3344004F5D46 /* MarsTime.h */,
-				4ACFF6C7174C3344004F5D46 /* MarsTime.m */,
 				4AC5DD15165864F400A79555 /* MainStoryboard_iPhone.storyboard */,
 				4AC5DD18165864F400A79555 /* MainStoryboard_iPad.storyboard */,
 				4A31DD04185FB82300174A4A /* MarsSidePanelController.h */,
@@ -267,10 +281,14 @@
 				4A5A1E6F181CC60B00EC2020 /* MarsImageCaptionView.m */,
 				4A0C8163186FA53100E2DFC4 /* MarsTimeView.h */,
 				4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */,
-				4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */,
-				4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */,
+				4A0C8166187237C000E2DFC4 /* MosaicViewController.h */,
+				4A0C8167187237C000E2DFC4 /* MosaicViewController.m */,
+				4A0C816D1872443500E2DFC4 /* InfiniteScrollView.h */,
+				4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */,
 				4AC5DD45165889C900A79555 /* AboutViewController.h */,
 				4AC5DD46165889C900A79555 /* AboutViewController.m */,
+				4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */,
+				4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */,
 				4A0C815D186F4DC700E2DFC4 /* PulldownMenu.h */,
 				4A0C815E186F4DC700E2DFC4 /* PulldownMenu.m */,
 				4AC5DD04165864F400A79555 /* Supporting Files */,
@@ -499,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A4998ED186666FA00A78F67 /* MER.m in Sources */,
+				4A0C816F1872443500E2DFC4 /* InfiniteScrollView.m in Sources */,
 				4A4998FD1867766300A78F67 /* MarsPhoto.m in Sources */,
 				4AC5DD0A165864F400A79555 /* main.m in Sources */,
 				4AC5DD0E165864F400A79555 /* AppDelegate.m in Sources */,
@@ -518,6 +537,7 @@
 				4ACFF6C8174C3344004F5D46 /* MarsTime.m in Sources */,
 				4A26D631176542A600F824E8 /* Evernote.m in Sources */,
 				4A31DCFA185E572100174A4A /* MarsImageNotebook.m in Sources */,
+				4A0C8168187237C000E2DFC4 /* MosaicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

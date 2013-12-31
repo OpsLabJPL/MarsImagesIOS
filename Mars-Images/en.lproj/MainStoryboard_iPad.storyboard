@@ -140,6 +140,23 @@
             </objects>
             <point key="canvasLocation" x="2507" y="324"/>
         </scene>
+        <!--Mosaic View Controller-->
+        <scene sceneID="on4-PO-viS">
+            <objects>
+                <viewController storyboardIdentifier="mosaic" id="g3D-Zh-2Dj" customClass="MosaicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oMY-kr-fFx"/>
+                        <viewControllerLayoutGuide type="bottom" id="QCb-NL-TrJ"/>
+                    </layoutGuides>
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="39Z-Q4-Zx0">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </glkView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edz-wZ-1hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3697" y="-154"/>
+        </scene>
         <!--Mars Time View-->
         <scene sceneID="AGC-kV-Sy3">
             <objects>

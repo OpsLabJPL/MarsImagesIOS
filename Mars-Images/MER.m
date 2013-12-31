@@ -259,4 +259,15 @@ typedef enum {
     return mer;
 }
 
+- (NSString*) getSortableImageFilename: (NSString*) imageurl {
+    NSArray* tokens = [imageurl componentsSeparatedByString:@"/"];
+    NSString* filename = [tokens objectAtIndex: tokens.count-1];
+    if ([filename hasPrefix:@"Sol"])
+        return @"0"; //sort Cornell Pancam images first
+    else if (([filename hasPrefix:@"1"] || [filename hasPrefix:@"2"]) && filename.length == 31)
+        return [filename substringFromIndex:23];
+    
+    return filename;
+}
+
 @end
