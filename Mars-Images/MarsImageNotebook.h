@@ -22,8 +22,8 @@
 #define NUM_NOTES_RETURNED @"numNotesReturned"
 
 #define OPPY_NOTEBOOK_ID   @"a7271bf8-0b06-495a-bb48-7c0c7af29f70"
-#define MSL_NOTEBOOK_ID    @"c5ddfcb6-6878-4f9f-96ef-04fe50da1c10"
-#define SPIRIT_NOTEBOOK_ID @"7db68065-53c3-4211-be9b-79dfa4a7a2be"
+#define MSL_NOTEBOOK_ID    @"0296f732-694d-4ccd-9f5b-5983dc98b9e0"
+#define SPIRIT_NOTEBOOK_ID @"f1a72415-56e7-4244-8e12-def9be9c512b"
 
 @interface MarsImageNotebook : NSObject
 

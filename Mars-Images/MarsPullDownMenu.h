@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) NSArray* menuItemNames;
 
+- (void) setSelectedMenuItemName: (NSString*) itemName;
+
 @end

@@ -72,9 +72,8 @@ typedef enum {
 }
 
 - (NSString*) detailLabelText: (EDAMNote*) note {
-//    int sol = [MER tokenize: note.title].sol;
-//    return [self solAndDate:sol];
-    return [MER tokenize: note.title].marsLocalTime;
+    NSString* marstime = [MER tokenize: note.title].marsLocalTime;
+    return (marstime) ? [NSString stringWithFormat:@"%@ LST", marstime] : @"";
 }
 
 - (NSString*) imageName:(EDAMResource*) resource {
@@ -104,10 +103,6 @@ typedef enum {
         return [NSString stringWithFormat:@"%@ image taken on Sol %d.", title.instrumentName, title.sol];
     else
         return [NSString stringWithFormat:@"Drive for %.2f meters on Sol %d.", title.distance, title.sol];
-    
-    //TODO more text is too much for iPhone. Should we use two different versions?
-//    [caption appendFormat:@"%d at %@ local Mars time by the ", title.sol, title.marsLocalTime];
-//    [caption appendFormat:@"%@ rover on its mission at %@.", _roverName, _regionName];
 }
 
 - (NSArray*) stereoForImages:(NSArray *)resources {

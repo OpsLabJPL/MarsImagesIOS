@@ -50,7 +50,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     NSArray* notebookGUIDs = [NSArray arrayWithObjects:OPPY_NOTEBOOK_ID, SPIRIT_NOTEBOOK_ID, MSL_NOTEBOOK_ID, nil];
     NSArray* missionKeys = [NSArray arrayWithObjects:OPPORTUNITY, SPIRIT, CURIOSITY, nil];
     _notebookIDs = [NSDictionary dictionaryWithObjects:notebookGUIDs forKeys:missionKeys];
-    NSArray* users = [NSArray arrayWithObjects:@"opportunitymars", @"spiritmars", @"curiositymars", nil];
+    NSArray* users = [NSArray arrayWithObjects:@"opportunitymars", @"spiritmars", @"mslmars", nil];
     _evernoteUsers = [NSDictionary dictionaryWithObjects:users forKeys:missionKeys];
 
     [Evernote instance].publicUser = [_evernoteUsers valueForKey:self.missionName];

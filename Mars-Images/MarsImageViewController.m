@@ -194,9 +194,8 @@ typedef enum {
                     imageName = @"Anaglyph";
                 else
                     imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
-                [_imageNameButton setTitle:[NSString stringWithFormat:@"Image: %@", imageName] forState:UIControlStateNormal];
                 
-                
+                [_imageNameButton setTitle:imageName forState:UIControlStateNormal];
                 [toolbar setItems:[NSArray arrayWithObjects:flexibleItem1, _imageSelectionButton, flexibleItem2, nil]];
             }
             else

@@ -53,6 +53,7 @@
     }
     _menu.delegate = _menu;
     [_menu loadMenu];
+    [_menu setSelectedMenuItemName:[MarsImageNotebook instance].missionName];
     
     //listen for preference changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
@@ -128,12 +129,11 @@
         numNotesReturned = [num intValue];
     }
     NSLog(@"Table view notified of %d notes loaded.", numNotesReturned);
-//    if (numNotesReturned > 0) {
-        UITableView* tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [tableView reloadData];
-        });
-//    }
+
+    UITableView* tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [tableView reloadData];
+    });
 }
 
 - (void) updateNotes {
@@ -160,11 +160,17 @@
 }
 
 - (void) defaultsChanged:(id)sender {
-    //TODO
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *mission = [prefs stringForKey:MISSION];
+    if (! [[MarsImageNotebook instance].missionName isEqualToString:mission]) {
+        [MarsImageNotebook instance].missionName = mission;
+        self.title = mission;
+        [self updateNotes];
+    }
 }
 
 - (void) enteredForegroundAfterLongSleep:(id)sender {
-    //TODO
+    [self updateNotes];
 }
 
 #pragma mark - Table view data source
@@ -192,8 +198,9 @@
     }
     
     // Configure the cell...
-    cell.textLabel.font = [UIFont fontWithName:@"System" size:18.0];
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+//    cell.textLabel.font = [UIFont fontWithName:@"System" size:18.0];
+//    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+//    cell.detailTextLabel.font = [UIFont fontWithName:@"System" size:12.0];
 
     if ([MarsImageNotebook instance].sols.count <= indexPath.section) return nil;
     

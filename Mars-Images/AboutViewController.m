@@ -25,9 +25,8 @@
 
 - (void) viewDidLoad
 {
-    
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.navigationItem.leftBarButtonItem.title = @"";
     NSURL *url = [NSURL URLWithString: @"http://www.powellware.net/MarsImagesiOS.html"];
     [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
 }
