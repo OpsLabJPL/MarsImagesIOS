@@ -7,15 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Title.h"
 
-@interface MERTitle : NSObject
+@interface MERTitle : Title
 
-@property int sol;
-@property NSString* imageSetID;
-@property NSString* instrumentName;
-@property NSString* marsLocalTime;
-@property int siteIndex;
-@property int driveIndex;
 @property float distance;
 @property float yaw;
 @property float pitch;

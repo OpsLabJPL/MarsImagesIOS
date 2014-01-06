@@ -60,6 +60,9 @@ typedef enum {
 }
 
 - (NSString*) sectionTitle: (int) section {
+    if (section >= [MarsImageNotebook instance].sols.count)
+        return @"";
+    
     NSNumber* sol = [[MarsImageNotebook instance].sols objectAtIndex:section];
     return [self solAndDate:sol.intValue];
 }

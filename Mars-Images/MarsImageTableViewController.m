@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 
 #define IMAGE_CELL @"ImageCell"
+#define SEARCH_CELL @"SearchCell"
 
 @interface MarsImageTableViewController ()
 
@@ -32,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"Table view controller loaded");
+    [self.tableView setScrollsToTop:YES];
+    [self.searchDisplayController.searchResultsTableView setScrollsToTop:NO];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     //TODO get this selector right
@@ -41,7 +44,7 @@
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString* currentMission = [prefs stringForKey:@"mission"];
-    self.title = currentMission;
+    [_titleButton setTitle:currentMission forState:UIControlStateNormal];
     
     // Uncomment the following line to disable preservation of selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
@@ -71,6 +74,12 @@
     [tableView reloadData];
     MarsSidePanelController* sidePanel = (MarsSidePanelController*)[self viewDeckController];
     [self selectAndScrollToRow:sidePanel.imageIndex];
+}
+
+- (IBAction)titleButtonPressed {
+    UITableView* tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
+    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                     atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 - (void) selectAndScrollToRow:(int)imageIndex {
@@ -155,6 +164,10 @@
     }
 }
 
+- (IBAction) activateSearchBar {
+    [_searchBar becomeFirstResponder];
+}
+
 - (IBAction) togglePullDownMenu {
     [_menu animateDropDown];
 }
@@ -164,7 +177,7 @@
     NSString *mission = [prefs stringForKey:MISSION];
     if (! [[MarsImageNotebook instance].missionName isEqualToString:mission]) {
         [MarsImageNotebook instance].missionName = mission;
-        self.title = mission;
+        [_titleButton setTitle:mission forState:UIControlStateNormal];
         [self updateNotes];
     }
 }
@@ -190,17 +203,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.searchDisplayController.searchResultsTableView registerClass:[FixedWidthImageTableViewCell class] forCellReuseIdentifier:IMAGE_CELL];
+    [self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SearchResultTableCellView" bundle:nil] forCellReuseIdentifier:SEARCH_CELL];
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:IMAGE_CELL forIndexPath:indexPath];
+    NSString* cellId = (tableView == self.tableView) ? IMAGE_CELL : SEARCH_CELL;
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:IMAGE_CELL];
+        cell = [[FixedWidthImageTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     }
     
     // Configure the cell...
-//    cell.textLabel.font = [UIFont fontWithName:@"System" size:18.0];
-//    cell.textLabel.adjustsFontSizeToFitWidth = YES;
-//    cell.detailTextLabel.font = [UIFont fontWithName:@"System" size:12.0];
+//    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0];
+//    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
 
     if ([MarsImageNotebook instance].sols.count <= indexPath.section) return nil;
     

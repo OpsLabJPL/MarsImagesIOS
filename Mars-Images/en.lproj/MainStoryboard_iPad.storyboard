@@ -53,15 +53,28 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="jYB-Fk-p7e">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="rovericon.png" id="9y5-7L-3HG">
                             <connections>
                                 <action selector="togglePullDownMenu" destination="4Q7-W8-XMA" id="Mh1-r9-rtj"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="54R-i0-1rm">
+                            <rect key="frame" x="320" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="Button" backgroundImage="clearbackground.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="titleButtonPressed" destination="4Q7-W8-XMA" eventType="touchUpInside" id="GDv-tW-1X7"/>
+                            </connections>
+                        </button>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="NTS-gE-j8k" id="IB2-ES-z2w"/>
                         <outlet property="searchDisplayController" destination="60E-Ax-tGX" id="w1q-01-lTq"/>
+                        <outlet property="titleButton" destination="54R-i0-1rm" id="rYC-2g-cXY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecu-Dr-QBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,6 +283,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="clearbackground.png" width="100" height="44"/>
         <image name="icon_list_bullets.png" width="30" height="30"/>
         <image name="rovericon.png" width="22" height="28"/>
     </resources>

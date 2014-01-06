@@ -26,6 +26,10 @@
 		4A31DCF7185AB52800174A4A /* MarsImageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DCF6185AB52800174A4A /* MarsImageTableViewController.m */; };
 		4A31DCFA185E572100174A4A /* MarsImageNotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DCF9185E572100174A4A /* MarsImageNotebook.m */; };
 		4A31DD06185FB82300174A4A /* MarsSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DD05185FB82300174A4A /* MarsSidePanelController.m */; };
+		4A33C8171878BEF700EC0D81 /* clearbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A33C8161878BEF700EC0D81 /* clearbackground.png */; };
+		4A33C81B1878C46500EC0D81 /* clearbarbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A33C81A1878C46500EC0D81 /* clearbarbutton.png */; };
+		4A33C81E1879144B00EC0D81 /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A33C81D1879144B00EC0D81 /* Title.m */; };
+		4A33C820187A21C900EC0D81 /* SearchResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A33C81F187A21C900EC0D81 /* SearchResultTableCellView.xib */; };
 		4A39DFA41658B8DB001FFD0C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFA31658B8DB001FFD0C /* Settings.bundle */; };
 		4A39DFA61658BC6C001FFD0C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFA31658B8DB001FFD0C /* Settings.bundle */; };
 		4A39DFAC1659465B001FFD0C /* FixedWidthImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */; };
@@ -109,6 +113,11 @@
 		4A31DCF9185E572100174A4A /* MarsImageNotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsImageNotebook.m; sourceTree = "<group>"; };
 		4A31DD04185FB82300174A4A /* MarsSidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsSidePanelController.h; sourceTree = "<group>"; };
 		4A31DD05185FB82300174A4A /* MarsSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsSidePanelController.m; sourceTree = "<group>"; };
+		4A33C8161878BEF700EC0D81 /* clearbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearbackground.png; sourceTree = "<group>"; };
+		4A33C81A1878C46500EC0D81 /* clearbarbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearbarbutton.png; sourceTree = "<group>"; };
+		4A33C81C1879144B00EC0D81 /* Title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Title.h; sourceTree = "<group>"; };
+		4A33C81D1879144B00EC0D81 /* Title.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Title.m; sourceTree = "<group>"; };
+		4A33C81F187A21C900EC0D81 /* SearchResultTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableCellView.xib; sourceTree = "<group>"; };
 		4A39DFA31658B8DB001FFD0C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedWidthImageTableViewCell.h; sourceTree = "<group>"; };
 		4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedWidthImageTableViewCell.m; sourceTree = "<group>"; };
@@ -261,6 +270,8 @@
 				4A4998EC186666FA00A78F67 /* MER.m */,
 				4A4998F81866C0B600A78F67 /* MERTitle.h */,
 				4A4998F91866C0B600A78F67 /* MERTitle.m */,
+				4A33C81C1879144B00EC0D81 /* Title.h */,
+				4A33C81D1879144B00EC0D81 /* Title.m */,
 				4A4998EE1866670500A78F67 /* Curiosity.h */,
 				4A4998EF1866670500A78F67 /* Curiosity.m */,
 				4A4998F11866680F00A78F67 /* Opportunity.h */,
@@ -269,6 +280,7 @@
 				4A4998F51866681800A78F67 /* Spirit.m */,
 				4AC5DD15165864F400A79555 /* MainStoryboard_iPhone.storyboard */,
 				4AC5DD18165864F400A79555 /* MainStoryboard_iPad.storyboard */,
+				4A33C81F187A21C900EC0D81 /* SearchResultTableCellView.xib */,
 				4A31DD04185FB82300174A4A /* MarsSidePanelController.h */,
 				4A31DD05185FB82300174A4A /* MarsSidePanelController.m */,
 				4A0C8160186F4DE800E2DFC4 /* MarsPullDownMenu.h */,
@@ -301,6 +313,8 @@
 		4AC5DD04165864F400A79555 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A33C8161878BEF700EC0D81 /* clearbackground.png */,
+				4A33C81A1878C46500EC0D81 /* clearbarbutton.png */,
 				4AC5DD431658718900A79555 /* rovericon.png */,
 				4AFC33A41861274F000C1F32 /* icon_list_bullets.png */,
 				4ABF33761863A327001C9AE8 /* placeholder.png */,
@@ -431,10 +445,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AC5DD08165864F400A79555 /* InfoPlist.strings in Resources */,
+				4A33C8171878BEF700EC0D81 /* clearbackground.png in Resources */,
 				4A51D7D917E28F7500E8E0D6 /* Images.xcassets in Resources */,
 				4AC5DD17165864F400A79555 /* MainStoryboard_iPhone.storyboard in Resources */,
 				4AC5DD1A165864F400A79555 /* MainStoryboard_iPad.storyboard in Resources */,
 				4AC5DD441658718900A79555 /* rovericon.png in Resources */,
+				4A33C820187A21C900EC0D81 /* SearchResultTableCellView.xib in Resources */,
 				4A39DFA41658B8DB001FFD0C /* Settings.bundle in Resources */,
 				4AFC33A51861274F000C1F32 /* icon_list_bullets.png in Resources */,
 				4A26D6421765437800F824E8 /* Default-568h@2x.png in Resources */,
@@ -450,6 +466,7 @@
 				4A11FB6A17BC4BCE00439C1E /* README.md in Resources */,
 				4A61959F17C4640700036B16 /* LICENSE in Resources */,
 				4A8DFF4517C9748B0060D73C /* 103-map@2x.png in Resources */,
+				4A33C81B1878C46500EC0D81 /* clearbarbutton.png in Resources */,
 				4ABF33771863A327001C9AE8 /* placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +535,7 @@
 			files = (
 				4A4998ED186666FA00A78F67 /* MER.m in Sources */,
 				4A0C816F1872443500E2DFC4 /* InfiniteScrollView.m in Sources */,
+				4A33C81E1879144B00EC0D81 /* Title.m in Sources */,
 				4A4998FD1867766300A78F67 /* MarsPhoto.m in Sources */,
 				4AC5DD0A165864F400A79555 /* main.m in Sources */,
 				4AC5DD0E165864F400A79555 /* AppDelegate.m in Sources */,

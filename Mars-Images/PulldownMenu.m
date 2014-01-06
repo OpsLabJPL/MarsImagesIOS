@@ -98,6 +98,7 @@
     fullyOpen = NO;
     
     menuList = [[UITableView alloc] init];
+    [menuList setScrollsToTop:NO];
     [menuList setRowHeight:cellHeight];
     [menuList setDataSource:self];
     [menuList setDelegate:self];
