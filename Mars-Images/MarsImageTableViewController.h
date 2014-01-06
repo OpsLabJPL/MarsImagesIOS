@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MarsPullDownMenu.h"
 
 @interface MarsImageTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar* searchBar;
-@property (strong, nonatomic) IBOutlet MarsPullDownMenu* menu;
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
 
 - (void) notesLoaded: (NSNotification*) notification;
@@ -21,7 +19,7 @@
 - (void) defaultsChanged:(id)sender;
 - (void) enteredForegroundAfterLongSleep:(id)sender;
 - (void) selectAndScrollToRow:(int)imageIndex;
-- (IBAction) togglePullDownMenu;
+- (IBAction) showMissionMenu;
 - (IBAction) titleButtonPressed;
 - (IBAction) activateSearchBar;
 @end

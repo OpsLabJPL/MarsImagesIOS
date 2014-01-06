@@ -12,6 +12,7 @@
 #import "IIViewDeckController.h"
 #import "MarsImageNotebook.h"
 #import "MarsSidePanelController.h"
+#import "PSMenuItem.h"
 #import "UIImageView+WebCache.h"
 
 #define IMAGE_CELL @"ImageCell"
@@ -35,6 +36,8 @@
     NSLog(@"Table view controller loaded");
     [self.tableView setScrollsToTop:YES];
     [self.searchDisplayController.searchResultsTableView setScrollsToTop:NO];
+
+    [PSMenuItem installMenuHandlerForObject:self];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     //TODO get this selector right
@@ -48,15 +51,6 @@
     
     // Uncomment the following line to disable preservation of selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
-    
-    _menu = [[MarsPullDownMenu alloc] initWithNavigationController:self.navigationController];
-    [self.navigationController.view insertSubview:_menu belowSubview:self.navigationController.navigationBar];
-    for (NSString* menuItemName in _menu.menuItemNames) {
-         [_menu insertButton:menuItemName];
-    }
-    _menu.delegate = _menu;
-    [_menu loadMenu];
-    [_menu setSelectedMenuItemName:[MarsImageNotebook instance].missionName];
     
     //listen for preference changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
@@ -165,11 +159,32 @@
 }
 
 - (IBAction) activateSearchBar {
+    //TODO this isn't working right at all when table is scrolled down from the top a-ways on iOS 6.
     [_searchBar becomeFirstResponder];
 }
 
-- (IBAction) togglePullDownMenu {
-    [_menu animateDropDown];
+- (IBAction) showMissionMenu {
+    [self becomeFirstResponder];
+    NSMutableArray* menuItems = [[NSMutableArray alloc] init];
+    for (NSString* missionName in [MarsImageNotebook instance].missions.allKeys) {
+        PSMenuItem *menuItem = [[PSMenuItem alloc] initWithTitle:missionName block:^{
+            if (!([missionName isEqualToString:[MarsImageNotebook instance].missionName])) {
+                /* update current mission in app settings (informs listeners to refresh UI) */
+                NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+                [prefs setObject:missionName forKey:MISSION];
+                [prefs synchronize];
+            }
+        }];
+        [menuItems addObject:menuItem];
+    }
+    
+    if ([menuItems count] > 1) {
+        [UIMenuController sharedMenuController].menuItems = menuItems;
+        CGRect bounds = self.navigationController.navigationBar.bounds;
+        bounds.size.width = 30;
+        [[UIMenuController sharedMenuController] setTargetRect:bounds inView:self.navigationController.navigationBar];
+        [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
+    }
 }
 
 - (void) defaultsChanged:(id)sender {

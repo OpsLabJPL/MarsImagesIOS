@@ -55,9 +55,9 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="9N5-Q0-aCz">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="rovericon.png" id="HvM-Zg-W2F">
+                        <barButtonItem key="leftBarButtonItem" image="rovericon.png" id="PLh-bt-gcu">
                             <connections>
-                                <action selector="togglePullDownMenu" destination="NKJ-K0-Z5E" id="GQ2-fu-gAz"/>
+                                <action selector="showMissionMenu" destination="NKJ-K0-Z5E" id="MXK-c4-Zp0"/>
                             </connections>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6lZ-iP-wtv">
