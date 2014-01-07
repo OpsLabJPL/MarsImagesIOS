@@ -35,6 +35,7 @@ static Opportunity* opportunity;
 {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem.title = @"";
+    self.navigationItem.title = @"Time";
 
     _dateFormat = [[NSDateFormatter alloc] init];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];

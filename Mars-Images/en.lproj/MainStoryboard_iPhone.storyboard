@@ -165,62 +165,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mars Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-Jm-oFV">
-                                <rect key="frame" x="94" y="63" width="132" height="33"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFW-Od-tck">
+                                <rect key="frame" x="0.0" y="111" width="320" height="258"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2013-365T00:00:00 UTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75n-cO-ghw">
-                                <rect key="frame" x="29" y="98" width="263" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opportunity at Meridiani Planum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIP-Bs-12L">
-                                <rect key="frame" x="30" y="137" width="261" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 3530 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gD-8Z-HuP">
-                                <rect key="frame" x="63" y="161" width="194" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 1000 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrL-IR-hw8">
-                                <rect key="frame" x="63" y="225" width="194" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Curiosity at Gale Crater" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INH-41-6u3">
-                                <rect key="frame" x="66" y="201" width="189" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-Jm-oFV">
+                                        <rect key="frame" x="139" y="34" width="43" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2013-365T00:00:00 UTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75n-cO-ghw">
+                                        <rect key="frame" x="29" y="63" width="263" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opportunity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jl-qc-sxZ">
+                                        <rect key="frame" x="112" y="100" width="96" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 3530 12:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gD-8Z-HuP">
+                                        <rect key="frame" x="63" y="129" width="194" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Curiosity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-Vj-BU3">
+                                        <rect key="frame" x="125" y="166" width="71" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sol 500 12:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrL-IR-hw8">
+                                        <rect key="frame" x="70" y="195" width="180" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="7Jl-qc-sxZ" secondAttribute="centerX" id="Aw1-vX-xvj"/>
+                                    <constraint firstItem="BrL-IR-hw8" firstAttribute="top" secondItem="SFW-Od-tck" secondAttribute="top" constant="195" id="Cuo-fE-JX9"/>
+                                    <constraint firstItem="7Jl-qc-sxZ" firstAttribute="top" secondItem="SFW-Od-tck" secondAttribute="top" constant="100" id="LTz-2P-4In"/>
+                                    <constraint firstItem="7gD-8Z-HuP" firstAttribute="top" secondItem="SFW-Od-tck" secondAttribute="top" constant="129" id="S4r-53-z6b"/>
+                                    <constraint firstAttribute="centerX" secondItem="7gD-8Z-HuP" secondAttribute="centerX" id="Tl3-LV-RRy"/>
+                                    <constraint firstItem="hhe-Jm-oFV" firstAttribute="top" secondItem="SFW-Od-tck" secondAttribute="top" constant="34" id="Vd4-bE-R1P"/>
+                                    <constraint firstAttribute="centerX" secondItem="BrL-IR-hw8" secondAttribute="centerX" id="WVu-B9-5RJ"/>
+                                    <constraint firstAttribute="centerX" secondItem="1fp-Vj-BU3" secondAttribute="centerX" id="XWz-L5-Qm3"/>
+                                    <constraint firstItem="75n-cO-ghw" firstAttribute="top" secondItem="hhe-Jm-oFV" secondAttribute="bottom" constant="8" id="avO-LL-Vwi"/>
+                                    <constraint firstAttribute="height" constant="258" id="cHm-wy-0Ur"/>
+                                    <constraint firstAttribute="centerX" secondItem="hhe-Jm-oFV" secondAttribute="centerX" id="hWR-A1-cdw"/>
+                                    <constraint firstAttribute="centerX" secondItem="75n-cO-ghw" secondAttribute="centerX" id="i0J-ca-yyR"/>
+                                    <constraint firstItem="1fp-Vj-BU3" firstAttribute="top" secondItem="SFW-Od-tck" secondAttribute="top" constant="166" id="oSt-qc-9nf"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="75n-cO-ghw" firstAttribute="top" secondItem="hhe-Jm-oFV" secondAttribute="bottom" constant="2" id="0Av-Jz-KXs"/>
-                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="7gD-8Z-HuP" secondAttribute="centerX" id="283-f4-qjm"/>
-                            <constraint firstItem="INH-41-6u3" firstAttribute="top" secondItem="7gD-8Z-HuP" secondAttribute="bottom" constant="11" id="7OR-qY-H1M"/>
-                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="75n-cO-ghw" secondAttribute="centerX" id="FCK-2U-CXU"/>
-                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="BrL-IR-hw8" secondAttribute="centerX" id="Ru7-On-NkP"/>
-                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="MIP-Bs-12L" secondAttribute="centerX" id="VCB-cj-SYz"/>
-                            <constraint firstItem="hhe-Jm-oFV" firstAttribute="centerX" secondItem="A6S-lr-GkD" secondAttribute="centerX" id="XbZ-C8-Feo"/>
-                            <constraint firstItem="MIP-Bs-12L" firstAttribute="top" secondItem="75n-cO-ghw" secondAttribute="bottom" constant="10" id="Z7C-Qt-oer"/>
-                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="hhe-Jm-oFV" secondAttribute="centerX" id="Zjd-ml-CLv"/>
-                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="INH-41-6u3" secondAttribute="centerX" id="b2D-Is-9aT"/>
-                            <constraint firstItem="hhe-Jm-oFV" firstAttribute="top" secondItem="A6S-lr-GkD" secondAttribute="top" constant="63" id="cPL-Kn-zZS"/>
-                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="7gD-8Z-HuP" secondAttribute="centerX" id="eJ6-sR-dF5"/>
-                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="75n-cO-ghw" secondAttribute="centerX" id="edr-Mn-lBu"/>
-                            <constraint firstItem="BrL-IR-hw8" firstAttribute="top" secondItem="INH-41-6u3" secondAttribute="bottom" constant="3" id="gkt-VC-h1d"/>
-                            <constraint firstItem="INH-41-6u3" firstAttribute="centerX" secondItem="hhe-Jm-oFV" secondAttribute="centerX" id="hCz-to-K96"/>
-                            <constraint firstItem="7gD-8Z-HuP" firstAttribute="top" secondItem="MIP-Bs-12L" secondAttribute="bottom" constant="3" id="kbc-eU-RBm"/>
-                            <constraint firstItem="MIP-Bs-12L" firstAttribute="centerX" secondItem="BrL-IR-hw8" secondAttribute="centerX" id="p9i-En-IAy"/>
+                            <constraint firstItem="SFW-Od-tck" firstAttribute="leading" secondItem="A6S-lr-GkD" secondAttribute="leading" id="5Qu-yk-eQV"/>
+                            <constraint firstAttribute="centerY" secondItem="SFW-Od-tck" secondAttribute="centerY" id="5yj-us-nIB"/>
+                            <constraint firstAttribute="centerX" secondItem="SFW-Od-tck" secondAttribute="centerX" id="vpC-dQ-577"/>
+                            <constraint firstAttribute="trailing" secondItem="SFW-Od-tck" secondAttribute="trailing" id="xCb-yT-60m"/>
                         </constraints>
                     </view>
                     <connections>
