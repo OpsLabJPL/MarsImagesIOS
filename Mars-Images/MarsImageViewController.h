@@ -13,12 +13,13 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem* tableViewButton;
 @property (strong, nonatomic) UIBarButtonItem*        imageSelectionButton;
-@property (strong, nonatomic) UIButton*               imageNameButton;
 @property (strong, nonatomic) UIBarButtonItem*        shareButton;
 @property (strong, nonatomic) UISegmentedControl*     segmentedControl;
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
 - (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;
+
++ (UIColor*)defaultSystemTintColor; //IOS 7 only
 
 - (void) notesLoaded: (NSNotification*) notification;
 - (MarsPhoto*) currentPhoto;

@@ -8,11 +8,14 @@
 
 #import "MarsImageViewController.h"
 #import "Evernote.h"
+#import "IIViewDeckController.h"
 #import "MarsImageNotebook.h"
 #import "MarsPhoto.h"
 #import "MarsSidePanelController.h"
 #import "PSMenuItem.h"
-#import "IIViewDeckController.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @interface MarsImageViewController ()
 
@@ -45,11 +48,12 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _imageNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_imageNameButton setTitle:@"" forState:UIControlStateNormal];
-    [_imageNameButton addTarget:self action:@selector(imageSelectionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    _imageNameButton.frame = CGRectMake(0,0,150,44);
-    _imageSelectionButton = [[UIBarButtonItem alloc] initWithCustomView:_imageNameButton];
+    
+    _imageSelectionButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(imageSelectionButtonPressed:)];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
+        _imageSelectionButton.tintColor = [MarsImageViewController defaultSystemTintColor];
+    }
+    
     _shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareImage:)];
     [PSMenuItem installMenuHandlerForObject:self];
     self.wantsFullScreenLayout = NO; //otherwise we get an unsightly gap between the nav and status bar
@@ -84,6 +88,16 @@ typedef enum {
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [self configureToolbarAndNavbar];
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
++ (UIColor*)defaultSystemTintColor { // IOS 7 only
+    static UIColor* systemTintColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIWindow* window = [[UIWindow alloc] init];
+        systemTintColor = window.tintColor;
+    });
+    return systemTintColor;
 }
 
 - (IBAction) toggleTableView: (id)sender {
@@ -172,8 +186,9 @@ typedef enum {
     
     if ([menuItems count] > 1) {
         [UIMenuController sharedMenuController].menuItems = menuItems;
-        CGRect bounds = _imageSelectionButton.customView.bounds;
-        [[UIMenuController sharedMenuController] setTargetRect:bounds inView:_imageSelectionButton.customView];
+        CGRect bounds = self.navigationController.toolbar.frame;
+        bounds.origin.y -= bounds.size.height;
+        [[UIMenuController sharedMenuController] setTargetRect:bounds inView:self.view];
         [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
     }
 }
@@ -195,13 +210,15 @@ typedef enum {
                 else
                     imageName = [[MarsImageNotebook instance].mission imageName:photo.resource];
                 
-                [_imageNameButton setTitle:imageName forState:UIControlStateNormal];
+                [_imageSelectionButton setTitle:imageName];
+
                 [toolbar setItems:[NSArray arrayWithObjects:flexibleItem1, _imageSelectionButton, flexibleItem2, nil]];
             }
             else
                 [toolbar setItems:[NSArray arrayWithObjects:nil]];
         }
     }
+
     self.navigationItem.rightBarButtonItem = _shareButton;
     self.navigationItem.titleView = _segmentedControl;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {

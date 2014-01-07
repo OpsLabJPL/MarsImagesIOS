@@ -21,6 +21,7 @@
 		4A26D6461765437800F824E8 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D63E1765437800F824E8 /* Default-Portrait~ipad.png */; };
 		4A26D6471765437800F824E8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D63F1765437800F824E8 /* Default.png */; };
 		4A26D6481765437800F824E8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A26D6401765437800F824E8 /* Default@2x.png */; };
+		4A2CE3FD187BCB6500E1B387 /* UIBarButtonItemBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2CE3FC187BCB6500E1B387 /* UIBarButtonItemBackground.png */; };
 		4A31DCF7185AB52800174A4A /* MarsImageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DCF6185AB52800174A4A /* MarsImageTableViewController.m */; };
 		4A31DCFA185E572100174A4A /* MarsImageNotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DCF9185E572100174A4A /* MarsImageNotebook.m */; };
 		4A31DD06185FB82300174A4A /* MarsSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DD05185FB82300174A4A /* MarsSidePanelController.m */; };
@@ -100,6 +101,7 @@
 		4A26D63E1765437800F824E8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		4A26D63F1765437800F824E8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4A26D6401765437800F824E8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4A2CE3FC187BCB6500E1B387 /* UIBarButtonItemBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIBarButtonItemBackground.png; sourceTree = "<group>"; };
 		4A31DCF5185AB52800174A4A /* MarsImageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsImageTableViewController.h; sourceTree = "<group>"; };
 		4A31DCF6185AB52800174A4A /* MarsImageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsImageTableViewController.m; sourceTree = "<group>"; };
 		4A31DCF8185E572100174A4A /* MarsImageNotebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsImageNotebook.h; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				4A9F46401773CA2300F8D689 /* 1371788555_magnifyingglass.png */,
 				4A9F46441773CDDF00F8D689 /* 103-map.png */,
 				4A8DFF4417C9748B0060D73C /* 103-map@2x.png */,
+				4A2CE3FC187BCB6500E1B387 /* UIBarButtonItemBackground.png */,
 				4A26D63A1765437800F824E8 /* Default-568h@2x.png */,
 				4A26D63B1765437800F824E8 /* Default-Landscape@2x~ipad.png */,
 				4A26D63C1765437800F824E8 /* Default-Landscape~ipad.png */,
@@ -431,6 +434,7 @@
 			files = (
 				4AC5DD08165864F400A79555 /* InfoPlist.strings in Resources */,
 				4A33C8171878BEF700EC0D81 /* clearbackground.png in Resources */,
+				4A2CE3FD187BCB6500E1B387 /* UIBarButtonItemBackground.png in Resources */,
 				4A51D7D917E28F7500E8E0D6 /* Images.xcassets in Resources */,
 				4AC5DD17165864F400A79555 /* MainStoryboard_iPhone.storyboard in Resources */,
 				4AC5DD1A165864F400A79555 /* MainStoryboard_iPad.storyboard in Resources */,
