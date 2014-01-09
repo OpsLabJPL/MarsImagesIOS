@@ -11,7 +11,7 @@
 #import "MarsTime.h"
 
 #define SOL @"Sol"
-#define LMST @"LTST"
+#define LTST @"LTST"
 #define RMC @"RMC"
 #define COURSE @"Course"
 
@@ -151,7 +151,7 @@ typedef enum {
             state = SOL_NUMBER;
             continue;
         }
-        else if ([word isEqualToString:LMST]) {
+        else if ([word isEqualToString:LTST]) {
             state = MARS_LOCAL_TIME;
             continue;
         }
