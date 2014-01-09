@@ -12,7 +12,7 @@
 #import "Title.h"
 
 #define SOL @"Sol"
-#define LMST @"LMST"
+#define LTST @"LTST"
 #define RMC @"RMC"
 
 @implementation Curiosity
@@ -154,7 +154,7 @@ typedef enum {
             state = SOL_NUMBER;
             continue;
         }
-        else if ([word isEqualToString:LMST]) {
+        else if ([word isEqualToString:LTST]) {
             state = MARS_LOCAL_TIME;
             continue;
         }
