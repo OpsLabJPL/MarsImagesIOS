@@ -97,22 +97,14 @@
             <objects>
                 <viewController storyboardIdentifier="MarsImageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T0e-yt-T7f" customClass="MarsImageViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="D7d-QR-dI3">
-                        <barButtonItem key="leftBarButtonItem" id="e9a-ZY-UTe">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YUV-nN-ecm">
-                                <rect key="frame" x="16" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="icon_list_bullets.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="toggleTableView:" destination="T0e-yt-T7f" eventType="touchUpInside" id="zuh-RX-xdZ"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" image="icon_list_bullets.png" id="1NQ-qE-Ufd">
+                            <connections>
+                                <action selector="toggleTableView:" destination="T0e-yt-T7f" id="nxf-2p-Uc0"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableViewButton" destination="e9a-ZY-UTe" id="f5v-VQ-Ktw"/>
+                        <outlet property="tableViewButton" destination="1NQ-qE-Ufd" id="0yF-7d-xOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vIX-kW-Gzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
