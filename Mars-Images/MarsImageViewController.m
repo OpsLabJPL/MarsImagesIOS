@@ -9,6 +9,7 @@
 #import "MarsImageViewController.h"
 #import "Evernote.h"
 #import "IIViewDeckController.h"
+#import "MarsImageCaptionView.h"
 #import "MarsImageNotebook.h"
 #import "MarsPhoto.h"
 #import "MarsSidePanelController.h"
@@ -59,7 +60,7 @@ typedef enum {
     self.wantsFullScreenLayout = NO; //otherwise we get an unsightly gap between the nav and status bar
     
     _segmentedControl = [[UISegmentedControl alloc] init];
-    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"1371788537_clock"] atIndex:CLOCK_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"clock"] atIndex:CLOCK_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
 //    [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeContactAdd] currentImage] atIndex:MOSAIC_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
@@ -194,6 +195,7 @@ typedef enum {
 }
 
 - (void) configureToolbarAndNavbar {
+
     int resourceCount = 0;
     MarsPhoto* photo = [self currentPhoto];
     resourceCount = photo.note.resources.count;
@@ -203,7 +205,7 @@ typedef enum {
             UIBarButtonItem *flexibleItem2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
             UIToolbar* toolbar = (UIToolbar*)view;
             toolbar.hidden = NO;
-            if (resourceCount > 1) {
+            if (resourceCount > 1 && toolbar.frame.size.width > 100) {
                 NSString* imageName = @"";
                 if (photo.leftAndRight)
                     imageName = @"Anaglyph";
@@ -219,15 +221,12 @@ typedef enum {
         }
     }
 
-    self.navigationItem.rightBarButtonItem = _shareButton;
-    self.navigationItem.titleView = _segmentedControl;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-            self.navigationItem.leftBarButtonItem = nil;
-        }
-        else {
-            self.navigationItem.leftBarButtonItem = _tableViewButton;
-        }
+    if (self.view.frame.size.width <= 100) {
+        self.navigationItem.titleView = [[UILabel alloc] init];
+        self.navigationItem.rightBarButtonItem = nil;
+    } else {
+        self.navigationItem.rightBarButtonItem = _shareButton;
+        self.navigationItem.titleView = _segmentedControl;
     }
 }
 
@@ -273,7 +272,6 @@ typedef enum {
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
-    
     [self configureToolbarAndNavbar];
     
     int count = [MarsImageNotebook instance].notePhotosArray.count;
@@ -281,6 +279,13 @@ typedef enum {
         [[MarsImageNotebook instance] loadMoreNotes:count withTotal:15];
     }
     [(MarsSidePanelController*)self.viewDeckController imageSelected:index from:self];
+}
+
+- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+    if ([MarsImageNotebook instance].notePhotosArray.count > index)
+        return [[MarsImageCaptionView alloc] initWithPhoto:[[MarsImageNotebook instance].notePhotosArray objectAtIndex:index]];
+
+    return nil;
 }
 
 @end
