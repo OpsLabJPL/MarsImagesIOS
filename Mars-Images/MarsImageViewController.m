@@ -222,9 +222,11 @@ typedef enum {
     }
 
     if (self.view.frame.size.width <= 100) {
+        self.alwaysShowControls = YES;
         self.navigationItem.titleView = [[UILabel alloc] init];
         self.navigationItem.rightBarButtonItem = nil;
     } else {
+        self.alwaysShowControls = NO;
         self.navigationItem.rightBarButtonItem = _shareButton;
         self.navigationItem.titleView = _segmentedControl;
     }
