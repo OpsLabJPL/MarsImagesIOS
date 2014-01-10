@@ -25,16 +25,19 @@
 #define MSL_NOTEBOOK_ID    @"0296f732-694d-4ccd-9f5b-5983dc98b9e0"
 #define SPIRIT_NOTEBOOK_ID @"f1a72415-56e7-4244-8e12-def9be9c512b"
 
+#define NOTE_PAGE_SIZE 15
+
 @interface MarsImageNotebook : NSObject
 
 @property(nonatomic, strong) NSDictionary* evernoteUsers;
 @property(nonatomic, strong) Reachability* internetReachable;
-@property(nonatomic, readonly) int         lastRequestedStartIndexToLoad;
 @property(nonatomic, strong) NSDate*       lastSleepTime;
 @property(nonatomic, strong) NSDictionary* missions;
 @property(nonatomic, strong) NSString*     missionName;
 @property(nonatomic, strong) NSDictionary* notebookIDs;
 @property(nonatomic, strong) NSDictionary* notes;
+@property(nonatomic, strong) UIAlertView*  networkAlert;
+@property(nonatomic, strong) UIAlertView*  serviceAlert;
 @property(nonatomic, strong) NSArray*      sols;
 @property(nonatomic, strong) NSDictionary* sections;
 @property(nonatomic, strong) NSArray*      notesArray;

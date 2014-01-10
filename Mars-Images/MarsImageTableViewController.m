@@ -226,10 +226,6 @@
         cell = [[FixedWidthImageTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     }
     
-    // Configure the cell...
-//    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0];
-//    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
-
     if ([MarsImageNotebook instance].sols.count <= indexPath.section) return nil;
     
     NSNumber* sol = [[MarsImageNotebook instance].sols objectAtIndex:indexPath.section];
@@ -251,7 +247,15 @@
     int imageCount = imagesForSol.count;
     if ([MarsImageNotebook instance].sections.count > 0 &&
         sectionCount - 1 == [indexPath section] && imageCount - 1 == [indexPath row]) {
-        [[MarsImageNotebook instance] loadMoreNotes:[MarsImageNotebook instance].notesArray.count withTotal:15];
+
+        Reachability* internet = [MarsImageNotebook instance].internetReachable;
+        if (internet.currentReachabilityStatus == NotReachable) {
+            UIAlertView* networkAlert = [MarsImageNotebook instance].networkAlert;
+            if (!networkAlert.visible) [networkAlert show];
+        }
+        else {
+            [[MarsImageNotebook instance] loadMoreNotes:[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
+        }
     }
 
     return cell;

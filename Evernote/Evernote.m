@@ -87,7 +87,7 @@ static Evernote *sharedEvernoteManager = nil;
         
         NSURL* noteStoreUri = [[NSURL alloc] initWithString: user.noteStoreUrl];
         NSString* agentString = [NSString stringWithFormat:@"Mars Images/2.0;iOS/%@", [UIDevice currentDevice].systemVersion];
-        THTTPClient* noteStoreHttpClient = [[THTTPClient alloc] initWithURL:noteStoreUri userAgent:agentString timeout:15000];
+        THTTPClient* noteStoreHttpClient = [[THTTPClient alloc] initWithURL:noteStoreUri userAgent:agentString timeout:15];
         
         TBinaryProtocol* noteStoreProtocol = [[TBinaryProtocol alloc] initWithTransport:noteStoreHttpClient];
         self.noteStore = [[EDAMNoteStoreClient alloc] initWithProtocol:noteStoreProtocol];

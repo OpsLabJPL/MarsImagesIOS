@@ -24,7 +24,7 @@
     [self setDelegate: self];
     [self configureLeftPanel: [UIApplication sharedApplication].statusBarOrientation];
     //load first notes in background
-    [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:15];
+    [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

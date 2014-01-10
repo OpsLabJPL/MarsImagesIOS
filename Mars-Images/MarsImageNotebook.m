@@ -35,7 +35,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     _sections = [[NSMutableDictionary alloc] init];
     _sols = [[NSMutableArray alloc] init];
     _lastSleepTime = nil;
-    _lastRequestedStartIndexToLoad = -1;
+
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs stringForKey:MISSION] == nil) {
         [prefs setObject:OPPORTUNITY forKey: MISSION];
@@ -54,6 +54,18 @@ static dispatch_queue_t noteDownloadQueue = nil;
     _evernoteUsers = [NSDictionary dictionaryWithObjects:users forKeys:missionKeys];
 
     [Evernote instance].publicUser = [_evernoteUsers valueForKey:self.missionName];
+
+    _networkAlert = [[UIAlertView alloc] initWithTitle:@"Network Error"
+                                                           message:@"Unable to connect to the network."
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+
+    _serviceAlert = [[UIAlertView alloc] initWithTitle:@"Service Unavailable"
+                                               message:@"The Mars image service is currently unavailable. Please try again later."
+                                              delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil];
 
     // check for internet connection
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
@@ -82,55 +94,31 @@ static dispatch_queue_t noteDownloadQueue = nil;
 
 - (void) loadMoreNotes: (int) startIndex
              withTotal: (int) total {
+    if (_internetReachable.currentReachabilityStatus == NotReachable) {
+        if (!_networkAlert.visible) {
+            [_networkAlert show];
+        }
+        [MarsImageNotebook notifyNotesReturned:0];
+        return;
+    }
     
-    @synchronized (self) {
+    dispatch_async(noteDownloadQueue, ^{
+        if (_notesArray.count > startIndex) {
+            return;
+        }
+        
         [MarsImageNotebook notify: BEGIN_NOTE_LOADING];
         
-        //if we already have these notes, don't load them again.
-        if (startIndex == _lastRequestedStartIndexToLoad) {
-            return;
-        }
-        _lastRequestedStartIndexToLoad = startIndex;
-        
-        if (_internetReachable.currentReachabilityStatus == NotReachable) {
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Network Error"
-                                                              message:@"Unable to connect to the network."
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
-            [message show];
-            [MarsImageNotebook notifyNotesReturned:0];
-            return;
-        }
-        
-        dispatch_async(noteDownloadQueue, ^{
+        EDAMNoteList* notelist = [[EDAMNoteList alloc] init];
+        @try {
             EDAMNoteFilter* filter = [[EDAMNoteFilter alloc] init];
-            
             filter.notebookGuid = [_notebookIDs valueForKey:_missionName];
             filter.order = NoteSortOrder_TITLE;
             filter.ascending = NO;
             if (_searchWords != nil && [_searchWords length]>0) {
                 filter.words = [self formatSearch:_searchWords];
             }
-            EDAMNoteList* notelist = [[EDAMNoteList alloc] init];
-            @try {
-                notelist = [[Evernote instance] findNotes: filter withStartIndex:startIndex withTotal:total];
-            }
-            @catch (NSException *e) {
-                NSLog(@"Exception listing notes: %@ %@", e.name, e.description);
-                [[Evernote instance] setNoteStore: nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Service Unavailable"
-                                                                      message:@"The Mars image service is currently unavailable. Please try again later."
-                                                                     delegate:nil
-                                                            cancelButtonTitle:@"OK"
-                                                            otherButtonTitles:nil];
-                    [message show];
-                });
-                [MarsImageNotebook notifyNotesReturned:0];
-                return;
-            }
-
+            notelist = [[Evernote instance] findNotes: filter withStartIndex:startIndex withTotal:total];
             [(NSMutableArray*)_notesArray addObjectsFromArray: notelist.notes];
             for (int j = 0; j < notelist.notes.count; j++) {
                 EDAMNote* note = [notelist.notes objectAtIndex:j];
@@ -152,10 +140,21 @@ static dispatch_queue_t noteDownloadQueue = nil;
                     NSLog(@"Brown alert: sections and sols counts don't match each other.");
                 }
             }
-            
+
             [MarsImageNotebook notifyNotesReturned:notelist.notes.count];
-        });
-    }
+
+        } @catch (NSException *e) {
+            NSLog(@"Exception listing notes: %@ %@", e.name, e.description);
+            [[Evernote instance] setNoteStore: nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!_serviceAlert.visible) {
+                    [_serviceAlert show];
+                }
+            });
+            [MarsImageNotebook notifyNotesReturned:0];
+            return;
+        }
+    });
 }
 
 - (NSString*) formatSearch: (NSString*) text {
@@ -209,8 +208,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [(NSMutableArray*)_notePhotosArray removeAllObjects];
     [(NSMutableDictionary*) _sections removeAllObjects];
     [(NSMutableArray*) _sols removeAllObjects];
-    _lastRequestedStartIndexToLoad = -1;
-    [self loadMoreNotes:0 withTotal:15];
+    [self loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
 }
 
 - (void) checkNetworkStatus:(NSNotification *)notice {

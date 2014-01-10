@@ -276,7 +276,7 @@ typedef enum {
     
     int count = [MarsImageNotebook instance].notePhotosArray.count;
     if (index == count-1) {
-        [[MarsImageNotebook instance] loadMoreNotes:count withTotal:15];
+        [[MarsImageNotebook instance] loadMoreNotes:count withTotal:NOTE_PAGE_SIZE];
     }
     [(MarsSidePanelController*)self.viewDeckController imageSelected:index from:self];
 }
