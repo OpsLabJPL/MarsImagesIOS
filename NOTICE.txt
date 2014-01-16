@@ -1,6 +1,6 @@
 Mars Images for iOS
 
-Copyright © 2011-2013 California Institute of Technology. ALL RIGHTS 
+Copyright © 2011-2014 California Institute of Technology. ALL RIGHTS 
 RESERVED. United States Government Sponsorship Acknowledged. Any 
 commercial use must be negotiated with with Office of Technology 
 Transfer at the California Institute of Technology. This software may 
@@ -15,9 +15,43 @@ used to endorse or promote products derived from this software
 without specific prior written permission.
 
 This product includes the Evernote SDK for IOS version 1.2.1. The Evernote
-SDK for IOS is free distributable under the terms of a FreeBSD-style license.
-For details see https://github.com/evernote/evernote-sdk-ios
+SDK for IOS is distributable under the terms of a FreeBSD-style license.
+For details see https://github.com/evernote/evernote-sdk-ios.
 
-This product includes UIImage category methods posted online by Trevor 
-Harmon here:
-http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
+This product includes the DACircularProgress library for iOS written by
+Daniel Anitay and distributed as open source under the MIT license. For details
+see https://github.com/danielamitay/DACircularProgress.
+
+This product includes the MBProgressHUD library for iOS written by 
+Matej Bukovinski and distributed as open source under the MIT license.
+For details see https://github.com/jdg/MBProgressHUD.
+
+This product includes the MWPhotoBrowser library for iOS written by
+Michael Waterfall distributed as open source under the MIT license. 
+For details see https://github.com/mwaterfall/MWPhotoBrowser.
+
+This product includes the PSMenuItem library for iOS written by Peter
+Steinberger and distributed as open source under the MIT license.
+For details see https://github.com/steipete/PSMenuItem.
+
+This product includes the PSTCollectionView library for iOS written by
+Peter Steinberger distributed as open source under the MIT license.
+For details see https://github.com/steipete/PSTCollectionView.
+
+This product includes the Reachability library for iOS written by
+Tony Million and distributed as open source under the BSD 2-clause license.
+For details see https://github.com/tonymillion/Reachability.
+
+This product includes the SDWebImage library for iOS written by 
+Olivier Poitrey and distributed as open source under the MIT license.
+For details see https://github.com/rs/SDWebImage.
+
+This product includes the SSKeychain library for iOS written by 
+Sam Soffes and distributed as open source under the MIT license.
+For details see https://github.com/soffes/sskeychain.
+
+This product includes the ViewDeck library for iOS written by
+Tom Adriaenssen and distributed as open source under the MIT license.
+For details see https://github.com/Inferis/ViewDeck.
+
+

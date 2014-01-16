@@ -6,7 +6,7 @@ Mars image browsing app for iOS to view the latest from NASA's robotic surface m
 Getting Started
 ===============
 
-The app is provided as an XCode 5 project for iOS 6 or greater. If you are developing on Mac with XCode 5 installed, you should have everything you need. Just open this project in XCode and run it in the iOS simulator.
+The app is provided as an XCode 5 project for iOS 6 or greater. If you are developing on Mac with XCode 5 installed, you should have everything you need. Just open the Mars-Images.xcworkspace in XCode and run it in the iOS simulator. (The project uses [CocoaPods](http://cocoapods.org) to manage third-party libraries, so it is necessary to use the workspace in XCode and not the project.)
 
 Features
 ========
@@ -14,8 +14,8 @@ Features
 ![Mars Images app iPad screenshot](http://opslabjpl.github.io/MarsImagesIOS/images/iPhoneMSLNavcam2.png?raw=true) ![Mars Images app iPad screenshot](http://opslabjpl.github.io/MarsImagesIOS/images/iPadMastcamColor7.png?raw=true)
 
 - Browse images from the Spirit, Opportunity, and Curiosity missions
+- Full screen image browser with swiping gestures for navigation
 - Search for images within a mission by time or type
-- Full screen image viewing
 - Share images with others
 - Mission clock for Opportunity and Curiosity
 - View drive maps for Spirit and Opportunity
@@ -25,7 +25,7 @@ LICENSE
 
 The software is available under the [Apache V2.0 license](https://github.com/OpsLabJPL/MarsImagesIOS/blob/master/LICENSE.txt).
 
-Copyright © 2011-2013 California Institute of Technology. ALL RIGHTS 
+Copyright © 2011-2014 California Institute of Technology. ALL RIGHTS
 RESERVED. United States Government Sponsorship Acknowledged. Any 
 commercial use must be negotiated with with Office of Technology 
 Transfer at the California Institute of Technology. This software may 
