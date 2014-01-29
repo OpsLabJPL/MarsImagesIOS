@@ -54,4 +54,5 @@ This product includes the ViewDeck library for iOS written by
 Tom Adriaenssen and distributed as open source under the MIT license.
 For details see https://github.com/Inferis/ViewDeck.
 
-
+Some icons used in the application were created by http://www.pixelpressicons.com
+and distributed under the Creative Commons Attribution 2.5 Canada license.
