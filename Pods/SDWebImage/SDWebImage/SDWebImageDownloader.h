@@ -33,7 +33,12 @@ typedef enum
      * Handles cookies stored in NSHTTPCookieStore by setting 
      * NSMutableURLRequest.HTTPShouldHandleCookies = YES;
      */
-    SDWebImageDownloaderHandleCookies = 1 << 5
+    SDWebImageDownloaderHandleCookies = 1 << 5,
+    /**
+     * Enable to allow untrusted SSL ceriticates.
+     * Useful for testing purposes. Use with caution in production.
+     */
+    SDWebImageDownloaderAllowInvalidSSLCertificates = 1 << 6
 
 } SDWebImageDownloaderOptions;
 
@@ -67,6 +72,13 @@ typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, 
  */
 
 @property (readonly, nonatomic) NSUInteger currentDownloadCount;
+
+
+/**
+ *  The timeout value (in seconds) for the download operation. Default: 15.0.
+ */
+@property (assign, nonatomic) NSTimeInterval downloadTimeout;
+
 
 /**
  * Changes download operations execution order. Default value is `SDWebImageDownloaderFIFOExecutionOrder`.

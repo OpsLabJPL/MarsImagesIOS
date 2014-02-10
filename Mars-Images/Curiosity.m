@@ -203,4 +203,16 @@ typedef enum {
     return filename;
 }
 
+- (float) mastX {
+    return 0.80436f;
+}
+
+- (float) mastY {
+    return 0.55942f;
+}
+
+- (float) mastZ {
+    return -1.90608f;
+}
+
 @end

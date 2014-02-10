@@ -10,4 +10,11 @@
 
 @interface ImageUtility : NSObject
 
++ (UIImage*)resizeToValidTexture:(UIImage*) sourceImage;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
++ (void)imageDump:(UIImage*) image;
++ (UIImage*) grayscale: (UIImage*)sourceImage;
++ (UIImage*) anaglyphImages: (UIImage*)leftImage right:(UIImage*)rightImage;
++ (uint8_t*) getGrayscalePixelArray: (UIImage*)image;
+
 @end

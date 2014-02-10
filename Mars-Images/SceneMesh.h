@@ -10,7 +10,6 @@
 typedef struct
 {
    GLKVector3 position;
-   GLKVector3 normal;
    GLKVector2 texCoords0;
 }
 SceneMeshVertex;
@@ -18,19 +17,15 @@ SceneMeshVertex;
 
 @interface SceneMesh : NSObject
 
-- (id)initWithVertexAttributeData:(NSData *)vertexAttributes
-   indexData:(NSData *)indices;
+- (id)initWithVertexAttributeData:(NSData *)vertexAttributes;
 
 - (id)initWithPositionCoords:(const GLfloat *)somePositions
-   normalCoords:(const GLfloat *)someNormals
    texCoords0:(const GLfloat *)someTexCoords0
-   numberOfPositions:(size_t)countPositions
-   indices:(const GLushort *)someIndices
-   numberOfIndices:(size_t)countIndices;
+   numberOfPositions:(size_t)countPositions;
    
 - (void)prepareToDraw;
 
-- (void)drawUnidexedWithMode:(GLenum)mode
+- (void)drawUnindexedWithMode:(GLenum)mode
    startVertexIndex:(GLint)first
    numberOfVertices:(GLsizei)count;
 

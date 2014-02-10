@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Model.h"
 
 @interface CameraModel : NSObject
+
++ (id<Model>) model: (NSArray*) modelJSON;
++ (NSArray*) origin: (NSArray*) modelJSON;
 
 @end

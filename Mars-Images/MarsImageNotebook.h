@@ -70,4 +70,8 @@
 
 + (EDAMNote*) reorderResources: (EDAMNote*) note;
 
+- (NSArray*) getLatestRMC;
+
+- (NSArray*) notesForRMC: (NSArray*) latestRMC;
+
 @end

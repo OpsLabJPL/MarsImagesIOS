@@ -14,7 +14,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setShowsHorizontalScrollIndicator:NO];
+        [self setShowsVerticalScrollIndicator:NO];
+        [self setContentSize:CGSizeMake(10000, 10000)];
+        [self setContentOffset:CGPointMake(5000,5000)];
     }
     return self;
 }
@@ -27,8 +32,10 @@
 -(void)recenterIfNecessary {
     CGPoint currentOffset = [self contentOffset];
     CGFloat contentWidth = [self contentSize].width;
+    CGFloat contentHeight = [self contentSize].height;
     CGFloat centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
-    CGFloat distanceFromCenter = fabs(currentOffset.x - centerOffsetX);
+    CGFloat centerOffsetY = (contentHeight - [self bounds].size.height) / 2.0;
+    CGFloat distanceFromCenter = (fabs(currentOffset.x - centerOffsetX) + fabs(currentOffset.y - centerOffsetY));
     if (distanceFromCenter > (contentWidth / 4.0)) {
         if ([[self recenterDelegate] respondsToSelector:@selector(willRecenterScrollView:)])
             [[self recenterDelegate] willRecenterScrollView:self];

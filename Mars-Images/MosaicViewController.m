@@ -7,121 +7,152 @@
 //
 
 #import "MosaicViewController.h"
+#import "MarsImageNotebook.h"
+
+#import "AGLKContext.h"
+#import "CameraModel.h"
+#import "Math.h"
+#import "Model.h"
 
 @implementation MosaicViewController
 
-typedef struct {
-    GLKVector3 positionCoords;
-}
-SceneVertex;
+static const double x_axis[] = X_AXIS;
+static const double y_axis[] = Y_AXIS;
+static const double z_axis[] = Z_AXIS;
 
-static const SceneVertex vertices[] =
-{
-    {{-0.5f, -0.5f, -2.0}},
-    {{ 0.5f, -0.5f, -2.0}},
-    {{-0.5f,  0.5f, -2.0}}
-};
-
-- (void)resetScroll
-{
-    _lastContentOffset = _rotationScroller.contentOffset;
-    _lastRotation = _rotation;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    motionActive = NO;
+    UIBarButtonItem *flipButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Sense"
+                                   style:UIBarButtonItemStyleBordered
+                                   target:self
+                                   action:@selector(toggleMotion:)];
+ 	_motionManager = [[CMMotionManager alloc] init];
+    _motionQueue = [[NSOperationQueue alloc] init];
+   
+    self.navigationItem.rightBarButtonItem = flipButton;
+    // Listen for MWPhoto notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleMWPhotoLoadingDidEndNotification:)
+                                                 name:MWPHOTO_LOADING_DID_END_NOTIFICATION
+                                               object:nil];
+
     GLKView* view = (GLKView*)self.view;
     NSAssert([view isKindOfClass:[GLKView class]], @"View controller does not contain a GLKView.");
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    [EAGLContext setCurrentContext: view.context];
 
-    _baseEffect = [[GLKBaseEffect alloc] init];
-    _baseEffect.useConstantColor = GL_TRUE;
-    _baseEffect.constantColor = GLKVector4Make(1.f, 1.f, 1.f, 1.f);
-    
-    _baseEffect.light0.enabled = GL_TRUE;
-    _baseEffect.light0.ambientColor = GLKVector4Make(
-                                                         0.9f, // Red
-                                                         0.9f, // Green
-                                                         0.9f, // Blue
-                                                         1.0f);// Alpha
-    _baseEffect.light0.diffuseColor = GLKVector4Make(
-                                                         1.0f, // Red
-                                                         1.0f, // Green
-                                                         1.0f, // Blue
-                                                         1.0f);// Alpha
     
     _eyePosition = GLKVector3Make(0.0, 0.0, 0.0);
     _lookAtPosition = GLKVector3Make(0.0, 0.0, -1.0);
     _upVector = GLKVector3Make(0.0, 1.0, 0.0);
-
-    glClearColor(0.f,0.f,0.f,1.f);
+    _scale = 1.0f;
     
-    glGenBuffers(1, &vertexBufferID);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
+    view.context = [[AGLKContext alloc]
+                    initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    [AGLKContext setCurrentContext:view.context];
     
+    [self setupBaseEffect];
+
+    _scene = [[MarsScene alloc] init];
+    
+    // Set the background color stored in the current context
+    ((AGLKContext *)view.context).clearColor = GLKVector4Make(
+                                                              0.0f, // Red
+                                                              0.0f, // Green
+                                                              0.0f, // Blue
+                                                              1.0f);// Alpha
+    
+    // Enable depth testing and blending with the frame buffer
+    [((AGLKContext *)view.context) enable:GL_DEPTH_TEST];
+    [((AGLKContext *)view.context) enable:GL_CULL_FACE];
+    [((AGLKContext *)view.context) enable:GL_BLEND];
+    
+    glDepthMask(GL_TRUE);
+
+    NSArray* latestRMC = [[MarsImageNotebook instance] getLatestRMC];
+    NSArray* notesForRMC = [[MarsImageNotebook instance] notesForRMC: latestRMC];
+    [_scene addImagesToScene: notesForRMC];
+    
+    [self setupRotationScroller];
+    [self resetScroll];
+    
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    [self.view addGestureRecognizer:pinchGesture];
+}
+
+- (void) setupRotationScroller {
     _rotationScroller = [[InfiniteScrollView alloc] initWithFrame:self.view.bounds];
-    [_rotationScroller setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    [_rotationScroller setBackgroundColor:[UIColor clearColor]];
-    [_rotationScroller setShowsHorizontalScrollIndicator:NO];
-    [_rotationScroller setContentSize:CGSizeMake(10000, 0)]; [_rotationScroller setContentOffset:CGPointMake(5000,0)];
+
     [_rotationScroller setDelegate:self];
     [_rotationScroller setRecenterDelegate:self];
+    
     [self.view addSubview:_rotationScroller];
-    [self resetScroll];
 }
 
 -(void) update {
-//    NSLog(@"Rotation: %3.3f", _rotation); //rotate camera yaw with scroll view rotation
-    self.lookAtPosition = GLKVector3Make(-sinf(_rotation),
-                                         0.0,
-                                         -cosf(_rotation));
+    double forwardVector[] = {0.0, 0.0, -1.0f};
+    double rotAz[4], rotEl[4];
+    double look1[3], look2[3];
+    [Math quatva:y_axis a:_rotationX toQ:rotAz];
+    [Math quatva:x_axis a:_rotationY toQ:rotEl];
+    [Math multqv:rotEl v:forwardVector toU:look1];
+    [Math multqv:rotAz v:look1 toU:look2];
+    self.lookAtPosition = GLKVector3Make(look2[0], look2[1], look2[2]);
 }
 
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+- (void) glkView: (GLKView *)view drawInRect: (CGRect)rect {
     
     // Calculate the aspect ratio for the scene and setup a
     // perspective projection
     const GLfloat aspectRatio = (GLfloat)view.drawableWidth / (GLfloat)view.drawableHeight;
 
     // Clear back frame buffer colors (erase previous drawing)
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    // Clear back frame buffer (erase previous drawing)
+    [((AGLKContext *)view.context) clear:GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT];
     
     // Configure the point of view including animation
     [self preparePointOfViewWithAspectRatio:aspectRatio];
 
-    _baseEffect.light0.position = GLKVector4Make(
-                                                     0.4f,
-                                                     0.4f,
-                                                     -0.3f,
-                                                     0.0f);// Directional light
-    [_baseEffect prepareToDraw];
-    glDepthMask(true);
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(SceneVertex), NULL);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-
+    [_scene drawImages: _baseEffect];
+    
     GLenum error = glGetError();
-    if(GL_NO_ERROR != error)
-    {
+    if (GL_NO_ERROR != error) {
         NSLog(@"GL Error: 0x%x", error);
     }
 }
 
-- (void)preparePointOfViewWithAspectRatio:(GLfloat)aspectRatio
+- (void) setupBaseEffect {
+    _baseEffect = [[GLKBaseEffect alloc] init];
+//    _baseEffect.useConstantColor = GL_TRUE;
+//    _baseEffect.constantColor = GLKVector4Make(1.f, 1.f, 1.f, 1.f);
+    
+    _baseEffect.light0.enabled = GL_TRUE;
+    _baseEffect.light0.ambientColor = GLKVector4Make(1.0f, // Red
+                                                     1.0f, // Green
+                                                     1.0f, // Blue
+                                                     1.0f);// Alpha
+    _baseEffect.light0.diffuseColor = GLKVector4Make(1.0f, // Red
+                                                     1.0f, // Green
+                                                     1.0f, // Blue
+                                                     1.0f);// Alpha
+    _baseEffect.light0.position = GLKVector4Make(0.f,
+                                                 0.f,
+                                                 0.f,
+                                                 1.f);
+    _baseEffect.light0.constantAttenuation = 0.0f; //WTF WHY DID THIS WORK???!?!!!??!! I HATE NOT KNOWING WHY!!!
+}
+
+- (void) preparePointOfViewWithAspectRatio: (GLfloat)aspectRatio
 {
     // Do this here instead of -viewDidLoad because we don't
     // yet know aspectRatio in -viewDidLoad.
     self.baseEffect.transform.projectionMatrix =
     GLKMatrix4MakePerspective(
-                              GLKMathDegreesToRadians(85.0f),// Standard field of view
+                              GLKMathDegreesToRadians(80.f/_scale),// /* old field of view was 85.0f */
                               aspectRatio,
                               0.1f,   // Don't make near plane too close
                               20.0f); // Far arbitrarily far enough to contain scene
@@ -139,47 +170,107 @@ static const SceneVertex vertices[] =
                          self.upVector.z);
 }
 
-- (void)didReceiveMemoryWarning
+- (void) viewWillDisappear: (BOOL)animated {
+    [_motionManager stopDeviceMotionUpdates];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MWPHOTO_LOADING_DID_END_NOTIFICATION
+                                                  object:nil];
+
+}
+
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     GLKView *view = (GLKView*)self.view;
-    [EAGLContext setCurrentContext: view.context];
+    [AGLKContext setCurrentContext:view.context];
     
-    if (vertexBufferID != 0) {
-        glDeleteBuffers(1, &vertexBufferID);
-        vertexBufferID = 0;
-    }
+    [_scene deleteImages];
+
     ((GLKView*)self.view).context = nil;
     [EAGLContext setCurrentContext:nil];
-//    [self.motionManager stopDeviceMotionUpdates];
-//    self.motionManager = nil;
+}
+
+- (void) handleMWPhotoLoadingDidEndNotification: (NSNotification *)notification {
+    id <MWPhoto> photo = [notification object];
+    if ([photo underlyingImage]) {
+        // Successful load
+        [_scene makeTexture:[photo underlyingImage] withTitle:((MarsPhoto*)photo).note.title grayscale:[((MarsPhoto*)photo) isGrayscale]];
+    }
+}
+
+- (void) toggleMotion:(id)sender {
+    motionActive = !motionActive;
+    if (motionActive) {
+        _motionManager.deviceMotionUpdateInterval = 0.1f;
+        if (([CMMotionManager availableAttitudeReferenceFrames] & CMAttitudeReferenceFrameXTrueNorthZVertical) != 0) {
+            [_motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXTrueNorthZVertical
+                                                                toQueue: _motionQueue
+                                                            withHandler: ^(CMDeviceMotion *motion, NSError *error) {
+                                                                [self processMotion:motion];
+                                                            }];
+        }
+        [_motionManager startDeviceMotionUpdatesToQueue:_motionQueue withHandler:^(CMDeviceMotion *motion, NSError *error) {
+            [self processMotion:motion];
+        }];
+
+    } else {
+        [_motionManager stopDeviceMotionUpdates];
+        [self resetScroll];
+    }
+}
+
+- (void) processMotion: (CMDeviceMotion*) motion {
+    NSLog(@"Roll: %.2f Pitch: %.2f Yaw: %.2f", motion.attitude.roll, motion.attitude.pitch, motion.attitude.yaw);
+    _rotationY = motion.attitude.roll - M_PI_2;
+    _rotationX = motion.attitude.yaw - M_PI;
+}
+
+-(void) handlePinch: (UIPinchGestureRecognizer*)sender {
+    // Constants to adjust the max/min values of zoom
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        _lastScale = _scale;
+    }
+    const float kMaxScale = 16.0;
+    const float kMinScale = 0.75;
+    float newScale = _lastScale * [sender scale];
+    newScale = MIN(newScale, kMaxScale);
+    newScale = MAX(newScale, kMinScale);
+    _scale = newScale;
+
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        _lastScale = _scale;
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void) scrollViewDidScroll: (UIScrollView *) scrollView
 {
-    if (self.isRecentering)
+    if (self.isRecentering || motionActive)
         return;
     
+//    if (_lastRotationX != _rotationX || _lastRotationY != _rotationY) {
+//        NSLog(@"Rotation x, y: %f, %f", _rotationX, _rotationY);
+//    }
     // update the model's rotation based on the scroll view's offset
     CGPoint offset = [self.rotationScroller contentOffset];
-    _rotation = _lastRotation + DEGREES_TO_RADIANS((_lastContentOffset.x - offset.x)*0.2);
+    _rotationX = _lastRotationX + DEGREES_TO_RADIANS((_lastContentOffset.x - offset.x)*0.2);
+    _rotationY = _lastRotationY + DEGREES_TO_RADIANS((_lastContentOffset.y - offset.y)*0.2);
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+- (void) scrollViewWillBeginDragging: (UIScrollView *) scrollView
 {
     [self startDisplayLinkIfNeeded];
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void) scrollViewDidEndDecelerating: (UIScrollView *) scrollView
 {
     [self stopDisplayLink];
 }
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+- (void) scrollViewDidEndDragging: (UIScrollView *) scrollView willDecelerate:(BOOL)decelerate
 {
     if (!decelerate)
         [self stopDisplayLink];
@@ -187,19 +278,26 @@ static const SceneVertex vertices[] =
 
 #pragma mark - InfiniteScrollViewDelegate
 
--(void)willRecenterScrollView:(InfiniteScrollView *)infiniteScrollView
+- (void) willRecenterScrollView: (InfiniteScrollView *) infiniteScrollView
 {
     [self setRecentering:YES];
 }
 
--(void)didRecenterScrollView:(InfiniteScrollView *)infiniteScrollView
+- (void) didRecenterScrollView: (InfiniteScrollView *) infiniteScrollView
 {
     [self setRecentering:NO];
     [self resetScroll];
 }
 
+- (void)resetScroll
+{
+    _lastContentOffset = _rotationScroller.contentOffset;
+    _lastRotationX = _rotationX;
+    _lastRotationY = _rotationY;
+}
+
 #pragma mark - Display Link
--(void)startDisplayLinkIfNeeded
+- (void) startDisplayLinkIfNeeded
 {
     if (!_displayLink) {
         _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
@@ -207,13 +305,13 @@ static const SceneVertex vertices[] =
     }
 }
 
--(void)stopDisplayLink
+- (void) stopDisplayLink
 {
     [_displayLink invalidate];
     _displayLink = nil;
 }
 
--(void)render:(CADisplayLink*)displayLink {
+- (void) render: (CADisplayLink*) displayLink {
     GLKView* view = (GLKView*)self.view;
     [self update];
     [view display];

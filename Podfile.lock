@@ -11,9 +11,9 @@ PODS:
   - PSMenuItem (0.0.1)
   - PSTCollectionView (1.2.0)
   - Reachability (3.1.1)
-  - SDWebImage (3.5.1):
+  - SDWebImage (3.5.2):
     - SDWebImage/Core
-  - SDWebImage/Core (3.5.1)
+  - SDWebImage/Core (3.5.2)
   - SSKeychain (0.2.1)
   - ViewDeck (0.0.1)
 
@@ -32,8 +32,8 @@ SPEC CHECKSUMS:
   PSMenuItem: 59e411188ca4478b89c45ec6a58dcdb41b623587
   PSTCollectionView: fb2ad2790c6efa306b2caf10315b2c1464d1f5c6
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
-  SDWebImage: a408b548a634b792372e07e753fc1079aff5032a
+  SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e
   SSKeychain: ffa1a79eb716d9ed1ca184fb0cf218087ca28486
   ViewDeck: fdc0c15606fd029e071a3e48dd14129654cbb9f7
 
-COCOAPODS: 0.28.0
+COCOAPODS: 0.29.0
