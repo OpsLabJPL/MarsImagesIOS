@@ -15,6 +15,8 @@
 #define RMC @"RMC"
 #define COURSE @"Course"
 
+#define MER_MAST_XYZ { 0.f, 0.f, -1.f }
+
 @implementation MER
 
 typedef enum {
@@ -266,6 +268,18 @@ typedef enum {
         return [filename substringFromIndex:23];
     
     return filename;
+}
+
+- (float) mastX {
+    return 0.456f;
+}
+
+- (float) mastY {
+    return 0.026f;
+}
+
+- (float) mastZ {
+    return -1.0969;
 }
 
 @end

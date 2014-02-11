@@ -32,6 +32,18 @@
 		4A51D7D917E28F7500E8E0D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A51D7D817E28F7500E8E0D6 /* Images.xcassets */; };
 		4A5A1E6D181C963A00EC2020 /* MarsImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5A1E6C181C963A00EC2020 /* MarsImageViewController.m */; };
 		4A61959F17C4640700036B16 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4A61959E17C4640700036B16 /* LICENSE */; };
+		4A82D4F218A051E800A6F2BE /* CAHV.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D4F118A051E800A6F2BE /* CAHV.m */; };
+		4A82D4F718A054AC00A6F2BE /* CAHVOR.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D4F618A054AC00A6F2BE /* CAHVOR.m */; };
+		4A82D4FA18A054BF00A6F2BE /* CAHVORE.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D4F918A054BF00A6F2BE /* CAHVORE.m */; };
+		4A82D4FD18A0585600A6F2BE /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D4FC18A0585600A6F2BE /* Math.m */; };
+		4A82D50018A17A9C00A6F2BE /* CameraModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D4FF18A17A9C00A6F2BE /* CameraModel.m */; };
+		4A82D50418A2F67400A6F2BE /* MarsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D50318A2F67400A6F2BE /* MarsScene.m */; };
+		4A82D50D18A56A5400A6F2BE /* AGLKContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D50618A56A5400A6F2BE /* AGLKContext.m */; };
+		4A82D50E18A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D50818A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.m */; };
+		4A82D50F18A56A5400A6F2BE /* SceneMesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D50A18A56A5400A6F2BE /* SceneMesh.m */; };
+		4A82D51418A68DA700A6F2BE /* ImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D51318A68DA700A6F2BE /* ImageUtility.m */; };
+		4A82D53618A85DB000A6F2BE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A82D53518A85DB000A6F2BE /* CoreMotion.framework */; };
+		4A82D53818A85DBC00A6F2BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A82D53718A85DBC00A6F2BE /* CoreLocation.framework */; };
 		4A8DFF4517C9748B0060D73C /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8DFF4417C9748B0060D73C /* 103-map@2x.png */; };
 		4A909B85187E59B40040017C /* MarsImageCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A909B84187E59B40040017C /* MarsImageCaptionView.m */; };
 		4A909B88187E6F910040017C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B86187E6F910040017C /* clock.png */; };
@@ -116,6 +128,30 @@
 		4A5A1E6B181C963A00EC2020 /* MarsImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsImageViewController.h; sourceTree = "<group>"; };
 		4A5A1E6C181C963A00EC2020 /* MarsImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsImageViewController.m; sourceTree = "<group>"; };
 		4A61959E17C4640700036B16 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = Evernote/LICENSE; sourceTree = "<group>"; };
+		4A82D4F018A051E800A6F2BE /* CAHV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAHV.h; sourceTree = "<group>"; };
+		4A82D4F118A051E800A6F2BE /* CAHV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAHV.m; sourceTree = "<group>"; };
+		4A82D4F518A054AC00A6F2BE /* CAHVOR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAHVOR.h; sourceTree = "<group>"; };
+		4A82D4F618A054AC00A6F2BE /* CAHVOR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAHVOR.m; sourceTree = "<group>"; };
+		4A82D4F818A054BF00A6F2BE /* CAHVORE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAHVORE.h; sourceTree = "<group>"; };
+		4A82D4F918A054BF00A6F2BE /* CAHVORE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAHVORE.m; sourceTree = "<group>"; };
+		4A82D4FB18A0585600A6F2BE /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		4A82D4FC18A0585600A6F2BE /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
+		4A82D4FE18A17A9C00A6F2BE /* CameraModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraModel.h; sourceTree = "<group>"; };
+		4A82D4FF18A17A9C00A6F2BE /* CameraModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraModel.m; sourceTree = "<group>"; };
+		4A82D50118A17C0B00A6F2BE /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		4A82D50218A2F67400A6F2BE /* MarsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsScene.h; sourceTree = "<group>"; };
+		4A82D50318A2F67400A6F2BE /* MarsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsScene.m; sourceTree = "<group>"; };
+		4A82D50518A56A5400A6F2BE /* AGLKContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLKContext.h; sourceTree = "<group>"; };
+		4A82D50618A56A5400A6F2BE /* AGLKContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLKContext.m; sourceTree = "<group>"; };
+		4A82D50718A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLKVertexAttribArrayBuffer.h; sourceTree = "<group>"; };
+		4A82D50818A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLKVertexAttribArrayBuffer.m; sourceTree = "<group>"; };
+		4A82D50918A56A5400A6F2BE /* SceneMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneMesh.h; sourceTree = "<group>"; };
+		4A82D50A18A56A5400A6F2BE /* SceneMesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneMesh.m; sourceTree = "<group>"; };
+		4A82D51218A68DA700A6F2BE /* ImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtility.h; sourceTree = "<group>"; };
+		4A82D51318A68DA700A6F2BE /* ImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtility.m; sourceTree = "<group>"; };
+		4A82D51518A69E1700A6F2BE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		4A82D53518A85DB000A6F2BE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		4A82D53718A85DBC00A6F2BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4A8DFF4417C9748B0060D73C /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
 		4A909B83187E59B40040017C /* MarsImageCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsImageCaptionView.h; sourceTree = "<group>"; };
 		4A909B84187E59B40040017C /* MarsImageCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsImageCaptionView.m; sourceTree = "<group>"; };
@@ -171,6 +207,8 @@
 				4AC5DCFE165864F400A79555 /* UIKit.framework in Frameworks */,
 				4AC5DD00165864F400A79555 /* Foundation.framework in Frameworks */,
 				4AC5DD02165864F400A79555 /* CoreGraphics.framework in Frameworks */,
+				4A82D53818A85DBC00A6F2BE /* CoreLocation.framework in Frameworks */,
+				4A82D53618A85DB000A6F2BE /* CoreMotion.framework in Frameworks */,
 				7409D9236771481BBCE7B2C2 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,6 +228,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A82D4F318A0521D00A6F2BE /* rovers */ = {
+			isa = PBXGroup;
+			children = (
+				4A4998F71866688F00A78F67 /* MarsRover.h */,
+				4A4998EB186666FA00A78F67 /* MER.h */,
+				4A4998EC186666FA00A78F67 /* MER.m */,
+				4A4998EE1866670500A78F67 /* Curiosity.h */,
+				4A4998EF1866670500A78F67 /* Curiosity.m */,
+				4A4998F11866680F00A78F67 /* Opportunity.h */,
+				4A4998F21866680F00A78F67 /* Opportunity.m */,
+				4A4998F41866681800A78F67 /* Spirit.h */,
+				4A4998F51866681800A78F67 /* Spirit.m */,
+				4A4998F81866C0B600A78F67 /* MERTitle.h */,
+				4A4998F91866C0B600A78F67 /* MERTitle.m */,
+				4A33C81C1879144B00EC0D81 /* Title.h */,
+				4A33C81D1879144B00EC0D81 /* Title.m */,
+			);
+			name = rovers;
+			sourceTree = "<group>";
+		};
+		4A82D4F418A0523000A6F2BE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				4A82D50118A17C0B00A6F2BE /* Model.h */,
+				4A82D4FE18A17A9C00A6F2BE /* CameraModel.h */,
+				4A82D4FF18A17A9C00A6F2BE /* CameraModel.m */,
+				4A82D4F018A051E800A6F2BE /* CAHV.h */,
+				4A82D4F118A051E800A6F2BE /* CAHV.m */,
+				4A82D4F518A054AC00A6F2BE /* CAHVOR.h */,
+				4A82D4F618A054AC00A6F2BE /* CAHVOR.m */,
+				4A82D4F818A054BF00A6F2BE /* CAHVORE.h */,
+				4A82D4F918A054BF00A6F2BE /* CAHVORE.m */,
+				4A82D4FB18A0585600A6F2BE /* Math.h */,
+				4A82D4FC18A0585600A6F2BE /* Math.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		4A82D51118A56A6900A6F2BE /* opengl */ = {
+			isa = PBXGroup;
+			children = (
+				4A82D50518A56A5400A6F2BE /* AGLKContext.h */,
+				4A82D50618A56A5400A6F2BE /* AGLKContext.m */,
+				4A82D50718A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.h */,
+				4A82D50818A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.m */,
+				4A82D50918A56A5400A6F2BE /* SceneMesh.h */,
+				4A82D50A18A56A5400A6F2BE /* SceneMesh.m */,
+			);
+			name = opengl;
+			sourceTree = "<group>";
+		};
 		4AC5DCEE165864F400A79555 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +307,9 @@
 		4AC5DCFC165864F400A79555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A82D53718A85DBC00A6F2BE /* CoreLocation.framework */,
+				4A82D53518A85DB000A6F2BE /* CoreMotion.framework */,
+				4A82D51518A69E1700A6F2BE /* CoreImage.framework */,
 				4A0C81691872387E00E2DFC4 /* GLKit.framework */,
 				4A0C816A1872387E00E2DFC4 /* OpenGLES.framework */,
 				4AC5DDB616588F4D00A79555 /* MessageUI.framework */,
@@ -235,27 +327,17 @@
 		4AC5DD03165864F400A79555 /* Mars-Images */ = {
 			isa = PBXGroup;
 			children = (
+				4A82D4F418A0523000A6F2BE /* models */,
+				4A82D51118A56A6900A6F2BE /* opengl */,
+				4A82D4F318A0521D00A6F2BE /* rovers */,
 				4AC5DD0C165864F400A79555 /* AppDelegate.h */,
 				4AC5DD0D165864F400A79555 /* AppDelegate.m */,
 				4A31DCF8185E572100174A4A /* MarsImageNotebook.h */,
 				4A31DCF9185E572100174A4A /* MarsImageNotebook.m */,
 				4A4998FB1867766300A78F67 /* MarsPhoto.h */,
 				4A4998FC1867766300A78F67 /* MarsPhoto.m */,
-				4A4998F71866688F00A78F67 /* MarsRover.h */,
 				4ACFF6C6174C3344004F5D46 /* MarsTime.h */,
 				4ACFF6C7174C3344004F5D46 /* MarsTime.m */,
-				4A4998EB186666FA00A78F67 /* MER.h */,
-				4A4998EC186666FA00A78F67 /* MER.m */,
-				4A4998F81866C0B600A78F67 /* MERTitle.h */,
-				4A4998F91866C0B600A78F67 /* MERTitle.m */,
-				4A33C81C1879144B00EC0D81 /* Title.h */,
-				4A33C81D1879144B00EC0D81 /* Title.m */,
-				4A4998EE1866670500A78F67 /* Curiosity.h */,
-				4A4998EF1866670500A78F67 /* Curiosity.m */,
-				4A4998F11866680F00A78F67 /* Opportunity.h */,
-				4A4998F21866680F00A78F67 /* Opportunity.m */,
-				4A4998F41866681800A78F67 /* Spirit.h */,
-				4A4998F51866681800A78F67 /* Spirit.m */,
 				4AC5DD15165864F400A79555 /* MainStoryboard_iPhone.storyboard */,
 				4AC5DD18165864F400A79555 /* MainStoryboard_iPad.storyboard */,
 				4A33C81F187A21C900EC0D81 /* SearchResultTableCellView.xib */,
@@ -271,12 +353,16 @@
 				4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */,
 				4A0C8166187237C000E2DFC4 /* MosaicViewController.h */,
 				4A0C8167187237C000E2DFC4 /* MosaicViewController.m */,
+				4A82D50218A2F67400A6F2BE /* MarsScene.h */,
+				4A82D50318A2F67400A6F2BE /* MarsScene.m */,
 				4A0C816D1872443500E2DFC4 /* InfiniteScrollView.h */,
 				4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */,
 				4AC5DD45165889C900A79555 /* AboutViewController.h */,
 				4AC5DD46165889C900A79555 /* AboutViewController.m */,
 				4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */,
 				4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */,
+				4A82D51218A68DA700A6F2BE /* ImageUtility.h */,
+				4A82D51318A68DA700A6F2BE /* ImageUtility.m */,
 				4AC5DD04165864F400A79555 /* Supporting Files */,
 				4A39DFA31658B8DB001FFD0C /* Settings.bundle */,
 				4A51D7D817E28F7500E8E0D6 /* Images.xcassets */,
@@ -491,9 +577,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A82D4FD18A0585600A6F2BE /* Math.m in Sources */,
 				4A4998ED186666FA00A78F67 /* MER.m in Sources */,
+				4A82D50D18A56A5400A6F2BE /* AGLKContext.m in Sources */,
+				4A82D50018A17A9C00A6F2BE /* CameraModel.m in Sources */,
 				4A0C816F1872443500E2DFC4 /* InfiniteScrollView.m in Sources */,
+				4A82D50F18A56A5400A6F2BE /* SceneMesh.m in Sources */,
+				4A82D4F218A051E800A6F2BE /* CAHV.m in Sources */,
 				4A33C81E1879144B00EC0D81 /* Title.m in Sources */,
+				4A82D51418A68DA700A6F2BE /* ImageUtility.m in Sources */,
+				4A82D4F718A054AC00A6F2BE /* CAHVOR.m in Sources */,
 				4A4998FD1867766300A78F67 /* MarsPhoto.m in Sources */,
 				4AC5DD0A165864F400A79555 /* main.m in Sources */,
 				4AC5DD0E165864F400A79555 /* AppDelegate.m in Sources */,
@@ -503,13 +596,16 @@
 				4A31DCF7185AB52800174A4A /* MarsImageTableViewController.m in Sources */,
 				4A4998F61866681800A78F67 /* Spirit.m in Sources */,
 				4A39DFAC1659465B001FFD0C /* FixedWidthImageTableViewCell.m in Sources */,
+				4A82D4FA18A054BF00A6F2BE /* CAHVORE.m in Sources */,
 				4A4998F01866670500A78F67 /* Curiosity.m in Sources */,
 				4A5A1E6D181C963A00EC2020 /* MarsImageViewController.m in Sources */,
 				4A4998F31866680F00A78F67 /* Opportunity.m in Sources */,
 				4A0C8165186FA53100E2DFC4 /* MarsTimeView.m in Sources */,
 				4ACFF6C8174C3344004F5D46 /* MarsTime.m in Sources */,
+				4A82D50E18A56A5400A6F2BE /* AGLKVertexAttribArrayBuffer.m in Sources */,
 				4A26D631176542A600F824E8 /* Evernote.m in Sources */,
 				4A31DCFA185E572100174A4A /* MarsImageNotebook.m in Sources */,
+				4A82D50418A2F67400A6F2BE /* MarsScene.m in Sources */,
 				4A0C8168187237C000E2DFC4 /* MosaicViewController.m in Sources */,
 				4A909B85187E59B40040017C /* MarsImageCaptionView.m in Sources */,
 			);
@@ -693,8 +789,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mark Powell (8T7BM79Y4L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mark Powell (8T7BM79Y4L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mars-Images/Mars-Images-Prefix.pch";
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";

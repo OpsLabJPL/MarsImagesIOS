@@ -24,7 +24,7 @@
 - (id) initAnaglyph: (NSArray*) leftAndRight
                note: (EDAMNote*) note;
 
-- (UIImage*) anaglyphImages: (UIImage*)leftImage right:(UIImage*)rightImage;
-- (uint8_t*) getGrayscalePixelArray: (UIImage*)image;
+- (BOOL) isGrayscale;
+- (BOOL) includedInMosaic;
 
 @end

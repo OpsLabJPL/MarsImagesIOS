@@ -6,24 +6,39 @@
 //  Copyright (c) 2013 Powellware. All rights reserved.
 //
 
+#import <CoreMotion/CoreMotion.h>
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 #import "InfiniteScrollView.h"
+#import "Model.h"
+#import "MarsScene.h"
 
 @interface MosaicViewController : GLKViewController <UIScrollViewDelegate, InfiniteScrollViewDelegate>
 {
-    GLuint vertexBufferID;
-    float _rotation;
-    float _lastRotation;
+    float _rotationX;
+    float _lastRotationX;
+    float _rotationY;
+    float _lastRotationY;
+    float _scale;
+    float _lastScale;
     CGPoint _lastContentOffset;
     CADisplayLink *_displayLink;
+    BOOL motionActive;
 }
 
+@property (strong, nonatomic) MarsScene* scene;
 @property (strong, nonatomic) GLKBaseEffect *baseEffect;
 @property (assign, nonatomic, readwrite) GLKVector3 eyePosition;
 @property (assign, nonatomic) GLKVector3 lookAtPosition;
 @property (assign, nonatomic) GLKVector3 upVector;
 @property (strong, nonatomic) InfiniteScrollView* rotationScroller;
 @property (assign, nonatomic, getter = isRecentering) BOOL recentering;
+@property (strong, nonatomic) CMMotionManager* motionManager;
+@property (strong, nonatomic) NSOperationQueue* motionQueue;
 
+- (void) setupRotationScroller;
+- (void) setupBaseEffect;
+- (void) handleMWPhotoLoadingDidEndNotification:(NSNotification *)notification;
+- (void) toggleMotion:(id)sender;
+- (void) processMotion:(CMDeviceMotion*)motion;
 @end

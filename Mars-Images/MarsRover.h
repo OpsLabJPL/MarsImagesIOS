@@ -26,4 +26,8 @@
                      note:(EDAMNote*) note;
 - (NSArray*) stereoForImages:(NSArray*) resources;
 - (NSString*) getSortableImageFilename: (NSString*) imageurl;
+- (float) mastX;
+- (float) mastY;
+- (float) mastZ;
+
 @end

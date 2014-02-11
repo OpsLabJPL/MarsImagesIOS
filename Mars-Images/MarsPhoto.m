@@ -7,6 +7,7 @@
 //
 
 #import "MarsPhoto.h"
+#import "ImageUtility.h"
 #import "MarsImageNotebook.h"
 #import "SDWebImageManager.h"
 #import "SDWebImageDecoder.h"
@@ -40,6 +41,22 @@
     return self;
 }
 
+- (BOOL) isGrayscale {
+    if ([_note.title rangeOfString:@"Mastcam"].location != NSNotFound ||
+        [_note.title rangeOfString:@"MAHLI"].location != NSNotFound ||
+        [_note.title rangeOfString:@"MARDI"].location != NSNotFound ||
+        [_note.title rangeOfString:@"Color"].location != NSNotFound)
+        return NO;
+
+    return _leftAndRight == nil;
+}
+
+- (BOOL) includedInMosaic {
+    return ([_note.title rangeOfString:@"Navcam"].location != NSNotFound ||
+            [_note.title rangeOfString:@"Mastcam"].location != NSNotFound ||
+            [_note.title rangeOfString:@"Pancam"].location != NSNotFound);
+}
+
 - (void)performLoadUnderlyingImageAndNotify {
     // Load async from web (using SDWebImage)
     if (_leftAndRight) {
@@ -67,7 +84,7 @@
                                                     _leftImageOperation = nil;
                                                     _leftImage = image;
                                                     if (_rightImage) {
-                                                        self.underlyingImage = [self anaglyphImages:_leftImage right:_rightImage];
+                                                        self.underlyingImage = [ImageUtility anaglyphImages:_leftImage right:_rightImage];
                                                         [self decompressImageAndFinishLoading];
                                                     }
                                                 }];
@@ -100,7 +117,7 @@
                                                      _rightImageOperation = nil;
                                                      _rightImage = image;
                                                      if (_leftImage) {
-                                                         self.underlyingImage = [self anaglyphImages:_leftImage right:_rightImage];
+                                                         self.underlyingImage = [ImageUtility anaglyphImages:_leftImage right:_rightImage];
                                                          [self decompressImageAndFinishLoading];
                                                      }
                                                  }];
@@ -140,49 +157,6 @@
     [self performSelector:@selector(postCompleteNotification) withObject:nil afterDelay:0];
 }
 
-- (UIImage*) anaglyphImages: (UIImage*)leftImage right:(UIImage*)rightImage {
-    int width = (int)CGImageGetWidth(leftImage.CGImage);
-    int height = (int)CGImageGetHeight(leftImage.CGImage);
-    uint8_t* leftPixels = [self getGrayscalePixelArray:leftImage];
-    uint8_t* rightPixels = [self getGrayscalePixelArray:rightImage];
-    // now convert to anaglyph
-    uint32_t *anaglyph = (uint32_t *) malloc(width * height * 4);
-    for(int y = 0; y < height; y++) {
-        for(int x = 0; x < width; x++) {
-            uint32_t leftRed = (uint32_t)leftPixels[y*width+x];
-            uint32_t rightCyan = (uint32_t)rightPixels[y*width+x];
-            anaglyph[y*width+x]=leftRed<<24 | rightCyan <<16 | rightCyan<<8;
-        }
-    }
-    free(leftPixels);
-    free(rightPixels);
-    
-    // create a UIImage
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(anaglyph, width, height, 8, width * sizeof(uint32_t), colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipLast);
-    CGImageRef image = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    UIImage *resultUIImage = [UIImage imageWithCGImage:image];
-    CGImageRelease(image);
-    
-    // make sure the data will be released by giving it to an autoreleased NSData
-    [NSData dataWithBytesNoCopy:anaglyph length:width * height];
-    return resultUIImage;
-}
 
--(uint8_t*) getGrayscalePixelArray: (UIImage*)image {
-    int width = (int)CGImageGetWidth(image.CGImage);
-    int height = (int)CGImageGetHeight(image.CGImage);
-    uint8_t *gray = (uint8_t *) malloc(width * height * sizeof(uint8_t));
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-    CGContextRef context = CGBitmapContextCreate(gray, width, height, 8, width, colorSpace, kCGColorSpaceModelMonochrome);
-    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-    CGContextSetShouldAntialias(context, NO);
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), [image CGImage]);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    return gray;
-}
 
 @end

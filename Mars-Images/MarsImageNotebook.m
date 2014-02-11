@@ -253,4 +253,37 @@ static dispatch_queue_t noteDownloadQueue = nil;
     return note;
 }
 
+- (NSArray*) getLatestRMC {
+    NSNumberFormatter* format = [[NSNumberFormatter alloc] init];
+    [format setNumberStyle:NSNumberFormatterDecimalStyle];
+    for (EDAMNote* note in _notesArray) {
+        if ([note.title rangeOfString:@"RMC"].location == NSNotFound) {
+            continue;
+        }
+        NSString* rmcString = [note.title substringFromIndex:note.title.length-13];
+        NSString* siteString = [rmcString substringToIndex:6];
+        NSString* driveString = [rmcString substringFromIndex:7];
+        NSNumber* site = [format numberFromString:siteString];
+        NSNumber* drive = [format numberFromString:driveString];
+        return [[NSArray alloc] initWithObjects:site, drive, nil];
+    }
+    return [[NSArray alloc] initWithObjects:nil];
+}
+
+- (NSArray*) notesForRMC: (NSArray*) latestRMC {
+    int site = ((NSNumber*)[latestRMC objectAtIndex:0]).intValue;
+    int drive = ((NSNumber*)[latestRMC objectAtIndex:1]).intValue;
+    NSString* rmcString = [NSString stringWithFormat:@"%06d-%06d", site, drive];
+
+    NSMutableArray* notesAtRMC = [[NSMutableArray alloc] init];
+    
+    for (MarsPhoto* photo in _notePhotosArray) {
+        if ([photo.note.title hasSuffix:rmcString]) {
+            [notesAtRMC addObject:photo];
+        }
+    }
+    
+    return notesAtRMC;
+}
+
 @end
