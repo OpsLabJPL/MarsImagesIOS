@@ -27,7 +27,8 @@
 typedef enum {
     CLOCK_BUTTON,
     ABOUT_BUTTON,
-    MOSAIC_BUTTON
+    MOSAIC_BUTTON,
+    MAP_BUTTON
 } Buttons;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -63,6 +64,7 @@ typedef enum {
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"clock"] atIndex:CLOCK_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeContactAdd] currentImage] atIndex:MOSAIC_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"103-map"] atIndex:MAP_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
     [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segmentedControl sizeToFit];
@@ -120,6 +122,10 @@ typedef enum {
             break;
         case MOSAIC_BUTTON:
             vc = [storyboard instantiateViewControllerWithIdentifier:@"mosaic"];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        case MAP_BUTTON:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"map"];
             [self.navigationController pushViewController:vc animated:YES];
             break;
     }
