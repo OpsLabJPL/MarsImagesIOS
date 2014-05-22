@@ -46,7 +46,6 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     GLKView* view = (GLKView*)self.view;
     NSAssert([view isKindOfClass:[GLKView class]], @"View controller does not contain a GLKView.");
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-
     
     _eyePosition = GLKVector3Make(0.0, 0.0, 0.0);
     _lookAtPosition = GLKVector3Make(0.0, 0.0, -1.0);
