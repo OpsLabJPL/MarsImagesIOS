@@ -240,6 +240,7 @@ static const double z_axis[] = Z_AXIS;
     if (sender.state == UIGestureRecognizerStateEnded) {
         _lastScale = _scale;
     }
+    [self resetScroll];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -256,8 +257,8 @@ static const double z_axis[] = Z_AXIS;
 //    }
     // update the model's rotation based on the scroll view's offset
     CGPoint offset = [self.rotationScroller contentOffset];
-    _rotationX = _lastRotationX + DEGREES_TO_RADIANS((_lastContentOffset.x - offset.x)*0.2);
-    _rotationY = _lastRotationY + DEGREES_TO_RADIANS((_lastContentOffset.y - offset.y)*0.2);
+    _rotationX = _lastRotationX + DEGREES_TO_RADIANS((_lastContentOffset.x - offset.x)*0.2/_scale);
+    _rotationY = _lastRotationY + DEGREES_TO_RADIANS((_lastContentOffset.y - offset.y)*0.2/_scale);
 }
 
 - (void) scrollViewWillBeginDragging: (UIScrollView *) scrollView
