@@ -13,6 +13,9 @@
 		4A0C816C1872387E00E2DFC4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C816A1872387E00E2DFC4 /* OpenGLES.framework */; };
 		4A0C816F1872443500E2DFC4 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */; };
 		4A11FB6A17BC4BCE00439C1E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A11FB6917BC4BCE00439C1E /* README.md */; };
+		4A13755618AAD2D500C7B8E0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A13755518AAD2D500C7B8E0 /* MapViewController.m */; };
+		4A13755A18AAE03900C7B8E0 /* clearbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A13755918AAE03900C7B8E0 /* clearbackground.png */; };
+		4A13755D18AAE2A600C7B8E0 /* S3TileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A13755C18AAE2A600C7B8E0 /* S3TileSource.m */; };
 		4A26D631176542A600F824E8 /* Evernote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26D628176542A600F824E8 /* Evernote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4A31DCF7185AB52800174A4A /* MarsImageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DCF6185AB52800174A4A /* MarsImageTableViewController.m */; };
 		4A31DCFA185E572100174A4A /* MarsImageNotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DCF9185E572100174A4A /* MarsImageNotebook.m */; };
@@ -96,6 +99,11 @@
 		4A0C816D1872443500E2DFC4 /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollView.h; sourceTree = "<group>"; };
 		4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollView.m; sourceTree = "<group>"; };
 		4A11FB6917BC4BCE00439C1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		4A13755418AAD2D500C7B8E0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		4A13755518AAD2D500C7B8E0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		4A13755918AAE03900C7B8E0 /* clearbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearbackground.png; sourceTree = "<group>"; };
+		4A13755B18AAE2A600C7B8E0 /* S3TileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S3TileSource.h; sourceTree = "<group>"; };
+		4A13755C18AAE2A600C7B8E0 /* S3TileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S3TileSource.m; sourceTree = "<group>"; };
 		4A26D627176542A600F824E8 /* Evernote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Evernote.h; path = Evernote/Evernote.h; sourceTree = "<group>"; };
 		4A26D628176542A600F824E8 /* Evernote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Evernote.m; path = Evernote/Evernote.m; sourceTree = "<group>"; };
 		4A31DCF5185AB52800174A4A /* MarsImageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsImageTableViewController.h; sourceTree = "<group>"; };
@@ -355,14 +363,18 @@
 				4A0C8167187237C000E2DFC4 /* MosaicViewController.m */,
 				4A82D50218A2F67400A6F2BE /* MarsScene.h */,
 				4A82D50318A2F67400A6F2BE /* MarsScene.m */,
+				4A82D51218A68DA700A6F2BE /* ImageUtility.h */,
+				4A82D51318A68DA700A6F2BE /* ImageUtility.m */,
 				4A0C816D1872443500E2DFC4 /* InfiniteScrollView.h */,
 				4A0C816E1872443500E2DFC4 /* InfiniteScrollView.m */,
 				4AC5DD45165889C900A79555 /* AboutViewController.h */,
 				4AC5DD46165889C900A79555 /* AboutViewController.m */,
 				4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */,
 				4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */,
-				4A82D51218A68DA700A6F2BE /* ImageUtility.h */,
-				4A82D51318A68DA700A6F2BE /* ImageUtility.m */,
+				4A13755418AAD2D500C7B8E0 /* MapViewController.h */,
+				4A13755518AAD2D500C7B8E0 /* MapViewController.m */,
+				4A13755B18AAE2A600C7B8E0 /* S3TileSource.h */,
+				4A13755C18AAE2A600C7B8E0 /* S3TileSource.m */,
 				4AC5DD04165864F400A79555 /* Supporting Files */,
 				4A39DFA31658B8DB001FFD0C /* Settings.bundle */,
 				4A51D7D817E28F7500E8E0D6 /* Images.xcassets */,
@@ -373,6 +385,7 @@
 		4AC5DD04165864F400A79555 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A13755918AAE03900C7B8E0 /* clearbackground.png */,
 				4A909B86187E6F910040017C /* clock.png */,
 				4A909B87187E6F910040017C /* clock@2x.png */,
 				4AFC33A41861274F000C1F32 /* icon_list_bullets.png */,
@@ -502,6 +515,7 @@
 				4AC5DD1A165864F400A79555 /* MainStoryboard_iPad.storyboard in Resources */,
 				4A909B8D187E75110040017C /* rovericon@2x.png in Resources */,
 				4A33C820187A21C900EC0D81 /* SearchResultTableCellView.xib in Resources */,
+				4A13755A18AAE03900C7B8E0 /* clearbackground.png in Resources */,
 				4A39DFA41658B8DB001FFD0C /* Settings.bundle in Resources */,
 				4AFC33A51861274F000C1F32 /* icon_list_bullets.png in Resources */,
 				4A909B89187E6F910040017C /* clock@2x.png in Resources */,
@@ -581,6 +595,7 @@
 				4A4998ED186666FA00A78F67 /* MER.m in Sources */,
 				4A82D50D18A56A5400A6F2BE /* AGLKContext.m in Sources */,
 				4A82D50018A17A9C00A6F2BE /* CameraModel.m in Sources */,
+				4A13755D18AAE2A600C7B8E0 /* S3TileSource.m in Sources */,
 				4A0C816F1872443500E2DFC4 /* InfiniteScrollView.m in Sources */,
 				4A82D50F18A56A5400A6F2BE /* SceneMesh.m in Sources */,
 				4A82D4F218A051E800A6F2BE /* CAHV.m in Sources */,
@@ -588,6 +603,7 @@
 				4A82D51418A68DA700A6F2BE /* ImageUtility.m in Sources */,
 				4A82D4F718A054AC00A6F2BE /* CAHVOR.m in Sources */,
 				4A4998FD1867766300A78F67 /* MarsPhoto.m in Sources */,
+				4A13755618AAD2D500C7B8E0 /* MapViewController.m in Sources */,
 				4AC5DD0A165864F400A79555 /* main.m in Sources */,
 				4AC5DD0E165864F400A79555 /* AppDelegate.m in Sources */,
 				4A4998FA1866C0B600A78F67 /* MERTitle.m in Sources */,
