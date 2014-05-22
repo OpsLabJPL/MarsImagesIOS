@@ -44,6 +44,13 @@ typedef enum {
     _instrumentIndex = 0;
     _sampleTypeIndex = 17;
 
+    _qLocalLevel = [[Quaternion alloc] init];
+//    0.706456,0.0161169,0.0372627,-0.706591 RMC 32,1020 TBD replace with live data
+    _qLocalLevel.w = 0.706456;
+    _qLocalLevel.x = -0.0161169;
+    _qLocalLevel.y = -0.0372627;
+    _qLocalLevel.z = 0.706591;
+    
     return self;
 }
 
@@ -213,6 +220,10 @@ typedef enum {
 
 - (float) mastZ {
     return -1.90608f;
+}
+
+- (Quaternion*) localLevelQuaternion {
+    return _qLocalLevel;
 }
 
 @end

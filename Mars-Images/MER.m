@@ -35,7 +35,15 @@ typedef enum {
 
 - (id) init {
     self = [super init];
+    _qLocalLevel.w = 1.0;
+    _qLocalLevel.x = 0.0;
+    _qLocalLevel.y = 0.0;
+    _qLocalLevel.z = 0.0;
     return self;
+}
+
+- (Quaternion*) localLevelQuaternion {
+    return _qLocalLevel;
 }
 
 + (void) initialize {
@@ -44,6 +52,7 @@ typedef enum {
 	[formatter setTimeStyle:NSDateFormatterNoStyle];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     stereoInstruments = [[NSSet alloc] initWithObjects:@"F", @"R", @"N", @"P", nil];
+
 }
 
 - (NSString*) labelText: (EDAMNote*) note {

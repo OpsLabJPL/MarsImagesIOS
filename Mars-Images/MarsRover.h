@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Evernote.h"
+#import "Quaternion.h"
 
 @protocol MarsRover <NSObject>
 
@@ -29,5 +30,6 @@
 - (float) mastX;
 - (float) mastY;
 - (float) mastZ;
+- (Quaternion*) localLevelQuaternion;
 
 @end

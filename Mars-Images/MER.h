@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Evernote.h"
 #import "MERTitle.h"
+#import "Quaternion.h"
 
 static NSCharacterSet* slashAndDot;
 static NSDateFormatter* formatter;
@@ -22,6 +23,7 @@ static NSSet* stereoInstruments;
 @property (nonatomic) int sampleTypeIndex;
 @property (nonatomic) NSString* roverName;
 @property (nonatomic) NSString* regionName;
+@property (nonatomic, strong) Quaternion* qLocalLevel;
 
 - (int) sol: (EDAMNote*) note;
 - (NSString*) sectionTitle: (int) section;
