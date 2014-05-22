@@ -168,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edz-wZ-1hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3697" y="-154"/>
+            <point key="canvasLocation" x="3363" y="323"/>
         </scene>
         <!--Mars Time View-->
         <scene sceneID="AGC-kV-Sy3">
@@ -257,6 +257,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSY-MT-zZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2507" y="1438"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="Kv4-GN-Ick">
+            <objects>
+                <viewController storyboardIdentifier="map" id="zSd-vS-VK2" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WAl-tk-pD2"/>
+                        <viewControllerLayoutGuide type="bottom" id="3yg-Fo-rIe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v3Z-Bn-4Og">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lPk-uw-EU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3363" y="1438"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pFO-aW-G4G">

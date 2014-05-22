@@ -145,6 +145,23 @@
             </objects>
             <point key="canvasLocation" x="2002" y="871"/>
         </scene>
+        <!--Mosaic View Controller-->
+        <scene sceneID="eig-iO-o9V">
+            <objects>
+                <viewController storyboardIdentifier="mosaic" id="sCG-2g-u81" customClass="MosaicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cLu-rS-0NJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="yfl-Wo-4X9"/>
+                    </layoutGuides>
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="Zwu-6h-yZK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </glkView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RaW-9K-fMu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2403" y="871"/>
+        </scene>
         <!--Mars Time View-->
         <scene sceneID="AeR-Bd-rOk">
             <objects>
@@ -234,6 +251,24 @@
             </objects>
             <point key="canvasLocation" x="2002" y="1460"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="NDQ-9r-Cur">
+            <objects>
+                <viewController storyboardIdentifier="map" id="ttQ-BM-84v" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FYP-nc-Fta"/>
+                        <viewControllerLayoutGuide type="bottom" id="xVU-Yk-YLm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P8W-3S-0Vx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="482-nZ-UMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2403" y="1460"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="JFz-im-z2e">
             <objects>
@@ -274,7 +309,7 @@
     <resources>
         <image name="clearbackground.png" width="100" height="44"/>
         <image name="icon_list_bullets.png" width="30" height="30"/>
-        <image name="rovericon.png" width="22" height="28"/>
+        <image name="rovericon.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
