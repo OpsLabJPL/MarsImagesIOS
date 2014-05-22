@@ -20,6 +20,8 @@ static const double x_axis[] = X_AXIS;
 static const double y_axis[] = Y_AXIS;
 static const double z_axis[] = Z_AXIS;
 
+static const double POSITIVE_VERTICAL_LIMIT = M_PI_2 - 0.001;
+static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 
 - (void)viewDidLoad
 {
@@ -215,7 +217,7 @@ static const double z_axis[] = Z_AXIS;
 
     } else {
         [_motionManager stopDeviceMotionUpdates];
-        [self resetScroll];
+//        [self resetScroll];
     }
 }
 
@@ -259,6 +261,8 @@ static const double z_axis[] = Z_AXIS;
     CGPoint offset = [self.rotationScroller contentOffset];
     _rotationX = _lastRotationX + DEGREES_TO_RADIANS((_lastContentOffset.x - offset.x)*0.2/_scale);
     _rotationY = _lastRotationY + DEGREES_TO_RADIANS((_lastContentOffset.y - offset.y)*0.2/_scale);
+    if (_rotationY > POSITIVE_VERTICAL_LIMIT) _rotationY = POSITIVE_VERTICAL_LIMIT;
+    if (_rotationY < NEGATIVE_VERTICAL_LIMIT) _rotationY = NEGATIVE_VERTICAL_LIMIT;
 }
 
 - (void) scrollViewWillBeginDragging: (UIScrollView *) scrollView
