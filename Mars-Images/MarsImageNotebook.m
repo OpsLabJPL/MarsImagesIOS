@@ -119,10 +119,11 @@ static dispatch_queue_t noteDownloadQueue = nil;
                 filter.words = [self formatSearch:_searchWords];
             }
             notelist = [[Evernote instance] findNotes: filter withStartIndex:startIndex withTotal:total];
-            [(NSMutableArray*)_notesArray addObjectsFromArray: notelist.notes];
+
             for (int j = 0; j < notelist.notes.count; j++) {
                 EDAMNote* note = [notelist.notes objectAtIndex:j];
                 note = [MarsImageNotebook reorderResources:note];
+                [(NSMutableArray*)_notesArray addObject: note];
                 NSNumber* sol = [NSNumber numberWithInt:[self.mission sol:note]];
                 int lastSolIndex = _sols.count-1;
                 if (lastSolIndex < 0 || ![[_sols objectAtIndex:lastSolIndex] isEqualToNumber: sol])
