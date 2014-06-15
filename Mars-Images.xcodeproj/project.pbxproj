@@ -22,6 +22,7 @@
 		4A31DD06185FB82300174A4A /* MarsSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31DD05185FB82300174A4A /* MarsSidePanelController.m */; };
 		4A33C81E1879144B00EC0D81 /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A33C81D1879144B00EC0D81 /* Title.m */; };
 		4A33C820187A21C900EC0D81 /* SearchResultTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A33C81F187A21C900EC0D81 /* SearchResultTableCellView.xib */; };
+		4A38AB8719365E4F00CEE163 /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A38AB8619365E4F00CEE163 /* 71-compass.png */; };
 		4A39DFA41658B8DB001FFD0C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFA31658B8DB001FFD0C /* Settings.bundle */; };
 		4A39DFA61658BC6C001FFD0C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A39DFA31658B8DB001FFD0C /* Settings.bundle */; };
 		4A39DFAC1659465B001FFD0C /* FixedWidthImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */; };
@@ -54,6 +55,7 @@
 		4A909B8C187E75110040017C /* rovericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B8A187E75110040017C /* rovericon.png */; };
 		4A909B8D187E75110040017C /* rovericon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B8B187E75110040017C /* rovericon@2x.png */; };
 		4A9F46451773CDDF00F8D689 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9F46441773CDDF00F8D689 /* 103-map.png */; };
+		4AA1D531192DB1BB007A3E4D /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1D530192DB1BB007A3E4D /* Quaternion.m */; };
 		4ABF33771863A327001C9AE8 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABF33761863A327001C9AE8 /* placeholder.png */; };
 		4AC5DCFE165864F400A79555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC5DCFD165864F400A79555 /* UIKit.framework */; };
 		4AC5DD00165864F400A79555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC5DCFF165864F400A79555 /* Foundation.framework */; };
@@ -75,6 +77,8 @@
 		4ACFF6C8174C3344004F5D46 /* MarsTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACFF6C7174C3344004F5D46 /* MarsTime.m */; };
 		4ACFF6CA174C7E6B004F5D46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A39DFD016595943001FFD0C /* QuartzCore.framework */; };
 		4ACFF6CB174C7E7E004F5D46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC5DDB216588F3C00A79555 /* Security.framework */; };
+		4AF6CC02194CC41A00271191 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF6CC01194CC41A00271191 /* CoreData.framework */; };
+		4AF6CC05194CC45100271191 /* RoverLocation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4AF6CC03194CC45100271191 /* RoverLocation.xcdatamodeld */; };
 		4AFC33A51861274F000C1F32 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC33A41861274F000C1F32 /* icon_list_bullets.png */; };
 		7409D9236771481BBCE7B2C2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA33E0049F041F884F26C22 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -115,6 +119,7 @@
 		4A33C81C1879144B00EC0D81 /* Title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Title.h; sourceTree = "<group>"; };
 		4A33C81D1879144B00EC0D81 /* Title.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Title.m; sourceTree = "<group>"; };
 		4A33C81F187A21C900EC0D81 /* SearchResultTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableCellView.xib; sourceTree = "<group>"; };
+		4A38AB8619365E4F00CEE163 /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
 		4A39DFA31658B8DB001FFD0C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4A39DFAA1659465B001FFD0C /* FixedWidthImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedWidthImageTableViewCell.h; sourceTree = "<group>"; };
 		4A39DFAB1659465B001FFD0C /* FixedWidthImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedWidthImageTableViewCell.m; sourceTree = "<group>"; };
@@ -168,6 +173,8 @@
 		4A909B8A187E75110040017C /* rovericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rovericon.png; sourceTree = "<group>"; };
 		4A909B8B187E75110040017C /* rovericon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rovericon@2x.png"; sourceTree = "<group>"; };
 		4A9F46441773CDDF00F8D689 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
+		4AA1D52F192DB1BB007A3E4D /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		4AA1D530192DB1BB007A3E4D /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
 		4AA888AC17BAEBD000D262D4 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		4AA888AD17BAEC9000D262D4 /* NOTICE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = NOTICE.txt; sourceTree = "<group>"; };
 		4ABF33761863A327001C9AE8 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
@@ -196,6 +203,8 @@
 		4AC5DDB616588F4D00A79555 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4ACFF6C6174C3344004F5D46 /* MarsTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsTime.h; sourceTree = "<group>"; };
 		4ACFF6C7174C3344004F5D46 /* MarsTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsTime.m; sourceTree = "<group>"; };
+		4AF6CC01194CC41A00271191 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4AF6CC04194CC45100271191 /* RoverLocation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoverLocation.xcdatamodel; sourceTree = "<group>"; };
 		4AFC33A41861274F000C1F32 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
 		89E3F90FB5D84A0C9DAD6505 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FCA33E0049F041F884F26C22 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF6CC02194CC41A00271191 /* CoreData.framework in Frameworks */,
 				4A0C816B1872387E00E2DFC4 /* GLKit.framework in Frameworks */,
 				4A0C816C1872387E00E2DFC4 /* OpenGLES.framework in Frameworks */,
 				4A39DFD116595943001FFD0C /* QuartzCore.framework in Frameworks */,
@@ -270,6 +280,9 @@
 				4A82D4F918A054BF00A6F2BE /* CAHVORE.m */,
 				4A82D4FB18A0585600A6F2BE /* Math.h */,
 				4A82D4FC18A0585600A6F2BE /* Math.m */,
+				4AA1D52F192DB1BB007A3E4D /* Quaternion.h */,
+				4AA1D530192DB1BB007A3E4D /* Quaternion.m */,
+				4AF6CC03194CC45100271191 /* RoverLocation.xcdatamodeld */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -315,6 +328,7 @@
 		4AC5DCFC165864F400A79555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AF6CC01194CC41A00271191 /* CoreData.framework */,
 				4A82D53718A85DBC00A6F2BE /* CoreLocation.framework */,
 				4A82D53518A85DB000A6F2BE /* CoreMotion.framework */,
 				4A82D51518A69E1700A6F2BE /* CoreImage.framework */,
@@ -385,6 +399,7 @@
 		4AC5DD04165864F400A79555 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A38AB8619365E4F00CEE163 /* 71-compass.png */,
 				4A13755918AAE03900C7B8E0 /* clearbackground.png */,
 				4A909B86187E6F910040017C /* clock.png */,
 				4A909B87187E6F910040017C /* clock@2x.png */,
@@ -509,6 +524,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A38AB8719365E4F00CEE163 /* 71-compass.png in Resources */,
 				4AC5DD08165864F400A79555 /* InfoPlist.strings in Resources */,
 				4A51D7D917E28F7500E8E0D6 /* Images.xcassets in Resources */,
 				4AC5DD17165864F400A79555 /* MainStoryboard_iPhone.storyboard in Resources */,
@@ -592,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A82D4FD18A0585600A6F2BE /* Math.m in Sources */,
+				4AA1D531192DB1BB007A3E4D /* Quaternion.m in Sources */,
 				4A4998ED186666FA00A78F67 /* MER.m in Sources */,
 				4A82D50D18A56A5400A6F2BE /* AGLKContext.m in Sources */,
 				4A82D50018A17A9C00A6F2BE /* CameraModel.m in Sources */,
@@ -610,6 +627,7 @@
 				4A31DD06185FB82300174A4A /* MarsSidePanelController.m in Sources */,
 				4AC5DD47165889C900A79555 /* AboutViewController.m in Sources */,
 				4A31DCF7185AB52800174A4A /* MarsImageTableViewController.m in Sources */,
+				4AF6CC05194CC45100271191 /* RoverLocation.xcdatamodeld in Sources */,
 				4A4998F61866681800A78F67 /* Spirit.m in Sources */,
 				4A39DFAC1659465B001FFD0C /* FixedWidthImageTableViewCell.m in Sources */,
 				4A82D4FA18A054BF00A6F2BE /* CAHVORE.m in Sources */,
@@ -904,6 +922,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4AF6CC03194CC45100271191 /* RoverLocation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4AF6CC04194CC45100271191 /* RoverLocation.xcdatamodel */,
+			);
+			currentVersion = 4AF6CC04194CC45100271191 /* RoverLocation.xcdatamodel */;
+			path = RoverLocation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4AC5DCF0165864F400A79555 /* Project object */;
 }
