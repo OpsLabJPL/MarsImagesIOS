@@ -18,7 +18,6 @@
 @implementation MarsScene
 
 static const double x_axis[] = X_AXIS;
-static const double y_axis[] = Y_AXIS;
 static const double z_axis[] = Z_AXIS;
 
 - (id) init {
@@ -96,7 +95,7 @@ static const double z_axis[] = Z_AXIS;
     double zrotq[4];
     [Math quatva:z_axis a:-M_PI_2 toQ:zrotq];
     double llRotq[4];
-    Quaternion* qLL = [mission localLevelQuaternion];
+    Quaternion* qLL = [mission localLevelQuaternion]; //FIXME add data
     llRotq[0] = qLL.w;
     llRotq[1] = -qLL.x;
     llRotq[2] = -qLL.y;
