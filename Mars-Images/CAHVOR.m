@@ -122,4 +122,35 @@ enum {
     [Math scale:1.0/magv a:uvec3 toB:uvec3];
 }
 
+- (void) cmod_3d_to_2d: (const double[]) pos3
+                 range: (double[]) range
+                  pos2: (double[]) pos2 {
+    double alpha, beta, gamma, xh, yh;
+    double omega, omega_2, tau, mu;
+    double p_c[3], pp[3], pp_c[3], wo[3], lambda[3];
+    
+    /* Calculate p' and other necessary quantities */
+    [Math sub:pos3 b:c toC:p_c];
+    omega = [Math dot:p_c b:o];
+    omega_2 = omega * omega;
+    [Math scale:omega a:o toB:wo];
+    [Math sub:p_c b:wo toC:lambda];
+    tau = [Math dot:lambda b:lambda] / omega_2;
+    mu = r[0] + (r[1] * tau) + (r[2] * tau * tau);
+    [Math scale:mu a:lambda toB:pp];
+    [Math add:pos3 b:pp toC:pp];
+    
+    /* Calculate alpha, beta, gamma, which are (p' - c) */
+    /* dotted with a, h, v, respectively                */
+    [Math sub:pp b:c toC:pp_c];
+    alpha  = [Math dot:pp_c b:a];
+    beta   = [Math dot:pp_c b:h];
+    gamma  = [Math dot:pp_c b:v];
+    
+    /* Calculate the projection */
+    pos2[0] = xh = beta  / alpha;
+    pos2[1] = yh = gamma / alpha;
+    range[0] = alpha;
+}
+
 @end
