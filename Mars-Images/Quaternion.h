@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define IDENTITY { 1.0, 0.0, 0.0, 0.0 }
+
 @interface Quaternion : NSObject
 
 @property (nonatomic) double w;
