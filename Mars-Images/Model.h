@@ -17,4 +17,8 @@
                   pos3: (double[]) pos3
                  uvec3: (double[]) uvec3;
 
+- (void) cmod_3d_to_2d: (const double[]) pos3
+                 range: (double[]) range
+                  pos2: (double[]) pos2;
+
 @end
