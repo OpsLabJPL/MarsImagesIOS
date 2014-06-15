@@ -1,0 +1,2 @@
+PODS_MAPBOX_LIBRARY_SEARCH_PATHS = "${PODS_ROOT}/Mapbox/Proj4"
+PODS_MAPBOX_OTHER_LDFLAGS = -ObjC -lProj4 -lsqlite3 -lz -framework CoreGraphics -framework CoreLocation -framework Foundation -framework QuartzCore -framework UIKit
