@@ -27,7 +27,7 @@
     self = [super initWithURL:url];
     _note = note;
     _resource = resource;
-    self.caption = [[MarsImageNotebook instance].mission captionText:resource note:note];
+    self.caption = [[MarsImageNotebook instance].mission captionText:note];
     return self;
 }
 
@@ -36,8 +36,7 @@
     self = [super init];
     _note = note;
     _leftAndRight = leftAndRight;
-    EDAMResource* resource = [leftAndRight objectAtIndex:0];
-    self.caption = [[MarsImageNotebook instance].mission captionText:resource note:note];
+    self.caption = [[MarsImageNotebook instance].mission captionText:note];
     return self;
 }
 
