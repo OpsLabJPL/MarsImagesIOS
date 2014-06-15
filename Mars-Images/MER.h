@@ -31,8 +31,7 @@ static NSSet* stereoInstruments;
 - (NSString*) labelText: (EDAMNote*) note;
 - (NSString*) detailLabelText: (EDAMNote*) note;
 - (NSString*) imageName: (EDAMResource*) resource;
-- (NSString*) captionText: (EDAMResource*) resource
-                     note:(EDAMNote*) note;
+- (NSString*) captionText:(EDAMNote*) note;
 - (NSArray*) stereoForImages: (NSArray*)resources;
 + (MERTitle*) tokenize: (NSString*) title;
 + (NSString*) imageID:(EDAMResource*) resource;
@@ -42,5 +41,6 @@ static NSSet* stereoInstruments;
 - (float) mastX;
 - (float) mastY;
 - (float) mastZ;
+- (Quaternion*) localLevelQuaternion;
 
 @end

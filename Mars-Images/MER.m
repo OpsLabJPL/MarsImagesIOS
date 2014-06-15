@@ -35,15 +35,14 @@ typedef enum {
 
 - (id) init {
     self = [super init];
-    _qLocalLevel.w = 1.0;
-    _qLocalLevel.x = 0.0;
-    _qLocalLevel.y = 0.0;
-    _qLocalLevel.z = 0.0;
+    
+    _qLocalLevel = [[Quaternion alloc] init];
+//    0.920865,-0.0942893,0.00495749,0.378277
+    _qLocalLevel.w = 0.920865;
+    _qLocalLevel.x = -0.0942893;
+    _qLocalLevel.y = 0.00495749;
+    _qLocalLevel.z = 0.378277;
     return self;
-}
-
-- (Quaternion*) localLevelQuaternion {
-    return _qLocalLevel;
 }
 
 + (void) initialize {
@@ -110,8 +109,7 @@ typedef enum {
     return @"";
 }
 
-- (NSString*) captionText:(EDAMResource*) resource
-                     note:(EDAMNote*) note {
+- (NSString*) captionText:(EDAMNote*) note {
     MERTitle* title = [MER tokenize: note.title];
     if (!title.distance)
         return [NSString stringWithFormat:@"%@ image taken on Sol %d.", title.instrumentName, title.sol];
@@ -289,6 +287,10 @@ typedef enum {
 
 - (float) mastZ {
     return -1.0969;
+}
+
+- (Quaternion*) localLevelQuaternion {
+    return _qLocalLevel;
 }
 
 @end
