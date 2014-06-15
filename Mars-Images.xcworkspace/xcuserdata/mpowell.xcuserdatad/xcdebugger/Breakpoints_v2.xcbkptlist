@@ -9,60 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mars-Images/AGLKVertexAttribArrayBuffer.m"
-            timestampString = "413509445.353893"
+            filePath = "Mars-Images/MarsImageViewController.m"
+            timestampString = "422860561.576255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-drawArrayWithMode:startVertexIndex:numberOfVertices:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/MWPhotoBrowser/MWPhotoBrowser/Classes/MWPhoto.m"
-            timestampString = "413512154.924945"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-performLoadUnderlyingImageAndNotify"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[MWPhoto performLoadUnderlyingImageAndNotify]"
-                  moduleName = "Mars-Images"
-                  urlString = "file://localhost/Users/mpowell/Workspaces/MarsImagesIOS/Pods/MWPhotoBrowser/MWPhotoBrowser/Classes/MWPhoto.m"
-                  timestampString = "413704480.979016"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "142"
-                  endingLineNumber = "142"
-                  offsetFromSymbolStart = "684">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__46-[MWPhoto performLoadUnderlyingImageAndNotify]_block_invoke70"
-                  moduleName = "Mars-Images"
-                  urlString = "file://localhost/Users/mpowell/Workspaces/MarsImagesIOS/Pods/MWPhotoBrowser/MWPhotoBrowser/Classes/MWPhoto.m"
-                  timestampString = "413704480.979209"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "142"
-                  endingLineNumber = "142"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -71,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mars-Images/MarsScene.m"
-            timestampString = "413601067.343603"
+            filePath = "Mars-Images/MarsImageTableViewController.m"
+            timestampString = "423335897.835138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-makeTexture:withTitle:grayscale:"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
