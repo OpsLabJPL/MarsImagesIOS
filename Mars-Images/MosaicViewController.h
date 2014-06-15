@@ -35,10 +35,15 @@
 @property (assign, nonatomic, getter = isRecentering) BOOL recentering;
 @property (strong, nonatomic) CMMotionManager* motionManager;
 @property (strong, nonatomic) NSOperationQueue* motionQueue;
+@property (weak, nonatomic) IBOutlet UILabel* azimuthLabel;
+@property (weak, nonatomic) IBOutlet UILabel* elevationLabel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *flipButton;
 
 - (void) setupRotationScroller;
 - (void) setupBaseEffect;
 - (void) handleMWPhotoLoadingDidEndNotification:(NSNotification *)notification;
 - (void) toggleMotion:(id)sender;
 - (void) processMotion:(CMDeviceMotion*)motion;
+- (void) updateHeadingDisplay;
+
 @end

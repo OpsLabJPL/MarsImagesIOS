@@ -10,15 +10,13 @@
 #import "MarsImageNotebook.h"
 
 #import "AGLKContext.h"
-#import "CameraModel.h"
 #import "Math.h"
-#import "Model.h"
 
 @implementation MosaicViewController
 
 static const double x_axis[] = X_AXIS;
 static const double y_axis[] = Y_AXIS;
-static const double z_axis[] = Z_AXIS;
+//static const double z_axis[] = Z_AXIS;
 
 static const double POSITIVE_VERTICAL_LIMIT = M_PI_2 - 0.001;
 static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
@@ -28,15 +26,16 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [super viewDidLoad];
     
     motionActive = NO;
-    UIBarButtonItem *flipButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Sense"
+    UIImage* icon = [UIImage imageNamed:@"71-compass.png"];
+    _flipButton = [[UIBarButtonItem alloc]
+                                   initWithImage:icon
                                    style:UIBarButtonItemStyleBordered
                                    target:self
                                    action:@selector(toggleMotion:)];
  	_motionManager = [[CMMotionManager alloc] init];
     _motionQueue = [[NSOperationQueue alloc] init];
    
-    self.navigationItem.rightBarButtonItem = flipButton;
+    self.navigationItem.rightBarButtonItem = _flipButton;
     // Listen for MWPhoto notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleMWPhotoLoadingDidEndNotification:)
@@ -83,6 +82,9 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.view addGestureRecognizer:pinchGesture];
+    
+    _azimuthLabel.text = @"Azimuth: 90.0";
+    _elevationLabel.text = @"Elevation: 0.0";
 }
 
 - (void) setupRotationScroller {
@@ -213,17 +215,27 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
         [_motionManager startDeviceMotionUpdatesToQueue:_motionQueue withHandler:^(CMDeviceMotion *motion, NSError *error) {
             [self processMotion:motion];
         }];
+        _flipButton.tintColor = [UIColor colorWithRed:0.722 green:0.882 blue:0.169 alpha:1];
 
     } else {
         [_motionManager stopDeviceMotionUpdates];
 //        [self resetScroll];
+        _flipButton.tintColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     }
 }
 
 - (void) processMotion: (CMDeviceMotion*) motion {
-    NSLog(@"Roll: %.2f Pitch: %.2f Yaw: %.2f", motion.attitude.roll, motion.attitude.pitch, motion.attitude.yaw);
-    _rotationY = motion.attitude.roll - M_PI_2;
-    _rotationX = motion.attitude.yaw - M_PI;
+//    NSLog(@"Roll: %.2f Pitch: %.2f Yaw: %.2f", motion.attitude.roll, motion.attitude.pitch, motion.attitude.yaw);
+//    _rotationY = motion.attitude.roll - M_PI_2;
+    _rotationY = -(motion.attitude.roll + M_PI_2);
+//    _rotationX = motion.attitude.yaw - M_PI;
+    _rotationX = motion.attitude.yaw + M_PI;
+    NSLog(@"Rotation X: %.2f Y: %.2f", _rotationX, _rotationY);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _lastRotationX = _rotationX;
+        _lastRotationY = _rotationY;
+        [self updateHeadingDisplay];
+    });
 }
 
 -(void) handlePinch: (UIPinchGestureRecognizer*)sender {
@@ -247,7 +259,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 #pragma mark - UIScrollViewDelegate
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
-
+#define RADIANS_TO_DEGREES(angle) ((angle) / M_PI * 180.0)
 - (void) scrollViewDidScroll: (UIScrollView *) scrollView
 {
     if (self.isRecentering || motionActive)
@@ -262,6 +274,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     _rotationY = _lastRotationY + DEGREES_TO_RADIANS((_lastContentOffset.y - offset.y)*0.2/_scale);
     if (_rotationY > POSITIVE_VERTICAL_LIMIT) _rotationY = POSITIVE_VERTICAL_LIMIT;
     if (_rotationY < NEGATIVE_VERTICAL_LIMIT) _rotationY = NEGATIVE_VERTICAL_LIMIT;
+    [self updateHeadingDisplay];
 }
 
 - (void) scrollViewWillBeginDragging: (UIScrollView *) scrollView
@@ -319,6 +332,15 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     GLKView* view = (GLKView*)self.view;
     [self update];
     [view display];
+}
+
+- (void) updateHeadingDisplay {
+    float azDegrees = RADIANS_TO_DEGREES(M_PI*2-_rotationX+M_PI_2);
+    while (azDegrees < 0) {azDegrees += 360; }
+    while (azDegrees > 360) {azDegrees -= 360; }
+    float elDegrees = RADIANS_TO_DEGREES(_rotationY);
+    _azimuthLabel.text = [NSString stringWithFormat:@"Azimuth: %03.1f", azDegrees];
+    _elevationLabel.text = [NSString stringWithFormat:@"Elevation: %03.1f", elDegrees];
 }
 
 @end
