@@ -50,4 +50,13 @@
 + (void) multqv: (const double[4]) q    /* input rotation quaternion */
               v: (const double[3]) v	/* input vector */
             toU: (double[3]) u;         /* output vector */
+
++ (void) sphericalToCartesian: (double)az
+                          dec: (double)dec
+                       radius: (double)radius
+                          xyz: (double[])xyz;
+
++ (void) cartesianToSpherical:(const double[]) xyz
+                       azDecR:(double[]) azDecR;
+
 @end

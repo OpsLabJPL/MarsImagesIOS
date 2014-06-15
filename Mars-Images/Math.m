@@ -131,5 +131,33 @@
     u[2] = 2*v[0]*(q1q3-q0q2) + 2*v[1]*(q0q1+q2q3) + v[2]*(q0q0-q1q1-q2q2+q3q3);
 }
 
+/*
+ * Convert spherical coordinates to cartesian.
+ * The azimuth will range between 0 to 2*PI, measured from the positive x axis, 
+ * increasing towards the positive y axis. 
+ * The declination will range between 0 and PI, measured from the positive Z axis 
+ * (assumed to be down), increasing towards the xy plane.
+ */
++ (void) sphericalToCartesian: (double)az
+                          dec: (double)dec
+                       radius: (double)radius
+                          xyz: (double[])xyz {
+    double rsinDec = radius * sin(dec);
+    xyz[0] = rsinDec * cos(az);
+    xyz[1] = rsinDec * sin(az);
+    xyz[2] = radius * cos(dec);
+}
+
++ (void) cartesianToSpherical:(const double[]) xyz
+                       azDecR:(double[]) azDecR {
+    double x = xyz[0], y = xyz[1], z = xyz[2];
+    double radius = sqrt(x * x + y * y + z * z);
+    double dec = acos(z / radius);
+    double az = atan2(y, x);
+    if (az < 0) az += 2*M_PI;
+    azDecR[0] = az;
+    azDecR[1] = dec;
+    azDecR[2] = radius;
+}
 
 @end
