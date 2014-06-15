@@ -59,7 +59,7 @@ typedef enum {
     formatter = [[NSDateFormatter alloc] init];
 	[formatter setTimeStyle:NSDateFormatterNoStyle];
     [formatter setDateStyle:NSDateFormatterLongStyle];
-    stereoInstruments = [[NSSet alloc] initWithObjects:@"F", @"R", @"N", @"P", nil];
+    stereoInstruments = [[NSSet alloc] initWithObjects:@"F", @"R", @"N", nil];
 }
 
 - (NSString*) labelText: (EDAMNote*) note {
@@ -96,10 +96,6 @@ typedef enum {
 
 - (NSString*) imageName:(EDAMResource*) resource {
     NSString* imageid = [Curiosity imageID:resource];
-    
-    if ([resource.attributes.sourceURL rangeOfString:@"False"].location != NSNotFound)
-        return @"Color";
-    
     NSString* instrument = [imageid substringWithRange:NSMakeRange(_instrumentIndex, 1)];
     if ([instrument isEqualToString:@"N"] || [instrument isEqualToString:@"F"] || [instrument isEqualToString:@"R"]) {
         NSString* eye = [imageid substringWithRange:NSMakeRange(_eyeIndex, 1)];
@@ -112,8 +108,7 @@ typedef enum {
     return @"";
 }
 
-- (NSString*) captionText:(EDAMResource*) resource
-                     note:(EDAMNote*) note {
+- (NSString*) captionText:(EDAMNote*) note {
     Title* title = [Curiosity tokenize: note.title];
     return [NSString stringWithFormat:@"%@ image taken on Sol %d.", title.instrumentName, title.sol];
 }

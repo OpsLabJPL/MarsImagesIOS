@@ -28,8 +28,7 @@ static NSSet* stereoInstruments;
 - (NSString*) labelText: (EDAMNote*) note;
 - (NSString*) detailLabelText: (EDAMNote*) note;
 - (NSString*) imageName: (EDAMResource*) resource;
-- (NSString*) captionText:(EDAMResource*) resource
-                     note:(EDAMNote*) note;
+- (NSString*) captionText:(EDAMNote*) note;
 - (NSArray*) stereoForImages:(NSArray*) resources;
 - (NSString*) getSortableImageFilename: (NSString*) imageurl;
 
