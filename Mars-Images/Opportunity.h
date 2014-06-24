@@ -9,6 +9,6 @@
 #import "MER.h"
 #import "MarsRover.h"
 
-@interface Opportunity : MER <MarsRover>
+@interface Opportunity : MER
 
 @end

@@ -35,13 +35,7 @@ typedef enum {
 
 - (id) init {
     self = [super init];
-    
-    _qLocalLevel = [[Quaternion alloc] init];
-//    0.920865,-0.0942893,0.00495749,0.378277
-    _qLocalLevel.w = 0.920865;
-    _qLocalLevel.x = -0.0942893;
-    _qLocalLevel.y = 0.00495749;
-    _qLocalLevel.z = 0.378277;
+
     return self;
 }
 
@@ -289,8 +283,14 @@ typedef enum {
     return -1.0969;
 }
 
-- (Quaternion*) localLevelQuaternion {
-    return _qLocalLevel;
+- (Quaternion*) localLevelQuaternion: (int)site_index
+                               drive: (int)drive_index {
+    return nil; //TODO
+}
+
+- (NSString*) rmc: (EDAMNote*) note { //TODO test this for course plot
+    NSArray* tokens = [note.title componentsSeparatedByString:@" "];
+    return [tokens objectAtIndex:[tokens count]-1];
 }
 
 @end

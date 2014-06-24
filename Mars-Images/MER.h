@@ -23,7 +23,6 @@ static NSSet* stereoInstruments;
 @property (nonatomic) int sampleTypeIndex;
 @property (nonatomic) NSString* roverName;
 @property (nonatomic) NSString* regionName;
-@property (nonatomic, strong) Quaternion* qLocalLevel;
 
 - (int) sol: (EDAMNote*) note;
 - (NSString*) sectionTitle: (int) section;
@@ -41,6 +40,5 @@ static NSSet* stereoInstruments;
 - (float) mastX;
 - (float) mastY;
 - (float) mastZ;
-- (Quaternion*) localLevelQuaternion;
 
 @end

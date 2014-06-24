@@ -29,6 +29,8 @@
 - (float) mastX;
 - (float) mastY;
 - (float) mastZ;
-- (Quaternion*) localLevelQuaternion;
+- (Quaternion*) localLevelQuaternion: (int)site_index
+                               drive: (int)drive_index;
+- (NSString*) rmc: (EDAMNote*) note;
 
 @end

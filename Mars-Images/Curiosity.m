@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Powellware. All rights reserved.
 //
 
+#import "AFHTTPRequestOperationManager.h"
+#import "CHCSVParser.h"
 #import "Curiosity.h"
 #import "MarsImageNotebook.h"
 #import "MarsTime.h"
@@ -43,13 +45,6 @@ typedef enum {
     _eyeIndex = 1;
     _instrumentIndex = 0;
     _sampleTypeIndex = 17;
-
-    _qLocalLevel = [[Quaternion alloc] init];
-//    0.706456,0.0161169,0.0372627,-0.706591 RMC 32,1020 TBD replace with live data
-    _qLocalLevel.w = 0.706456;
-    _qLocalLevel.x = -0.0161169;
-    _qLocalLevel.y = -0.0372627;
-    _qLocalLevel.z = 0.706591;
     
     return self;
 }
@@ -217,8 +212,37 @@ typedef enum {
     return -1.90608f;
 }
 
-- (Quaternion*) localLevelQuaternion {
-    return _qLocalLevel;
+- (Quaternion*) localLevelQuaternion: (int) site_index
+                               drive: (int) drive_index {
+    Quaternion* q = [[Quaternion alloc] init];
+    
+    NSURL* siteUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://msl-raws.s3.amazonaws.com/locations/site_%06d.csv", site_index]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:siteUrl];
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest: request
+                                                 returningResponse: &response
+                                                             error: &error];
+    if (response) {
+        NSArray *rows = [[NSString stringWithUTF8String:[responseData bytes]] CSVComponents];
+        for (NSArray* row in rows) {
+            if ([row count] >= 5 && [[row objectAtIndex:0] integerValue] == drive_index) {
+                q.w = [[row objectAtIndex:1] doubleValue];
+                q.x = [[row objectAtIndex:2] doubleValue];
+                q.y = [[row objectAtIndex:3] doubleValue];
+                q.z = [[row objectAtIndex:4] doubleValue];
+                break;
+            }
+        }
+    } else if (error) {
+        NSLog(@"Error: %@", error);
+    }
+    return q;
+}
+
+- (NSString*) rmc: (EDAMNote*) note {
+    NSArray* tokens = [note.title componentsSeparatedByString:@" "];
+    return [tokens objectAtIndex:[tokens count]-1];
 }
 
 @end

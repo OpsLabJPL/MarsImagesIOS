@@ -9,6 +9,6 @@
 #import "MER.h"
 #import "MarsRover.h"
 
-@interface Spirit : MER <MarsRover>
+@interface Spirit : MER
 
 @end
