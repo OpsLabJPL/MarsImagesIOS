@@ -67,7 +67,7 @@
             NSURL* leftUrl = [NSURL URLWithString:leftAddress];
             _leftImageOperation = [manager downloadWithURL:leftUrl
                                                       options:0
-                                                 progress:^(NSUInteger receivedSize, long long expectedSize) {
+                                                 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                      if (expectedSize > 0) {
                                                          float progress = receivedSize / (float)expectedSize;
                                                          NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -100,7 +100,7 @@
             NSURL* rightUrl = [NSURL URLWithString:rightAddress];
             _rightImageOperation = [manager downloadWithURL:rightUrl
                                                    options:0
-                                                  progress:^(NSUInteger receivedSize, long long expectedSize) {
+                                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                       if (expectedSize > 0) {
                                                           float progress = receivedSize / (float)expectedSize;
                                                           NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
