@@ -20,6 +20,8 @@
 static const double x_axis[] = X_AXIS;
 static const double z_axis[] = Z_AXIS;
 
+static dispatch_queue_t noteDownloadQueue = nil;
+
 - (id) init {
     self = [super init];
     
@@ -27,6 +29,10 @@ static const double z_axis[] = Z_AXIS;
         _photoQuads = [[NSMutableDictionary alloc] init];
         _photoTextures = [[NSMutableDictionary alloc] init];
     }
+    
+    if (noteDownloadQueue == nil)
+        noteDownloadQueue = dispatch_queue_create("note downloader", DISPATCH_QUEUE_SERIAL);
+    
     return self;
 }
 
@@ -37,26 +43,33 @@ static const double z_axis[] = Z_AXIS;
         NSString* cmod_string = photo.resource.attributes.cameraModel;
         if (!cmod_string || cmod_string.length == 0)
             continue;
-        NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
-        NSError* error;
-        NSArray *model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
-        id<Model> model = [CameraModel model:model_json];
-        NSArray* origin = [CameraModel origin:model_json];
-        GLfloat vertices[12];
-        [self getImageVertices:model origin:origin vertices:vertices];
-        int num_vectors = sizeof(vertices)/sizeof(GLfloat)/3;
-        if (num_vectors != 4) {
-            NSLog(@"Brown alert: num_vectors expected to be 4 but was: %d", num_vectors);
-        }
-        float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
-        SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertices texCoords0:textureCoords numberOfPositions:4];
-        [_photoQuads setObject:imageQuad forKey:photo.note.title];
-        UIImage* image = [photo underlyingImage];
-        if (!image) {
-            [photo performLoadUnderlyingImageAndNotify];
-        } else {
-            [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
-        }
+        
+        dispatch_async(noteDownloadQueue, ^{
+            GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
+            NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
+            NSError* error;
+            NSArray *model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
+            id<Model> model = [CameraModel model:model_json];
+            NSArray* origin = [CameraModel origin:model_json];
+            id<MarsRover> mission = [MarsImageNotebook instance].mission;
+            NSString* rmc = [mission rmc:photo.note];
+            int site = [self getSite:rmc];
+            int drive = [self getDrive:rmc];
+            [self getImageVertices:model origin:origin vertices:vertPointer site:site drive:drive];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
+                SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
+                free(vertPointer);
+                [_photoQuads setObject:imageQuad forKey:photo.note.title];
+                UIImage* image = [photo underlyingImage];
+                if (!image) {
+                    [photo performLoadUnderlyingImageAndNotify];
+                } else {
+                    [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
+                }
+            });
+        });
     }
 }
 
@@ -84,7 +97,9 @@ static const double z_axis[] = Z_AXIS;
 
 - (GLfloat*) getImageVertices: (id<Model>) model
                        origin: (NSArray*) origin
-                     vertices: (GLfloat*) vertices {
+                     vertices: (GLfloat*) vertices
+                         site: (int) site_index
+                        drive: (int) drive_index {
     
     id<MarsRover> mission = [MarsImageNotebook instance].mission;
     double eye[] = {[mission mastX], [mission mastY], [mission mastZ]};
@@ -95,11 +110,11 @@ static const double z_axis[] = Z_AXIS;
     double zrotq[4];
     [Math quatva:z_axis a:-M_PI_2 toQ:zrotq];
     double llRotq[4];
-    Quaternion* qLL = [mission localLevelQuaternion]; //FIXME add data
+    Quaternion* qLL = [mission localLevelQuaternion:site_index drive:drive_index];
     llRotq[0] = qLL.w;
-    llRotq[1] = -qLL.x;
-    llRotq[2] = -qLL.y;
-    llRotq[3] = -qLL.z;
+    llRotq[1] = qLL.x;
+    llRotq[2] = qLL.y;
+    llRotq[3] = qLL.z;
     
     double originX = ((NSNumber*)[origin objectAtIndex:0]).doubleValue;
     double originY = ((NSNumber*)[origin objectAtIndex:1]).doubleValue;
@@ -203,6 +218,14 @@ static const double z_axis[] = Z_AXIS;
             NSLog(@"Unable to make texture for %@", title);
         }
     }
+}
+
+- (int) getSite:(NSString*)rmc {
+    return [[[rmc componentsSeparatedByString:@"-"] objectAtIndex:0] integerValue];
+}
+
+- (int) getDrive:(NSString*)rmc {
+    return [[[rmc componentsSeparatedByString:@"-"] objectAtIndex:1] integerValue];
 }
 
 @end
