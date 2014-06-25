@@ -283,14 +283,8 @@ typedef enum {
     return -1.0969;
 }
 
-- (Quaternion*) localLevelQuaternion: (int)site_index
-                               drive: (int)drive_index {
-    return nil; //TODO
-}
-
-- (NSString*) rmc: (EDAMNote*) note { //TODO test this for course plot
-    NSArray* tokens = [note.title componentsSeparatedByString:@" "];
-    return [tokens objectAtIndex:[tokens count]-1];
+- (NSString*) urlPrefix {
+    return @"http://merpublic.s3.amazonaws.com";
 }
 
 @end

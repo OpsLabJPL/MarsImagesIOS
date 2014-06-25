@@ -7,7 +7,6 @@
 //
 
 #import "MER.h"
-#import "MarsRover.h"
 
 @interface Opportunity : MER
 

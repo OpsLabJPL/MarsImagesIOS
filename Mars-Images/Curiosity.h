@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MarsRover.h"
+#import "Rover.h"
 
 static NSCharacterSet* slashAndDot;
 static NSDateFormatter* formatter;
 static NSSet* stereoInstruments;
 
-@interface Curiosity : NSObject <MarsRover>
+@interface Curiosity : Rover
 
 @property (strong, nonatomic) NSDate* epoch;
 @property (nonatomic) int eyeIndex;

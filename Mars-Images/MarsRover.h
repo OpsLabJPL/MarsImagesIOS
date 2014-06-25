@@ -32,5 +32,6 @@
 - (Quaternion*) localLevelQuaternion: (int)site_index
                                drive: (int)drive_index;
 - (NSString*) rmc: (EDAMNote*) note;
+- (NSString*) urlPrefix;
 
 @end

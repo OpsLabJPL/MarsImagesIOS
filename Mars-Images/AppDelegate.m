@@ -16,6 +16,11 @@
 {
     _lastSleepTime = nil;
     
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
+                                                         diskCapacity:50 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+    
     UIStoryboard* storyboard = self.window.rootViewController.storyboard; 
     
     UINavigationController* tableNavVC = (UINavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"tableNavController"];

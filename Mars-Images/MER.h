@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "Evernote.h"
 #import "MERTitle.h"
+#import "Rover.h"
 #import "Quaternion.h"
 
 static NSCharacterSet* slashAndDot;
 static NSDateFormatter* formatter;
 static NSSet* stereoInstruments;
 
-@interface MER : NSObject
+@interface MER : Rover
 
 @property (strong, nonatomic) NSDate* epoch;
 @property (nonatomic) int eyeIndex;
