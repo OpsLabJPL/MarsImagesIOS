@@ -83,5 +83,19 @@
 	}
 }
 
+- (void) cmod_3d_to_2d: (const double[]) pos3
+                 range: (double[]) range
+                  pos2: (double[]) pos2 {
+    
+    double d[3];
+    double r_1;
+    
+    /* Calculate the projection */
+    [Math sub:pos3 b:c toC:d];
+    range[0] = [Math dot:d b:a];
+    r_1 = 1.0 / range[0];
+    pos2[0] = [Math dot:d b:h] * r_1;
+    pos2[1] = [Math dot:d b:v] * r_1;
+}
 
 @end
