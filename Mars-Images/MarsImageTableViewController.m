@@ -22,6 +22,8 @@
 
 @end
 
+BOOL gotZeroNotesReturned = NO;
+
 @implementation MarsImageTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -132,10 +134,19 @@
         numNotesReturned = [num intValue];
     }
     NSLog(@"Table view notified of %d notes loaded.", numNotesReturned);
-
+    if (numNotesReturned > 0)
+        gotZeroNotesReturned = NO;
+    
     UITableView* tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (gotZeroNotesReturned) {
+            if ([[MarsImageNotebook instance].notesArray count] == 0)
+                [tableView reloadData];
+            return;
+        }
         [tableView reloadData];
+        if (numNotesReturned == 0)
+            gotZeroNotesReturned = YES;
     });
 }
 
