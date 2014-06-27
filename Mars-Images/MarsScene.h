@@ -10,6 +10,7 @@
 #import <GLKit/GLKit.h>
 #import "Model.h"
 #import "MWPhoto.h"
+#import "Quaternion.h"
 
 @interface MarsScene : NSObject
 {
@@ -19,7 +20,9 @@
 @property (strong, nonatomic) NSMutableDictionary* photoQuads;
 @property (strong, nonatomic) NSMutableDictionary* photoTextures;
 
-- (void) addImagesToScene: (NSArray*) photosForRMC;
+- (void) notesLoaded: (NSNotification*) notification;
+
+- (void) addImagesToScene;
 
 - (void) deleteImages;
 
@@ -27,17 +30,13 @@
 
 - (GLfloat*) getImageVertices: (id<Model>) model
                        origin: (NSArray*) origin
-                     vertices: (GLfloat*) vertices
-                         site: (int) site_index
-                        drive: (int) drive_index;
+                     attitude: (Quaternion*) qLL
+                     vertices: (GLfloat*) vertices;
 
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo;
 
 - (void)makeTexture:(UIImage*) image
           withTitle:(NSString*) title
           grayscale:(BOOL)grayscale;
-
-- (int) getSite:(NSString*)rmc;
-- (int) getDrive:(NSString*)rmc;
 
 @end

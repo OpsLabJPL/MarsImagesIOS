@@ -163,8 +163,9 @@ static dispatch_queue_t noteDownloadQueue = nil;
     NSMutableString* formattedText = [[NSMutableString alloc] init];
     for (NSString* w in words) {
         NSString* word = [NSString stringWithString:w];
-        
-        if ([word intValue] > 0 && ![word hasSuffix:@"*"])
+        if ([word length] == 13 && [word characterAtIndex:6] == '-')
+            ; //do nothing for an RMC formatted as XXXXXX-XXXXXX
+        else if ([word intValue] > 0 && ![word hasSuffix:@"*"])
             word = [NSString stringWithFormat:@"\"Sol %05d\"", [word intValue]];
         
         if (formattedText.length > 0)
@@ -269,22 +270,6 @@ static dispatch_queue_t noteDownloadQueue = nil;
         return [[NSArray alloc] initWithObjects:site, drive, nil];
     }
     return [[NSArray alloc] initWithObjects:nil];
-}
-
-- (NSArray*) notesForRMC: (NSArray*) latestRMC {
-    int site = ((NSNumber*)[latestRMC objectAtIndex:0]).intValue;
-    int drive = ((NSNumber*)[latestRMC objectAtIndex:1]).intValue;
-    NSString* rmcString = [NSString stringWithFormat:@"%06d-%06d", site, drive];
-
-    NSMutableArray* notesAtRMC = [[NSMutableArray alloc] init];
-    
-    for (MarsPhoto* photo in _notePhotosArray) {
-        if ([photo.note.title hasSuffix:rmcString]) {
-            [notesAtRMC addObject:photo];
-        }
-    }
-    
-    return notesAtRMC;
 }
 
 @end

@@ -21,7 +21,7 @@ static const double y_axis[] = Y_AXIS;
 static const double POSITIVE_VERTICAL_LIMIT = M_PI_2 - 0.001;
 static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
@@ -58,6 +58,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [self setupBaseEffect];
 
     _scene = [[MarsScene alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:_scene selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     
     // Set the background color stored in the current context
     ((AGLKContext *)view.context).clearColor = GLKVector4Make(
@@ -73,9 +74,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     
     glDepthMask(GL_TRUE);
 
-    NSArray* latestRMC = [[MarsImageNotebook instance] getLatestRMC];
-    NSArray* notesForRMC = [[MarsImageNotebook instance] notesForRMC: latestRMC];
-    [_scene addImagesToScene: notesForRMC];
+    [_scene addImagesToScene];
     
     [self setupRotationScroller];
     [self resetScroll];
@@ -96,7 +95,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [self.view addSubview:_rotationScroller];
 }
 
--(void) update {
+- (void) update {
     double forwardVector[] = {0.0, 0.0, -1.0f};
     double rotAz[4], rotEl[4];
     double look1[3], look2[3];
@@ -178,7 +177,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MWPHOTO_LOADING_DID_END_NOTIFICATION
                                                   object:nil];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:_scene];
 }
 
 - (void) didReceiveMemoryWarning

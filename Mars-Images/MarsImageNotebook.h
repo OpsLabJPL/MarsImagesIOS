@@ -72,6 +72,4 @@
 
 - (NSArray*) getLatestRMC;
 
-- (NSArray*) notesForRMC: (NSArray*) latestRMC;
-
 @end

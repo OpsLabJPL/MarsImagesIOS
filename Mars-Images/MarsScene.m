@@ -22,6 +22,9 @@ static const double z_axis[] = Z_AXIS;
 
 static dispatch_queue_t noteDownloadQueue = nil;
 
+int site_index;
+int drive_index;
+
 - (id) init {
     self = [super init];
     
@@ -31,44 +34,65 @@ static dispatch_queue_t noteDownloadQueue = nil;
     }
     
     if (noteDownloadQueue == nil)
-        noteDownloadQueue = dispatch_queue_create("note downloader", DISPATCH_QUEUE_SERIAL);
+        noteDownloadQueue = dispatch_queue_create("mosaic note downloader", DISPATCH_QUEUE_SERIAL);
     
     return self;
 }
 
-- (void) addImagesToScene: (NSArray*) photosForRMC {
-    for (MarsPhoto* photo in photosForRMC) {
-        if (![photo includedInMosaic])
-            continue;
-        NSString* cmod_string = photo.resource.attributes.cameraModel;
-        if (!cmod_string || cmod_string.length == 0)
-            continue;
-        
+- (void) addImagesToScene {
+    
+    NSArray* latestRMC = [[MarsImageNotebook instance] getLatestRMC];
+    
+    site_index = [[latestRMC objectAtIndex:0] integerValue];
+    drive_index = [[latestRMC objectAtIndex:1] integerValue];
+    
+    [MarsImageNotebook instance].searchWords = [NSString stringWithFormat:@"RMC %06d-%06d", site_index, drive_index];
+    [[MarsImageNotebook instance] reloadNotes]; //rely on the resultant note load notifications to populate images in the scene
+}
+
+- (void) notesLoaded: (NSNotification*) notification {
+    int numNotesReturned = 0;
+    NSNumber* num = [notification.userInfo objectForKey:NUM_NOTES_RETURNED];
+    if (num != nil) {
+        numNotesReturned = [num intValue];
+    }
+    if (numNotesReturned > 0)
+        [[MarsImageNotebook instance] loadMoreNotes:[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
+    else {
         dispatch_async(noteDownloadQueue, ^{
-            GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
-            NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
-            NSError* error;
-            NSArray *model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
-            id<Model> model = [CameraModel model:model_json];
-            NSArray* origin = [CameraModel origin:model_json];
             id<MarsRover> mission = [MarsImageNotebook instance].mission;
-            NSString* rmc = [mission rmc:photo.note];
-            int site = [self getSite:rmc];
-            int drive = [self getDrive:rmc];
-            [self getImageVertices:model origin:origin vertices:vertPointer site:site drive:drive];
+            Quaternion* qLL = [mission localLevelQuaternion:site_index drive:drive_index];
+            NSArray* notesForRMC = [[MarsImageNotebook instance] notePhotosArray];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
-                SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
-                free(vertPointer);
-                [_photoQuads setObject:imageQuad forKey:photo.note.title];
-                UIImage* image = [photo underlyingImage];
-                if (!image) {
-                    [photo performLoadUnderlyingImageAndNotify];
-                } else {
-                    [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
-                }
-            });
+            for (MarsPhoto* photo in notesForRMC) {
+                if (![photo includedInMosaic])
+                    continue;
+                NSString* cmod_string = photo.resource.attributes.cameraModel;
+                if (!cmod_string || cmod_string.length == 0)
+                    continue;
+                
+                GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
+                NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
+                NSError* error;
+                NSArray *model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
+                id<Model> model = [CameraModel model:model_json];
+                NSArray* origin = [CameraModel origin:model_json];
+                
+                [self getImageVertices:model origin:origin attitude:qLL vertices:vertPointer];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
+                    SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
+                    free(vertPointer);
+                    [_photoQuads setObject:imageQuad forKey:photo.note.title];
+                    UIImage* image = [photo underlyingImage];
+                    if (!image) {
+                        [photo performLoadUnderlyingImageAndNotify];
+                    } else {
+                        [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
+                    }
+                });
+            }
         });
     }
 }
@@ -97,9 +121,8 @@ static dispatch_queue_t noteDownloadQueue = nil;
 
 - (GLfloat*) getImageVertices: (id<Model>) model
                        origin: (NSArray*) origin
-                     vertices: (GLfloat*) vertices
-                         site: (int) site_index
-                        drive: (int) drive_index {
+                     attitude: (Quaternion*) qLL
+                     vertices: (GLfloat*) vertices {
     
     id<MarsRover> mission = [MarsImageNotebook instance].mission;
     double eye[] = {[mission mastX], [mission mastY], [mission mastZ]};
@@ -110,7 +133,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     double zrotq[4];
     [Math quatva:z_axis a:-M_PI_2 toQ:zrotq];
     double llRotq[4];
-    Quaternion* qLL = [mission localLevelQuaternion:site_index drive:drive_index];
+
     llRotq[0] = qLL.w;
     llRotq[1] = qLL.x;
     llRotq[2] = qLL.y;
@@ -218,14 +241,6 @@ static dispatch_queue_t noteDownloadQueue = nil;
             NSLog(@"Unable to make texture for %@", title);
         }
     }
-}
-
-- (int) getSite:(NSString*)rmc {
-    return [[[rmc componentsSeparatedByString:@"-"] objectAtIndex:0] integerValue];
-}
-
-- (int) getDrive:(NSString*)rmc {
-    return [[[rmc componentsSeparatedByString:@"-"] objectAtIndex:1] integerValue];
 }
 
 @end
