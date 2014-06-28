@@ -10,4 +10,8 @@
 
 @implementation Quaternion
 
+- (NSString *)description {
+    return [NSString stringWithFormat: @"%f %f %f %f", _w, _x, _y, _z];
+}
+
 @end
