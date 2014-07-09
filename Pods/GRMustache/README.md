@@ -1,128 +1,155 @@
 GRMustache
 ==========
 
-GRMustache is a production-ready implementation of [Mustache](http://mustache.github.com/) templates for MacOS Cocoa and iOS.
+GRMustache is a flexible and production-ready implementation of [Mustache](http://mustache.github.io/) templates for MacOS Cocoa and iOS.
 
-**october 2nd, 2012: GRMustache 5.4.3 is out.** [Release notes](GRMustache/blob/master/RELEASE_NOTES.md)
+GRMustache targets iOS down to version 4.3, MacOS down to 10.6 Snow Leopard (with or without garbage collection), and only depends on the Foundation framework.
 
-Don't miss a single release: follow [@GRMustache](http://twitter.com/GRMustache) on Twitter.
+**October 19, 2013: GRMustache 6.8.3 is out.** [Release notes](RELEASE_NOTES.md)
+
+Get release announcements and usage tips: follow [@GRMustache on Twitter](http://twitter.com/GRMustache).
 
 How To
 ------
 
-### 1. Download and add to your Xcode project
+### 1. Setup your Xcode project
 
-    $ git clone https://github.com/groue/GRMustache.git
+You have three options, from the simplest to the hairiest:
 
-- For MacOS development, add `include/GRMustache.h` and `lib/libGRMustache5-MacOS.a` to your project.
-- For iOS development, add `include/GRMustache.h` and `lib/libGRMustache5-iOS.a` to your project.
+- [CocoaPods](Guides/installation.md#option-1-cocoapods)
+- [Static Library](Guides/installation.md#option-2-static-library)
+- [Compile the raw sources](Guides/installation.md#option-3-compiling-the-raw-sources)
 
-Alternatively, you may use [CocoaPods](https://github.com/CocoaPods/CocoaPods): append `pod 'GRMustache', '~> 5.4'` to your Podfile.
-
-GRMustache targets MacOS down to 10.6 Snow Leopard, iOS down to version 4.3, and only depends on the Foundation framework.
-
-**armv6 architecture**: The last GRMustache library that embeds the armv6 slice is [GRMustache 5.0.1](https://github.com/groue/GRMustache/tree/v5.0.1).
 
 ### 2. Start rendering templates
 
 ```objc
 #import "GRMustache.h"
-
-// Renders "Hello Arthur!"
-NSString *rendering = [GRMustacheTemplate renderObject:[Person personWithName:@"Arthur"]
-                                            fromString:@"Hello {{name}}!"
-                                                 error:NULL];
-
-// Renders a document from the `Profile.mustache` resource
-NSString *rendering = [GRMustacheTemplate renderObject:[Person personWithName:@"Arthur"]
-                                          fromResource:@"Profile"
-                                                bundle:nil
-                                                 error:NULL];
 ```
 
+One-liners:
+
+```objc
+// Renders "Hello Arthur!"
+NSString *rendering = [GRMustacheTemplate renderObject:@{ @"name": @"Arthur" } fromString:@"Hello {{name}}!" error:NULL];
+```
+
+```objc
+// Renders the `Profile.mustache` resource of the main bundle
+NSString *rendering = [GRMustacheTemplate renderObject:user fromResource:@"Profile" bundle:nil error:NULL];
+```
+
+Reuse templates in order to avoid parsing the same template several times:
+
+```objc
+GRMustacheTemplate *template = [GRMustacheTemplate templateFromResource:@"Profile" bundle:nil error:nil];
+rendering = [template renderObject:arthur error:NULL];
+rendering = [template renderObject:barbara error:NULL];
+rendering = ...
+```
+
+[GRMustachio](https://github.com/mugginsoft/GRMustachio) by Jonathan Mitchell is "A super simple, interactive GRMustache based application". It can help you design and test your templates.
 
 Documentation
 -------------
 
 ### Mustache syntax
 
-- http://mustache.github.com/mustache.5.html
+- http://mustache.github.io/mustache.5.html
+
+### Reference
+
+- [Reference](http://groue.github.io/GRMustache/Reference/): the GRMustache reference, automatically generated from inline documentation, for fun and profit, by [appledoc](http://gentlebytes.com/appledoc/).
 
 ### Guides
 
 Introduction:
 
-- [introduction.md](GRMustache/blob/master/Guides/introduction.md): a tour of the library features, and most common use cases.
+- [Introduction](Guides/introduction.md): a tour of the library features, and most common use cases.
 
-Loading templates:
+Basics:
 
-- [templates.md](GRMustache/blob/master/Guides/templates.md): how to load templates from common sources.
-- [partials.md](GRMustache/blob/master/Guides/partials.md): how to embed templates in other templates.
-- [templates_repositories.md](GRMustache/blob/master/Guides/template_repositories.md): load templates from less common sources.
+- [Templates](Guides/templates.md): how to load templates.
+- [Partials](Guides/partials.md): decompose your templates into components named "partials".
+- [Templates Repositories](Guides/template_repositories.md): manage groups of templates.
+- [Runtime](Guides/runtime.md): how GRMustache renders your data.
+- [ViewModel](Guides/view_model.md): an overview of various techniques to feed templates.
 
-Rendering templates:
+Services:
 
-- [runtime.md](GRMustache/blob/master/Guides/runtime.md): how to provide data to templates: an overview
-- [runtime/context_stack.md](GRMustache/blob/master/Guides/runtime/context_stack.md): the key lookup in detail.
-- [runtime/booleans.md](GRMustache/blob/master/Guides/runtime/booleans.md): boolean sections.
-- [runtime/loops.md](GRMustache/blob/master/Guides/runtime/loops.md): enumerable sections.
+- [Configuration](Guides/configuration.md)
+- [HTML vs. Text templates](Guides/html_vs_text.md)
+- [Standard Library](Guides/standard_library.md): built-in candy, for your convenience.
+- [NSFormatter](Guides/NSFormatter.md), NSNumberFormatter, NSDateFormatter, etc. Use them.
 
-Advanced Mustache:
+Hooks:
 
-- [section_tag_helpers.md](GRMustache/blob/master/Guides/section_tag_helpers.md): how to process the template canvas before it is rendered with Mustache "lambda sections".
-- [variable_tag_helpers.md](GRMustache/blob/master/Guides/variable_tag_helpers.md): how to perform rich rendering out of a simple `{{name}}` tag.
-- [filters.md](GRMustache/blob/master/Guides/filters.md): how to process data before it is rendered with "filters".
-- [delegate.md](GRMustache/blob/master/Guides/delegate.md): how to hook into template rendering.
+- [Filters](Guides/filters.md): `{{ uppercase(name) }}` et al.
+- [Rendering Objects](Guides/rendering_objects.md): "Mustache lambdas", and more.
+- [Tag Delegates](Guides/delegate.md): observe and alter template rendering.
+- [Protected Contexts](Guides/protected_contexts.md): protect some keys so that they always evaluate to the same value.
 
-Sample code:
+Mustache, and beyond:
 
-- [layout template](../../../tree/master/Guides/sample_code/layout): how to wrap a template in a "layout" template
-- [number_formatting.md](GRMustache/blob/master/Guides/sample_code/number_formatting.md): how to format numbers
-- [indexes.md](GRMustache/blob/master/Guides/sample_code/indexes.md): how to render array indexes, render sections for the first or the last element, for odd or even elements, etc.
-- [localization.md](GRMustache/blob/master/Guides/sample_code/localization.md): how to localize portions of your templates
+- [Compatibility](Guides/compatibility.md): compatibility with other Mustache implementations, in details.
 
-### Reference
+### Sample code
 
-- [Reference](http://groue.github.com/GRMustache/Reference/): the GRMustache reference, automatically generated from inline documentation, for fun and profit, by [appledoc](http://gentlebytes.com/appledoc/).
+Check the [FAQ](#faq) right below.
 
-### Internals
-
-- [forking.md](GRMustache/blob/master/Guides/forking.md): the forking guide tells you everything about GRMustache organization.
 
 FAQ
 ---
 
-- **Q: How do I render array indexes?**
+- **Q: I get "unrecognized selector sent to instance" errors.**
     
-    A: Check [Guides/sample_code/indexes.md](GRMustache/blob/master/Guides/sample_code/indexes.md)
+    A: Check that you have added the `-ObjC` option in the "Other Linker Flags" of your target ([how to](http://developer.apple.com/library/mac/#qa/qa1490/_index.html)).
 
-- **Q: How do I format numbers and dates?**
+- **Q: Is it possible to render array indexes? Customize first and last elements? Distinguish odd and even items, play fizzbuzz?**
     
-    A: Check [Guides/sample_code/number_formatting.md](GRMustache/blob/master/Guides/sample_code/number_formatting.md)
+    A: [Yes, yes, and yes](Guides/sample_code/indexes.md)
 
-- **Q: How do I render partial templates whose name is only known at runtime?**
+- **Q: Is it possible to format numbers and dates?**
+    
+    A: Yes. Use [NSNumberFormatter and NSDateFormatter](Guides/NSFormatter.md).
 
-    A: Check [Guides/variable_tag_helpers.md](GRMustache/blob/master/Guides/variable_tag_helpers.md)
+- **Q: Is it possible to pluralize/singularize strings?**
+    
+    A: Yes. You have some [sample code](https://github.com/groue/GRMustache/issues/50#issuecomment-16197912) in issue #50. You may check [@mattt's InflectorKit](https://github.com/mattt/InflectorKit) for actual inflection methods.
+
+- **Q: Is it possible to write Handlebars-like helpers?**
+    
+    A: [Yes](Guides/rendering_objects.md)
+
+- **Q: Is it possible to localize templates?**
+
+    A: [Yes](Guides/standard_library.md#localize)
+
+- **Q: Is it possible to embed partial templates whose name is only known at runtime?**
+
+    A: [Yes](Guides/rendering_objects.md)
 
 - **Q: Does GRMustache provide any layout or template inheritance facility?**
     
-    A: Check [Guides/partials.md](GRMustache/blob/master/Guides/partials.md), and the [sample Xcode project](GRMustache/tree/master/Guides/sample_code/layout).
+    A: [Yes](Guides/partials.md)
 
-- **Q: How do I localize templates?**
+- **Q: Is it possible to render a default value for missing keys?**
 
-    A: Check [Guides/sample_code/localization.md](GRMustache/blob/master/Guides/sample_code/localization.md)
+    A: [Yes](Guides/view_model.md#default-values).
 
-- **Q: How do I render default values for missing keys?**
+- **Q: Is it possible to disable HTML escaping?**
 
-    A: Check [Guides/delegate.md](GRMustache/blob/master/Guides/delegate.md).
+    A: [Yes](Guides/html_vs_text.md)
 
 - **Q: What is this NSUndefinedKeyException stuff?**
 
-    A: When GRMustache has to try several objects until it finds the one that provides a `{{key}}`, several NSUndefinedKeyException are raised and caught. Let us double guess you: it's likely that you wish Xcode would stop breaking on those exceptions. This use case is covered in [Guides/runtime/context_stack.md](GRMustache/blob/master/Guides/runtime/context_stack.md).
+    A: When GRMustache has to try several objects until it finds the one that provides a `{{key}}`, several NSUndefinedKeyException may be raised and caught. It's likely that you wish Xcode would stop breaking on those exceptions: see the [Runtime Guide](Guides/runtime.md#nsundefinedkeyexception-prevention).
 
 - **Q: Why does GRMustache need JRSwizzle?**
 
-    A: GRMustache does not need it. However, *you* may happy having GRMustache [swizzle](http://www.mikeash.com/pyblog/friday-qa-2010-01-29-method-replacement-for-fun-and-profit.html) `valueForUndefinedKey:` in the NSObject and NSManagedObject classes when you invoke `[GRMustache preventNSUndefinedKeyExceptionAttack]`. The use case is described in [Guides/runtime/context_stack.md](GRMustache/blob/master/Guides/runtime/context_stack.md).
+    A: GRMustache does not need it, and does not swizzle anything unless you explicitly ask for it. `[GRMustache preventNSUndefinedKeyExceptionAttack]` swizzles NSObject's `valueForUndefinedKey:` in order to prevent NSUndefinedKeyException during template rendering.
+    
+    You will debug your application without Xcode's exception breakpoint disturbing you. You may even improve rendering performances. See the [Runtime Guide](Guides/runtime.md#nsundefinedkeyexception-prevention).
 
 What other people say
 ---------------------
@@ -143,21 +170,56 @@ What other people say
 
 > Thank fucking christ for decent iOS developers who ship .lib files in their Github repos. #GRMustache
 
+[@SebastienPeek](https://twitter.com/sebastienpeek/status/290700413152423936)
+
+> @issya should see the HTML template I built, pretty wicked. GRMustache is the best.
+
+[@mugginsoft](https://twitter.com/mugginsoft/status/294758563698597888)
+
+> Using GRMustache (Cocoa) for template processing. Looks like a top quality library. Good developer and good units tests. Get it on GitHub.
+
+[@dannolan](https://twitter.com/dannolan/status/301088034173120512)
+
+> okay GRMustache is the fucking daddy
+
+[@OldManKris](https://twitter.com/oldmankris/status/307683824362483712)
+
+> GRMustache is teh awesome. Nice to find an open-source library that is more pleasant to use than expected.
+
+
+Who's using GRMustache
+----------------------------------------
+
+* [tomaz/appledoc](https://github.com/tomaz/appledoc): Objective-c code Apple style documentation set generator.
+* [mapbox/mapbox-ios-sdk](https://github.com/mapbox/mapbox-ios-sdk): MapBox iOS SDK, an open source alternative to MapKit.
+* [CarterA/Tribo](https://github.com/CarterA/Tribo): Extremely fast static site generator written in Objective-C.
+* [AutoLib](http://itunes.com/apps/autolib) uses GRMustache and [spullara/mustache.java](https://github.com/spullara/mustache.java) for rendering an identical set of Mustache templates on iOS and Android.
+* [Bee](http://www.neat.io/bee): Bee is a desktop bug tracker for the Mac. It currently syncs with GitHub Issues, JIRA and FogBugz.
+* [CinéObs](http://itunes.com/apps/cineobs) uses GRMustache for RSS feeds rendering.
+* [Fotopedia](http://itunes.com/apps/fotonautsinc), the first collaborative photo encyclopedia.
+* [FunGolf GPS](http://itunes.com/apps/fungolf), a golf app with 3D maps.
+* [KosmicTask](http://www.mugginsoft.com/kosmictask), an integrated scripting environment for OS X that supports more than 20 scripting languages.
+* [MyInvoice](http://www.myinvoice.biz/en), an invoicing iOS app.
+* [Servus](https://servus.io) can turn any file on your computer into a branded download page hosted on Dropbox.
+
+Do you use GRMustache? [Tweet me your story and your link](http://twitter.com/GRMustache).
 
 
 Contribution wish-list
 ----------------------
 
-I wish somebody would review my non-native English, and clean up the guides, if you ask.
+Please look for an [open issue](GRMustache/issues) that smiles at you!
+
+... And I wish somebody would review the non-native English of the documentation and guides.
 
 
 Forking
 -------
 
-Please fork. You'll learn useful information in [Guides/forking.md](GRMustache/blob/master/Guides/forking.md).
+Please fork. You'll learn useful information in the [Forking Guide](Guides/forking.md).
 
 
 License
 -------
 
-Released under the [MIT License](GRMustache/blob/master/LICENSE).
+Released under the [MIT License](LICENSE).

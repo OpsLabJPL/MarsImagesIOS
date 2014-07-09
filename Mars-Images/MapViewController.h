@@ -10,21 +10,29 @@
 #import "MapBox.h"
 
 @interface MapViewController : UIViewController<RMMapViewDelegate>
+{
+    double minZoom;
+    double maxZoom;
+    double maxNativeZoom;
+    double defaultZoom;
+    double centerLat;
+    double centerLon;
+    double upperLeftLat;
+    double upperLeftLon;
+    double upperRightLat;
+    double upperRightLon;
+    double lowerLeftLat;
+    double lowerLeftLon;
+    double lowerRightLat;
+    double lowerRightLon;
+    int mapPixelWidth;
+    int mapPixelHeight;
+}
 
 @property (strong, nonatomic) NSString* tileSetUrl;
-@property (strong, nonatomic) NSNumber* minZoom;
-@property (strong, nonatomic) NSNumber* maxZoom;
-@property (strong, nonatomic) NSNumber* maxNativeZoom;
-@property (strong, nonatomic) NSNumber* defaultZoom;
-@property (strong, nonatomic) NSNumber* centerLat;
-@property (strong, nonatomic) NSNumber* centerLon;
-@property (strong, nonatomic) NSNumber* upperLeftLat;
-@property (strong, nonatomic) NSNumber* upperLeftLon;
-@property (strong, nonatomic) NSNumber* upperRightLat;
-@property (strong, nonatomic) NSNumber* upperRightLon;
-@property (strong, nonatomic) NSNumber* lowerLeftLat;
-@property (strong, nonatomic) NSNumber* lowerLeftLon;
-@property (strong, nonatomic) NSNumber* lowerRightLat;
-@property (strong, nonatomic) NSNumber* lowerRightLon;
+@property (strong, nonatomic) RMMapView* mapView;
+
+- (void) loadLatestTraversePath;
+- (void) parseMapMetadata;
 
 @end

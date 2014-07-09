@@ -15,12 +15,6 @@
 @synthesize cacheable = _cacheable, opaque = _opaque;
 @synthesize s3url = _s3url;
 @synthesize imageCache = _imageCache;
-@synthesize upperLeftLat = _upperLeftLat;
-@synthesize upperLeftLon = _upperLeftLon;
-@synthesize lowerRightLat = _lowerRightLat;
-@synthesize lowerRightLon = _lowerRightLon;
-@synthesize minZoom = _minZoom;
-@synthesize maxZoom = _maxZoom;
 @synthesize mercatorToTileProjection = _mercatorToTileProjection;
 @synthesize projection = _projection;
 @synthesize uniqueTilecacheKey = _uniqueTilecacheKey;
@@ -30,33 +24,35 @@
 @synthesize longAttribution = _longAttribution;
 @synthesize shortName = _shortName;
 @synthesize longDescription = _longDescription;
+@synthesize minZoom = _minZoom;
+@synthesize maxZoom = _maxZoom;
 
 - (id)initWithTileSetURL:(NSURL*)tileSetURL
-                 minZoom:(NSNumber*)minZoom
-                 maxZoom:(NSNumber*)maxZoom
-            upperLeftLat:(NSNumber*)upperLeftLat
-            upperLeftLon:(NSNumber*)upperLeftLon
-           lowerRightLat:(NSNumber*)lowerRightLat
-           lowerRightLon:(NSNumber*)lowerRightLon {
+                 minZoom:(int)zoomMin
+                 maxZoom:(int)zoomMax
+            upperLeftLat:(double)ulLat
+            upperLeftLon:(double)ulLon
+           lowerRightLat:(double)lrLat
+           lowerRightLon:(double)lrLon {
 	
     if ( ! (self = [super init]))
 		return nil;
     
     self.imageCache = [[NSMutableDictionary alloc] init];
 
-    _upperLeftLat = upperLeftLat;
-    _upperLeftLon = upperLeftLon;
-    _lowerRightLat = lowerRightLat;
-    _lowerRightLon = lowerRightLon;
+    upperLeftLat = ulLat;
+    upperLeftLon = ulLon;
+    lowerRightLat = lrLat;
+    lowerRightLon = lrLon;
     _s3url = tileSetURL;
     _cacheable = NO;
     _opaque = YES;
-    _minZoom = (float)minZoom.intValue;
-    _maxZoom = (float)maxZoom.intValue;
+    _minZoom = (float)zoomMin;
+    _maxZoom = (float)zoomMax;
     _uniqueTilecacheKey = [NSString stringWithFormat:@"MBTiles%@", [_s3url lastPathComponent]];
     _latitudeLongitudeBoundingBox = ((RMSphericalTrapezium){
-        .northEast = {.latitude = upperLeftLat.floatValue, .longitude = lowerRightLon.floatValue},
-        .southWest = {.latitude = lowerRightLat.floatValue, .longitude = upperLeftLon.floatValue}});
+        .northEast = {.latitude = upperLeftLat, .longitude = lowerRightLon},
+        .southWest = {.latitude = lowerRightLat, .longitude = upperLeftLon}});
     _projection = [RMProjection googleProjection];
 	_mercatorToTileProjection = [[RMFractalTileProjection alloc] initFromProjection:_projection
                                                            tileSideLength:kMBTilesDefaultTileSize
@@ -89,7 +85,7 @@
 
     //do a download image file from URL here, construct as UIImage
     NSString* path = [NSString stringWithFormat:@"%@/%i/%i/%i.png", [_s3url absoluteString], zoom, x, y]; //META extension
-    NSLog(@"URL: %@", path);
+//    NSLog(@"URL: %@", path);
     image = [self getImageFromCache: path];
     
     dispatch_async(dispatch_get_main_queue(), ^(void)

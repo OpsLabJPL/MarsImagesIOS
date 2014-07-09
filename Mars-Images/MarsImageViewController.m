@@ -63,15 +63,20 @@ typedef enum {
     _segmentedControl = [[UISegmentedControl alloc] init];
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"clock"] atIndex:CLOCK_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
-    [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeContactAdd] currentImage] atIndex:MOSAIC_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"global"] atIndex:MOSAIC_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"103-map"] atIndex:MAP_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
     [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segmentedControl sizeToFit];
     [_segmentedControl addTarget:self action:@selector(segmentedControlButtonPressed:) forControlEvents:UIControlEventValueChanged];
     
+    //disable these until location data loads, notification event will enable
+    [_segmentedControl setEnabled:NO forSegmentAtIndex:MOSAIC_BUTTON];
+    [_segmentedControl setEnabled:NO forSegmentAtIndex:MAP_BUTTON];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageSelected:) name:IMAGE_SELECTED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationsLoaded:) name:LOCATIONS_LOADED object:nil];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -83,7 +88,7 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -93,7 +98,7 @@ typedef enum {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
-+ (UIColor*)defaultSystemTintColor { // IOS 7 only
++ (UIColor*) defaultSystemTintColor { // IOS 7 only
     static UIColor* systemTintColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -142,6 +147,12 @@ typedef enum {
             [self reloadData];
         });
     }
+}
+
+- (void) locationsLoaded:(NSNotification*) notification {
+    [_segmentedControl setEnabled:YES forSegmentAtIndex:MOSAIC_BUTTON];
+    [_segmentedControl setEnabled:YES forSegmentAtIndex:MAP_BUTTON];
+    NSLog(@"Locations loaded, Mosaic and map view buttons enabled.");
 }
 
 - (MarsPhoto*) currentPhoto {

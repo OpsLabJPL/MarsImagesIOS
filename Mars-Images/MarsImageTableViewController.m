@@ -204,6 +204,7 @@ BOOL gotZeroNotesReturned = NO;
     if (! [[MarsImageNotebook instance].missionName isEqualToString:mission]) {
         [MarsImageNotebook instance].missionName = mission;
         [_titleButton setTitle:mission forState:UIControlStateNormal];
+        [MarsImageNotebook instance].searchWords = nil;
         [self updateNotes];
     }
 }

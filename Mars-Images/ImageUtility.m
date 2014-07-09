@@ -36,6 +36,9 @@
         }
         return [ImageUtility imageWithImage:sourceImage scaledToSize:CGSizeMake(length, length)];
     }
+    else {
+        sourceImage = [UIImage imageWithData:UIImagePNGRepresentation(sourceImage)];
+    }
     return sourceImage;
 }
 

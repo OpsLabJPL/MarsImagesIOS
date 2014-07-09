@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,10 @@
 
 #import <Foundation/Foundation.h>
 #import "GRMustacheAvailabilityMacros.h"
+
+@protocol GRMustacheRendering;
+@class GRMustacheTag;
+@class GRMustacheContext;
 
 /**
  * A C struct that hold GRMustache version information
@@ -52,10 +56,11 @@ typedef struct {
  *
  * @since v1.0
  */
-+ (GRMustacheVersion)version AVAILABLE_GRMUSTACHE_VERSION_5_0_AND_LATER;
++ (GRMustacheVersion)version AVAILABLE_GRMUSTACHE_VERSION_6_0_AND_LATER;
+
 
 ////////////////////////////////////////////////////////////////////////////////
-/// @name Preventing NSUndefinedKeyException when using GRMustache in Development configuration
+/// @name Preventing NSUndefinedKeyException in Development configuration
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -82,30 +87,79 @@ typedef struct {
  *     [GRMustache preventNSUndefinedKeyExceptionAttack];
  *     #endif
  * 
- * **Companion guide:** https://github.com/groue/GRMustache/blob/master/Guides/runtime/context_stack.md
+ * **Companion guide:** https://github.com/groue/GRMustache/blob/master/Guides/runtime.md
  * 
  * @since v1.7
  */
-+ (void)preventNSUndefinedKeyExceptionAttack AVAILABLE_GRMUSTACHE_VERSION_5_0_AND_LATER;
++ (void)preventNSUndefinedKeyExceptionAttack AVAILABLE_GRMUSTACHE_VERSION_6_0_AND_LATER;
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// @name Standard Library
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @return The GRMustache standard library.
+ *
+ * **Companion guide:** https://github.com/groue/GRMustache/blob/master/Guides/standard_library.md
+ *
+ * @since v6.4
+ */
++ (NSObject *)standardLibrary AVAILABLE_GRMUSTACHE_VERSION_6_4_AND_LATER;
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// @name Building rendering objects
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Returns a rendering object that is able to render the argument _object_ for
+ * the various Mustache tags.
+ *
+ * If _object_ already conforms to the GRMustacheRendering protocol, this method
+ * returns _object_ itself: it is already able to render.
+ *
+ * For other values, including `nil`, this method returns a rendering object
+ * that provides the default GRMustache rendering.
+ *
+ * @param object  An object.
+ *
+ * @return A rendering object able to render the argument.
+ *
+ * @see GRMustacheRendering protocol
+ *
+ * @since v6.0
+ */
++ (id<GRMustacheRendering>)renderingObjectForObject:(id)object AVAILABLE_GRMUSTACHE_VERSION_6_0_AND_LATER;
+
+/**
+ * Returns a rendering object that renders with the provided block.
+ *
+ * @param block  A block that follows the semantics of the
+ *               renderForMustacheTag:context:HTMLSafe:error: method defined by
+ *               the GRMustacheRendering protocol. See the documentation of this
+ *               method.
+ *
+ * @return A rendering object
+ *
+ * @see GRMustacheRendering protocol
+ *
+ * @since v6.0
+ */
++ (id<GRMustacheRendering>)renderingObjectWithBlock:(NSString *(^)(GRMustacheTag *tag, GRMustacheContext *context, BOOL *HTMLSafe, NSError **error))block AVAILABLE_GRMUSTACHE_VERSION_6_0_AND_LATER;
 
 @end
 
-#import "GRMustacheInvocation.h"
 #import "GRMustacheTemplate.h"
-#import "GRMustacheTemplateDelegate.h"
+#import "GRMustacheTagDelegate.h"
 #import "GRMustacheTemplateRepository.h"
 #import "GRMustacheFilter.h"
-#import "GRMustacheDynamicPartial.h"
-#import "GRMustacheVariableTagHelper.h"
-#import "GRMustacheVariableTagRenderingContext.h"
-#import "GRMustacheSectionTagHelper.h"
-#import "GRMustacheSectionTagRenderingContext.h"
 #import "GRMustacheError.h"
 #import "GRMustacheVersion.h"
-
-// Compatibility with deprecated declarations
-
-#import "GRMustacheSectionHelper.h"
-#import "GRMustacheSection.h"
-#import "GRMustacheVariableHelper.h"
-#import "GRMustacheVariable.h"
+#import "GRMustacheContext.h"
+#import "GRMustacheRendering.h"
+#import "GRMustacheTag.h"
+#import "GRMustacheConfiguration.h"
+#import "GRMustacheLocalizer.h"
+#import "NSValueTransformer+GRMustache.h"
+#import "NSFormatter+GRMustache.h"

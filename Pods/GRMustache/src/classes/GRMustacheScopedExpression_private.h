@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@
  * Returns a scoped expression, given an expression that returns a value, and
  * an identifier.
  *
- * For instance, the Mustache tag `{{ person.name }}` contains a scoped
+ * For example, the Mustache tag `{{ person.name }}` contains a scoped
  * expression, whose baseExpression is a GRMustacheIdentifierExpression (for the
  * identifier `person`), and whose identifier is `name`.
  *
@@ -46,5 +46,5 @@
  *
  * @return A GRMustacheScopedExpression.
  */
-+ (id)expressionWithBaseExpression:(GRMustacheExpression *)baseExpression scopeIdentifier:(NSString *)scopeIdentifier GRMUSTACHE_API_INTERNAL;
++ (instancetype)expressionWithBaseExpression:(GRMustacheExpression *)baseExpression scopeIdentifier:(NSString *)scopeIdentifier GRMUSTACHE_API_INTERNAL;
 @end

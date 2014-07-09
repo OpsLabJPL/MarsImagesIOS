@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 #import "InfiniteScrollView.h"
+#import "MBProgressHUD.h"
 #import "Model.h"
 #import "MarsScene.h"
 
@@ -26,6 +27,7 @@
     BOOL motionActive;
 }
 
+@property (strong, nonatomic) MBProgressHUD* hud;
 @property (strong, nonatomic) MarsScene* scene;
 @property (strong, nonatomic) GLKBaseEffect *baseEffect;
 @property (assign, nonatomic, readwrite) GLKVector3 eyePosition;
@@ -38,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* azimuthLabel;
 @property (weak, nonatomic) IBOutlet UILabel* elevationLabel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *flipButton;
+@property (strong, nonatomic) UISegmentedControl* segmentedControl;
 
 - (void) setupRotationScroller;
 - (void) setupBaseEffect;
@@ -45,5 +48,8 @@
 - (void) toggleMotion:(id)sender;
 - (void) processMotion:(CMDeviceMotion*)motion;
 - (void) updateHeadingDisplay;
+- (void) segmentedControlButtonPressed: (id)sender;
+- (void) defaultsChanged:(id)sender;
+- (void) hideHud;
 
 @end

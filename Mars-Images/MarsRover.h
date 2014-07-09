@@ -33,5 +33,5 @@
                                drive: (int)drive_index;
 - (NSString*) rmc: (EDAMNote*) note;
 - (NSString*) urlPrefix;
-
+- (NSArray*) siteLocationData: (int) site_index;
 @end

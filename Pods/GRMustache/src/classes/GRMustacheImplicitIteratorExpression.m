@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,11 +21,11 @@
 // THE SOFTWARE.
 
 #import "GRMustacheImplicitIteratorExpression_private.h"
-#import "GRMustacheRuntime_private.h"
+#import "GRMustacheContext_private.h"
 
 @implementation GRMustacheImplicitIteratorExpression
 
-+ (id)expression
++ (instancetype)expression
 {
     return [[[self alloc] init] autorelease];
 }
@@ -38,10 +38,15 @@
 
 #pragma mark - GRMustacheExpression
 
-- (id)evaluateInRuntime:(GRMustacheRuntime *)runtime asFilterValue:(BOOL)filterValue
+- (BOOL)hasValue:(id *)value withContext:(GRMustacheContext *)context protected:(BOOL *)protected error:(NSError **)error
 {
-    NSAssert(!filterValue, @"GRMustacheImplicitIteratorExpression invoked for a filter");
-    return [runtime currentContextValue];
+    if (protected != NULL) {
+        *protected = NO;
+    }
+    if (value != NULL) {
+        *value = [context topMustacheObject];
+    }
+    return YES;
 }
 
 @end

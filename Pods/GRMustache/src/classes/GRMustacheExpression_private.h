@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,14 @@
 #import <Foundation/Foundation.h>
 #import "GRMustacheAvailabilityMacros_private.h"
 
-@class GRMustacheRuntime;
+@class GRMustacheContext;
 @class GRMustacheToken;
 
 /**
  * The GRMustacheExpression is the base class for objects that can provide
- * values out of a Mustache runtime.
+ * values out of a Mustache rendering context.
  *
- * GRMustacheExpression instances are built by GRMustacheParser. For instance,
+ * GRMustacheExpression instances are built by GRMustacheParser. For example,
  * the `{{ name }}` tag would yield a GRMustacheIdentifierExpression.
  *
  * @see GRMustacheFilteredExpression
@@ -47,29 +47,32 @@
  * This property stores a token whose sole purpose is to help the library user
  * debugging his templates, using the token's ability to output its location
  * (`{{ foo }}` at line 23 of /path/to/template).
- *
- * @see GRMustacheInvocation
  */
 @property (nonatomic, retain) GRMustacheToken *token GRMUSTACHE_API_INTERNAL;
 
 /**
- * Evaluates an expression against a runtime, and return the value.
+ * Evaluates an expression against a rendering context.
  *
- * @param runtime       A Mustache runtime object
- * @param filterValue   The expression evaluates in the runtime's context stack,
- *                      or filter stack, depending on this boolean.
+ * @param value      Upon return contains the value of the expression
+ * @param context    A Mustache rendering context
+ * @param protected  Upon return contains YES if the computed value comes from
+ *                   the protected stack of the context, NO otherwise.
+ * @param error      If there is an error computing the value, upon return
+ *                   contains an NSError object that describes the problem.
  *
- * @return The value of the expression.
+ * @return YES if the value could be computed
+ *
+ * @see GRMustacheContext
  */
-- (id)evaluateInRuntime:(GRMustacheRuntime *)runtime asFilterValue:(BOOL)filterValue GRMUSTACHE_API_INTERNAL;
+- (BOOL)hasValue:(id *)value withContext:(GRMustacheContext *)context protected:(BOOL *)protected error:(NSError **)error GRMUSTACHE_API_INTERNAL;
 
 /**
  * Returns a Boolean value that indicates whether the receiver and a given
  * object are equal.
  *
  * Expressions are equal if and only if the result of their
- * `evaluateInRuntime:asFilterValue:` implementation would return the same value
- * for all runtimes.
+ * `hasValue:withContext:protected:error:` implementation would return the same
+ * value in a given rendering context.
  *
  * Default implementation is NSObject's one: subclasses must override.
  *

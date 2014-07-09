@@ -14,6 +14,11 @@
 
 @implementation MosaicViewController
 
+typedef enum {
+    BACK_BUTTON,
+    FORWARD_BUTTON
+} Buttons;
+
 static const double x_axis[] = X_AXIS;
 static const double y_axis[] = Y_AXIS;
 //static const double z_axis[] = Z_AXIS;
@@ -58,8 +63,10 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [self setupBaseEffect];
 
     _scene = [[MarsScene alloc] init];
+    _scene.viewController = self;
     [[NSNotificationCenter defaultCenter] addObserver:_scene selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+
     // Set the background color stored in the current context
     ((AGLKContext *)view.context).clearColor = GLKVector4Make(
                                                               0.0f, // Red
@@ -73,8 +80,9 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [((AGLKContext *)view.context) enable:GL_BLEND];
     
     glDepthMask(GL_TRUE);
-
-    [_scene addImagesToScene];
+    
+    NSArray* rmc = [[MarsImageNotebook instance] getNearestRMC];
+    [_scene addImagesToScene: rmc];
     
     [self setupRotationScroller];
     [self resetScroll];
@@ -84,8 +92,44 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     
     _azimuthLabel.text = @"Azimuth: 90.0";
     _elevationLabel.text = @"Elevation: 0.0";
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.mode = MBProgressHUDModeIndeterminate;
+    [_hud setLabelText:@"Loading"];
+    
+    _segmentedControl = [[UISegmentedControl alloc] init];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"left_arrow.png"] atIndex:BACK_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"right_arrow.png"] atIndex:FORWARD_BUTTON animated:NO];
+    _segmentedControl.momentary = YES;
+    [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [_segmentedControl sizeToFit];
+    [_segmentedControl addTarget:self action:@selector(segmentedControlButtonPressed:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = _segmentedControl;
+
 }
 
+- (void) defaultsChanged:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) segmentedControlButtonPressed: (id)sender {
+    switch (_segmentedControl.selectedSegmentIndex) {
+        case BACK_BUTTON: {
+            [_scene deleteImages];
+            NSArray* prevRMC = [[MarsImageNotebook instance] getPreviousRMC: _scene.rmc];
+            if (prevRMC)
+                [_scene addImagesToScene: prevRMC];
+            break;
+        }
+        case FORWARD_BUTTON: {
+            [_scene deleteImages];
+            NSArray* nextRMC = [[MarsImageNotebook instance] getNextRMC: _scene.rmc];
+            if (nextRMC)
+                [_scene addImagesToScene: nextRMC];
+            break;
+        }
+    }
+}
 - (void) setupRotationScroller {
     _rotationScroller = [[InfiniteScrollView alloc] initWithFrame:self.view.bounds];
 
@@ -120,6 +164,8 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [self preparePointOfViewWithAspectRatio:aspectRatio];
 
     [_scene drawImages: _baseEffect];
+    
+//    [_scene drawCompass: _baseEffect]; //TODO make this look good
     
     GLenum error = glGetError();
     if (GL_NO_ERROR != error) {
@@ -178,6 +224,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
                                                     name:MWPHOTO_LOADING_DID_END_NOTIFICATION
                                                   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:_scene];
+    [_scene deleteImages];
 }
 
 - (void) didReceiveMemoryWarning
@@ -340,6 +387,10 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     float elDegrees = RADIANS_TO_DEGREES(_rotationY);
     _azimuthLabel.text = [NSString stringWithFormat:@"Azimuth: %03.1f", azDegrees];
     _elevationLabel.text = [NSString stringWithFormat:@"Elevation: %03.1f", elDegrees];
+}
+
+- (void) hideHud {
+    [_hud hide:YES];
 }
 
 @end

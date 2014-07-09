@@ -9,29 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mars-Images/MarsImageViewController.m"
-            timestampString = "422860561.576255"
+            filePath = "Mars-Images/MarsScene.m"
+            timestampString = "426574356.770943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "-makeTexture:withTitle:grayscale:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mars-Images/MarsImageTableViewController.m"
-            timestampString = "423335897.835138"
+            filePath = "Mars-Images/MarsScene.m"
+            timestampString = "426576669.423238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "-makeTexture:withTitle:grayscale:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

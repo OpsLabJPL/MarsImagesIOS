@@ -8,29 +8,39 @@
 
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
+#import "AGLKContext.h"
 #import "Model.h"
 #import "MWPhoto.h"
 #import "Quaternion.h"
+#import "SceneMesh.h"
 
 @interface MarsScene : NSObject
 {
 //    GLuint vertexBufferID;
+    int site_index;
+    int drive_index;
+    Quaternion* qLL;
 }
 
+@property (strong, nonatomic) NSArray* rmc;
 @property (strong, nonatomic) NSMutableDictionary* photoQuads;
 @property (strong, nonatomic) NSMutableDictionary* photoTextures;
+@property (strong, nonatomic) GLKTextureInfo* compassTextureInfo;
+@property (strong, nonatomic) SceneMesh* compassQuad;
+@property (strong, nonatomic) UIViewController* viewController;
 
 - (void) notesLoaded: (NSNotification*) notification;
 
-- (void) addImagesToScene;
+- (void) addImagesToScene: (NSArray*) rmc;
 
 - (void) deleteImages;
 
 - (void) drawImages: (GLKBaseEffect*) baseEffect;
 
+- (void) drawCompass: (GLKBaseEffect*) baseEffect;
+
 - (GLfloat*) getImageVertices: (id<Model>) model
                        origin: (NSArray*) origin
-                     attitude: (Quaternion*) qLL
                      vertices: (GLfloat*) vertices;
 
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo;

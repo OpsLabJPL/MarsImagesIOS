@@ -7,6 +7,7 @@
 //
 
 #import "MarsImageNotebook.h"
+#import "CHCSVParser.h"
 #import "Curiosity.h"
 #import "Evernote.h"
 #import "MarsPhoto.h"
@@ -118,8 +119,9 @@ static dispatch_queue_t noteDownloadQueue = nil;
             if (_searchWords != nil && [_searchWords length]>0) {
                 filter.words = [self formatSearch:_searchWords];
             }
+            
             notelist = [[Evernote instance] findNotes: filter withStartIndex:startIndex withTotal:total];
-
+            
             for (int j = 0; j < notelist.notes.count; j++) {
                 EDAMNote* note = [notelist.notes objectAtIndex:j];
                 note = [MarsImageNotebook reorderResources:note];
@@ -211,6 +213,8 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [(NSMutableDictionary*) _sections removeAllObjects];
     [(NSMutableArray*) _sols removeAllObjects];
     [self loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
+    _locations = nil;
+    [self getLocations];
 }
 
 - (void) checkNetworkStatus:(NSNotification *)notice {
@@ -255,7 +259,11 @@ static dispatch_queue_t noteDownloadQueue = nil;
     return note;
 }
 
-- (NSArray*) getLatestRMC {
+- (NSArray*) getNearestRMC {
+    int user_site = 0;
+    int user_drive = 0;
+    
+    //find the RMC of the newest image/note
     NSNumberFormatter* format = [[NSNumberFormatter alloc] init];
     [format setNumberStyle:NSNumberFormatterDecimalStyle];
     for (EDAMNote* note in _notesArray) {
@@ -267,9 +275,113 @@ static dispatch_queue_t noteDownloadQueue = nil;
         NSString* driveString = [rmcString substringFromIndex:7];
         NSNumber* site = [format numberFromString:siteString];
         NSNumber* drive = [format numberFromString:driveString];
-        return [[NSArray alloc] initWithObjects:site, drive, nil];
+        user_site = site.intValue;
+        user_drive = drive.intValue;
     }
-    return [[NSArray alloc] initWithObjects:nil];
+    
+    //find the RMC in locations closest to the RMC of the newest image
+    int site_index = [[[_locations objectAtIndex:[_locations count]-1] objectAtIndex:0] intValue];
+    int drive_index = [[[_locations objectAtIndex:[_locations count]-1] objectAtIndex:1] intValue];
+    
+    if (user_site != 0 || user_drive != 0) {
+        for (int i = [_locations count]-1; i >=0; i--) {
+            int a_site_index = [[[_locations objectAtIndex:i] objectAtIndex:0] intValue];
+            int a_drive_index = [[[_locations objectAtIndex:i] objectAtIndex:1] intValue];
+            if (a_site_index*100000+a_drive_index < user_site*100000+user_drive)
+                break;
+            site_index = a_site_index;
+            drive_index = a_drive_index;
+        }
+    }
+    
+    return [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:site_index], [NSNumber numberWithInt:drive_index], nil];
+}
+
+- (NSArray*) getPreviousRMC: (NSArray*) rmc {
+    NSArray *prevRMC = nil, *location = nil;
+    int prevSite = [[rmc objectAtIndex:0] intValue];
+    int prevDrive = [[rmc objectAtIndex:1] intValue];
+    
+    for (int i = 0; i < [_locations count]; i++) {
+        NSArray* anRMC = [_locations objectAtIndex:i];
+        if ([[anRMC objectAtIndex:0] intValue] == prevSite &&
+            [[anRMC objectAtIndex:1] intValue] == prevDrive &&
+            i > 0) {
+            location = [_locations objectAtIndex:i-1];
+            break;
+        }
+    }
+    if (location) {
+        prevRMC = [[NSArray alloc] initWithObjects:
+                   [NSNumber numberWithInt:[[location objectAtIndex:0] intValue]],
+                   [NSNumber numberWithInt:[[location objectAtIndex:1] intValue]],
+                   nil];
+    }
+    return prevRMC;
+}
+
+- (NSArray*) getNextRMC: (NSArray*) rmc {
+    NSArray *nextRMC = nil, *location = nil;
+    int nextSite = [[rmc objectAtIndex:0] intValue];
+    int nextDrive = [[rmc objectAtIndex:1] intValue];
+    
+    for (int i = 0; i < [_locations count]; i++) {
+        NSArray* anRMC = [_locations objectAtIndex:i];
+        if ([[anRMC objectAtIndex:0] intValue] == nextSite &&
+            [[anRMC objectAtIndex:1] intValue] == nextDrive &&
+            i < [_locations count]-1) {
+            location = [_locations objectAtIndex:i+1];
+            break;
+        }
+    }
+    if (location) {
+        nextRMC = [[NSArray alloc] initWithObjects:
+                   [NSNumber numberWithInt:[[location objectAtIndex:0] intValue]],
+                   [NSNumber numberWithInt:[[location objectAtIndex:1] intValue]],
+                   nil];
+    }
+    
+    return nextRMC;
+}
+
+- (NSArray*) getLocations {
+    
+    if (_locations) return _locations;
+    
+    NSString* urlPrefix = [[MarsImageNotebook instance] mission].urlPrefix;
+    NSURL* locationsURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/locations/location_manifest.csv", urlPrefix]];
+    NSLog(@"location url: %@", locationsURL);
+    NSURLRequest *request = [NSURLRequest requestWithURL:locationsURL];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (response) {
+            NSString *csvString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSASCIIStringEncoding];
+
+            NSArray* rows = [csvString CSVComponents];
+            if ([rows count] <= 0) {
+                NSLog(@"Brown alert: there are no locations. %@", csvString);
+            }
+
+            _locations = [[NSMutableArray alloc] initWithCapacity:[rows count]];
+            for (int i = 0; i < [rows count]; i++) {
+                NSArray* row = [rows objectAtIndex:i];
+                if ([row count] >= 2) {
+                    NSNumber* site_index = [NSNumber numberWithInt:[[row objectAtIndex:0] integerValue]];
+                    NSNumber* drive_index = [NSNumber numberWithInt:[[row objectAtIndex:1] integerValue]];
+                    [((NSMutableArray*)_locations) addObject: [NSArray arrayWithObjects:site_index, drive_index, nil]];
+                }
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOCATIONS_LOADED object:nil userInfo:nil];
+
+        } else {
+            NSLog(@"Brown alert: Unexpected nil response from locations.");
+        }
+        
+        if (connectionError) {
+            NSLog(@"Error: %@", connectionError);
+        }
+    }];
+    return _locations;
 }
 
 @end

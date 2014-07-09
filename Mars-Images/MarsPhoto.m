@@ -51,9 +51,11 @@
 }
 
 - (BOOL) includedInMosaic {
-    return ([_note.title rangeOfString:@"Navcam"].location != NSNotFound ||
-            [_note.title rangeOfString:@"Mastcam"].location != NSNotFound ||
-            [_note.title rangeOfString:@"Pancam"].location != NSNotFound);
+    return ([_note.title rangeOfString:@"Navcam"].location != NSNotFound
+//           || [_note.title rangeOfString:@"Mastcam"].location != NSNotFound
+//           || [_note.title rangeOfString:@"Pancam"].location != NSNotFound
+            );
+    //TODO include these when texture memory can be managed effectively
 }
 
 - (void)performLoadUnderlyingImageAndNotify {

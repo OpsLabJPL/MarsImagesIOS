@@ -1,6 +1,6 @@
 // The MIT License
 //
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,57 +22,53 @@
 
 #import "GRMustacheTemplateOverride_private.h"
 #import "GRMustacheTemplate_private.h"
-#import "GRMustacheRuntime_private.h"
+#import "GRMustacheContext_private.h"
 
 @interface GRMustacheTemplateOverride()
-- (id)initWithTemplate:(GRMustacheTemplate *)template innerElements:(NSArray *)innerElements;
+- (id)initWithTemplate:(GRMustacheTemplate *)template components:(NSArray *)components;
 @end
 
 @implementation GRMustacheTemplateOverride
 @synthesize template=_template;
 
-+ (id)templateOverrideWithTemplate:(GRMustacheTemplate *)template innerElements:(NSArray *)innerElements
++ (instancetype)templateOverrideWithTemplate:(GRMustacheTemplate *)template components:(NSArray *)components
 {
-    return [[[self alloc] initWithTemplate:template innerElements:innerElements] autorelease];
+    return [[[self alloc] initWithTemplate:template components:components] autorelease];
 }
 
 - (void)dealloc
 {
     [_template release];
-    [_innerElements release];
+    [_components release];
     [super dealloc];
 }
 
-#pragma mark - GRMustacheRenderingElement
+#pragma mark - GRMustacheTemplateComponent
 
-- (void)renderInBuffer:(NSMutableString *)buffer withRuntime:(GRMustacheRuntime *)runtime
+- (BOOL)renderContentType:(GRMustacheContentType)requiredContentType inBuffer:(NSMutableString *)buffer withContext:(GRMustacheContext *)context error:(NSError **)error
 {
-    runtime = [runtime runtimeByAddingTemplateOverride:self];
-    [_template renderInBuffer:buffer withRuntime:runtime];
+    context = [context contextByAddingTemplateOverride:self];
+    return [_template renderContentType:requiredContentType inBuffer:buffer withContext:context error:error];
 }
 
-- (BOOL)isOverridable
+- (id<GRMustacheTemplateComponent>)resolveTemplateComponent:(id<GRMustacheTemplateComponent>)component
 {
-    return NO;
-}
-
-- (id<GRMustacheRenderingElement>)resolveOverridableRenderingElement:(id<GRMustacheRenderingElement>)element
-{
-    for (id<GRMustacheRenderingElement> innerElement in _innerElements) {
-        element = [innerElement resolveOverridableRenderingElement:element];
+    // look for the last overriding component in inner components
+    for (id<GRMustacheTemplateComponent> innerComponent in _components) {
+        component = [innerComponent resolveTemplateComponent:component];
     }
-    return element;
+    return component;
 }
 
 
 #pragma mark - Private
 
-- (id)initWithTemplate:(GRMustacheTemplate *)template innerElements:(NSArray *)innerElements
+- (id)initWithTemplate:(GRMustacheTemplate *)template components:(NSArray *)components
 {
     self = [super init];
     if (self) {
         _template = [template retain];
-        _innerElements = [innerElements retain];
+        _components = [components retain];
     }
     return self;
 }

@@ -114,10 +114,7 @@
                                  userInfo:nil];
 }
 
-- (Quaternion*) localLevelQuaternion: (int) site_index
-                               drive: (int) drive_index {
-    Quaternion* q = [[Quaternion alloc] init];
-    
+- (NSArray*) siteLocationData: (int) site_index {
     NSURL* siteUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/locations/site_%06d.csv", [self urlPrefix], site_index]];
     NSURLRequest *request = [NSURLRequest requestWithURL:siteUrl];
     NSHTTPURLResponse *response = nil;
@@ -126,18 +123,30 @@
                                                  returningResponse: &response
                                                              error: &error];
     if (response) {
-        NSArray *rows = [[NSString stringWithUTF8String:[responseData bytes]] CSVComponents];
-        for (NSArray* row in rows) {
-            if ([row count] >= 5 && [[row objectAtIndex:0] integerValue] == drive_index) {
-                q.w = [[row objectAtIndex:1] doubleValue];
-                q.x = [[row objectAtIndex:2] doubleValue];
-                q.y = [[row objectAtIndex:3] doubleValue];
-                q.z = [[row objectAtIndex:4] doubleValue];
-                break;
-            }
+        NSString *csvString = [[NSString alloc] initWithBytes:[responseData bytes] length:[responseData length] encoding:NSASCIIStringEncoding];
+        NSArray *rows = [csvString CSVComponents];
+        if ([rows count] <= 0)
+            NSLog(@"Brown alert: no quaternions for site %d", site_index);
+        return rows;
+    }
+    if (error) {
+        NSLog(@"Brown alert: %@", error);
+    }
+    return nil;
+}
+
+- (Quaternion*) localLevelQuaternion: (int) site_index
+                               drive: (int) drive_index {
+    Quaternion* q = [[Quaternion alloc] init];
+    NSArray* locations = [self siteLocationData:site_index];
+    for (NSArray* location in locations) {
+        if ([location count] >= 5 && [[location objectAtIndex:0] integerValue] == drive_index) {
+            q.w = [[location objectAtIndex:1] doubleValue];
+            q.x = [[location objectAtIndex:2] doubleValue];
+            q.y = [[location objectAtIndex:3] doubleValue];
+            q.z = [[location objectAtIndex:4] doubleValue];
+            break;
         }
-    } else if (error) {
-        NSLog(@"Error: %@", error);
     }
     return q;
 }

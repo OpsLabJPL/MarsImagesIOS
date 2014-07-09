@@ -20,6 +20,7 @@
 #define BEGIN_NOTE_LOADING @"beginNoteLoading"
 #define END_NOTE_LOADING   @"endNoteLoading"
 #define NUM_NOTES_RETURNED @"numNotesReturned"
+#define LOCATIONS_LOADED   @"locationsLoaded"
 
 #define OPPY_NOTEBOOK_ID   @"a7271bf8-0b06-495a-bb48-7c0c7af29f70"
 #define MSL_NOTEBOOK_ID    @"0296f732-694d-4ccd-9f5b-5983dc98b9e0"
@@ -43,6 +44,7 @@
 @property(nonatomic, strong) NSArray*      notesArray;
 @property(nonatomic, strong) NSArray*      notePhotosArray;
 @property(nonatomic, strong) NSString*     searchWords;
+@property(nonatomic, strong) NSArray*      locations;
 
 + (MarsImageNotebook*) instance;
 
@@ -70,6 +72,10 @@
 
 + (EDAMNote*) reorderResources: (EDAMNote*) note;
 
-- (NSArray*) getLatestRMC;
+- (NSArray*) getNearestRMC;
+- (NSArray*) getPreviousRMC: (NSArray*) rmc;
+- (NSArray*) getNextRMC: (NSArray*) rmc;
+
+- (NSArray*) getLocations;
 
 @end

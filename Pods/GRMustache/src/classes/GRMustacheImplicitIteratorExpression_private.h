@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,9 @@
 
 /**
  * The GRMustacheImplicitIteratorExpression is able to return the current
- * context object of a runtime.
+ * context object of a rendering context.
  *
- * @see GRMustacheRuntime
+ * @see GRMustacheContext
  * @see GRMustacheExpression
  */
 @interface GRMustacheImplicitIteratorExpression : GRMustacheExpression
@@ -34,10 +34,10 @@
 /**
  * Returns an "implicit iterator" expression.
  *
- * For instance, the Mustache tag `{{ . }}` contains an implicit iterator
+ * For example, the Mustache tag `{{ . }}` contains an implicit iterator
  * expression.
  *
  * @return A GRMustacheImplicitIteratorExpression.
  */
-+ (id)expression GRMUSTACHE_API_INTERNAL;
++ (instancetype)expression GRMUSTACHE_API_INTERNAL;
 @end

@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,11 @@
 #import <Foundation/Foundation.h>
 #import "GRMustacheAvailabilityMacros_private.h"
 
+@protocol GRMustacheRendering;
+@class GRMustacheTag;
+@class GRMustacheContext;
+@class GRMustacheTemplateRepository;
+
 // Documented in GRMustache.h
 typedef struct {
     int major;
@@ -37,5 +42,27 @@ typedef struct {
 
 // Documented in GRMustache.h
 + (void)preventNSUndefinedKeyExceptionAttack GRMUSTACHE_API_PUBLIC;
+
+// Documented in GRMustache.h
++ (NSObject *)standardLibrary GRMUSTACHE_API_PUBLIC;
+
+// Documented in GRMustache.h
++ (id<GRMustacheRendering>)renderingObjectForObject:(id)object GRMUSTACHE_API_PUBLIC;
+
+// Documented in GRMustache.h
++ (id<GRMustacheRendering>)renderingObjectWithBlock:(NSString *(^)(GRMustacheTag *tag, GRMustacheContext *context, BOOL *HTMLSafe, NSError **error))block GRMUSTACHE_API_PUBLIC;
+
+/**
+ * Returns the HTML-escaped version of the string parameter.
+ *
+ * Characters & < > " ' are escaped to &amp; &lt; &gt; &quot; &apos;
+ * respectively.
+ *
+ * Be cautious with mutable string input: this method may return its input.
+ *
+ * @param string  The string to be HTML-escaped
+ * @return An HTML-escaped string
+ */
++ (NSString *)escapeHTML:(NSString *)string;
 
 @end

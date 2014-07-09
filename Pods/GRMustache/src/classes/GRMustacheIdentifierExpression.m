@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 #import "GRMustacheIdentifierExpression_private.h"
-#import "GRMustacheRuntime_private.h"
+#import "GRMustacheContext_private.h"
 
 @interface GRMustacheIdentifierExpression()
 @property (nonatomic, copy) NSString *identifier;
@@ -32,7 +32,7 @@
 @implementation GRMustacheIdentifierExpression
 @synthesize identifier=_identifier;
 
-+ (id)expressionWithIdentifier:(NSString *)identifier
++ (instancetype)expressionWithIdentifier:(NSString *)identifier
 {
     return [[[self alloc] initWithIdentifier:identifier] autorelease];
 }
@@ -63,13 +63,12 @@
 
 #pragma mark - GRMustacheExpression
 
-- (id)evaluateInRuntime:(GRMustacheRuntime *)runtime asFilterValue:(BOOL)filterValue
+- (BOOL)hasValue:(id *)value withContext:(GRMustacheContext *)context protected:(BOOL *)protected error:(NSError **)error
 {
-    if (filterValue) {
-        return [runtime filterValueForKey:_identifier];
-    } else {
-        return [runtime contextValueForKey:_identifier];
+    if (value != NULL) {
+        *value = [context valueForMustacheKey:_identifier protected:protected];
     }
+    return YES;
 }
 
 @end

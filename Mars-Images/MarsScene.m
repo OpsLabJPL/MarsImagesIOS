@@ -9,21 +9,22 @@
 #import "MarsScene.h"
 
 #import "CameraModel.h"
+#import "CHCSVParser.h"
 #import "ImageUtility.h"
 #import "MarsImageNotebook.h"
 #import "MarsPhoto.h"
 #import "Math.h"
-#import "SceneMesh.h"
+#import "MosaicViewController.h"
+
+#define COMPASS_HEIGHT -2.0
+#define COMPASS_RADIUS 0.5
 
 @implementation MarsScene
 
 static const double x_axis[] = X_AXIS;
 static const double z_axis[] = Z_AXIS;
 
-static dispatch_queue_t noteDownloadQueue = nil;
-
-int site_index;
-int drive_index;
+static dispatch_queue_t downloadQueue = nil;
 
 - (id) init {
     self = [super init];
@@ -31,26 +32,41 @@ int drive_index;
     if (self) {
         _photoQuads = [[NSMutableDictionary alloc] init];
         _photoTextures = [[NSMutableDictionary alloc] init];
+
+        float textureCoords[] = { 0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f };
+        GLfloat vertPointer[] = { -COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS, COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS, COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS, -COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS };
+        _compassQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
+        UIImage* image = [UIImage imageNamed:@"znz.png"];
+        image = [ImageUtility resizeToValidTexture:image];
+        CGImageRef imageRef = [image CGImage];
+        NSError* error = nil;
+        _compassTextureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:&error];
+
+        if (error) {
+            NSLog(@"Unable to make texture for compass, because %@", error);
+            [ImageUtility imageDump:image];
+        }
     }
     
-    if (noteDownloadQueue == nil)
-        noteDownloadQueue = dispatch_queue_create("mosaic note downloader", DISPATCH_QUEUE_SERIAL);
+    if (downloadQueue == nil)
+        downloadQueue = dispatch_queue_create("mosaic note downloader", DISPATCH_QUEUE_SERIAL);
     
     return self;
 }
 
-- (void) addImagesToScene {
-    
-    NSArray* latestRMC = [[MarsImageNotebook instance] getLatestRMC];
-    
-    site_index = [[latestRMC objectAtIndex:0] integerValue];
-    drive_index = [[latestRMC objectAtIndex:1] integerValue];
-    
+- (void) addImagesToScene: (NSArray*) rmc {
+    _rmc = rmc;
+    id<MarsRover> mission = [MarsImageNotebook instance].mission;
+    site_index = [[rmc objectAtIndex:0] intValue];
+    drive_index = [[rmc objectAtIndex:1] intValue];
+    NSLog(@"RMC is %d,%d", site_index, drive_index);
+    qLL = [mission localLevelQuaternion:site_index drive:drive_index];
+    NSLog(@"Quaternion: %@", qLL);
     [MarsImageNotebook instance].searchWords = [NSString stringWithFormat:@"RMC %06d-%06d", site_index, drive_index];
     [[MarsImageNotebook instance] reloadNotes]; //rely on the resultant note load notifications to populate images in the scene
 }
 
-- (void) notesLoaded: (NSNotification*) notification {
+- (void) notesLoaded: (NSNotification*) notification {   
     int numNotesReturned = 0;
     NSNumber* num = [notification.userInfo objectForKey:NUM_NOTES_RETURNED];
     if (num != nil) {
@@ -59,9 +75,9 @@ int drive_index;
     if (numNotesReturned > 0)
         [[MarsImageNotebook instance] loadMoreNotes:[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
     else {
-        dispatch_async(noteDownloadQueue, ^{
-            id<MarsRover> mission = [MarsImageNotebook instance].mission;
-            Quaternion* qLL = [mission localLevelQuaternion:site_index drive:drive_index];
+        //when there are no more notes returned, we have all images for this location: add them to the scene
+        dispatch_async(downloadQueue, ^{
+
             NSArray* notesForRMC = [[MarsImageNotebook instance] notePhotosArray];
             
             for (MarsPhoto* photo in notesForRMC) {
@@ -78,7 +94,7 @@ int drive_index;
                 id<Model> model = [CameraModel model:model_json];
                 NSArray* origin = [CameraModel origin:model_json];
                 
-                [self getImageVertices:model origin:origin attitude:qLL vertices:vertPointer];
+                [self getImageVertices:model origin:origin vertices:vertPointer];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
@@ -93,11 +109,14 @@ int drive_index;
                     }
                 });
             }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [((MosaicViewController*)_viewController) hideHud];
+            });
         });
     }
 }
 
-- (void) drawImages: (GLKBaseEffect*) baseEffect{
+- (void) drawImages: (GLKBaseEffect*) baseEffect {
     for (NSString* title in _photoQuads) {
         SceneMesh* imageQuad = [_photoQuads objectForKey:title];
         GLKTextureInfo* textureInfo = [_photoTextures objectForKey:title];
@@ -115,13 +134,33 @@ int drive_index;
     }
 }
 
+- (void) drawCompass: (GLKBaseEffect*) baseEffect {
+    if (_compassTextureInfo) {
+        baseEffect.texture2d0.name = _compassTextureInfo.name;
+        baseEffect.texture2d0.target = _compassTextureInfo.target;
+        [baseEffect prepareToDraw];
+        [_compassQuad prepareToDraw];
+        [_compassQuad drawUnindexedWithMode:GL_TRIANGLE_FAN startVertexIndex:0 numberOfVertices:4];
+        GLenum error = glGetError();
+        if (GL_NO_ERROR != error) {
+            NSLog(@"GL Error: 0x%x", error);
+        }
+    }
+}
+
 - (void) deleteImages {
     [_photoQuads removeAllObjects];
+    for (id key in [_photoTextures keyEnumerator]) {
+        GLKTextureInfo* texInfo = [_photoTextures objectForKey:key];
+        GLuint textureName = texInfo.name;
+        glDeleteTextures(1, &textureName);
+    }
+    [_photoTextures removeAllObjects];
+    NSLog(@"textures deleted");
 }
 
 - (GLfloat*) getImageVertices: (id<Model>) model
                        origin: (NSArray*) origin
-                     attitude: (Quaternion*) qLL
                      vertices: (GLfloat*) vertices {
     
     id<MarsRover> mission = [MarsImageNotebook instance].mission;
@@ -231,14 +270,15 @@ int drive_index;
             image = [ImageUtility grayscale:image];
         }
         image = [ImageUtility resizeToValidTexture:image];
-//        [ImageUtility imageDump:image];
         CGImageRef imageRef = [image CGImage];
-        GLKTextureInfo* textureInfo = [GLKTextureLoader
-                                       textureWithCGImage:imageRef options:nil error:NULL];
+        NSError* error = nil;
+        GLKTextureInfo* textureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:&error];
         if (textureInfo) {
             [_photoTextures setObject:textureInfo forKey:title];
-        } else {
-            NSLog(@"Unable to make texture for %@", title);
+        }
+        if (error) {
+            NSLog(@"Unable to make texture for %@, because %@", title, error);
+            [ImageUtility imageDump:image];
         }
     }
 }

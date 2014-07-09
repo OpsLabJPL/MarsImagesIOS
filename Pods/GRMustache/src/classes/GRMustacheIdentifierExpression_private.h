@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 /**
  * The GRMustacheIdentifierExpression is able to perform the deep lookup of an
- * identifier in a runtime.
+ * identifier in a rendering context.
  *
  * @see GRMustacheExpression
  */
@@ -36,12 +36,12 @@
 /**
  * Returns an identifier expression, given an identifier.
  *
- * For instance, the Mustache tag `{{ name }}` contains an identifier
+ * For example, the Mustache tag `{{ name }}` contains an identifier
  * expression, whose identifier is `name`.
  *
  * @param identifier  An identifier
  *
  * @return A GRMustacheIdentifierExpression.
  */
-+ (id)expressionWithIdentifier:(NSString *)identifier GRMUSTACHE_API_INTERNAL;
++ (instancetype)expressionWithIdentifier:(NSString *)identifier GRMUSTACHE_API_INTERNAL;
 @end

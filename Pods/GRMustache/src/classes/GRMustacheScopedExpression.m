@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2012 Gwendal Roué
+// Copyright (c) 2013 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,8 @@
 // THE SOFTWARE.
 
 #import "GRMustacheScopedExpression_private.h"
-#import "GRMustacheRuntime_private.h"
-#import "GRMustacheRuntime_private.h"
+#import "GRMustacheContext_private.h"
+#import "GRMustacheContext_private.h"
 
 @interface GRMustacheScopedExpression()
 @property (nonatomic, retain) GRMustacheExpression *baseExpression;
@@ -35,7 +35,7 @@
 @synthesize baseExpression=_baseExpression;
 @synthesize scopeIdentifier=_scopeIdentifier;
 
-+ (id)expressionWithBaseExpression:(GRMustacheExpression *)baseExpression scopeIdentifier:(NSString *)scopeIdentifier
++ (instancetype)expressionWithBaseExpression:(GRMustacheExpression *)baseExpression scopeIdentifier:(NSString *)scopeIdentifier
 {
     return [[[self alloc] initWithBaseExpression:baseExpression scopeIdentifier:scopeIdentifier] autorelease];
 }
@@ -77,10 +77,20 @@
 
 #pragma mark - GRMustacheExpression
 
-- (id)evaluateInRuntime:(GRMustacheRuntime *)runtime asFilterValue:(BOOL)filterValue
+- (BOOL)hasValue:(id *)value withContext:(GRMustacheContext *)context protected:(BOOL *)protected error:(NSError **)error
 {
-    id scopedValue = [_baseExpression evaluateInRuntime:runtime asFilterValue:filterValue];
-    return [GRMustacheRuntime valueForKey:_scopeIdentifier inObject:scopedValue];
+    id scopedValue;
+    if (![_baseExpression hasValue:&scopedValue withContext:context protected:NULL error:error]) {
+        return NO;
+    }
+    
+    if (protected != NULL) {
+        *protected = NO;
+    }
+    if (value) {
+        *value = [GRMustacheContext valueForKey:_scopeIdentifier inObject:scopedValue];
+    }
+    return YES;
 }
 
 @end

@@ -10,22 +10,23 @@
 #import "RMTileSource.h"
 
 @interface S3TileSource : NSObject<RMTileSource>
-
+{
+    double upperLeftLat;
+    double upperLeftLon;
+    double lowerRightLat;
+    double lowerRightLon;
+}
 @property (strong, nonatomic) NSURL* s3url;
-@property (strong, nonatomic) NSNumber* upperLeftLat;
-@property (strong, nonatomic) NSNumber* upperLeftLon;
-@property (strong, nonatomic) NSNumber* lowerRightLat;
-@property (strong, nonatomic) NSNumber* lowerRightLon;
 
 @property (nonatomic, strong) NSMutableDictionary* imageCache;
 
 - (id)initWithTileSetURL:(NSURL*)tileSetURL
-                 minZoom:(NSNumber*)minZoom
-                 maxZoom:(NSNumber*)maxZoom
-            upperLeftLat:(NSNumber*)upperLeftLat
-            upperLeftLon:(NSNumber*)upperLeftLon
-           lowerRightLat:(NSNumber*)lowerRightLat
-           lowerRightLon:(NSNumber*)lowerRightLon;
+                 minZoom:(int)zoomMin
+                 maxZoom:(int)zoomMax
+            upperLeftLat:(double)ulLat
+            upperLeftLon:(double)ulLon
+           lowerRightLat:(double)lrLat
+           lowerRightLon:(double)lrLon;
 
 - (void)cancelAllDownloads;
 - (UIImage *)imageForTile:(RMTile)tile inCache:(RMTileCache *)tileCache;
