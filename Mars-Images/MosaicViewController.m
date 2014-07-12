@@ -78,7 +78,13 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [((AGLKContext *)view.context) enable:GL_DEPTH_TEST];
     [((AGLKContext *)view.context) enable:GL_CULL_FACE];
     [((AGLKContext *)view.context) enable:GL_BLEND];
-    
+#if TARGET_IPHONE_SIMULATOR
+    //Simulator
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+#else
+    //device
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+#endif
     glDepthMask(GL_TRUE);
     
     NSArray* rmc = [[MarsImageNotebook instance] getNearestRMC];
@@ -106,6 +112,11 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [_segmentedControl addTarget:self action:@selector(segmentedControlButtonPressed:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = _segmentedControl;
 
+    //we are initially at the most recent location, don't allow user to go forward
+    NSArray* nextRMC = [[MarsImageNotebook instance] getNextRMC:rmc];
+    if (nextRMC == nil) {
+        [_segmentedControl setEnabled:NO forSegmentAtIndex:FORWARD_BUTTON];
+    }
 }
 
 - (void) defaultsChanged:(id)sender {
@@ -117,19 +128,40 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
         case BACK_BUTTON: {
             [_scene deleteImages];
             NSArray* prevRMC = [[MarsImageNotebook instance] getPreviousRMC: _scene.rmc];
-            if (prevRMC)
+            if (prevRMC) {
+                //update HUD controls and display
+                NSArray* oneMorePrevRmc = [[MarsImageNotebook instance] getPreviousRMC:prevRMC];
+                [_segmentedControl setEnabled:YES forSegmentAtIndex:FORWARD_BUTTON];
+                if (!oneMorePrevRmc) {
+                    [_segmentedControl setEnabled:NO forSegmentAtIndex:BACK_BUTTON];
+                }
+                [_hud show:YES];
+                
+                //load new image mosaic
                 [_scene addImagesToScene: prevRMC];
+            }
             break;
         }
         case FORWARD_BUTTON: {
             [_scene deleteImages];
             NSArray* nextRMC = [[MarsImageNotebook instance] getNextRMC: _scene.rmc];
-            if (nextRMC)
+            if (nextRMC) {
+                //update HUD controls and display
+                NSArray* oneMoreNextRmc = [[MarsImageNotebook instance] getNextRMC:nextRMC];
+                [_segmentedControl setEnabled:YES forSegmentAtIndex:BACK_BUTTON];
+                if (!oneMoreNextRmc) {
+                    [_segmentedControl setEnabled:NO forSegmentAtIndex:FORWARD_BUTTON];
+                }
+                [_hud show:YES];
+                
+                //load new image mosaic
                 [_scene addImagesToScene: nextRMC];
+            }
             break;
         }
     }
 }
+
 - (void) setupRotationScroller {
     _rotationScroller = [[InfiniteScrollView alloc] initWithFrame:self.view.bounds];
 
@@ -165,7 +197,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 
     [_scene drawImages: _baseEffect];
     
-//    [_scene drawCompass: _baseEffect]; //TODO make this look good
+    [_scene drawCompass: _baseEffect];
     
     GLenum error = glGetError();
     if (GL_NO_ERROR != error) {
@@ -234,9 +266,10 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [AGLKContext setCurrentContext:view.context];
     
     [_scene deleteImages];
-
-    ((GLKView*)self.view).context = nil;
-    [EAGLContext setCurrentContext:nil];
+    [_scene addImagesToScene:_scene.rmc];
+    
+//    ((GLKView*)self.view).context = nil;
+//    [EAGLContext setCurrentContext:nil];
 }
 
 - (void) handleMWPhotoLoadingDidEndNotification: (NSNotification *)notification {

@@ -78,4 +78,6 @@
 
 - (NSArray*) getLocations;
 
+- (void) defaultsChanged:(id)sender;
+
 @end

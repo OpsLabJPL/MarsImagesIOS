@@ -27,10 +27,12 @@
     double lowerRightLon;
     int mapPixelWidth;
     int mapPixelHeight;
+    int latestSiteIndex;
 }
 
 @property (strong, nonatomic) NSString* tileSetUrl;
 @property (strong, nonatomic) RMMapView* mapView;
+@property (strong, nonatomic) RMShapeAnnotation* traversePath;
 
 - (void) loadLatestTraversePath;
 - (void) parseMapMetadata;

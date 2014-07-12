@@ -49,7 +49,6 @@
 		4A82D51418A68DA700A6F2BE /* ImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A82D51318A68DA700A6F2BE /* ImageUtility.m */; };
 		4A82D53618A85DB000A6F2BE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A82D53518A85DB000A6F2BE /* CoreMotion.framework */; };
 		4A82D53818A85DBC00A6F2BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A82D53718A85DBC00A6F2BE /* CoreLocation.framework */; };
-		4A88FD76196BAF5F0090DB69 /* znz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A88FD75196BAF5F0090DB69 /* znz.jpg */; };
 		4A88FD78196BB6BE0090DB69 /* znz.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A88FD77196BB6BE0090DB69 /* znz.png */; };
 		4A8DFF4517C9748B0060D73C /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8DFF4417C9748B0060D73C /* 103-map@2x.png */; };
 		4A909B85187E59B40040017C /* MarsImageCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A909B84187E59B40040017C /* MarsImageCaptionView.m */; };
@@ -57,6 +56,7 @@
 		4A909B89187E6F910040017C /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B87187E6F910040017C /* clock@2x.png */; };
 		4A909B8C187E75110040017C /* rovericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B8A187E75110040017C /* rovericon.png */; };
 		4A909B8D187E75110040017C /* rovericon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B8B187E75110040017C /* rovericon@2x.png */; };
+		4A9928C61970520200BB9200 /* compassthing.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9928C51970520200BB9200 /* compassthing.png */; };
 		4A9F46451773CDDF00F8D689 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9F46441773CDDF00F8D689 /* 103-map.png */; };
 		4AA1D531192DB1BB007A3E4D /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1D530192DB1BB007A3E4D /* Quaternion.m */; };
 		4AAFF47D196A5F94004B93C8 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AAFF47B196A5F94004B93C8 /* left_arrow.png */; };
@@ -85,6 +85,8 @@
 		4ACFF6CA174C7E6B004F5D46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A39DFD016595943001FFD0C /* QuartzCore.framework */; };
 		4ACFF6CB174C7E7E004F5D46 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC5DDB216588F3C00A79555 /* Security.framework */; };
 		4AFC33A51861274F000C1F32 /* icon_list_bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC33A41861274F000C1F32 /* icon_list_bullets.png */; };
+		4AFCBC2B196E1D4E00172409 /* panorama_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCBC29196E1D4E00172409 /* panorama_icon.png */; };
+		4AFCBC2C196E1D4E00172409 /* panorama_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCBC2A196E1D4E00172409 /* panorama_icon@2x.png */; };
 		7409D9236771481BBCE7B2C2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA33E0049F041F884F26C22 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -172,7 +174,6 @@
 		4A82D51518A69E1700A6F2BE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		4A82D53518A85DB000A6F2BE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		4A82D53718A85DBC00A6F2BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		4A88FD75196BAF5F0090DB69 /* znz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = znz.jpg; sourceTree = "<group>"; };
 		4A88FD77196BB6BE0090DB69 /* znz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = znz.png; sourceTree = "<group>"; };
 		4A8DFF4417C9748B0060D73C /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
 		4A909B83187E59B40040017C /* MarsImageCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsImageCaptionView.h; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		4A909B87187E6F910040017C /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		4A909B8A187E75110040017C /* rovericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rovericon.png; sourceTree = "<group>"; };
 		4A909B8B187E75110040017C /* rovericon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rovericon@2x.png"; sourceTree = "<group>"; };
+		4A9928C51970520200BB9200 /* compassthing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compassthing.png; sourceTree = "<group>"; };
 		4A9F46441773CDDF00F8D689 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
 		4AA1D52F192DB1BB007A3E4D /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		4AA1D530192DB1BB007A3E4D /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
@@ -218,6 +220,8 @@
 		4ACFF6C7174C3344004F5D46 /* MarsTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsTime.m; sourceTree = "<group>"; };
 		4AF6CC01194CC41A00271191 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4AFC33A41861274F000C1F32 /* icon_list_bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_bullets.png; sourceTree = "<group>"; };
+		4AFCBC29196E1D4E00172409 /* panorama_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panorama_icon.png; sourceTree = "<group>"; };
+		4AFCBC2A196E1D4E00172409 /* panorama_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@2x.png"; sourceTree = "<group>"; };
 		89E3F90FB5D84A0C9DAD6505 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FCA33E0049F041F884F26C22 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -411,7 +415,9 @@
 		4AC5DD04165864F400A79555 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4A88FD75196BAF5F0090DB69 /* znz.jpg */,
+				4A9928C51970520200BB9200 /* compassthing.png */,
+				4AFCBC29196E1D4E00172409 /* panorama_icon.png */,
+				4AFCBC2A196E1D4E00172409 /* panorama_icon@2x.png */,
 				4A88FD77196BB6BE0090DB69 /* znz.png */,
 				4AAFF481196B9CEC004B93C8 /* black_background.png */,
 				4AAFF47F196A60CF004B93C8 /* global.png */,
@@ -548,10 +554,10 @@
 				4AC5DD17165864F400A79555 /* MainStoryboard_iPhone.storyboard in Resources */,
 				4AC5DD1A165864F400A79555 /* MainStoryboard_iPad.storyboard in Resources */,
 				4AAFF482196B9CEC004B93C8 /* black_background.png in Resources */,
-				4A88FD76196BAF5F0090DB69 /* znz.jpg in Resources */,
 				4A909B8D187E75110040017C /* rovericon@2x.png in Resources */,
 				4A33C820187A21C900EC0D81 /* SearchResultTableCellView.xib in Resources */,
 				4A13755A18AAE03900C7B8E0 /* clearbackground.png in Resources */,
+				4AFCBC2C196E1D4E00172409 /* panorama_icon@2x.png in Resources */,
 				4AAFF47D196A5F94004B93C8 /* left_arrow.png in Resources */,
 				4A39DFA41658B8DB001FFD0C /* Settings.bundle in Resources */,
 				4A88FD78196BB6BE0090DB69 /* znz.png in Resources */,
@@ -562,6 +568,8 @@
 				4A11FB6A17BC4BCE00439C1E /* README.md in Resources */,
 				4A61959F17C4640700036B16 /* LICENSE in Resources */,
 				4A8DFF4517C9748B0060D73C /* 103-map@2x.png in Resources */,
+				4AFCBC2B196E1D4E00172409 /* panorama_icon.png in Resources */,
+				4A9928C61970520200BB9200 /* compassthing.png in Resources */,
 				4A909B88187E6F910040017C /* clock.png in Resources */,
 				4ABF33771863A327001C9AE8 /* placeholder.png in Resources */,
 				4AAFF47E196A5F94004B93C8 /* right_arrow.png in Resources */,

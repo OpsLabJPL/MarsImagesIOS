@@ -16,8 +16,8 @@
 #import "Math.h"
 #import "MosaicViewController.h"
 
-#define COMPASS_HEIGHT -2.0
-#define COMPASS_RADIUS 0.5
+#define COMPASS_HEIGHT 0.5
+#define COMPASS_RADIUS 5
 
 @implementation MarsScene
 
@@ -33,11 +33,14 @@ static dispatch_queue_t downloadQueue = nil;
         _photoQuads = [[NSMutableDictionary alloc] init];
         _photoTextures = [[NSMutableDictionary alloc] init];
 
-        float textureCoords[] = { 0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f };
-        GLfloat vertPointer[] = { -COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS, COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS, COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS, -COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS };
+        float textureCoords[] = { 0.f, 0.f, 0.f, 1.f, 1.f, 1.f, 1.f, 0.f };
+        GLfloat vertPointer[] = {
+            COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS,
+            -COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS,
+            -COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS,
+            COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS };
         _compassQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
-        UIImage* image = [UIImage imageNamed:@"znz.png"];
-        image = [ImageUtility resizeToValidTexture:image];
+        UIImage* image = [UIImage imageNamed:@"compassthing.png"];
         CGImageRef imageRef = [image CGImage];
         NSError* error = nil;
         _compassTextureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:&error];

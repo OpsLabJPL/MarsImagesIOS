@@ -13,11 +13,13 @@
 
 @interface MapViewController ()
     @property (nonatomic, strong) NSMutableArray *points;
+    @property (nonatomic, strong) NSMutableDictionary *rmcsForPoints;
 @end
 
 @implementation MapViewController
 
 static dispatch_queue_t mapDownloadQueue = nil;
+bool viewControllerIsClosing = NO;
 
 + (void) initialize {
     mapDownloadQueue = dispatch_queue_create("map downloader", DISPATCH_QUEUE_SERIAL);
@@ -32,6 +34,7 @@ static dispatch_queue_t mapDownloadQueue = nil;
 }
 
 - (void) viewDidLoad {
+    viewControllerIsClosing = NO;
     [self parseMapMetadata];
     [self loadLatestTraversePath];
     S3TileSource *source = [[S3TileSource alloc] initWithTileSetURL:[NSURL URLWithString:_tileSetUrl]
@@ -58,6 +61,10 @@ static dispatch_queue_t mapDownloadQueue = nil;
     [super viewWillAppear:animated];
 }
 
+- (void) viewWillDisappear:(BOOL)animated {
+    viewControllerIsClosing = YES;
+}
+
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     //these set statements have to be here...they don't work in viewDidLoad, either before or after adding the view to the hierarchy. Quirky.
@@ -65,15 +72,71 @@ static dispatch_queue_t mapDownloadQueue = nil;
     [_mapView setMaxZoom:maxZoom];
     [_mapView setZoom:maxZoom-2];
     
-    RMShapeAnnotation *traversePath = [[RMShapeAnnotation alloc] initWithMapView:_mapView points:_points];
-    [_mapView addAnnotation:traversePath];
-    
+    _traversePath = [[RMShapeAnnotation alloc] initWithMapView:_mapView points:_points];
+    [_mapView addAnnotation:_traversePath];
+    int i = 0;
+    RMPointAnnotation* lastMarker = nil;
+    int lastIndex = [_points count]-1;
     for (CLLocation* loc in _points) {
+        NSString* title = nil;
+        if (i == lastIndex) {
+            title = [MarsImageNotebook instance].missionName;
+        }
         RMPointAnnotation *locationMarker = [[RMPointAnnotation alloc] initWithMapView:_mapView
                                                                             coordinate:CLLocationCoordinate2DMake(loc.coordinate.latitude, loc.coordinate.longitude)
-                                                                              andTitle:nil];
+                                                                              andTitle:title];
+        locationMarker.userInfo = [_rmcsForPoints objectForKey:[NSNumber numberWithInt:i]];
         [_mapView addAnnotation:locationMarker];
+        lastMarker = locationMarker;
+        i += 1;
     }
+    
+    dispatch_async(mapDownloadQueue, ^{
+        int siteIndex = latestSiteIndex-1;
+        CLLocation *firstPointOfNextSite = [_traversePath.points objectAtIndex:0];
+        while (siteIndex > 0) {
+            if (viewControllerIsClosing) {
+                return;
+            }
+            NSLog(@"Loading map markers for site %d", siteIndex);
+            NSArray* locations = [[[MarsImageNotebook instance] mission] siteLocationData:siteIndex];
+            NSMutableArray* pts = [[NSMutableArray alloc] init];
+            NSMutableArray* markers = [[NSMutableArray alloc] init];
+            for (NSArray* location in locations) {
+                if ([location count] >= 7) {
+                    int driveIndex = [[location objectAtIndex:0] intValue];
+                    double mapPixelH = [[location objectAtIndex:5] doubleValue];
+                    double mapPixelV = [[location objectAtIndex:6] doubleValue];
+                    CLLocationCoordinate2D latLon = CLLocationCoordinate2DMake(
+                                                                               upperLeftLat + (mapPixelV/mapPixelHeight) * (lowerLeftLat-upperLeftLat),
+                                                                               upperLeftLon + (mapPixelH/mapPixelWidth) * (upperRightLon-upperLeftLon));
+                    CLLocation *loc = [[CLLocation alloc] initWithLatitude:latLon.latitude longitude:latLon.longitude];
+                    RMPointAnnotation *locationMarker = [[RMPointAnnotation alloc] initWithMapView:_mapView
+                                                                                        coordinate:CLLocationCoordinate2DMake(loc.coordinate.latitude, loc.coordinate.longitude)
+                                                                                          andTitle:nil];
+                    locationMarker.userInfo = [NSArray arrayWithObjects:[NSNumber numberWithInt:siteIndex], [NSNumber numberWithInt:driveIndex], nil];
+                    [markers addObject:locationMarker];
+                    [pts addObject:loc];
+                }
+            }
+
+            if ([pts count] > 0) {
+                [pts addObject:firstPointOfNextSite];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (viewControllerIsClosing) {
+                        return;
+                    }
+                    for (RMPointAnnotation* locationMarker in markers) {
+                        [_mapView addAnnotation:locationMarker];
+                    }
+                    [_mapView addAnnotation:[[RMShapeAnnotation alloc] initWithMapView:_mapView points:pts]];
+                });
+                firstPointOfNextSite = [pts objectAtIndex:0];
+            }
+            [NSThread sleepForTimeInterval:.5];
+            siteIndex--;
+        }
+    });
 }
 
 - (NSDictionary*) getMapMetadata {
@@ -130,23 +193,41 @@ static dispatch_queue_t mapDownloadQueue = nil;
 
 - (void) loadLatestTraversePath {
     _points = [[NSMutableArray alloc] init];
+    _rmcsForPoints = [[NSMutableDictionary alloc] init];
     NSArray* locationManifest = [[MarsImageNotebook instance] getLocations];
     int locationCount = [locationManifest count];
     if (locationCount > 0) {
-        int latestSiteIndex = [[[locationManifest objectAtIndex:locationCount-1] objectAtIndex:0] intValue];
-        NSArray* locations = [[[MarsImageNotebook instance] mission] siteLocationData:latestSiteIndex];
-        for (NSArray* location in locations) {
-            if ([location count] >= 7) {
-                double mapPixelH = [[location objectAtIndex:5] doubleValue];
-                double mapPixelV = [[location objectAtIndex:6] doubleValue];
-                CLLocationCoordinate2D latLon = CLLocationCoordinate2DMake(
-                                                                           upperLeftLat + (mapPixelV/mapPixelHeight) * (lowerLeftLat-upperLeftLat),
-                                                                           upperLeftLon + (mapPixelH/mapPixelWidth) * (upperRightLon-upperLeftLon));
-                [_points addObject:[[CLLocation alloc] initWithLatitude:latLon.latitude longitude:latLon.longitude]];
+        latestSiteIndex = [[[locationManifest objectAtIndex:locationCount-1] objectAtIndex:0] intValue];
+        int i = 0;
+        do {
+            NSArray* locations = [[[MarsImageNotebook instance] mission] siteLocationData:latestSiteIndex];
+            for (NSArray* location in locations) {
+                if ([location count] >= 7) {
+                    int driveIndex = [((NSString*)[location objectAtIndex:0]) intValue];
+                    double mapPixelH = [[location objectAtIndex:5] doubleValue];
+                    double mapPixelV = [[location objectAtIndex:6] doubleValue];
+                    CLLocationCoordinate2D latLon = CLLocationCoordinate2DMake(
+                                                                               upperLeftLat + (mapPixelV/mapPixelHeight) * (lowerLeftLat-upperLeftLat),
+                                                                               upperLeftLon + (mapPixelH/mapPixelWidth) * (upperRightLon-upperLeftLon));
+                    CLLocation* point = [[CLLocation alloc] initWithLatitude:latLon.latitude longitude:latLon.longitude];
+                    [_points addObject:point];
+                    NSArray* rmc = [NSArray arrayWithObjects:[NSNumber numberWithInt:latestSiteIndex], [NSNumber numberWithInt:driveIndex], nil];
+                    [_rmcsForPoints setObject:rmc forKey:[NSNumber numberWithInt:i]];
+                    i += 1;
+                }
             }
-        }
+            
+            latestSiteIndex -= 1;
+        } while ([_points count] == 0);
     }
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark RMMapViewDelegate
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation {
 
@@ -167,44 +248,16 @@ static dispatch_queue_t mapDownloadQueue = nil;
     return nil;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)mapView:(RMMapView *)mapView didSelectAnnotation:(RMAnnotation *)annotation {
+    NSLog(@"Selected %@", annotation);
+    NSArray* rmc = annotation.userInfo;
+    if (rmc && [rmc count] == 2) {
+        NSLog(@"RMC %@:%@", [rmc objectAtIndex:0], [rmc objectAtIndex:1]);
+        int site_index = [[rmc objectAtIndex:0] intValue];
+        int drive_index = [[rmc objectAtIndex:1] intValue];
+        [MarsImageNotebook instance].searchWords = [NSString stringWithFormat:@"RMC %06d-%06d", site_index, drive_index];
+        [[MarsImageNotebook instance] reloadNotes]; //rely on the resultant note load notifications to populate images in the scene
+    }
 }
-
-//            CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(-14.568421956470699, 175.47546601810708);
-//            RMPointAnnotation *landerAnnotation = [[RMPointAnnotation alloc] initWithMapView:mapView
-//                                                                                  coordinate:loc
-//                                                                                    andTitle:@"Columbia Memorial Station"];
-//            [mapView addAnnotation:landerAnnotation];
-//            loc = CLLocationCoordinate2DMake(-14.602956462611218, 175.52579149235137);
-//            landerAnnotation = [[RMPointAnnotation alloc] initWithMapView:mapView
-//                                                               coordinate:loc
-//                                                                 andTitle:@"Troy"];
-//            [mapView addAnnotation:landerAnnotation];
-
-//            dispatch_async(mapDownloadQueue, ^{
-//                double startTime = [[NSDate date] timeIntervalSince1970];
-//              NSData* traverseData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://merpublic.s3.amazonaws.com/maps/Spirit-traverse.json"]]; //META
-//                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:traverseData
-//                                                                     options:0
-//                                                                       error:nil];
-//                double endTime = [[NSDate date] timeIntervalSince1970];
-//                NSLog(@"Time to read path JSON: %g", (endTime-startTime));
-//
-//                self.points = [[[[json objectForKey:@"features"] objectAtIndex:0] valueForKeyPath:@"geometry.coordinates"] mutableCopy];
-//
-//                for (NSUInteger i = 0; i < [self.points count]; i++)
-//                    [self.points replaceObjectAtIndex:i
-//                                           withObject:[[CLLocation alloc] initWithLatitude:[[[self.points objectAtIndex:i] objectAtIndex:1] doubleValue]
-//                                                                                 longitude:[[[self.points objectAtIndex:i] objectAtIndex:0] doubleValue]]];
-//                RMAnnotation *traversePath = [[RMAnnotation alloc] initWithMapView:mapView
-//                                                                        coordinate:mapView.centerCoordinate
-//                                                                          andTitle:@"Spirit's Traverse Path"];
-//                [traversePath setBoundingBoxFromLocations:self.points];
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [mapView addAnnotation:traversePath];
-//                });
-//            });
 
 @end

@@ -72,6 +72,8 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
     [self setInternetReachable:[Reachability reachabilityForInternetConnection]];
     [self.internetReachable startNotifier];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 
     return self;
 }
@@ -91,6 +93,11 @@ static dispatch_queue_t noteDownloadQueue = nil;
 
 - (id<MarsRover>) mission {
     return [_missions objectForKey:_missionName];
+}
+
+- (void) defaultsChanged:(id)sender {
+    _locations = nil;
+    [self getLocations];
 }
 
 - (void) loadMoreNotes: (int) startIndex
@@ -213,8 +220,6 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [(NSMutableDictionary*) _sections removeAllObjects];
     [(NSMutableArray*) _sols removeAllObjects];
     [self loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
-    _locations = nil;
-    [self getLocations];
 }
 
 - (void) checkNetworkStatus:(NSNotification *)notice {
@@ -277,6 +282,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
         NSNumber* drive = [format numberFromString:driveString];
         user_site = site.intValue;
         user_drive = drive.intValue;
+        break;
     }
     
     //find the RMC in locations closest to the RMC of the newest image
@@ -302,6 +308,10 @@ static dispatch_queue_t noteDownloadQueue = nil;
     int prevSite = [[rmc objectAtIndex:0] intValue];
     int prevDrive = [[rmc objectAtIndex:1] intValue];
     
+    if (_locations == nil) {
+        [self getLocations];
+    }
+    
     for (int i = 0; i < [_locations count]; i++) {
         NSArray* anRMC = [_locations objectAtIndex:i];
         if ([[anRMC objectAtIndex:0] intValue] == prevSite &&
@@ -324,6 +334,10 @@ static dispatch_queue_t noteDownloadQueue = nil;
     NSArray *nextRMC = nil, *location = nil;
     int nextSite = [[rmc objectAtIndex:0] intValue];
     int nextDrive = [[rmc objectAtIndex:1] intValue];
+    
+    if (_locations == nil) {
+        [self getLocations];
+    }
     
     for (int i = 0; i < [_locations count]; i++) {
         NSArray* anRMC = [_locations objectAtIndex:i];
