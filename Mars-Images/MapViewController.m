@@ -34,6 +34,8 @@ bool viewControllerIsClosing = NO;
 }
 
 - (void) viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+
     viewControllerIsClosing = NO;
     [self parseMapMetadata];
     [self loadLatestTraversePath];
@@ -63,6 +65,7 @@ bool viewControllerIsClosing = NO;
 
 - (void) viewWillDisappear:(BOOL)animated {
     viewControllerIsClosing = YES;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -137,6 +140,10 @@ bool viewControllerIsClosing = NO;
             siteIndex--;
         }
     });
+}
+
+- (void) defaultsChanged:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSDictionary*) getMapMetadata {

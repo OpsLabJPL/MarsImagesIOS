@@ -203,6 +203,7 @@ BOOL gotZeroNotesReturned = NO;
     NSString *mission = [prefs stringForKey:MISSION];
     if (! [[MarsImageNotebook instance].missionName isEqualToString:mission]) {
         [MarsImageNotebook instance].missionName = mission;
+        [[MarsImageNotebook instance] reloadLocations];
         [_titleButton setTitle:mission forState:UIControlStateNormal];
         [MarsImageNotebook instance].searchWords = nil;
         [self updateNotes];

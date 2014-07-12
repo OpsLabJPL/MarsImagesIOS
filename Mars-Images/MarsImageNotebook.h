@@ -77,7 +77,6 @@
 - (NSArray*) getNextRMC: (NSArray*) rmc;
 
 - (NSArray*) getLocations;
-
-- (void) defaultsChanged:(id)sender;
+- (void) reloadLocations;
 
 @end

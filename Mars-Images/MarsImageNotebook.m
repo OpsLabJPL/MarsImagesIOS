@@ -73,8 +73,6 @@ static dispatch_queue_t noteDownloadQueue = nil;
     [self setInternetReachable:[Reachability reachabilityForInternetConnection]];
     [self.internetReachable startNotifier];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
-
     return self;
 }
 
@@ -95,7 +93,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     return [_missions objectForKey:_missionName];
 }
 
-- (void) defaultsChanged:(id)sender {
+- (void) reloadLocations {
     _locations = nil;
     [self getLocations];
 }

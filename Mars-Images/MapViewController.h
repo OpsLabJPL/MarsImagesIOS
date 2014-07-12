@@ -36,5 +36,6 @@
 
 - (void) loadLatestTraversePath;
 - (void) parseMapMetadata;
+- (void) defaultsChanged:(id)sender;
 
 @end
