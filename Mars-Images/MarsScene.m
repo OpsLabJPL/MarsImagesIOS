@@ -49,12 +49,19 @@ static dispatch_queue_t downloadQueue = nil;
             NSLog(@"Unable to make texture for compass, because %@", error);
             [ImageUtility imageDump:image];
         }
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     }
     
     if (downloadQueue == nil)
         downloadQueue = dispatch_queue_create("mosaic note downloader", DISPATCH_QUEUE_SERIAL);
     
     return self;
+}
+
+- (void) destroy {
+    [self deleteImages];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) addImagesToScene: (NSArray*) rmc {
@@ -82,13 +89,16 @@ static dispatch_queue_t downloadQueue = nil;
         dispatch_async(downloadQueue, ^{
 
             NSArray* notesForRMC = [[MarsImageNotebook instance] notePhotosArray];
-            
+            NSLog(@"%d images returned.", [notesForRMC count]);
+            int mosaicCount = 0;
             for (MarsPhoto* photo in notesForRMC) {
                 if (![photo includedInMosaic])
                     continue;
                 NSString* cmod_string = photo.resource.attributes.cameraModel;
                 if (!cmod_string || cmod_string.length == 0)
                     continue;
+
+                mosaicCount++;
                 
                 GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
                 NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
@@ -104,6 +114,7 @@ static dispatch_queue_t downloadQueue = nil;
                     SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
                     free(vertPointer);
                     [_photoQuads setObject:imageQuad forKey:photo.note.title];
+                    NSLog(@"Photo quad count: %d", [_photoQuads count]);
                     UIImage* image = [photo underlyingImage];
                     if (!image) {
                         [photo performLoadUnderlyingImageAndNotify];
@@ -112,6 +123,7 @@ static dispatch_queue_t downloadQueue = nil;
                     }
                 });
             }
+            NSLog(@"images in mosaic: %d", mosaicCount);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [((MosaicViewController*)_viewController) hideHud];
             });
@@ -133,6 +145,22 @@ static dispatch_queue_t downloadQueue = nil;
             if (GL_NO_ERROR != error) {
                 NSLog(@"GL Error: 0x%x", error);
             }
+        }
+        else {
+            // Draw lines to represent normal vectors and light direction
+            // Don't use light so that line color shows
+            baseEffect.light0.enabled = GL_FALSE;
+            baseEffect.useConstantColor = GL_TRUE;
+            baseEffect.constantColor = GLKVector4Make(1.0, 0.9, 0.7, 1.0);
+            glLineWidth(1.0);
+            [baseEffect prepareToDraw];
+            [imageQuad prepareToDraw];
+            [imageQuad drawUnindexedWithMode:GL_LINE_LOOP startVertexIndex:0 numberOfVertices:4];
+            GLenum error = glGetError();
+            if (GL_NO_ERROR != error) {
+                NSLog(@"GL Error: 0x%x", error);
+            }
+            baseEffect.light0.enabled = GL_TRUE;
         }
     }
 }
@@ -283,6 +311,7 @@ static dispatch_queue_t downloadQueue = nil;
             NSLog(@"Unable to make texture for %@, because %@", title, error);
             [ImageUtility imageDump:image];
         }
+        NSLog(@"Texture count: %d", [_photoTextures count]);
     }
 }
 

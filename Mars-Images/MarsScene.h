@@ -29,6 +29,8 @@
 @property (strong, nonatomic) SceneMesh* compassQuad;
 @property (strong, nonatomic) UIViewController* viewController;
 
+- (void) destroy;
+
 - (void) notesLoaded: (NSNotification*) notification;
 
 - (void) addImagesToScene: (NSArray*) rmc;

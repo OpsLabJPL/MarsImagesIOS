@@ -64,7 +64,6 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 
     _scene = [[MarsScene alloc] init];
     _scene.viewController = self;
-    [[NSNotificationCenter defaultCenter] addObserver:_scene selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 
     // Set the background color stored in the current context
@@ -255,8 +254,8 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MWPHOTO_LOADING_DID_END_NOTIFICATION
                                                   object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:_scene];
-    [_scene deleteImages];
+    [_scene destroy];
+    _scene = nil;
 }
 
 - (void) didReceiveMemoryWarning
@@ -276,7 +275,10 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     id <MWPhoto> photo = [notification object];
     if ([photo underlyingImage]) {
         // Successful load
-        [_scene makeTexture:[photo underlyingImage] withTitle:((MarsPhoto*)photo).note.title grayscale:[((MarsPhoto*)photo) isGrayscale]];
+        NSString* title = ((MarsPhoto*)photo).note.title;
+        if ([_scene.photoQuads objectForKey:title]) {            
+            [_scene makeTexture:[photo underlyingImage] withTitle:title grayscale:[((MarsPhoto*)photo) isGrayscale]];
+        }
     }
 }
 

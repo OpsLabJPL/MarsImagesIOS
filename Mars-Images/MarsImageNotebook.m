@@ -180,7 +180,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
         
         [formattedText appendString: [NSString stringWithFormat:@"intitle:%@", word]];
     }
-    NSLog(@"formatted text: %@", formattedText);
+//    NSLog(@"formatted text: %@", formattedText);
     return formattedText;
 }
 
