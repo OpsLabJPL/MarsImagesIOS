@@ -54,5 +54,18 @@ This product includes the ViewDeck library for iOS written by
 Tom Adriaenssen and distributed as open source under the MIT license.
 For details see https://github.com/Inferis/ViewDeck.
 
+This product includes the MapBox SDK version 1.1 for iOS
+which is copyright (c) 2012-2013, Mapbox.
+For details see https://github.com/mapbox/mapbox-ios-sdk/blob/release/License.txt
+
+This product includes the AFNetworking library for iOS written by Mattt 
+Thompson and distributed under the MIT open source license. For details 
+see https://github.com/AFNetworking/AFNetworking.
+
+This product includes the CHCSVParser library for iOS written by Dave Delong
+and distributed as open source under the MIT license. For details see 
+https://github.com/davedelong/CHCSVParser.
+
 Some icons used in the application were created by http://www.pixelpressicons.com
 and distributed under the Creative Commons Attribution 2.5 Canada license.
+

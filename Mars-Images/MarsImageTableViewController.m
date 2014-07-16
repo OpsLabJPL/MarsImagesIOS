@@ -78,6 +78,11 @@ BOOL gotZeroNotesReturned = NO;
                      atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
+- (IBAction)refreshImages {
+    [MarsImageNotebook instance].searchWords = nil;
+    [[MarsImageNotebook instance] reloadNotes];
+}
+
 - (void) selectAndScrollToRow:(int)imageIndex {
     if (imageIndex < 0 || imageIndex >= [MarsImageNotebook instance].notesArray.count) {
         return;

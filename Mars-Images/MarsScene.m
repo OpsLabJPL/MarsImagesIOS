@@ -114,7 +114,7 @@ static dispatch_queue_t downloadQueue = nil;
                     SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
                     free(vertPointer);
                     [_photoQuads setObject:imageQuad forKey:photo.note.title];
-                    NSLog(@"Photo quad count: %d", [_photoQuads count]);
+//                    NSLog(@"Photo quad count: %d", [_photoQuads count]);
                     UIImage* image = [photo underlyingImage];
                     if (!image) {
                         [photo performLoadUnderlyingImageAndNotify];
@@ -132,6 +132,7 @@ static dispatch_queue_t downloadQueue = nil;
 }
 
 - (void) drawImages: (GLKBaseEffect*) baseEffect {
+    
     for (NSString* title in _photoQuads) {
         SceneMesh* imageQuad = [_photoQuads objectForKey:title];
         GLKTextureInfo* textureInfo = [_photoTextures objectForKey:title];
@@ -311,7 +312,7 @@ static dispatch_queue_t downloadQueue = nil;
             NSLog(@"Unable to make texture for %@, because %@", title, error);
             [ImageUtility imageDump:image];
         }
-        NSLog(@"Texture count: %d", [_photoTextures count]);
+//        NSLog(@"Texture count: %d", [_photoTextures count]);
     }
 }
 

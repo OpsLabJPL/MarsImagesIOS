@@ -29,4 +29,8 @@
     return self;
 }
 
+- (NSString*) urlPrefix {
+    return @"http://merpublic.s3.amazonaws.com/spirit";
+}
+
 @end

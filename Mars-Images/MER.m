@@ -283,8 +283,4 @@ typedef enum {
     return -1.0969;
 }
 
-- (NSString*) urlPrefix {
-    return @"http://merpublic.s3.amazonaws.com";
-}
-
 @end

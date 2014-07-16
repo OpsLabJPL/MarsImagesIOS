@@ -70,8 +70,14 @@
                                 <action selector="titleButtonPressed" destination="4Q7-W8-XMA" eventType="touchUpInside" id="GDv-tW-1X7"/>
                             </connections>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Zzf-OD-pdF">
+                            <connections>
+                                <action selector="refreshImages" destination="4Q7-W8-XMA" id="YxR-VW-PVm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="refreshButton" destination="Zzf-OD-pdF" id="md9-2o-MmW"/>
                         <outlet property="searchBar" destination="NTS-gE-j8k" id="IB2-ES-z2w"/>
                         <outlet property="searchDisplayController" destination="60E-Ax-tGX" id="w1q-01-lTq"/>
                         <outlet property="titleButton" destination="54R-i0-1rm" id="rYC-2g-cXY"/>

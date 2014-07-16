@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UISearchBar* searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 
 - (void) notesLoaded: (NSNotification*) notification;
 - (void) imageSelected: (NSNotification*) notification;
@@ -21,5 +22,6 @@
 - (void) selectAndScrollToRow:(int)imageIndex;
 - (IBAction) showMissionMenu;
 - (IBAction) titleButtonPressed;
+- (IBAction)refreshImages;
 - (IBAction) activateSearchBar;
 @end

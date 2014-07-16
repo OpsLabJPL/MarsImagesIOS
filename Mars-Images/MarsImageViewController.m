@@ -116,6 +116,7 @@ typedef enum {
     UIViewController* vc;
     UIStoryboard* storyboard = self.navigationController.storyboard;
     self.navigationItem.title = nil;
+    UIBarButtonItem* newBackButton = nil;
     switch (_segmentedControl.selectedSegmentIndex) {
         case ABOUT_BUTTON:
             vc = [storyboard instantiateViewControllerWithIdentifier:@"about"];
@@ -128,10 +129,22 @@ typedef enum {
         case MOSAIC_BUTTON:
             vc = [storyboard instantiateViewControllerWithIdentifier:@"mosaic"];
             [self.navigationController pushViewController:vc animated:YES];
+            newBackButton =
+            [[UIBarButtonItem alloc] initWithTitle:[MarsImageNotebook instance].missionName
+                                             style:UIBarButtonItemStyleBordered
+                                            target:nil
+                                            action:nil];
+            [[self navigationItem] setBackBarButtonItem:newBackButton];
             break;
         case MAP_BUTTON:
             vc = [storyboard instantiateViewControllerWithIdentifier:@"map"];
             [self.navigationController pushViewController:vc animated:YES];
+            newBackButton =
+            [[UIBarButtonItem alloc] initWithTitle:[MarsImageNotebook instance].missionName
+                                             style:UIBarButtonItemStyleBordered
+                                            target:nil
+                                            action:nil];
+            [[self navigationItem] setBackBarButtonItem:newBackButton];
             break;
     }
 }

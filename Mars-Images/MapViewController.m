@@ -34,6 +34,7 @@ bool viewControllerIsClosing = NO;
 }
 
 - (void) viewDidLoad {
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 
     viewControllerIsClosing = NO;
