@@ -35,10 +35,10 @@ static dispatch_queue_t downloadQueue = nil;
 
         float textureCoords[] = { 0.f, 0.f, 0.f, 1.f, 1.f, 1.f, 1.f, 0.f };
         GLfloat vertPointer[] = {
-            COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS,
             -COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS,
             -COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS,
-            COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS };
+            COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS,
+            COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS };
         _compassQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
         UIImage* image = [UIImage imageNamed:@"compassthing.png"];
         CGImageRef imageRef = [image CGImage];
