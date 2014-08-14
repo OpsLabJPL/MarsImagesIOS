@@ -95,7 +95,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.view addGestureRecognizer:pinchGesture];
     
-    _azimuthLabel.text = @"Azimuth: 90.0";
+    _azimuthLabel.text = @"Azimuth: 0.0";
     _elevationLabel.text = @"Elevation: 0.0";
     
     _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -416,7 +416,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 }
 
 - (void) updateHeadingDisplay {
-    float azDegrees = RADIANS_TO_DEGREES(M_PI*2-_rotationX+M_PI_2);
+    float azDegrees = RADIANS_TO_DEGREES(M_PI*2-_rotationX);
     while (azDegrees < 0) {azDegrees += 360; }
     while (azDegrees > 360) {azDegrees -= 360; }
     float elDegrees = RADIANS_TO_DEGREES(_rotationY);
