@@ -15,6 +15,8 @@ Features
 
 - Browse images from the Spirit, Opportunity, and Curiosity missions
 - Full screen image browser with swiping gestures for navigation
+- Real-time mission map of the rover's traversal of Mars
+- Interactive mosaics of images by location with accelerometer support: look through your personal window onto Mars that moves with you as you move your device around!
 - Search for images within a mission by time or type
 - Share images with others
 - Mission clock for Opportunity and Curiosity
