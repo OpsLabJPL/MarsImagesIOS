@@ -152,10 +152,6 @@ static NSString *const kCompletedCallbackKey = @"completed";
                                                                      SDWebImageDownloader *sself = wself;
                                                                      [sself removeCallbacksForURL:url];
                                                                  }];
-        
-        if (options & SDWebImageDownloaderHighPriority) {
-            operation.queuePriority = NSOperationQueuePriorityHigh;
-        }
 
         [wself.downloadQueue addOperation:operation];
         if (wself.executionOrder == SDWebImageDownloaderLIFOExecutionOrder) {
