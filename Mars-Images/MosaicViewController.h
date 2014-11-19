@@ -25,7 +25,6 @@
     float _lastScale;
     CGPoint _lastContentOffset;
     CADisplayLink *_displayLink;
-    AGLKFrustum *frustum;
     BOOL motionActive;
 }
 
@@ -55,6 +54,7 @@
 - (void) defaultsChanged:(id)sender;
 - (void) hideHud;
 - (float) computeFOVRadians;
-- (void) buildScaledDownImages:(MWPhoto*) photo;
+- (void) buildScaledDownImages:(MWPhoto*)  photo
+                     withTitle:(NSString*) title;
 
 @end
