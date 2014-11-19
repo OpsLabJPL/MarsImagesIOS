@@ -7,8 +7,8 @@
 //
 
 #import "Mars_ImagesTests.h"
+#import "MarsImageNotebook.h"
 #import "MarsTime.h"
-#import "MarsNotebook.h"
 
 #define SPIRIT_WEST_LONGITUDE 184.702
 #define SPIRIT_LANDING_SECONDS_SINCE_1970_EPOCH 1073137591
