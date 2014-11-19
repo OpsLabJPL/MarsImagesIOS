@@ -34,6 +34,7 @@
     viewDeckController.sizeMode = IIViewDeckViewSizeMode;
     viewDeckController.elastic = NO;
     [self.window makeKeyAndVisible];
+    [viewDeckController configureLeftPanel:[UIApplication sharedApplication].statusBarOrientation];
     return YES;
 }
 
