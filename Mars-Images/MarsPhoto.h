@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray* leftAndRight;
 @property (weak) UIImage* leftImage;
 @property (weak) UIImage* rightImage;
+@property (strong, nonatomic) NSArray* model_json;
 
 - (id) initWithResource: (EDAMResource*) resource
                    note: (EDAMNote*) note
@@ -26,5 +27,9 @@
 
 - (BOOL) isGrayscale;
 - (BOOL) includedInMosaic;
+
+- (NSArray*) modelJson;
+- (double) angularDistance: (MarsPhoto*) otherImage;
+- (NSURL*) url: (EDAMResource*)resource;
 
 @end

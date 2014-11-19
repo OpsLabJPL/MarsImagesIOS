@@ -7,6 +7,8 @@
 //
 
 #import "MarsPhoto.h"
+#import "CameraModel.h"
+#import "Math.h"
 #import "ImageUtility.h"
 #import "MarsImageNotebook.h"
 #import "SDWebImageManager.h"
@@ -21,12 +23,15 @@
 
 @implementation MarsPhoto
 
+double d1[3], d2[3];
+
 - (id) initWithResource: (EDAMResource*) resource
                    note: (EDAMNote*) note
                     url: (NSURL*) url {
     self = [super initWithURL:url];
     _note = note;
     _resource = resource;
+    _model_json = nil;
     self.caption = [[MarsImageNotebook instance].mission captionText:note];
     return self;
 }
@@ -58,15 +63,19 @@
     //TODO include these when texture memory can be managed effectively
 }
 
+- (NSURL*) url: (EDAMResource*) resource {
+    NSString* resGUID = resource.guid;
+    NSString* address = [NSString stringWithFormat:@"%@res/%@", Evernote.instance.user.webApiUrlPrefix, resGUID];
+    return [NSURL URLWithString:address];
+}
+
 - (void)performLoadUnderlyingImageAndNotify {
     // Load async from web (using SDWebImage)
     if (_leftAndRight) {
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         @try {
             EDAMResource* leftResource = [_leftAndRight objectAtIndex:0];
-            NSString* resGUID = leftResource.guid;
-            NSString* leftAddress = [NSString stringWithFormat:@"%@res/%@", Evernote.instance.user.webApiUrlPrefix, resGUID];
-            NSURL* leftUrl = [NSURL URLWithString:leftAddress];
+            NSURL* leftUrl = [self url:leftResource];
             _leftImageOperation = [manager downloadWithURL:leftUrl
                                                       options:0
                                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -97,9 +106,7 @@
 
         @try {
             EDAMResource* rightResource = [_leftAndRight objectAtIndex:1];
-            NSString* resGUID = rightResource.guid;
-            NSString* rightAddress = [NSString stringWithFormat:@"%@res/%@", Evernote.instance.user.webApiUrlPrefix, resGUID];
-            NSURL* rightUrl = [NSURL URLWithString:rightAddress];
+            NSURL* rightUrl = [self url:rightResource];
             _rightImageOperation = [manager downloadWithURL:rightUrl
                                                    options:0
                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -158,6 +165,33 @@
     [self performSelector:@selector(postCompleteNotification) withObject:nil afterDelay:0];
 }
 
+- (NSArray*) modelJson {
+    if (!_model_json) {
+        NSString* cmod_string = self.resource.attributes.cameraModel;
+        if (!cmod_string || cmod_string.length == 0)
+            return nil;
+        NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
+        NSError* error;
+        _model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
+    }
+    return _model_json;
+}
 
+- (double) angularDistance: (MarsPhoto*) otherImage {
+    NSArray* v1 = [CameraModel pointingVector:_model_json];
+    NSArray* v2 = [CameraModel pointingVector:[otherImage modelJson]];
+    if (v1.count==0 || v2.count==0)
+        return 0;
+    
+    d1[0] = [(NSNumber*)[v1 objectAtIndex:0] doubleValue];
+    d1[1] = [(NSNumber*)[v1 objectAtIndex:1] doubleValue];
+    d1[2] = [(NSNumber*)[v1 objectAtIndex:2] doubleValue];
+    d2[0] = [(NSNumber*)[v2 objectAtIndex:0] doubleValue];
+    d2[1] = [(NSNumber*)[v2 objectAtIndex:1] doubleValue];
+    d2[2] = [(NSNumber*)[v2 objectAtIndex:2] doubleValue];
+    
+    double dot = [Math dot:d1 b:d2];
+    return acos(dot);
+}
 
 @end
