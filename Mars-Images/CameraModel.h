@@ -13,5 +13,5 @@
 
 + (id<Model>) model: (NSArray*) modelJSON;
 + (NSArray*) origin: (NSArray*) modelJSON;
-
++ (NSArray*) pointingVector: (NSArray*) modelJson;
 @end

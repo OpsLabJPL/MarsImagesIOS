@@ -136,4 +136,22 @@
     return [NSArray arrayWithObjects:nil];
 }
 
++ (NSArray*) pointingVector: (NSArray*) modelJson {
+    for (NSObject* obj in modelJson) {
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary* dict = (NSDictionary*) obj;
+            for (NSString* key in dict.allKeys) {
+                if ([key isEqualToString:@"camera_vector"]) {
+                    NSArray* comps = [dict objectForKey:key];
+                    NSNumber* x = [comps objectAtIndex:0];
+                    NSNumber* y = [comps objectAtIndex:1];
+                    NSNumber* z = [comps objectAtIndex:2];
+                    return [NSArray arrayWithObjects: x, y, z, nil];
+                }
+            }
+        }
+    }
+    NSLog(@"Brown alert: pointing vector not found in camera model.");
+    return [NSArray arrayWithObjects:nil];
+}
 @end
