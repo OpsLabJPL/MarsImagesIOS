@@ -4,15 +4,8 @@
 //
 
 #import "SceneMesh.h"
-#import "AGLKVertexAttribArrayBuffer.h"
-
 
 @interface SceneMesh ()
-
-@property (strong, nonatomic, readwrite)
-AGLKVertexAttribArrayBuffer *vertexAttributeBuffer;
-@property (strong, nonatomic, readwrite) NSData
-*vertexData;
 
 @end
 

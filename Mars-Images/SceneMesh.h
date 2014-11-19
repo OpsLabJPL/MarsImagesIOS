@@ -4,6 +4,7 @@
 //
 
 #import <GLKit/GLKit.h>
+#import "AGLKVertexAttribArrayBuffer.h"
 
 /////////////////////////////////////////////////////////////////
 // Type used to store vertex attributes
@@ -16,6 +17,10 @@ SceneMeshVertex;
 
 
 @interface SceneMesh : NSObject
+
+@property (strong, nonatomic, readwrite) AGLKVertexAttribArrayBuffer *vertexAttributeBuffer;
+@property (strong, nonatomic, readwrite) NSData *vertexData;
+
 
 - (id)initWithVertexAttributeData:(NSData *)vertexAttributes;
 
