@@ -25,6 +25,8 @@
 }
 
 + (UIImage*)resizeToValidTexture:(UIImage*) sourceImage {
+//    return [ImageUtility imageWithImage:sourceImage scaledToSize:CGSizeMake(32, 32)]; //intentionally make them small
+
     CGSize size = sourceImage.size;
     if (size.width != size.height ||
         ![ImageUtility powerOfTwo:(int)size.width] ||
