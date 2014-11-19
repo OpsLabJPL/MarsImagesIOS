@@ -255,10 +255,12 @@ typedef enum {
         self.alwaysShowControls = YES;
         self.navigationItem.titleView = [[UILabel alloc] init];
         self.navigationItem.rightBarButtonItem = nil;
-    } else {
+    } else if (self.isViewLoaded && self.view.window) {
         self.alwaysShowControls = NO;
         self.navigationItem.rightBarButtonItem = _shareButton;
         self.navigationItem.titleView = _segmentedControl;
+    } else {
+        self.alwaysShowControls = YES;
     }
 }
 
