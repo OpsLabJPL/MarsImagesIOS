@@ -9,6 +9,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import "AGLKFrustum.h"
 #import "InfiniteScrollView.h"
 #import "MBProgressHUD.h"
 #import "Model.h"
@@ -24,6 +25,7 @@
     float _lastScale;
     CGPoint _lastContentOffset;
     CADisplayLink *_displayLink;
+    AGLKFrustum *frustum;
     BOOL motionActive;
 }
 
@@ -41,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* elevationLabel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *flipButton;
 @property (strong, nonatomic) UISegmentedControl* segmentedControl;
+@property (assign, nonatomic) AGLKFrustum frustum;
 
 - (void) setupRotationScroller;
 - (void) setupBaseEffect;
@@ -51,5 +54,7 @@
 - (void) segmentedControlButtonPressed: (id)sender;
 - (void) defaultsChanged:(id)sender;
 - (void) hideHud;
+- (float) computeFOVRadians;
+- (void) buildScaledDownImages:(MWPhoto*) photo;
 
 @end

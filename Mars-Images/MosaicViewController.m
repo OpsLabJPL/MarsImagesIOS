@@ -10,7 +10,14 @@
 #import "MarsImageNotebook.h"
 
 #import "AGLKContext.h"
+#import "ImageUtility.h"
 #import "Math.h"
+#import <SDWebImage/SDImageCache.h>
+
+#define NEAR_DISTANCE 0.1f
+#define FAR_DISTANCE 20.0f
+
+#define SMALLEST_SIZE 32
 
 @implementation MosaicViewController
 
@@ -26,9 +33,14 @@ static const double y_axis[] = Y_AXIS;
 static const double POSITIVE_VERTICAL_LIMIT = M_PI_2 - 0.001;
 static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 
+static dispatch_queue_t scaleDownJobQueue = nil;
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (!scaleDownJobQueue)
+        scaleDownJobQueue = dispatch_queue_create("downscaler", DISPATCH_QUEUE_CONCURRENT);
     
     motionActive = NO;
     UIImage* icon = [UIImage imageNamed:@"71-compass.png"];
@@ -55,7 +67,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     _lookAtPosition = GLKVector3Make(0.0, 0.0, -1.0);
     _upVector = GLKVector3Make(0.0, 1.0, 0.0);
     _scale = 1.0f;
-    
+    _frustum = AGLKFrustumMakeFrustumWithParameters([self computeFOVRadians], 1.0f, NEAR_DISTANCE, FAR_DISTANCE);
     view.context = [[AGLKContext alloc]
                     initWithAPI:kEAGLRenderingAPIOpenGLES2];
     [AGLKContext setCurrentContext:view.context];
@@ -229,12 +241,12 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 {
     // Do this here instead of -viewDidLoad because we don't
     // yet know aspectRatio in -viewDidLoad.
+    GLfloat fovRadians = [self computeFOVRadians];
     self.baseEffect.transform.projectionMatrix =
-    GLKMatrix4MakePerspective(
-                              GLKMathDegreesToRadians(80.f/_scale),// /* old field of view was 85.0f */
+    GLKMatrix4MakePerspective(fovRadians,
                               aspectRatio,
-                              0.1f,   // Don't make near plane too close
-                              20.0f); // Far arbitrarily far enough to contain scene
+                              NEAR_DISTANCE,   // Don't make near plane too close
+                              FAR_DISTANCE); // Far arbitrarily far enough to contain scene
     
     self.baseEffect.transform.modelviewMatrix =
     GLKMatrix4MakeLookAt(
@@ -247,6 +259,9 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
                          self.upVector.x,         // Up direction
                          self.upVector.y,
                          self.upVector.z);
+    
+    AGLKFrustumSetPerspective(&_frustum, fovRadians, aspectRatio, NEAR_DISTANCE, FAR_DISTANCE);
+    AGLKFrustumSetToMatchModelview(&_frustum, self.baseEffect.transform.modelviewMatrix);
 }
 
 - (void) viewWillDisappear: (BOOL)animated {
@@ -272,14 +287,43 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 }
 
 - (void) handleMWPhotoLoadingDidEndNotification: (NSNotification *)notification {
-    id <MWPhoto> photo = [notification object];
+    MarsPhoto* photo = [notification object];
     if ([photo underlyingImage]) {
         // Successful load
-        NSString* title = ((MarsPhoto*)photo).note.title;
+        NSString* title = photo.note.title;
         if ([_scene.photoQuads objectForKey:title]) {            
             [_scene makeTexture:[photo underlyingImage] withTitle:title grayscale:[((MarsPhoto*)photo) isGrayscale]];
         }
+        
+//        [self buildScaledDownImages: photo withTitle:title]; //TODO continue this development
     }
+    
+}
+
+- (void) buildScaledDownImages:(MWPhoto*)  photo
+                     withTitle:(NSString*) title {
+    dispatch_async(scaleDownJobQueue, ^{
+        //make all the smaller image sizes and add to cache
+        UIImage* image = photo.underlyingImage;
+        int width = image.size.width;
+        int height = image.size.height;
+        int maxDim = (width > height) ? width : height;
+        for (maxDim = [ImageUtility nextLowestPowerOfTwo:maxDim];
+             maxDim >= SMALLEST_SIZE;
+             maxDim = [ImageUtility nextLowestPowerOfTwo:maxDim]) {
+            CGSize newSize = CGSizeMake(maxDim, maxDim);
+            NSLog(@"making image of size %.0fx%.0f", newSize.width, newSize.height);
+            image = [ImageUtility imageWithImage:image scaledToSize:newSize];
+            NSString* imageKey = [NSString stringWithFormat:@"%@_%d", title, maxDim];
+            NSLog(@"Caching image with key: %@", imageKey);
+            [[SDImageCache sharedImageCache] storeImage:image forKey:imageKey];
+        }
+    });
+
+}
+
+- (float) computeFOVRadians {
+    return GLKMathDegreesToRadians(80.f/_scale);
 }
 
 - (void) toggleMotion:(id)sender {
