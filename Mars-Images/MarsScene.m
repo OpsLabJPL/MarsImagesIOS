@@ -19,6 +19,8 @@
 #define COMPASS_HEIGHT 0.5
 #define COMPASS_RADIUS 5
 
+#define ANGLE_THRESHOLD 3 / 180 * M_PI
+
 @implementation MarsScene
 
 static const double x_axis[] = X_AXIS;
@@ -39,7 +41,7 @@ static dispatch_queue_t downloadQueue = nil;
             -COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS,
             COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS,
             COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS };
-        _compassQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
+        _compassQuad = [[ImageQuad alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
         UIImage* image = [UIImage imageNamed:@"compassthing.png"];
         CGImageRef imageRef = [image CGImage];
         NSError* error = nil;
@@ -89,21 +91,19 @@ static dispatch_queue_t downloadQueue = nil;
         dispatch_async(downloadQueue, ^{
 
             NSArray* notesForRMC = [[MarsImageNotebook instance] notePhotosArray];
-            NSLog(@"%d images returned.", [notesForRMC count]);
+            NSArray* binnedNotesForRMC = [self binImagesByPointing: notesForRMC];
+            NSLog(@"%lu images returned.", (unsigned long)[notesForRMC count]);
             int mosaicCount = 0;
-            for (MarsPhoto* photo in notesForRMC) {
+            for (MarsPhoto* photo in binnedNotesForRMC) {
                 if (![photo includedInMosaic])
                     continue;
-                NSString* cmod_string = photo.resource.attributes.cameraModel;
-                if (!cmod_string || cmod_string.length == 0)
-                    continue;
-
-                mosaicCount++;
                 
+                NSArray* model_json = [photo modelJson];
+                if (!model_json)
+                    continue;
+                
+                mosaicCount++;
                 GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
-                NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
-                NSError* error;
-                NSArray *model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
                 id<Model> model = [CameraModel model:model_json];
                 NSArray* origin = [CameraModel origin:model_json];
                 
@@ -111,7 +111,7 @@ static dispatch_queue_t downloadQueue = nil;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
-                    SceneMesh* imageQuad = [[SceneMesh alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
+                    ImageQuad* imageQuad = [[ImageQuad alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
                     free(vertPointer);
                     [_photoQuads setObject:imageQuad forKey:photo.note.title];
 //                    NSLog(@"Photo quad count: %d", [_photoQuads count]);
@@ -132,9 +132,20 @@ static dispatch_queue_t downloadQueue = nil;
 }
 
 - (void) drawImages: (GLKBaseEffect*) baseEffect {
+
+    int skippedImages = 0;
     
     for (NSString* title in _photoQuads) {
-        SceneMesh* imageQuad = [_photoQuads objectForKey:title];
+        ImageQuad* imageQuad = [_photoQuads objectForKey:title];
+        
+        //frustum culling: don't draw if the bounding sphere of the image quad isn't in the camera frustum
+        AGLKFrustum frustum = ((MosaicViewController*)_viewController).frustum;
+
+        if (AGLKFrustumCompareSphere(&frustum, imageQuad.center, imageQuad.boundingSphereRadius) == AGLKFrustumOut) {
+            skippedImages++;
+            continue;
+        }
+        
         GLKTextureInfo* textureInfo = [_photoTextures objectForKey:title];
         if (textureInfo) {
             baseEffect.texture2d0.name = textureInfo.name;
@@ -164,6 +175,33 @@ static dispatch_queue_t downloadQueue = nil;
             baseEffect.light0.enabled = GL_TRUE;
         }
     }
+//    NSLog(@"Skipped images: %d", skippedImages);
+}
+
+- (BOOL) testInFrustum:(ImageQuad*) quad {
+    static int count;
+    count++;
+    if (count % 100 != 0) {
+        return YES;
+    }
+    GLfloat vx = quad.v1.x;
+    GLfloat vy = quad.v1.y;
+    GLfloat vz = quad.v1.z;
+    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
+    vx = quad.v2.x;
+    vy = quad.v2.y;
+    vz = quad.v2.z;
+    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
+    vx = quad.v3.x;
+    vy = quad.v3.y;
+    vz = quad.v3.z;
+    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
+    vx = quad.v4.x;
+    vy = quad.v4.y;
+    vz = quad.v4.z;
+    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
+    
+    return NO;
 }
 
 - (void) drawCompass: (GLKBaseEffect*) baseEffect {
@@ -314,6 +352,23 @@ static dispatch_queue_t downloadQueue = nil;
         }
 //        NSLog(@"Texture count: %d", [_photoTextures count]);
     }
+}
+
+- (NSArray*) binImagesByPointing: (NSArray*) imagesForRMC {
+    NSMutableArray* binnedImages = [[NSMutableArray alloc] init];
+    for (MarsPhoto* prospectiveImage in [imagesForRMC reverseObjectEnumerator]) {
+        BOOL tooCloseToAnotherImage = NO;
+        for (MarsPhoto* image in binnedImages) {
+            if ([image angularDistance:prospectiveImage] < ANGLE_THRESHOLD) {
+                tooCloseToAnotherImage = YES;
+                break;
+            }
+        }
+        if (!tooCloseToAnotherImage)
+            [binnedImages addObject:prospectiveImage];
+    }
+    
+    return binnedImages;
 }
 
 @end

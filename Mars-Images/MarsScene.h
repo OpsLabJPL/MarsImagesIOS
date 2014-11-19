@@ -12,7 +12,7 @@
 #import "Model.h"
 #import "MWPhoto.h"
 #import "Quaternion.h"
-#import "SceneMesh.h"
+#import "ImageQuad.h"
 
 @interface MarsScene : NSObject
 {
@@ -26,7 +26,7 @@
 @property (strong, nonatomic) NSMutableDictionary* photoQuads;
 @property (strong, nonatomic) NSMutableDictionary* photoTextures;
 @property (strong, nonatomic) GLKTextureInfo* compassTextureInfo;
-@property (strong, nonatomic) SceneMesh* compassQuad;
+@property (strong, nonatomic) ImageQuad* compassQuad;
 @property (strong, nonatomic) UIViewController* viewController;
 
 - (void) destroy;
@@ -50,5 +50,9 @@
 - (void)makeTexture:(UIImage*) image
           withTitle:(NSString*) title
           grayscale:(BOOL)grayscale;
+
+- (BOOL) testInFrustum:(ImageQuad*) quad;
+
+- (NSArray*) binImagesByPointing: (NSArray*) imagesForRMC;
 
 @end
