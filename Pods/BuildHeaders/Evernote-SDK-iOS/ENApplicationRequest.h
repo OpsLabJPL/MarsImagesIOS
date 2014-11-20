@@ -1,1 +1,0 @@
-../../Evernote-SDK-iOS/evernote-sdk-ios/internal/Bridge/ENApplicationRequest.h

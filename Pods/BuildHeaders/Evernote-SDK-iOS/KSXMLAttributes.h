@@ -1,1 +1,0 @@
-../../Evernote-SDK-iOS/evernote-sdk-ios/3rdParty/KSHTMLWriter/KSXMLAttributes.h
