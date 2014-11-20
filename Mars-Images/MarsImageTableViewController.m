@@ -257,7 +257,7 @@ BOOL gotZeroNotesReturned = NO;
     if (resource) {
         NSString* resGUID = resource.guid;
         NSString* thumbnailUrl = [NSString stringWithFormat:@"%@thm/res/%@?size=50", Evernote.instance.user.webApiUrlPrefix, resGUID];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:thumbnailUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:thumbnailUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     }
     
     //try to load more images if we are at the last cell in the table
