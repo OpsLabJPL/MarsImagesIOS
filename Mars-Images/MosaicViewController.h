@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* azimuthLabel;
 @property (weak, nonatomic) IBOutlet UILabel* elevationLabel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *flipButton;
+@property (weak, nonatomic) IBOutlet UILabel* caption;
 @property (strong, nonatomic) UISegmentedControl* segmentedControl;
 @property (assign, nonatomic) AGLKFrustum frustum;
 
@@ -56,5 +57,6 @@
 - (float) computeFOVRadians;
 - (void) buildScaledDownImages:(MWPhoto*)  photo
                      withTitle:(NSString*) title;
+- (void) updateCaption:(NSArray*)rmc;
 
 @end

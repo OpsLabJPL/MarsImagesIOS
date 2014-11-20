@@ -39,6 +39,10 @@ static dispatch_queue_t scaleDownJobQueue = nil;
 {
     [super viewDidLoad];
     
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     if (!scaleDownJobQueue)
         scaleDownJobQueue = dispatch_queue_create("downscaler", DISPATCH_QUEUE_CONCURRENT);
     
@@ -100,6 +104,8 @@ static dispatch_queue_t scaleDownJobQueue = nil;
     
     NSArray* rmc = [[MarsImageNotebook instance] getNearestRMC];
     [_scene addImagesToScene: rmc];
+
+    [self updateCaption:rmc];
     
     [self setupRotationScroller];
     [self resetScroll];
@@ -130,6 +136,12 @@ static dispatch_queue_t scaleDownJobQueue = nil;
     }
 }
 
+- (void) updateCaption:(NSArray*)rmc {
+    int site = ((NSNumber*)[rmc objectAtIndex:0]).intValue;
+    int drive = ((NSNumber*)[rmc objectAtIndex:1]).intValue;
+    _caption.text = [NSString stringWithFormat:@"%@ at location %d-%d", [MarsImageNotebook instance].missionName, site, drive];
+}
+
 - (void) defaultsChanged:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -150,6 +162,7 @@ static dispatch_queue_t scaleDownJobQueue = nil;
                 
                 //load new image mosaic
                 [_scene addImagesToScene: prevRMC];
+                [self updateCaption:prevRMC];
             }
             break;
         }
@@ -167,6 +180,7 @@ static dispatch_queue_t scaleDownJobQueue = nil;
                 
                 //load new image mosaic
                 [_scene addImagesToScene: nextRMC];
+                [self updateCaption:nextRMC];
             }
             break;
         }
