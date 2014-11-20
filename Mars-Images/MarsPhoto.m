@@ -76,7 +76,7 @@ double d1[3], d2[3];
         @try {
             EDAMResource* leftResource = [_leftAndRight objectAtIndex:0];
             NSURL* leftUrl = [self url:leftResource];
-            _leftImageOperation = [manager downloadWithURL:leftUrl
+            _leftImageOperation = [manager downloadImageWithURL:leftUrl
                                                       options:0
                                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                      if (expectedSize > 0) {
@@ -87,7 +87,7 @@ double d1[3], d2[3];
                                                          [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
                                                      }
                                                  }
-                                                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                                                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL* url) {
                                                     if (error) {
                                                         NSLog(@"SDWebImage failed to download image: %@", error);
                                                     }
@@ -107,7 +107,7 @@ double d1[3], d2[3];
         @try {
             EDAMResource* rightResource = [_leftAndRight objectAtIndex:1];
             NSURL* rightUrl = [self url:rightResource];
-            _rightImageOperation = [manager downloadWithURL:rightUrl
+            _rightImageOperation = [manager downloadImageWithURL:rightUrl
                                                    options:0
                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                       if (expectedSize > 0) {
@@ -118,7 +118,7 @@ double d1[3], d2[3];
                                                           [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
                                                       }
                                                   }
-                                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL* url) {
                                                      if (error) {
                                                          NSLog(@"SDWebImage failed to download image: %@", error);
                                                      }
