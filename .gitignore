@@ -1,4 +1,6 @@
 .DS_Store
 *.xcuserstate
 *.xccheckout
+*.xcbkptlist
 Pods
+Podfile.lock
