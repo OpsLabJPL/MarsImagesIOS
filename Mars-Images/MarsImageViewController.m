@@ -229,6 +229,10 @@ typedef enum {
     int resourceCount = 0;
     MarsPhoto* photo = [self currentPhoto];
     resourceCount = photo.note.resources.count;
+    BOOL iPhoneInPortrait = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && UIDeviceOrientationIsPortrait(self.interfaceOrientation);
+
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    
     for (UIView* view in [self.view subviews]) {
         if ([view isKindOfClass:[UIToolbar class]]) {
             UIBarButtonItem *flexibleItem1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -251,7 +255,7 @@ typedef enum {
         }
     }
 
-    if (self.view.frame.size.width <= 100) {
+    if (iPhoneInPortrait && self.view.frame.size.width / screenWidth < 0.40f) {
         self.alwaysShowControls = YES;
         self.navigationItem.titleView = [[UILabel alloc] init];
         self.navigationItem.rightBarButtonItem = nil;
