@@ -47,7 +47,7 @@ static dispatch_queue_t scaleDownJobQueue = nil;
         scaleDownJobQueue = dispatch_queue_create("downscaler", DISPATCH_QUEUE_CONCURRENT);
     
     motionActive = NO;
-    UIImage* icon = [UIImage imageNamed:@"71-compass.png"];
+    UIImage* icon = [UIImage imageNamed:@"compass.png"];
     _flipButton = [[UIBarButtonItem alloc]
                                    initWithImage:icon
                                    style:UIBarButtonItemStyleBordered

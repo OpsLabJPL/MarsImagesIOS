@@ -64,7 +64,7 @@ typedef enum {
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"clock"] atIndex:CLOCK_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[[UIButton buttonWithType:UIButtonTypeInfoLight] currentImage] atIndex:ABOUT_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"panorama_icon"] atIndex:MOSAIC_BUTTON animated:NO];
-    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"103-map"] atIndex:MAP_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"map_icon"] atIndex:MAP_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
     [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     [_segmentedControl sizeToFit];

@@ -42,7 +42,7 @@ static dispatch_queue_t downloadQueue = nil;
             COMPASS_RADIUS, COMPASS_HEIGHT, -COMPASS_RADIUS,
             COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS };
         _compassQuad = [[ImageQuad alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
-        UIImage* image = [UIImage imageNamed:@"compassthing.png"];
+        UIImage* image = [UIImage imageNamed:@"hover_compass.png"];
         CGImageRef imageRef = [image CGImage];
         NSError* error = nil;
         _compassTextureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:&error];
