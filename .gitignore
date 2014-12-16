@@ -4,3 +4,4 @@
 *.xcbkptlist
 Pods
 Podfile.lock
+.ruby-version
