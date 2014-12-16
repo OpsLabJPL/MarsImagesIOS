@@ -44,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* caption;
 @property (strong, nonatomic) UISegmentedControl* segmentedControl;
 @property (assign, nonatomic) AGLKFrustum frustum;
+@property (strong, nonatomic) NSMutableDictionary* bestTextureResolutionsForCameras;
 
 - (void) setupRotationScroller;
 - (void) setupBaseEffect;
@@ -55,6 +56,7 @@
 - (void) defaultsChanged:(id)sender;
 - (void) hideHud;
 - (float) computeFOVRadians;
+- (void) computeBestTextureResolution;
 - (void) buildScaledDownImages:(MWPhoto*)  photo
                      withTitle:(NSString*) title;
 - (void) updateCaption:(NSArray*)rmc;

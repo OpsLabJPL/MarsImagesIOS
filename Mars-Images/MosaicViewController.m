@@ -102,9 +102,9 @@ static dispatch_queue_t scaleDownJobQueue = nil;
 #endif
     glDepthMask(GL_TRUE);
     
+    _bestTextureResolutionsForCameras = NSMutableDictionary.new;
+    
     NSArray* rmc = [[MarsImageNotebook instance] getNearestRMC];
-    [_scene addImagesToScene: rmc];
-
     [self updateCaption:rmc];
     
     [self setupRotationScroller];
@@ -134,6 +134,12 @@ static dispatch_queue_t scaleDownJobQueue = nil;
     if (nextRMC == nil) {
         [_segmentedControl setEnabled:NO forSegmentAtIndex:FORWARD_BUTTON];
     }
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [self computeBestTextureResolution];
+    NSArray* rmc = [[MarsImageNotebook instance] getNearestRMC];
+    [_scene addImagesToScene: rmc];
 }
 
 - (void) updateCaption:(NSArray*)rmc {
@@ -392,7 +398,18 @@ static dispatch_queue_t scaleDownJobQueue = nil;
     if (sender.state == UIGestureRecognizerStateEnded) {
         _lastScale = _scale;
     }
+    
+    [self computeBestTextureResolution];
+    
     [self resetScroll];
+}
+
+- (void) computeBestTextureResolution {
+    CGFloat screenWidthPixels = ((GLKView*)self.view).drawableWidth;
+    float viewportFovRadians = [self computeFOVRadians];
+    float cameraFovRadians = 0.7854f/3; //TODO get from Rover object
+    _bestTextureResolutionsForCameras[@"camera"] = [NSNumber numberWithFloat:screenWidthPixels * cameraFovRadians / viewportFovRadians]; //TODO get camera id from Rover object
+    NSLog(@"best texture res %f", ((NSNumber*)_bestTextureResolutionsForCameras[@"camera"]).floatValue);
 }
 
 #pragma mark - UIScrollViewDelegate
