@@ -822,8 +822,8 @@
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Mars-Images";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "692c4297-6992-42fe-bd84-2f1cdfd2abc3";
+				PROVISIONING_PROFILE = "252c643d-671b-46dd-ac95-4c2871aaac7b";
+				"PROVISIONING_PROFILE[sdk=*]" = "252c643d-671b-46dd-ac95-4c2871aaac7b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -932,8 +932,8 @@
 				INFOPLIST_FILE = "Mars-Images/Mars-Images-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "Mars-Images";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "692c4297-6992-42fe-bd84-2f1cdfd2abc3";
+				PROVISIONING_PROFILE = "252c643d-671b-46dd-ac95-4c2871aaac7b";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "252c643d-671b-46dd-ac95-4c2871aaac7b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
