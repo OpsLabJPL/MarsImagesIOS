@@ -26,11 +26,15 @@ typedef enum {
     ROVER_MOTION_COUNTER
 } TitleState;
 
+static NSArray* cameras;
+
 - (id) init {
     self = [super init];
     self.roverName = @"Curiosity";
     self.regionName = @"Gale Crater";
-
+    
+    cameras = [[NSArray alloc] initWithObjects:@"Navcam", @"Mastcam", nil];
+    
     NSDateComponents* comps = [[NSDateComponents alloc] init];
     [comps setDay:6];
     [comps setMonth:8];
@@ -212,6 +216,10 @@ typedef enum {
 
 - (NSString*) urlPrefix {
     return @"https://msl-raws.s3.amazonaws.com";
+}
+
+- (NSArray*) mastCameras {
+    return cameras;
 }
 
 @end

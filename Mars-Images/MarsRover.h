@@ -34,4 +34,5 @@
 - (NSString*) rmc: (EDAMNote*) note;
 - (NSString*) urlPrefix;
 - (NSArray*) siteLocationData: (int) site_index;
+- (NSArray*) mastCameras;
 @end

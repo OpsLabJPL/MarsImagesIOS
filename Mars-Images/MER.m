@@ -33,9 +33,11 @@ typedef enum {
     ROVER_MOTION_COUNTER
 } TitleState;
 
+static NSArray* cameras;
+
 - (id) init {
     self = [super init];
-
+    cameras = [[NSArray alloc] initWithObjects:@"Navcam", @"Pancam", nil];
     return self;
 }
 
@@ -281,6 +283,10 @@ typedef enum {
 
 - (float) mastZ {
     return -1.0969;
+}
+
+- (NSArray*) mastCameras {
+    return cameras;
 }
 
 @end
