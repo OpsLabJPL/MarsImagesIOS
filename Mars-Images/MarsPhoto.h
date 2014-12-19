@@ -17,6 +17,7 @@
 @property (weak) UIImage* leftImage;
 @property (weak) UIImage* rightImage;
 @property (strong, nonatomic) NSArray* model_json;
+@property (nonatomic, assign) BOOL isLoading;
 
 - (id) initWithResource: (EDAMResource*) resource
                    note: (EDAMNote*) note

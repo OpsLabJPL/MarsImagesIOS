@@ -299,11 +299,8 @@ static dispatch_queue_t scaleDownJobQueue = nil;
     GLKView *view = (GLKView*)self.view;
     [AGLKContext setCurrentContext:view.context];
     
-    [_scene deleteImages];
-    [_scene addImagesToScene:_scene.rmc];
-    
-//    ((GLKView*)self.view).context = nil;
-//    [EAGLContext setCurrentContext:nil];
+    [_scene deleteImages]; //TODO do this right...flush only non-visible images and textures
+    [_scene addImagesToScene:_scene.rmc]; //TODO remove this after above is right
 }
 
 - (void) handleMWPhotoLoadingDidEndNotification: (NSNotification *)notification {
@@ -314,10 +311,7 @@ static dispatch_queue_t scaleDownJobQueue = nil;
         if ([_scene.photoQuads objectForKey:title]) {            
             [_scene makeTexture:[photo underlyingImage] withTitle:title grayscale:[((MarsPhoto*)photo) isGrayscale]];
         }
-        
-//        [self buildScaledDownImages: photo withTitle:title]; //TODO continue this development
     }
-    
 }
 
 - (void) buildScaledDownImages:(MWPhoto*)  photo

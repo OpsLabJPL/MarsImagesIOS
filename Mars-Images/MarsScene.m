@@ -23,8 +23,6 @@
 
 @implementation MarsScene
 
-static const double x_axis[] = X_AXIS;
-static const double z_axis[] = Z_AXIS;
 
 static dispatch_queue_t downloadQueue = nil;
 
@@ -32,9 +30,9 @@ static dispatch_queue_t downloadQueue = nil;
     self = [super init];
     
     if (self) {
-        _photoQuads = [[NSMutableDictionary alloc] init];
-        _photoTextures = [[NSMutableDictionary alloc] init];
-
+        _photoQuads = NSMutableDictionary.new;
+        _photoTextures = NSMutableDictionary.new;
+        _photosInScene = NSMutableDictionary.new;
         float textureCoords[] = { 0.f, 0.f, 0.f, 1.f, 1.f, 1.f, 1.f, 0.f };
         GLfloat vertPointer[] = {
             -COMPASS_RADIUS, COMPASS_HEIGHT, COMPASS_RADIUS,
@@ -91,10 +89,11 @@ static dispatch_queue_t downloadQueue = nil;
         dispatch_async(downloadQueue, ^{
 
             NSArray* notesForRMC = [[MarsImageNotebook instance] notePhotosArray];
-            NSArray* binnedNotesForRMC = [self binImagesByPointing: notesForRMC];
+            [self binImagesByPointing: notesForRMC];
             NSLog(@"%lu images returned.", (unsigned long)[notesForRMC count]);
             int mosaicCount = 0;
-            for (MarsPhoto* photo in binnedNotesForRMC) {
+            for (NSString* photoTitle in _photosInScene) {
+                MarsPhoto* photo = _photosInScene[photoTitle];
                 if (![photo includedInMosaic])
                     continue;
                 
@@ -103,24 +102,20 @@ static dispatch_queue_t downloadQueue = nil;
                     continue;
                 
                 mosaicCount++;
-                GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
                 id<Model> model = [CameraModel model:model_json];
                 NSArray* origin = [CameraModel origin:model_json];
                 
-                [self getImageVertices:model origin:origin vertices:vertPointer];
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
-                    ImageQuad* imageQuad = [[ImageQuad alloc] initWithPositionCoords:vertPointer texCoords0:textureCoords numberOfPositions:4];
-                    free(vertPointer);
+                    ImageQuad* imageQuad = [[ImageQuad alloc] initWithModel:model origin:origin qLL:qLL];
                     [_photoQuads setObject:imageQuad forKey:photo.note.title];
 //                    NSLog(@"Photo quad count: %d", [_photoQuads count]);
-                    UIImage* image = [photo underlyingImage];
-                    if (!image) {
-                        [photo performLoadUnderlyingImageAndNotify];
-                    } else {
-                        [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
-                    }
+
+//                    UIImage* image = [photo underlyingImage]; //TRYING to move this to drawImages method
+//                    if (!image) {
+//                        [photo performLoadUnderlyingImageAndNotify];
+//                    } else {
+//                        [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
+//                    }
                 });
             }
             NSLog(@"images in mosaic: %d", mosaicCount);
@@ -136,15 +131,28 @@ static dispatch_queue_t downloadQueue = nil;
     int skippedImages = 0;
     
     for (NSString* title in _photoQuads) {
-        ImageQuad* imageQuad = [_photoQuads objectForKey:title];
+        ImageQuad* imageQuad = _photoQuads[title];
         
         //frustum culling: don't draw if the bounding sphere of the image quad isn't in the camera frustum
         AGLKFrustum frustum = ((MosaicViewController*)_viewController).frustum;
 
         if (AGLKFrustumCompareSphere(&frustum, imageQuad.center, imageQuad.boundingSphereRadius) == AGLKFrustumOut) {
+            imageQuad.isVisible = NO;
             skippedImages++;
+            MarsPhoto* photo = _photosInScene[title];
+            if ([photo underlyingImage]) {
+                [photo unloadUnderlyingImage];
+                GLKTextureInfo* texInfo = _photoTextures[title];
+                if (texInfo) {
+                    GLuint textureName = texInfo.name;
+                    glDeleteTextures(1, &textureName);
+                    [_photoTextures removeObjectForKey:title];
+                }
+           }
+            
             continue;
         }
+        imageQuad.isVisible = YES;
         
         GLKTextureInfo* textureInfo = [_photoTextures objectForKey:title];
         if (textureInfo) {
@@ -173,35 +181,19 @@ static dispatch_queue_t downloadQueue = nil;
                 NSLog(@"GL Error: 0x%x", error);
             }
             baseEffect.light0.enabled = GL_TRUE;
+            
+            MarsPhoto* photo = _photosInScene[title];
+            UIImage* image = [photo underlyingImage];
+            if (!image) {
+                if (!photo.isLoading) {
+                    [photo performLoadUnderlyingImageAndNotify];
+                }
+            } else {
+                [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
+            }
         }
     }
 //    NSLog(@"Skipped images: %d", skippedImages);
-}
-
-- (BOOL) testInFrustum:(ImageQuad*) quad {
-    static int count;
-    count++;
-    if (count % 100 != 0) {
-        return YES;
-    }
-    GLfloat vx = quad.v1.x;
-    GLfloat vy = quad.v1.y;
-    GLfloat vz = quad.v1.z;
-    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
-    vx = quad.v2.x;
-    vy = quad.v2.y;
-    vz = quad.v2.z;
-    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
-    vx = quad.v3.x;
-    vy = quad.v3.y;
-    vz = quad.v3.z;
-    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
-    vx = quad.v4.x;
-    vy = quad.v4.y;
-    vz = quad.v4.z;
-    NSLog(@"Quad x,y,z: %f, %f, %f", vx, vy, vz);
-    
-    return NO;
 }
 
 - (void) drawCompass: (GLKBaseEffect*) baseEffect {
@@ -219,6 +211,8 @@ static dispatch_queue_t downloadQueue = nil;
 }
 
 - (void) deleteImages {
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+    [_photosInScene removeAllObjects];
     [_photoQuads removeAllObjects];
     for (id key in [_photoTextures keyEnumerator]) {
         GLKTextureInfo* texInfo = [_photoTextures objectForKey:key];
@@ -227,97 +221,6 @@ static dispatch_queue_t downloadQueue = nil;
     }
     [_photoTextures removeAllObjects];
     NSLog(@"textures deleted");
-}
-
-- (GLfloat*) getImageVertices: (id<Model>) model
-                       origin: (NSArray*) origin
-                     vertices: (GLfloat*) vertices {
-    
-    id<MarsRover> mission = [MarsImageNotebook instance].mission;
-    double eye[] = {[mission mastX], [mission mastY], [mission mastZ]};
-    double pos[2], pos3[3], vec3[3];
-    double pos3LL[3], pinitial[3], pfinal[3];
-    double xrotq[4];
-    [Math quatva:x_axis a:M_PI_2 toQ:xrotq];
-    double zrotq[4];
-    [Math quatva:z_axis a:-M_PI_2 toQ:zrotq];
-    double llRotq[4];
-
-    llRotq[0] = qLL.w;
-    llRotq[1] = qLL.x;
-    llRotq[2] = qLL.y;
-    llRotq[3] = qLL.z;
-    
-    double originX = ((NSNumber*)[origin objectAtIndex:0]).doubleValue;
-    double originY = ((NSNumber*)[origin objectAtIndex:1]).doubleValue;
-    pos[0] = originX;
-    pos[1] = [model ydim];
-    [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
-    pos3[0] -= eye[0];
-    pos3[1] -= eye[1];
-    pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
-    [Math multqv:llRotq v:pos3 toU:pos3LL];
-    [Math multqv:zrotq v:pos3LL toU:pinitial];
-    [Math multqv:xrotq v:pinitial toU:pfinal];
-    vertices[0] = (float)pfinal[0];
-    vertices[1] = (float)pfinal[1];
-    vertices[2] = (float)pfinal[2];
-//    NSLog(@"vertex: %g %g %g", vertices[0], vertices[1], vertices[2]);
-    
-    pos[0] = [model xdim];
-    pos[1] = [model ydim];
-    [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
-    pos3[0] -= eye[0];
-    pos3[1] -= eye[1];
-    pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
-    [Math multqv:llRotq v:pos3 toU:pos3LL];
-    [Math multqv:zrotq v:pos3LL toU:pinitial];
-    [Math multqv:xrotq v:pinitial toU:pfinal];
-    vertices[3] = (float)pfinal[0];
-    vertices[4] = (float)pfinal[1];
-    vertices[5] = (float)pfinal[2];
-//    NSLog(@"vertex: %g %g %g", vertices[3], vertices[4], vertices[5]);
-    
-    pos[0] = [model xdim];
-    pos[1] = originY;
-    [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
-    pos3[0] -= eye[0];
-    pos3[1] -= eye[1];
-    pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
-    [Math multqv:llRotq v:pos3 toU:pos3LL];
-    [Math multqv:zrotq v:pos3LL toU:pinitial];
-    [Math multqv:xrotq v:pinitial toU:pfinal];
-    vertices[6] = (float)pfinal[0];
-    vertices[7] = (float)pfinal[1];
-    vertices[8] = (float)pfinal[2];
-//    NSLog(@"vertex: %g %g %g", vertices[6], vertices[7], vertices[8]);
-    
-    pos[0] = originX;
-    pos[1] = originY;
-    [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
-    pos3[0] -= eye[0];
-    pos3[1] -= eye[1];
-    pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
-    [Math multqv:llRotq v:pos3 toU:pos3LL];
-    [Math multqv:zrotq v:pos3LL toU:pinitial];
-    [Math multqv:xrotq v:pinitial toU:pfinal];
-    vertices[9] = (float)pfinal[0];
-    vertices[10] = (float)pfinal[1];
-    vertices[11] = (float)pfinal[2];
-//    NSLog(@"vertex: %g %g %g", vertices[9], vertices[10], vertices[11]);
-    return vertices;
 }
 
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo {
@@ -335,6 +238,9 @@ static dispatch_queue_t downloadQueue = nil;
 - (void)makeTexture:(UIImage*) image
           withTitle:(NSString*) title
           grayscale:(BOOL) grayscale {
+    
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+    
     if (image) {
         if (grayscale) {
             image = [ImageUtility grayscale:image];
@@ -354,21 +260,19 @@ static dispatch_queue_t downloadQueue = nil;
     }
 }
 
-- (NSArray*) binImagesByPointing: (NSArray*) imagesForRMC {
-    NSMutableArray* binnedImages = [[NSMutableArray alloc] init];
+- (void) binImagesByPointing: (NSArray*) imagesForRMC {
     for (MarsPhoto* prospectiveImage in [imagesForRMC reverseObjectEnumerator]) {
         BOOL tooCloseToAnotherImage = NO;
-        for (MarsPhoto* image in binnedImages) {
+        for (NSString* imageTitle in _photosInScene) {
+            MarsPhoto* image = _photosInScene[imageTitle];
             if ([image angularDistance:prospectiveImage] < ANGLE_THRESHOLD) {
                 tooCloseToAnotherImage = YES;
                 break;
             }
         }
         if (!tooCloseToAnotherImage)
-            [binnedImages addObject:prospectiveImage];
+            _photosInScene[prospectiveImage.note.title] = prospectiveImage;
     }
-    
-    return binnedImages;
 }
 
 @end

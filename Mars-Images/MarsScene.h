@@ -23,6 +23,7 @@
 }
 
 @property (strong, nonatomic) NSArray* rmc;
+@property (strong, nonatomic) NSMutableDictionary* photosInScene;
 @property (strong, nonatomic) NSMutableDictionary* photoQuads;
 @property (strong, nonatomic) NSMutableDictionary* photoTextures;
 @property (strong, nonatomic) GLKTextureInfo* compassTextureInfo;
@@ -41,18 +42,12 @@
 
 - (void) drawCompass: (GLKBaseEffect*) baseEffect;
 
-- (GLfloat*) getImageVertices: (id<Model>) model
-                       origin: (NSArray*) origin
-                     vertices: (GLfloat*) vertices;
-
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo;
 
 - (void)makeTexture:(UIImage*) image
           withTitle:(NSString*) title
           grayscale:(BOOL)grayscale;
 
-- (BOOL) testInFrustum:(ImageQuad*) quad;
-
-- (NSArray*) binImagesByPointing: (NSArray*) imagesForRMC;
+- (void) binImagesByPointing: (NSArray*) imagesForRMC;
 
 @end

@@ -15,7 +15,7 @@
 #import "SDWebImageDecoder.h"
 
 @interface MarsPhoto () {
-    BOOL _anaglyphLoadingInProgress;
+    BOOL _anaglyphLoadingInProgress; //Delete?
     id <SDWebImageOperation> _leftImageOperation;
     id <SDWebImageOperation> _rightImageOperation;
 }
@@ -29,6 +29,7 @@ double d1[3], d2[3];
                    note: (EDAMNote*) note
                     url: (NSURL*) url {
     self = [super initWithURL:url];
+    _isLoading = NO;
     _note = note;
     _resource = resource;
     _model_json = nil;
@@ -70,6 +71,7 @@ double d1[3], d2[3];
 }
 
 - (void)performLoadUnderlyingImageAndNotify {
+    _isLoading = YES;
     // Load async from web (using SDWebImage)
     if (_leftAndRight) {
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
@@ -160,7 +162,8 @@ double d1[3], d2[3];
 - (void)imageLoadingComplete {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     // Complete so notify
-    _anaglyphLoadingInProgress = NO;
+    _anaglyphLoadingInProgress = NO; //Delete?
+    _isLoading = NO;
     // Notify on next run loop
     [self performSelector:@selector(postCompleteNotification) withObject:nil afterDelay:0];
 }
