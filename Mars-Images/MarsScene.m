@@ -15,19 +15,23 @@
 #import "MarsPhoto.h"
 #import "Math.h"
 #import "MosaicViewController.h"
+#import <SDImageCache.h>
 
 #define COMPASS_HEIGHT 0.5
 #define COMPASS_RADIUS 5
 
-#define ANGLE_THRESHOLD 3 / 180 * M_PI
+#define ANGLE_THRESHOLD 5.0 / 180.0 * M_PI
 
 @implementation MarsScene
 
+Quaternion* qLL;
 
 static dispatch_queue_t downloadQueue = nil;
 
 - (id) init {
     self = [super init];
+    
+    [SDImageCache sharedImageCache].maxMemoryCost = 128000;
     
     if (self) {
         _photoQuads = NSMutableDictionary.new;
@@ -69,33 +73,30 @@ static dispatch_queue_t downloadQueue = nil;
     id<MarsRover> mission = [MarsImageNotebook instance].mission;
     site_index = [[rmc objectAtIndex:0] intValue];
     drive_index = [[rmc objectAtIndex:1] intValue];
-    NSLog(@"RMC is %d,%d", site_index, drive_index);
     qLL = [mission localLevelQuaternion:site_index drive:drive_index];
-    NSLog(@"Quaternion: %@", qLL);
     [MarsImageNotebook instance].searchWords = [NSString stringWithFormat:@"RMC %06d-%06d", site_index, drive_index];
     [[MarsImageNotebook instance] reloadNotes]; //rely on the resultant note load notifications to populate images in the scene
 }
 
-- (void) notesLoaded: (NSNotification*) notification {   
+- (void) notesLoaded: (NSNotification*) notification {
+    
     int numNotesReturned = 0;
     NSNumber* num = [notification.userInfo objectForKey:NUM_NOTES_RETURNED];
     if (num != nil) {
         numNotesReturned = [num intValue];
     }
+
     if (numNotesReturned > 0)
-        [[MarsImageNotebook instance] loadMoreNotes:[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
+        [[MarsImageNotebook instance] loadMoreNotes:(int)[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
     else {
         //when there are no more notes returned, we have all images for this location: add them to the scene
         dispatch_async(downloadQueue, ^{
 
             NSArray* notesForRMC = [[MarsImageNotebook instance] notePhotosArray];
             [self binImagesByPointing: notesForRMC];
-            NSLog(@"%lu images returned.", (unsigned long)[notesForRMC count]);
             int mosaicCount = 0;
             for (NSString* photoTitle in _photosInScene) {
                 MarsPhoto* photo = _photosInScene[photoTitle];
-                if (![photo includedInMosaic])
-                    continue;
                 
                 NSArray* model_json = [photo modelJson];
                 if (!model_json)
@@ -104,21 +105,12 @@ static dispatch_queue_t downloadQueue = nil;
                 mosaicCount++;
                 id<Model> model = [CameraModel model:model_json];
                 NSArray* origin = [CameraModel origin:model_json];
-                
+                NSString* imageId = [[MarsImageNotebook instance].mission imageId:photo.resource];
+                ImageQuad* imageQuad = [[ImageQuad alloc] initWithModel:model origin:origin qLL:qLL imageID:imageId];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    ImageQuad* imageQuad = [[ImageQuad alloc] initWithModel:model origin:origin qLL:qLL];
-                    [_photoQuads setObject:imageQuad forKey:photo.note.title];
-//                    NSLog(@"Photo quad count: %d", [_photoQuads count]);
-
-//                    UIImage* image = [photo underlyingImage]; //TRYING to move this to drawImages method
-//                    if (!image) {
-//                        [photo performLoadUnderlyingImageAndNotify];
-//                    } else {
-//                        [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
-//                    }
+                    _photoQuads[photo.note.title] = imageQuad;
                 });
             }
-            NSLog(@"images in mosaic: %d", mosaicCount);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [((MosaicViewController*)_viewController) hideHud];
             });
@@ -128,75 +120,65 @@ static dispatch_queue_t downloadQueue = nil;
 
 - (void) drawImages: (GLKBaseEffect*) baseEffect {
 
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+
     int skippedImages = 0;
-    
+
     for (NSString* title in _photoQuads) {
         ImageQuad* imageQuad = _photoQuads[title];
         
         //frustum culling: don't draw if the bounding sphere of the image quad isn't in the camera frustum
         AGLKFrustum frustum = ((MosaicViewController*)_viewController).frustum;
-
         if (AGLKFrustumCompareSphere(&frustum, imageQuad.center, imageQuad.boundingSphereRadius) == AGLKFrustumOut) {
-            imageQuad.isVisible = NO;
             skippedImages++;
-            MarsPhoto* photo = _photosInScene[title];
-            if ([photo underlyingImage]) {
-                [photo unloadUnderlyingImage];
-                GLKTextureInfo* texInfo = _photoTextures[title];
-                if (texInfo) {
-                    GLuint textureName = texInfo.name;
-                    glDeleteTextures(1, &textureName);
-                    [_photoTextures removeObjectForKey:title];
-                }
-           }
-            
+            [self deleteImageAndTexture: title];
             continue;
         }
-        imageQuad.isVisible = YES;
         
-        GLKTextureInfo* textureInfo = [_photoTextures objectForKey:title];
-        if (textureInfo) {
-            baseEffect.texture2d0.name = textureInfo.name;
-            baseEffect.texture2d0.target = textureInfo.target;
-            [baseEffect prepareToDraw];
-            [imageQuad prepareToDraw];
-            [imageQuad drawUnindexedWithMode:GL_TRIANGLE_FAN startVertexIndex:0 numberOfVertices:4];
-            GLenum error = glGetError();
-            if (GL_NO_ERROR != error) {
-                NSLog(@"GL Error: 0x%x", error);
-            }
-        }
-        else {
-            // Draw lines to represent normal vectors and light direction
-            // Don't use light so that line color shows
-            baseEffect.light0.enabled = GL_FALSE;
-            baseEffect.useConstantColor = GL_TRUE;
-            baseEffect.constantColor = GLKVector4Make(1.0, 0.9, 0.7, 1.0);
-            glLineWidth(1.0);
-            [baseEffect prepareToDraw];
-            [imageQuad prepareToDraw];
-            [imageQuad drawUnindexedWithMode:GL_LINE_LOOP startVertexIndex:0 numberOfVertices:4];
-            GLenum error = glGetError();
-            if (GL_NO_ERROR != error) {
-                NSLog(@"GL Error: 0x%x", error);
-            }
-            baseEffect.light0.enabled = GL_TRUE;
-            
-            MarsPhoto* photo = _photosInScene[title];
-            UIImage* image = [photo underlyingImage];
-            if (!image) {
-                if (!photo.isLoading) {
-                    [photo performLoadUnderlyingImageAndNotify];
-                }
-            } else {
-                [self makeTexture:image withTitle:photo.note.title grayscale:[photo isGrayscale]];
-            }
+        [self drawImage:imageQuad withTitle:title effect:baseEffect];
+    }
+}
+
+- (void) drawImage:(ImageQuad*)imageQuad withTitle:(NSString*)title effect:(GLKBaseEffect*)baseEffect {
+
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+
+    GLKTextureInfo* textureInfo = [_photoTextures objectForKey:title];
+    if (textureInfo) {
+        baseEffect.texture2d0.name = textureInfo.name;
+        baseEffect.texture2d0.target = textureInfo.target;
+        [baseEffect prepareToDraw];
+        [imageQuad prepareToDraw];
+        [imageQuad drawUnindexedWithMode:GL_TRIANGLE_FAN startVertexIndex:0 numberOfVertices:4];
+        GLenum error = glGetError();
+        if (GL_NO_ERROR != error) {
+            NSLog(@"GL Error: 0x%x", error);
         }
     }
-//    NSLog(@"Skipped images: %d", skippedImages);
+    else {
+        // Draw lines to represent normal vectors and light direction
+        // Don't use light so that line color shows
+        baseEffect.light0.enabled = GL_FALSE;
+        baseEffect.useConstantColor = GL_TRUE;
+        baseEffect.constantColor = GLKVector4Make(1.0, 0.9, 0.7, 1.0);
+        glLineWidth(1.0);
+        [baseEffect prepareToDraw];
+        [imageQuad prepareToDraw];
+        [imageQuad drawUnindexedWithMode:GL_LINE_LOOP startVertexIndex:0 numberOfVertices:4];
+        GLenum error = glGetError();
+        if (GL_NO_ERROR != error) {
+            NSLog(@"GL Error: 0x%x", error);
+        }
+        baseEffect.light0.enabled = GL_TRUE;
+        
+        [self loadImageAndTexture:title];
+    }
 }
 
 - (void) drawCompass: (GLKBaseEffect*) baseEffect {
+    
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+
     if (_compassTextureInfo) {
         baseEffect.texture2d0.name = _compassTextureInfo.name;
         baseEffect.texture2d0.target = _compassTextureInfo.target;
@@ -210,17 +192,49 @@ static dispatch_queue_t downloadQueue = nil;
     }
 }
 
-- (void) deleteImages {
+- (void) loadImageAndTexture: (NSString*)title {
+    
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+    
+    MarsPhoto* photo = _photosInScene[title];
+    UIImage* image = [photo underlyingImage];
+    if (!image) {
+        if (!photo.isLoading) {
+            [photo performLoadUnderlyingImageAndNotify];
+        }
+    } else {
+        [self makeTexture:image withTitle:title grayscale:[photo isGrayscale]];
+    }
+}
+
+- (void) deleteImageAndTexture: (NSString*)title {
+    
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+    
+    MarsPhoto* photo = _photosInScene[title];
+    if ([photo underlyingImage]) {
+        [photo unloadUnderlyingImage];
+        GLKTextureInfo* texInfo = _photoTextures[title];
+        if (texInfo) {
+            GLuint textureName = texInfo.name;
+            glDeleteTextures(1, &textureName);
+            [_photoTextures removeObjectForKey:title];
+        }
+    }
+}
+
+- (void) deleteImages {
+    
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
+    
     [_photosInScene removeAllObjects];
     [_photoQuads removeAllObjects];
-    for (id key in [_photoTextures keyEnumerator]) {
-        GLKTextureInfo* texInfo = [_photoTextures objectForKey:key];
+    for (id key in _photoTextures.allKeys) {
+        GLKTextureInfo* texInfo = _photoTextures[key];
         GLuint textureName = texInfo.name;
         glDeleteTextures(1, &textureName);
     }
     [_photoTextures removeAllObjects];
-    NSLog(@"textures deleted");
 }
 
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo {
@@ -242,26 +256,53 @@ static dispatch_queue_t downloadQueue = nil;
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     
     if (image) {
+        ImageQuad* imageQuad = _photoQuads[title];
+        int textureSize = [self computeBestTextureResolution:imageQuad];
+        imageQuad.textureSize = textureSize;
+
+        image = [ImageUtility imageWithImage:image scaledToSize:CGSizeMake(textureSize, textureSize)];
+        
         if (grayscale) {
             image = [ImageUtility grayscale:image];
         }
-        image = [ImageUtility resizeToValidTexture:image];
         CGImageRef imageRef = [image CGImage];
         NSError* error = nil;
         GLKTextureInfo* textureInfo = [GLKTextureLoader textureWithCGImage:imageRef options:nil error:&error];
         if (textureInfo) {
-            [_photoTextures setObject:textureInfo forKey:title];
+            _photoTextures[title] = textureInfo;
         }
         if (error) {
             NSLog(@"Unable to make texture for %@, because %@", title, error);
             [ImageUtility imageDump:image];
         }
-//        NSLog(@"Texture count: %d", [_photoTextures count]);
     }
+}
+
+- (void) handleZoomChanged {
+    for (NSString* title in _photoQuads.allKeys) {
+        ImageQuad* imageQuad = _photoQuads[title];
+        int textureSize = [self computeBestTextureResolution:imageQuad];
+        if (textureSize != imageQuad.textureSize) {
+            [self deleteImageAndTexture:title];
+        }
+    }
+}
+
+- (int) computeBestTextureResolution:(ImageQuad*)imageQuad {
+    CGFloat screenWidthPixels = ((GLKView*)_viewController.view).drawableWidth;
+    float viewportFovRadians = [(MosaicViewController*)_viewController computeFOVRadians];
+    float cameraFovRadians = [imageQuad cameraFOVRadians];
+    float idealPixelResolution = screenWidthPixels * cameraFovRadians / viewportFovRadians;
+    int bestTextureResolution = [Math floorPowerOfTwo:idealPixelResolution];
+    return bestTextureResolution > 1024 ? 1024: bestTextureResolution;
 }
 
 - (void) binImagesByPointing: (NSArray*) imagesForRMC {
     for (MarsPhoto* prospectiveImage in [imagesForRMC reverseObjectEnumerator]) {
+        //filter out any images that aren't on the mast i.e. mosaic-able.
+        if (![prospectiveImage includedInMosaic])
+            continue;
+
         BOOL tooCloseToAnotherImage = NO;
         for (NSString* imageTitle in _photosInScene) {
             MarsPhoto* image = _photosInScene[imageTitle];

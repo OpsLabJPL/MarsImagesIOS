@@ -7,48 +7,15 @@
 //
 
 #import "ImageUtility.h"
+#import "Math.h"
 
 @implementation ImageUtility
-
-+ (BOOL) powerOfTwo: (int) x {
-    return !(x == 0) && !(x & (x - 1));
-}
-
-+ (int) nextHighestPowerOfTwo: (int) n {
-    double y = floor(log2(n));
-    return (int)pow(2, y + 1);
-}
-
-+ (int) nextLowestPowerOfTwo: (int) n {
-    double y = floor(log2(n));
-    return (int)pow(2, y - 1);
-}
-
-+ (UIImage*)resizeToValidTexture:(UIImage*) sourceImage {
-//    return [ImageUtility imageWithImage:sourceImage scaledToSize:CGSizeMake(32, 32)]; //intentionally make them small
-
-    CGSize size = sourceImage.size;
-    if (size.width != size.height ||
-        ![ImageUtility powerOfTwo:(int)size.width] ||
-        ![ImageUtility powerOfTwo:(int)size.height]) {
-        
-        int length = MAX((int)size.width, (int)size.height);
-        if (![ImageUtility powerOfTwo:length]) {
-            length = [ImageUtility nextLowestPowerOfTwo:length];
-        }
-        return [ImageUtility imageWithImage:sourceImage scaledToSize:CGSizeMake(length, length)];
-    }
-    else {
-        sourceImage = [UIImage imageWithData:UIImagePNGRepresentation(sourceImage)];
-    }
-    return sourceImage;
-}
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     //UIGraphicsBeginImageContext(newSize);
     // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
     // Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 1.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

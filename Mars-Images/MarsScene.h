@@ -19,7 +19,6 @@
 //    GLuint vertexBufferID;
     int site_index;
     int drive_index;
-    Quaternion* qLL;
 }
 
 @property (strong, nonatomic) NSArray* rmc;
@@ -36,18 +35,24 @@
 
 - (void) addImagesToScene: (NSArray*) rmc;
 
+- (void) loadImageAndTexture: (NSString*)title;
+- (void) deleteImageAndTexture: (NSString*)title;
+
 - (void) deleteImages;
 
 - (void) drawImages: (GLKBaseEffect*) baseEffect;
-
+- (void) drawImage:(ImageQuad*)imageQuad withTitle:(NSString*)title effect:(GLKBaseEffect*)baseEffect;
 - (void) drawCompass: (GLKBaseEffect*) baseEffect;
 
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo;
 
-- (void)makeTexture:(UIImage*) image
-          withTitle:(NSString*) title
-          grayscale:(BOOL)grayscale;
+- (void) makeTexture: (UIImage*) image
+           withTitle: (NSString*) title
+           grayscale: (BOOL) grayscale;
 
+- (void) handleZoomChanged;
+
+- (int) computeBestTextureResolution: (ImageQuad*) imageQuad;
 - (void) binImagesByPointing: (NSArray*) imagesForRMC;
 
 @end
