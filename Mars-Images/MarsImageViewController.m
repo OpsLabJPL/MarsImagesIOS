@@ -198,7 +198,7 @@ typedef enum {
         NSString* imageName = [[MarsImageNotebook instance].mission imageName:resource];
         PSMenuItem *menuItem = [[PSMenuItem alloc] initWithTitle:imageName
                                                            block:^{
-                                                               [[MarsImageNotebook instance] changeToImage:resourceIndex forNote:self.currentIndex];
+                                                               [[MarsImageNotebook instance] changeToImage:resourceIndex forNote:(int)self.currentIndex];
                                                                [self reloadData];
                                                            }];
         [menuItems addObject:menuItem];
@@ -209,7 +209,7 @@ typedef enum {
     if (leftAndRight.count > 0) {
         PSMenuItem* menuItem = [[PSMenuItem alloc] initWithTitle:@"Anaglyph"
                                                              block:^{
-                                                                 [[MarsImageNotebook instance] changeToAnaglyph: leftAndRight noteIndex:self.currentIndex];
+                                                                 [[MarsImageNotebook instance] changeToAnaglyph: leftAndRight noteIndex:(int)self.currentIndex];
                                                                  [self reloadData];
                                                              }];
         [menuItems addObject:menuItem];
@@ -228,7 +228,7 @@ typedef enum {
 
     int resourceCount = 0;
     MarsPhoto* photo = [self currentPhoto];
-    resourceCount = photo.note.resources.count;
+    resourceCount = (int)photo.note.resources.count;
     BOOL iPhoneInPortrait = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && UIDeviceOrientationIsPortrait(self.interfaceOrientation);
 
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
@@ -312,11 +312,11 @@ typedef enum {
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
     [self configureToolbarAndNavbar];
     
-    int count = [MarsImageNotebook instance].notePhotosArray.count;
+    int count = (int)[MarsImageNotebook instance].notePhotosArray.count;
     if (index == count-1) {
         [[MarsImageNotebook instance] loadMoreNotes:count withTotal:NOTE_PAGE_SIZE];
     }
-    [(MarsSidePanelController*)self.viewDeckController imageSelected:index from:self];
+    [(MarsSidePanelController*)self.viewDeckController imageSelected:(int)index from:self];
 }
 
 - (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
