@@ -33,11 +33,13 @@ typedef enum {
     ROVER_MOTION_COUNTER
 } TitleState;
 
-static NSArray* cameras;
-
 - (id) init {
     self = [super init];
-    cameras = [[NSArray alloc] initWithObjects:@"Navcam", @"Pancam", nil];
+    self.cameraFOVs = [[NSDictionary alloc]
+                  initWithObjectsAndKeys:
+                  [NSNumber numberWithFloat:0.78539816], @"N",
+                  [NSNumber numberWithFloat:0.27925268], @"P",
+                  nil];
     return self;
 }
 
@@ -47,7 +49,6 @@ static NSArray* cameras;
 	[formatter setTimeStyle:NSDateFormatterNoStyle];
     [formatter setDateStyle:NSDateFormatterLongStyle];
     stereoInstruments = [[NSSet alloc] initWithObjects:@"F", @"R", @"N", @"P", nil];
-
 }
 
 - (NSString*) labelText: (EDAMNote*) note {
@@ -142,9 +143,27 @@ static NSArray* cameras;
 + (NSString*) imageID:(EDAMResource*) resource {
     NSString* url = resource.attributes.sourceURL;
     NSArray* tokens = [url componentsSeparatedByCharactersInSet:slashAndDot];
-    int numTokens = tokens.count;
+    unsigned long numTokens = tokens.count;
     NSString* imageid = [tokens objectAtIndex:numTokens-2];
     return imageid;
+}
+
+- (NSString*) imageId:(EDAMResource*) resource {
+    return [MER imageID:resource];
+}
+
+- (NSString*) getCameraId:(NSString*) imageId {
+    if ([imageId rangeOfString:@"Sol"].location != NSNotFound) { //Color Pancam image IDs begin with "Sol"...
+        return @"P";
+    }
+    return [imageId substringWithRange:NSMakeRange(1, 1)];
+}
+
+- (BOOL) isTopLayer:(NSString *)cameraId {
+    if ([cameraId characterAtIndex:0] == 'N') {
+        return NO;
+    }
+    return YES;
 }
 
 + (MERTitle*) tokenize: (NSString*) title {
@@ -283,10 +302,6 @@ static NSArray* cameras;
 
 - (float) mastZ {
     return -1.0969;
-}
-
-- (NSArray*) mastCameras {
-    return cameras;
 }
 
 @end

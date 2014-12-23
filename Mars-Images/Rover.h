@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "MarsRover.h"
 
+
 @interface Rover : NSObject <MarsRover>
+
+@property (strong, nonatomic) NSDictionary* cameraFOVs;
 
 @end
