@@ -140,12 +140,10 @@ void AGLKFrustumSetToMatchModelview
    GLKMatrix4 modelview
 )
 {
-   frustumPtr->xUnitVector = GLKVector3Make(
-      modelview.m00, modelview.m10, modelview.m20);
-   frustumPtr->yUnitVector = GLKVector3Make(
-      modelview.m01, modelview.m11, modelview.m21);
-   frustumPtr->zUnitVector = GLKVector3Make(
-      modelview.m02, modelview.m12, modelview.m22);
+    frustumPtr->xUnitVector = GLKVector3Make(modelview.m00, modelview.m10, modelview.m20);
+    frustumPtr->yUnitVector = GLKVector3Make(modelview.m01, modelview.m11, modelview.m21);
+    frustumPtr->zUnitVector = GLKVector3Make(modelview.m02, modelview.m12, modelview.m22);
+    frustumPtr->eyePosition = GLKVector3Make(modelview.m03, modelview.m13, modelview.m23); //MWP added to fix eye position bug?
 }
 
 
