@@ -58,8 +58,8 @@ double d1[3], d2[3];
 
 - (BOOL) includedInMosaic {
     return ([_note.title rangeOfString:@"Navcam"].location != NSNotFound
-//           || [_note.title rangeOfString:@"Mastcam"].location != NSNotFound
-//           || [_note.title rangeOfString:@"Pancam"].location != NSNotFound
+           || [_note.title rangeOfString:@"Mastcam Left"].location != NSNotFound
+           || [_note.title rangeOfString:@"Pancam"].location != NSNotFound
             );
     //TODO include these when texture memory can be managed effectively
 }
@@ -181,7 +181,7 @@ double d1[3], d2[3];
 }
 
 - (double) angularDistance: (MarsPhoto*) otherImage {
-    NSArray* v1 = [CameraModel pointingVector:_model_json];
+    NSArray* v1 = [CameraModel pointingVector: [self modelJson]];
     NSArray* v2 = [CameraModel pointingVector:[otherImage modelJson]];
     if (v1.count==0 || v2.count==0)
         return 0;
