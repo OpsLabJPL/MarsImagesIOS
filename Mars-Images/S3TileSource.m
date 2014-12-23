@@ -84,7 +84,7 @@
     __block UIImage *image = nil;
 
     //do a download image file from URL here, construct as UIImage
-    NSString* path = [NSString stringWithFormat:@"%@/%i/%i/%i.png", [_s3url absoluteString], zoom, x, y]; //META extension
+    NSString* path = [NSString stringWithFormat:@"%@/%d/%d/%d.png", [_s3url absoluteString], (int)zoom, (int)x, (int)y]; //META extension
 //    NSLog(@"URL: %@", path);
     image = [self getImageFromCache: path];
     
