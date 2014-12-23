@@ -66,6 +66,7 @@ BOOL gotZeroNotesReturned = NO;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     UITableView* tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
     [tableView reloadData];
     MarsSidePanelController* sidePanel = (MarsSidePanelController*)[self viewDeckController];
@@ -138,7 +139,6 @@ BOOL gotZeroNotesReturned = NO;
     if (num != nil) {
         numNotesReturned = [num intValue];
     }
-    NSLog(@"Table view notified of %d notes loaded.", numNotesReturned);
     if (numNotesReturned > 0)
         gotZeroNotesReturned = NO;
     
@@ -232,7 +232,7 @@ BOOL gotZeroNotesReturned = NO;
 }
 
 - (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[MarsImageNotebook instance].mission sectionTitle:section];
+    return [[MarsImageNotebook instance].mission sectionTitle:(int)section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -261,8 +261,8 @@ BOOL gotZeroNotesReturned = NO;
     }
     
     //try to load more images if we are at the last cell in the table
-    int sectionCount = [MarsImageNotebook instance].sections.count;
-    int imageCount = imagesForSol.count;
+    int sectionCount = (int)[MarsImageNotebook instance].sections.count;
+    int imageCount = (int)imagesForSol.count;
     if ([MarsImageNotebook instance].sections.count > 0 &&
         sectionCount - 1 == [indexPath section] && imageCount - 1 == [indexPath row]) {
 
@@ -272,7 +272,7 @@ BOOL gotZeroNotesReturned = NO;
             if (!networkAlert.visible) [networkAlert show];
         }
         else {
-            [[MarsImageNotebook instance] loadMoreNotes:[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
+            [[MarsImageNotebook instance] loadMoreNotes:(int)[MarsImageNotebook instance].notesArray.count withTotal:NOTE_PAGE_SIZE];
         }
     }
 
@@ -281,8 +281,8 @@ BOOL gotZeroNotesReturned = NO;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MarsSidePanelController* sidePanel = (MarsSidePanelController*)self.viewDeckController;
-    int section = indexPath.section;
-    int row = indexPath.row;
+    int section = (int)indexPath.section;
+    int row = (int)indexPath.row;
     int imageIndex = 0;
     for (int i = 0; i < section; i++) {
         NSNumber* sol = [[MarsImageNotebook instance].sols objectAtIndex:i];
