@@ -34,7 +34,7 @@ bool viewControllerIsClosing = NO;
 }
 
 - (void) viewDidLoad {
-    
+    [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(defaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 
     viewControllerIsClosing = NO;
@@ -67,6 +67,7 @@ bool viewControllerIsClosing = NO;
 - (void) viewWillDisappear:(BOOL)animated {
     viewControllerIsClosing = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewWillDisappear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -80,7 +81,7 @@ bool viewControllerIsClosing = NO;
     [_mapView addAnnotation:_traversePath];
     int i = 0;
     RMPointAnnotation* lastMarker = nil;
-    int lastIndex = [_points count]-1;
+    int lastIndex = (int)[_points count]-1;
     for (CLLocation* loc in _points) {
         NSString* title = nil;
         if (i == lastIndex) {
@@ -203,7 +204,7 @@ bool viewControllerIsClosing = NO;
     _points = [[NSMutableArray alloc] init];
     _rmcsForPoints = [[NSMutableDictionary alloc] init];
     NSArray* locationManifest = [[MarsImageNotebook instance] getLocations];
-    int locationCount = [locationManifest count];
+    int locationCount = (int)[locationManifest count];
     if (locationCount > 0) {
         latestSiteIndex = [[[locationManifest objectAtIndex:locationCount-1] objectAtIndex:0] intValue];
         int i = 0;
