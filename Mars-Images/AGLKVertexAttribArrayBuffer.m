@@ -111,7 +111,7 @@
       count,               // number of coordinates for attribute
       GL_FLOAT,            // data is floating point
       GL_FALSE,            // no fixed point scaling
-      self.stride,         // total num bytes stored per vertex
+      (int)self.stride,         // total num bytes stored per vertex
       NULL + offset);      // offset from start of each vertex to 
                            // first coord for attribute
 #ifdef DEBUG
