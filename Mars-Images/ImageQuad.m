@@ -20,7 +20,7 @@
 @synthesize v4;
 @synthesize center;
 @synthesize boundingSphereRadius;
-@synthesize isVisible;
+@synthesize imageId;
 
 static const double x_axis[] = X_AXIS;
 static const double z_axis[] = Z_AXIS;
@@ -30,11 +30,14 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
 
 - (id)initWithModel:(id<Model>)model
              origin:(NSArray*)origin
-                qLL:(Quaternion*)qLL {
+                qLL:(Quaternion*)qLL
+                 imageID:(NSString*)imageID {
     
     GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
+    NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
+    BOOL topLayer = [[MarsImageNotebook instance].mission isTopLayer:cameraId];
     
-    [ImageQuad getImageVertices:model origin:origin qLL:qLL vertices:vertPointer];
+    [ImageQuad getImageVertices:model origin:origin qLL:qLL vertices:vertPointer distance:(topLayer) ? 5 : 10];
 
     if (nil != (self = [super initWithPositionCoords:vertPointer
                                           texCoords0:textureCoords
@@ -65,12 +68,19 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
         if (d2>boundingSphereRadius) boundingSphereRadius=d2;
         if (d3>boundingSphereRadius) boundingSphereRadius=d3;
         if (d4>boundingSphereRadius) boundingSphereRadius=d4;
+
+        self.imageId = imageID;
+        self.cameraId = cameraId;
+        self.isTopLayer = topLayer;
     }
     
     free(vertPointer);
-    isVisible = NO;
 
     return self;
+}
+
+- (float) cameraFOVRadians {
+    return [[MarsImageNotebook instance].mission getCameraFOV:self.cameraId];
 }
 
 - (GLfloat) distanceBetween:(const GLKVector3)pt1 b:(const GLKVector3)pt2 {
@@ -80,11 +90,11 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     return (GLfloat)sqrt(dx*dx+dy*dy+dz*dz);
 }
 
-
 + (GLfloat*) getImageVertices: (id<Model>) model
                        origin: (NSArray*) origin
                           qLL: (Quaternion*)qLL
-                     vertices: (GLfloat*) vertices {
+                     vertices: (GLfloat*) vertices
+                     distance: (float) distance {
     
     id<MarsRover> mission = [MarsImageNotebook instance].mission;
     double eye[] = {[mission mastX], [mission mastY], [mission mastZ]};
@@ -109,9 +119,9 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
     pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
+    pos3[0] += vec3[0]*distance;
+    pos3[1] += vec3[1]*distance;
+    pos3[2] += vec3[2]*distance;
     [Math multqv:llRotq v:pos3 toU:pos3LL];
     [Math multqv:zrotq v:pos3LL toU:pinitial];
     [Math multqv:xrotq v:pinitial toU:pfinal];
@@ -126,9 +136,9 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
     pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
+    pos3[0] += vec3[0]*distance;
+    pos3[1] += vec3[1]*distance;
+    pos3[2] += vec3[2]*distance;
     [Math multqv:llRotq v:pos3 toU:pos3LL];
     [Math multqv:zrotq v:pos3LL toU:pinitial];
     [Math multqv:xrotq v:pinitial toU:pfinal];
@@ -143,9 +153,9 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
     pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
+    pos3[0] += vec3[0]*distance;
+    pos3[1] += vec3[1]*distance;
+    pos3[2] += vec3[2]*distance;
     [Math multqv:llRotq v:pos3 toU:pos3LL];
     [Math multqv:zrotq v:pos3LL toU:pinitial];
     [Math multqv:xrotq v:pinitial toU:pfinal];
@@ -160,9 +170,9 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
     pos3[2] -= eye[2];
-    pos3[0] += vec3[0]*10;
-    pos3[1] += vec3[1]*10;
-    pos3[2] += vec3[2]*10;
+    pos3[0] += vec3[0]*distance;
+    pos3[1] += vec3[1]*distance;
+    pos3[2] += vec3[2]*distance;
     [Math multqv:llRotq v:pos3 toU:pos3LL];
     [Math multqv:zrotq v:pos3LL toU:pinitial];
     [Math multqv:xrotq v:pinitial toU:pfinal];
