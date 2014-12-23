@@ -14,6 +14,30 @@
 #define MAT3_EPSILON (1e-7)
 #endif
 
++ (BOOL) isPowerOfTwo: (int) x {
+    return !(x == 0) && !(x & (x - 1));
+}
+
++ (int) ceilingPowerOfTwo: (double) x {
+    double y = ceil(log2(x));
+    return (int)pow(2, y);
+}
+
++ (int) floorPowerOfTwo: (double) x {
+    double y = floor(log2(x));
+    return (int)pow(2, y);
+}
+
++ (int) nextHighestPowerOfTwo: (int) n {
+    double y = floor(log2(n));
+    return (int)pow(2, y + 1);
+}
+
++ (int) nextLowestPowerOfTwo: (int) n {
+    double y = floor(log2(n));
+    return (int)pow(2, y - 1);
+}
+
 + (void) copy: (const double[3]) a
     toB: (double[3]) b {
     b[0] = a[0];
