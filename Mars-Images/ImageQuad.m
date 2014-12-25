@@ -36,8 +36,8 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
     NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
     BOOL topLayer = [[MarsImageNotebook instance].mission isTopLayer:cameraId];
-    
-    [ImageQuad getImageVertices:model origin:origin qLL:qLL vertices:vertPointer distance:(topLayer) ? 5 : 10];
+ 
+    [ImageQuad getImageVertices:model origin:origin qLL:qLL vertices:vertPointer distance:2];
 
     if (nil != (self = [super initWithPositionCoords:vertPointer
                                           texCoords0:textureCoords
@@ -114,7 +114,7 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     double originX = ((NSNumber*)[origin objectAtIndex:0]).doubleValue;
     double originY = ((NSNumber*)[origin objectAtIndex:1]).doubleValue;
     pos[0] = originX;
-    pos[1] = [model ydim];
+    pos[1] = [model ydim] + originY;
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
@@ -130,8 +130,8 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     vertices[2] = (float)pfinal[2];
     //    NSLog(@"vertex: %g %g %g", vertices[0], vertices[1], vertices[2]);
     
-    pos[0] = [model xdim];
-    pos[1] = [model ydim];
+    pos[0] = [model xdim] + originX;
+    pos[1] = [model ydim] + originY;
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
@@ -147,7 +147,7 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     vertices[5] = (float)pfinal[2];
     //    NSLog(@"vertex: %g %g %g", vertices[3], vertices[4], vertices[5]);
     
-    pos[0] = [model xdim];
+    pos[0] = [model xdim] + originX;
     pos[1] = originY;
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
