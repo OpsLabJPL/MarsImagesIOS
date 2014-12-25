@@ -124,6 +124,9 @@ static dispatch_queue_t downloadQueue = nil;
 
     int skippedImages = 0;
 
+    NSMutableDictionary* top = NSMutableDictionary.new;
+    NSMutableDictionary* bottom = NSMutableDictionary.new;
+    
     for (NSString* title in _photoQuads) {
         ImageQuad* imageQuad = _photoQuads[title];
         
@@ -135,6 +138,21 @@ static dispatch_queue_t downloadQueue = nil;
             continue;
         }
         
+        if (imageQuad.isTopLayer)
+            top[title] = imageQuad;
+        else
+            bottom[title] = imageQuad;
+    }
+    
+    for (NSString* title in bottom) {
+        ImageQuad* imageQuad = bottom[title];
+        [self drawImage:imageQuad withTitle:title effect:baseEffect];
+    }
+    GLKView* view = (GLKView*)((MosaicViewController*)_viewController).view;
+    [((AGLKContext *)view.context) clear:GL_DEPTH_BUFFER_BIT];
+
+    for (NSString* title in top) {
+        ImageQuad* imageQuad = top[title];
         [self drawImage:imageQuad withTitle:title effect:baseEffect];
     }
 }
