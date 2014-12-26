@@ -35,14 +35,12 @@
 @property (nonatomic, assign) BOOL isTopLayer;
 
 - (id)initWithModel:(id<Model>)model
-             origin:(NSArray*)origin
                 qLL:(Quaternion*)qLL
             imageID:(NSString*)imageID;
 
 - (float) cameraFOVRadians;
 
 + (GLfloat*) getImageVertices: (id<Model>) model
-                       origin: (NSArray*) origin
                           qLL: (Quaternion*)qLL
                      vertices: (GLfloat*) vertices
                      distance: (float) distance;

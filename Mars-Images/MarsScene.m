@@ -104,9 +104,8 @@ static dispatch_queue_t downloadQueue = nil;
                 
                 mosaicCount++;
                 id<Model> model = [CameraModel model:model_json];
-                NSArray* origin = [CameraModel origin:model_json];
                 NSString* imageId = [[MarsImageNotebook instance].mission imageId:photo.resource];
-                ImageQuad* imageQuad = [[ImageQuad alloc] initWithModel:model origin:origin qLL:qLL imageID:imageId];
+                ImageQuad* imageQuad = [[ImageQuad alloc] initWithModel:model qLL:qLL imageID:imageId];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _photoQuads[photo.note.title] = imageQuad;
                 });

@@ -29,7 +29,6 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
 
 
 - (id)initWithModel:(id<Model>)model
-             origin:(NSArray*)origin
                 qLL:(Quaternion*)qLL
                  imageID:(NSString*)imageID {
     
@@ -37,7 +36,7 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
     BOOL topLayer = [[MarsImageNotebook instance].mission isTopLayer:cameraId];
  
-    [ImageQuad getImageVertices:model origin:origin qLL:qLL vertices:vertPointer distance:2];
+    [ImageQuad getImageVertices:model qLL:qLL vertices:vertPointer distance:(topLayer) ? 10 : 12];
 
     if (nil != (self = [super initWithPositionCoords:vertPointer
                                           texCoords0:textureCoords
@@ -91,13 +90,12 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
 }
 
 + (GLfloat*) getImageVertices: (id<Model>) model
-                       origin: (NSArray*) origin
                           qLL: (Quaternion*)qLL
                      vertices: (GLfloat*) vertices
                      distance: (float) distance {
     
     id<MarsRover> mission = [MarsImageNotebook instance].mission;
-    double eye[] = {[mission mastX], [mission mastY], [mission mastZ]};
+    double eye[3];
     double pos[2], pos3[3], vec3[3];
     double pos3LL[3], pinitial[3], pfinal[3];
     double xrotq[4];
@@ -106,15 +104,18 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     [Math quatva:z_axis a:-M_PI_2 toQ:zrotq];
     double llRotq[4];
     
+    
+    eye[0] = [mission mastX];
+    eye[1] = [mission mastY];
+    eye[2] = [mission mastZ];
+    
     llRotq[0] = qLL.w;
     llRotq[1] = qLL.x;
     llRotq[2] = qLL.y;
     llRotq[3] = qLL.z;
     
-    double originX = ((NSNumber*)[origin objectAtIndex:0]).doubleValue;
-    double originY = ((NSNumber*)[origin objectAtIndex:1]).doubleValue;
-    pos[0] = originX;
-    pos[1] = [model ydim] + originY;
+    pos[0] = 0;
+    pos[1] = [model ydim];
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
@@ -130,8 +131,8 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     vertices[2] = (float)pfinal[2];
     //    NSLog(@"vertex: %g %g %g", vertices[0], vertices[1], vertices[2]);
     
-    pos[0] = [model xdim] + originX;
-    pos[1] = [model ydim] + originY;
+    pos[0] = [model xdim];
+    pos[1] = [model ydim];
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
@@ -147,8 +148,8 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     vertices[5] = (float)pfinal[2];
     //    NSLog(@"vertex: %g %g %g", vertices[3], vertices[4], vertices[5]);
     
-    pos[0] = [model xdim] + originX;
-    pos[1] = originY;
+    pos[0] = [model xdim];
+    pos[1] = 0;
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
@@ -164,8 +165,8 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     vertices[8] = (float)pfinal[2];
     //    NSLog(@"vertex: %g %g %g", vertices[6], vertices[7], vertices[8]);
     
-    pos[0] = originX;
-    pos[1] = originY;
+    pos[0] = 0;
+    pos[1] = 0;
     [model cmod_2d_to_3d:pos pos3:pos3 uvec3:vec3];
     pos3[0] -= eye[0];
     pos3[1] -= eye[1];
