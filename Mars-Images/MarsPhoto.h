@@ -32,5 +32,6 @@
 - (NSArray*) modelJson;
 - (double) angularDistance: (MarsPhoto*) otherImage;
 - (NSURL*) url: (EDAMResource*)resource;
+- (double) fieldOfView;
 
 @end

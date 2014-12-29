@@ -180,6 +180,12 @@ double d1[3], d2[3];
     return _model_json;
 }
 
+- (double) fieldOfView {
+    NSString* imageID = [[MarsImageNotebook instance].mission imageId:_resource];
+    NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
+    return [[MarsImageNotebook instance].mission getCameraFOV:cameraId];
+}
+
 - (double) angularDistance: (MarsPhoto*) otherImage {
     NSArray* v1 = [CameraModel pointingVector: [self modelJson]];
     NSArray* v2 = [CameraModel pointingVector:[otherImage modelJson]];
