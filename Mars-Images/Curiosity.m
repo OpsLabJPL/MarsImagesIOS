@@ -30,7 +30,7 @@ typedef enum {
     self = [super init];
     self.roverName = @"Curiosity";
     self.regionName = @"Gale Crater";
-
+    
     NSDateComponents* comps = [[NSDateComponents alloc] init];
     [comps setDay:6];
     [comps setMonth:8];
@@ -43,6 +43,14 @@ typedef enum {
     _eyeIndex = 1;
     _instrumentIndex = 0;
     _sampleTypeIndex = 17;
+    
+    self.cameraFOVs = [[NSDictionary alloc]
+                  initWithObjectsAndKeys:
+                  [NSNumber numberWithFloat:0.785398163], @"NL",
+                  [NSNumber numberWithFloat:0.785398163], @"NR",
+                  [NSNumber numberWithFloat:0.261799388], @"ML",
+                  [NSNumber numberWithFloat:0.087266463], @"MR",
+                  nil];
     
     return self;
 }
@@ -135,9 +143,28 @@ typedef enum {
 + (NSString*) imageID:(EDAMResource*) resource { //TODO pull into superclass with MER
     NSString* url = resource.attributes.sourceURL;
     NSArray* tokens = [url componentsSeparatedByCharactersInSet:slashAndDot];
-    int numTokens = tokens.count;
+    int numTokens = (int)tokens.count;
     NSString* imageid = [tokens objectAtIndex:numTokens-2];
     return imageid;
+}
+
+- (NSString*) imageId:(EDAMResource *)resource {
+    return [Curiosity imageID:resource];
+}
+
+- (NSString*) getCameraId:(NSString*) imageId {
+    unichar c = [imageId characterAtIndex:0];
+    if (c >= '0' && c <= '9') {
+        return [imageId substringWithRange:NSMakeRange(4,2)];
+    }
+    return [imageId substringWithRange:NSMakeRange(0, 2)];
+}
+
+- (BOOL) isTopLayer:(NSString *)cameraId {
+    if ([cameraId characterAtIndex:0] == 'N') {
+        return NO;
+    }
+    return YES;
 }
 
 + (Title*) tokenize: (NSString*) title {

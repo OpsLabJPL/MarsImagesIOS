@@ -114,6 +114,24 @@
                                  userInfo:nil];
 }
 
+- (NSString*) imageId:(EDAMResource*) resource {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
+- (NSString*) getCameraId:(NSString *)imageId {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
+- (BOOL) isTopLayer:(NSString *)cameraId {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
 - (NSArray*) siteLocationData: (int) site_index {
     NSURL* siteUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/locations/site_%06d.csv", [self urlPrefix], site_index]];
     NSURLRequest *request = [NSURLRequest requestWithURL:siteUrl];
@@ -137,7 +155,7 @@
 
 - (Quaternion*) localLevelQuaternion: (int) site_index
                                drive: (int) drive_index {
-    Quaternion* q = [[Quaternion alloc] init];
+    Quaternion* q = Quaternion.new;
     NSArray* locations = [self siteLocationData:site_index];
     for (NSArray* location in locations) {
         if ([location count] >= 5 && [[location objectAtIndex:0] integerValue] == drive_index) {
@@ -161,5 +179,12 @@
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
 }
+
+- (float) getCameraFOV: (NSString*)cameraId {
+    NSNumber* fov = _cameraFOVs[cameraId];
+    if (!fov) NSLog(@"Brown alert: requested camera FOV for unrecognized camera id: %@", cameraId);
+    return [fov floatValue];
+}
+
 
 @end

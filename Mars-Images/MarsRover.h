@@ -34,4 +34,9 @@
 - (NSString*) rmc: (EDAMNote*) note;
 - (NSString*) urlPrefix;
 - (NSArray*) siteLocationData: (int) site_index;
+- (NSString*) imageId:(EDAMResource*) resource;
+- (NSString*) getCameraId:(NSString*) imageId;
+- (float) getCameraFOV:(NSString*) cameraId;
+- (BOOL) isTopLayer:(NSString*) cameraId;
+
 @end

@@ -91,8 +91,7 @@
         self.vertexAttributeBuffer =
         [[AGLKVertexAttribArrayBuffer alloc]
          initWithAttribStride:sizeof(SceneMeshVertex)
-         numberOfVertices:[self.vertexData length] /
-         sizeof(SceneMeshVertex)
+         numberOfVertices:(int)([self.vertexData length] / sizeof(SceneMeshVertex))
          bytes:[self.vertexData bytes]
          usage:GL_STATIC_DRAW];
         
@@ -145,13 +144,13 @@
         self.vertexAttributeBuffer =
         [[AGLKVertexAttribArrayBuffer alloc]
          initWithAttribStride:sizeof(SceneMeshVertex)
-         numberOfVertices:count 
+         numberOfVertices:(int)count
          bytes:someVerts
          usage:GL_DYNAMIC_DRAW];
     } else {
         [self.vertexAttributeBuffer 
          reinitWithAttribStride:sizeof(SceneMeshVertex)
-         numberOfVertices:count
+         numberOfVertices:(int)count
          bytes:someVerts];
     }
 }

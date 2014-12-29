@@ -132,7 +132,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
                 note = [MarsImageNotebook reorderResources:note];
                 [(NSMutableArray*)_notesArray addObject: note];
                 NSNumber* sol = [NSNumber numberWithInt:[self.mission sol:note]];
-                int lastSolIndex = _sols.count-1;
+                int lastSolIndex = (int)_sols.count-1;
                 if (lastSolIndex < 0 || ![[_sols objectAtIndex:lastSolIndex] isEqualToNumber: sol])
                     [(NSMutableArray*)_sols addObject:sol];
                 NSMutableArray* notesForSol = [_notes objectForKey:sol];
@@ -143,13 +143,13 @@ static dispatch_queue_t noteDownloadQueue = nil;
                 MarsPhoto* photo = [self getNotePhoto:j+startIndex withIndex:0];
                 [(NSMutableArray*)_notePhotosArray addObject:photo];
                 [(NSMutableDictionary*)_sections removeObjectForKey:sol];
-                [(NSMutableDictionary*)_sections setObject:[NSNumber numberWithInt:_sections.count] forKey:sol];
+                [(NSMutableDictionary*)_sections setObject:[NSNumber numberWithInt:(int)_sections.count] forKey:sol];
                 if (_sections.count != _sols.count) {
                     NSLog(@"Brown alert: sections and sols counts don't match each other.");
                 }
             }
 
-            [MarsImageNotebook notifyNotesReturned:notelist.notes.count];
+            [MarsImageNotebook notifyNotesReturned:(int)notelist.notes.count];
 
         } @catch (NSException *e) {
             NSLog(@"Exception listing notes: %@ %@", e.name, e.description);
@@ -288,7 +288,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
     int drive_index = [[[_locations objectAtIndex:[_locations count]-1] objectAtIndex:1] intValue];
     
     if (user_site != 0 || user_drive != 0) {
-        for (int i = [_locations count]-1; i >=0; i--) {
+        for (int i = (int)[_locations count]-1; i >=0; i--) {
             int a_site_index = [[[_locations objectAtIndex:i] objectAtIndex:0] intValue];
             int a_drive_index = [[[_locations objectAtIndex:i] objectAtIndex:1] intValue];
             if (a_site_index*100000+a_drive_index < user_site*100000+user_drive)
@@ -378,8 +378,8 @@ static dispatch_queue_t noteDownloadQueue = nil;
             for (int i = 0; i < [rows count]; i++) {
                 NSArray* row = [rows objectAtIndex:i];
                 if ([row count] >= 2) {
-                    NSNumber* site_index = [NSNumber numberWithInt:[[row objectAtIndex:0] integerValue]];
-                    NSNumber* drive_index = [NSNumber numberWithInt:[[row objectAtIndex:1] integerValue]];
+                    NSNumber* site_index = [NSNumber numberWithInt:(int)[[row objectAtIndex:0] integerValue]];
+                    NSNumber* drive_index = [NSNumber numberWithInt:(int)[[row objectAtIndex:1] integerValue]];
                     [((NSMutableArray*)_locations) addObject: [NSArray arrayWithObjects:site_index, drive_index, nil]];
                 }
             }

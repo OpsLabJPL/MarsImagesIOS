@@ -10,9 +10,6 @@
 
 @interface ImageUtility : NSObject
 
-+ (int) nextHighestPowerOfTwo: (int) n;
-+ (int) nextLowestPowerOfTwo: (int) n;
-+ (UIImage*)resizeToValidTexture:(UIImage*) sourceImage;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (void)imageDump:(UIImage*) image;
 + (UIImage*) grayscale: (UIImage*)sourceImage;

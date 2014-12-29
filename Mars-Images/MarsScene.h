@@ -19,10 +19,10 @@
 //    GLuint vertexBufferID;
     int site_index;
     int drive_index;
-    Quaternion* qLL;
 }
 
 @property (strong, nonatomic) NSArray* rmc;
+@property (strong, nonatomic) NSMutableDictionary* photosInScene;
 @property (strong, nonatomic) NSMutableDictionary* photoQuads;
 @property (strong, nonatomic) NSMutableDictionary* photoTextures;
 @property (strong, nonatomic) GLKTextureInfo* compassTextureInfo;
@@ -35,24 +35,23 @@
 
 - (void) addImagesToScene: (NSArray*) rmc;
 
+- (void) loadImageAndTexture: (NSString*)title;
+- (void) deleteImageAndTexture: (NSString*)title;
+
 - (void) deleteImages;
 
 - (void) drawImages: (GLKBaseEffect*) baseEffect;
-
+- (void) drawImage:(ImageQuad*)imageQuad withTitle:(NSString*)title effect:(GLKBaseEffect*)baseEffect;
 - (void) drawCompass: (GLKBaseEffect*) baseEffect;
-
-- (GLfloat*) getImageVertices: (id<Model>) model
-                       origin: (NSArray*) origin
-                     vertices: (GLfloat*) vertices;
 
 - (UIImage *)imageForPhoto:(id<MWPhoto>)photo;
 
-- (void)makeTexture:(UIImage*) image
-          withTitle:(NSString*) title
-          grayscale:(BOOL)grayscale;
+- (void) makeTexture: (UIImage*) image
+           withTitle: (NSString*) title
+           grayscale: (BOOL) grayscale;
 
-- (BOOL) testInFrustum:(ImageQuad*) quad;
-
-- (NSArray*) binImagesByPointing: (NSArray*) imagesForRMC;
+- (void) handleZoomChanged;
+- (int) computeBestTextureResolution: (ImageQuad*) imageQuad;
+- (void) binImagesByPointing: (NSArray*) imagesForRMC;
 
 @end

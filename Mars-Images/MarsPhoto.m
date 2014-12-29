@@ -15,7 +15,7 @@
 #import "SDWebImageDecoder.h"
 
 @interface MarsPhoto () {
-    BOOL _anaglyphLoadingInProgress;
+    BOOL _anaglyphLoadingInProgress; //Delete?
     id <SDWebImageOperation> _leftImageOperation;
     id <SDWebImageOperation> _rightImageOperation;
 }
@@ -29,6 +29,7 @@ double d1[3], d2[3];
                    note: (EDAMNote*) note
                     url: (NSURL*) url {
     self = [super initWithURL:url];
+    _isLoading = NO;
     _note = note;
     _resource = resource;
     _model_json = nil;
@@ -57,8 +58,8 @@ double d1[3], d2[3];
 
 - (BOOL) includedInMosaic {
     return ([_note.title rangeOfString:@"Navcam"].location != NSNotFound
-//           || [_note.title rangeOfString:@"Mastcam"].location != NSNotFound
-//           || [_note.title rangeOfString:@"Pancam"].location != NSNotFound
+           || [_note.title rangeOfString:@"Mastcam Left"].location != NSNotFound
+           || [_note.title rangeOfString:@"Pancam"].location != NSNotFound
             );
     //TODO include these when texture memory can be managed effectively
 }
@@ -70,6 +71,7 @@ double d1[3], d2[3];
 }
 
 - (void)performLoadUnderlyingImageAndNotify {
+    _isLoading = YES;
     // Load async from web (using SDWebImage)
     if (_leftAndRight) {
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
@@ -160,7 +162,8 @@ double d1[3], d2[3];
 - (void)imageLoadingComplete {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     // Complete so notify
-    _anaglyphLoadingInProgress = NO;
+    _anaglyphLoadingInProgress = NO; //Delete?
+    _isLoading = NO;
     // Notify on next run loop
     [self performSelector:@selector(postCompleteNotification) withObject:nil afterDelay:0];
 }
@@ -177,8 +180,14 @@ double d1[3], d2[3];
     return _model_json;
 }
 
+- (double) fieldOfView {
+    NSString* imageID = [[MarsImageNotebook instance].mission imageId:_resource];
+    NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
+    return [[MarsImageNotebook instance].mission getCameraFOV:cameraId];
+}
+
 - (double) angularDistance: (MarsPhoto*) otherImage {
-    NSArray* v1 = [CameraModel pointingVector:_model_json];
+    NSArray* v1 = [CameraModel pointingVector: [self modelJson]];
     NSArray* v2 = [CameraModel pointingVector:[otherImage modelJson]];
     if (v1.count==0 || v2.count==0)
         return 0;

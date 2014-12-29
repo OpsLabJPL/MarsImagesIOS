@@ -15,6 +15,12 @@
 #define Z_AXIS {0.0, 0.0, 1.0}
 #define NEG_Z_AXIS {0.0, 0.0, -1.0}
 
++ (BOOL) epsilonEquals:(double)a b:(double)b;
++ (int) nextHighestPowerOfTwo: (int) n;
++ (int) nextLowestPowerOfTwo: (int) n;
++ (BOOL) isPowerOfTwo: (int) x;
++ (int) ceilingPowerOfTwo: (double) x;
++ (int) floorPowerOfTwo: (double) x;
 
 + (void) copy: (const double[3]) a
            toB: (double[3]) b;
