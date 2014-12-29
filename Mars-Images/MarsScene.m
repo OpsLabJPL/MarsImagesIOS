@@ -221,6 +221,7 @@ static dispatch_queue_t downloadQueue = nil;
         }
     } else {
         [self makeTexture:image withTitle:title grayscale:[photo isGrayscale]];
+        [photo unloadUnderlyingImage]; //improves memory management quite significantly
     }
 }
 
@@ -231,12 +232,12 @@ static dispatch_queue_t downloadQueue = nil;
     MarsPhoto* photo = _photosInScene[title];
     if ([photo underlyingImage]) {
         [photo unloadUnderlyingImage];
-        GLKTextureInfo* texInfo = _photoTextures[title];
-        if (texInfo) {
-            GLuint textureName = texInfo.name;
-            glDeleteTextures(1, &textureName);
-            [_photoTextures removeObjectForKey:title];
-        }
+    }
+    GLKTextureInfo* texInfo = _photoTextures[title];
+    if (texInfo) {
+        GLuint textureName = texInfo.name;
+        glDeleteTextures(1, &textureName);
+        [_photoTextures removeObjectForKey:title];
     }
 }
 
@@ -320,10 +321,12 @@ static dispatch_queue_t downloadQueue = nil;
         if (![prospectiveImage includedInMosaic])
             continue;
 
+        double angleThreshold = [prospectiveImage fieldOfView]/10; //less overlap than ~5 degrees for Mastcam is problem for memory: see 42-852 looking south for example
         BOOL tooCloseToAnotherImage = NO;
         for (NSString* imageTitle in _photosInScene) {
             MarsPhoto* image = _photosInScene[imageTitle];
-            if ([image angularDistance:prospectiveImage] < ANGLE_THRESHOLD) {
+            if ([image angularDistance:prospectiveImage] < angleThreshold &&
+                [Math epsilonEquals:[image fieldOfView] b:[prospectiveImage fieldOfView]]) {
                 tooCloseToAnotherImage = YES;
                 break;
             }

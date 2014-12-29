@@ -51,7 +51,6 @@
            grayscale: (BOOL) grayscale;
 
 - (void) handleZoomChanged;
-
 - (int) computeBestTextureResolution: (ImageQuad*) imageQuad;
 - (void) binImagesByPointing: (NSArray*) imagesForRMC;
 
