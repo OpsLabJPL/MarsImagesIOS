@@ -14,6 +14,10 @@
 #define MAT3_EPSILON (1e-7)
 #endif
 
++ (BOOL) epsilonEquals:(double)a b:(double)b {
+    return abs(a-b) <= 0.001;
+}
+
 + (BOOL) isPowerOfTwo: (int) x {
     return !(x == 0) && !(x & (x - 1));
 }
