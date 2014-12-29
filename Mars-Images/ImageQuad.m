@@ -36,7 +36,7 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
     BOOL topLayer = [[MarsImageNotebook instance].mission isTopLayer:cameraId];
  
-    [ImageQuad getImageVertices:model qLL:qLL vertices:vertPointer distance:(topLayer) ? 10 : 12];
+    [ImageQuad getImageVertices:model qLL:qLL vertices:vertPointer distance:(topLayer) ? 5 : 6];
 
     if (nil != (self = [super initWithPositionCoords:vertPointer
                                           texCoords0:textureCoords

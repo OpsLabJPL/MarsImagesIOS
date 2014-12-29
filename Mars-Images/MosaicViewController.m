@@ -14,7 +14,7 @@
 #import "Math.h"
 
 #define NEAR_DISTANCE 0.1f
-#define FAR_DISTANCE 20.0f
+#define FAR_DISTANCE 8.0f
 
 #define SMALLEST_SIZE 32
 
@@ -287,8 +287,8 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     GLKView *view = (GLKView*)self.view;
     [AGLKContext setCurrentContext:view.context];
     
-    [_scene deleteImages]; //TODO do this right...flush only non-visible images and textures
-    [_scene addImagesToScene:_scene.rmc]; //TODO remove this after above is right
+    [_scene deleteImages];
+    [_scene addImagesToScene:_scene.rmc];
 }
 
 - (void) handleMWPhotoLoadingDidEndNotification: (NSNotification *)notification {
