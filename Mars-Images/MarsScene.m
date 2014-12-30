@@ -65,7 +65,7 @@ static dispatch_queue_t downloadQueue = nil;
 
 - (void) destroy {
     [self deleteImages];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:END_NOTE_LOADING object:nil];
 }
 
 - (void) addImagesToScene: (NSArray*) rmc {
