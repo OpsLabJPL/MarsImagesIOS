@@ -15,7 +15,6 @@
 #import "SDWebImageDecoder.h"
 
 @interface MarsPhoto () {
-    BOOL _anaglyphLoadingInProgress; //Delete?
     id <SDWebImageOperation> _leftImageOperation;
     id <SDWebImageOperation> _rightImageOperation;
 }
@@ -61,7 +60,6 @@ double d1[3], d2[3];
            || [_note.title rangeOfString:@"Mastcam Left"].location != NSNotFound
            || [_note.title rangeOfString:@"Pancam"].location != NSNotFound
             );
-    //TODO include these when texture memory can be managed effectively
 }
 
 - (NSURL*) url: (EDAMResource*) resource {
@@ -162,10 +160,9 @@ double d1[3], d2[3];
 - (void)imageLoadingComplete {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     // Complete so notify
-    _anaglyphLoadingInProgress = NO; //Delete?
     _isLoading = NO;
     // Notify on next run loop
-    [self performSelector:@selector(postCompleteNotification) withObject:nil afterDelay:0];
+    [self performSelector:@selector(postCompleteNotification) withObject:self afterDelay:0];
 }
 
 - (NSArray*) modelJson {
