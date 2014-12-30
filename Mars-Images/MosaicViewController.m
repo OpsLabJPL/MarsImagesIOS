@@ -51,11 +51,6 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     _motionQueue = [[NSOperationQueue alloc] init];
    
     self.navigationItem.rightBarButtonItem = _flipButton;
-    // Listen for MWPhoto notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleMWPhotoLoadingDidEndNotification:)
-                                                 name:MWPHOTO_LOADING_DID_END_NOTIFICATION
-                                               object:nil];
 
     GLKView* view = (GLKView*)self.view;
     NSAssert([view isKindOfClass:[GLKView class]], @"View controller does not contain a GLKView.");
@@ -273,9 +268,6 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
 
 - (void) viewWillDisappear: (BOOL)animated {
     [_motionManager stopDeviceMotionUpdates];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MWPHOTO_LOADING_DID_END_NOTIFICATION
-                                                  object:nil];
     [_scene destroy];
     _scene = nil;
     [super viewWillDisappear:YES];
@@ -289,18 +281,6 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     
     [_scene deleteImages];
     [_scene addImagesToScene:_scene.rmc];
-}
-
-- (void) handleMWPhotoLoadingDidEndNotification: (NSNotification *)notification {
-//    MarsPhoto* photo = [notification object];
-//    if ([photo underlyingImage]) {
-//        // Successful load
-//        NSString* title = photo.note.title;
-//        NSLog(@"Loaded image for %@", title);
-//        if ([_scene.photoQuads objectForKey:title]) {
-//            [_scene makeTexture:[photo underlyingImage] withTitle:title grayscale:[((MarsPhoto*)photo) isGrayscale]];
-//        }
-//    }
 }
 
 - (float) computeFOVRadians {

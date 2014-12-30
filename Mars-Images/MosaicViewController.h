@@ -49,7 +49,6 @@
 
 - (void) setupRotationScroller;
 - (void) setupBaseEffect;
-- (void) handleMWPhotoLoadingDidEndNotification:(NSNotification *)notification;
 - (void) toggleMotion:(id)sender;
 - (void) processMotion:(CMDeviceMotion*)motion;
 - (void) updateHeadingDisplay;
