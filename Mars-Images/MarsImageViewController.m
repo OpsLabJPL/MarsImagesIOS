@@ -15,6 +15,7 @@
 #import "MarsSidePanelController.h"
 #import "PSMenuItem.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDImageCache.h>
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -77,6 +78,11 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageSelected:) name:IMAGE_SELECTED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationsLoaded:) name:LOCATIONS_LOADED object:nil];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [SDImageCache sharedImageCache].maxMemoryCost = 64000000;
 }
 
 - (void)viewDidLayoutSubviews {
