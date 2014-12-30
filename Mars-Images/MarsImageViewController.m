@@ -82,7 +82,11 @@ typedef enum {
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [SDImageCache sharedImageCache].maxMemoryCost = 64000000;
+    [SDImageCache sharedImageCache].maxMemoryCost = 0;
+    MarsPhoto* currentPhoto = self.currentPhoto;
+    if (currentPhoto) {
+        [self reloadData];
+    }
 }
 
 - (void)viewDidLayoutSubviews {
