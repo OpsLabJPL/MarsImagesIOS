@@ -12,6 +12,10 @@
 @implementation CAHV
 
 
+- (NSArray*) size {
+    return [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:xdim], [NSNumber numberWithDouble:ydim], nil];
+}
+
 - (double) xdim {
     return xdim;
 }

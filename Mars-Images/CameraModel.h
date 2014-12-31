@@ -11,6 +11,8 @@
 
 @interface CameraModel : NSObject
 
+- (NSArray*) size;
+
 + (id<Model>) model: (NSArray*) modelJSON;
 + (NSArray*) origin: (NSArray*) modelJSON;
 + (NSArray*) pointingVector: (NSArray*) modelJson;

@@ -13,6 +13,12 @@
 
 @implementation CameraModel
 
+- (NSArray*) size {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
+}
+
 + (id<Model>) model: (NSArray*) modelJSON {
     id<Model> returnedModel = nil;
     NSString* type;

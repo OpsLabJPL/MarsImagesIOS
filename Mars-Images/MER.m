@@ -7,6 +7,7 @@
 //
 
 #import "MER.h"
+#import "CameraModel.h"
 #import "MarsImageNotebook.h"
 #import "MarsTime.h"
 
@@ -135,9 +136,31 @@ typedef enum {
         index += 1;
     }
     if (leftImageIndex >= 0 && rightImageIndex >= 0) {
-        return [[NSArray alloc] initWithObjects:[resources objectAtIndex:leftImageIndex], [resources objectAtIndex:rightImageIndex], nil];
+        EDAMResource* leftResource = [resources objectAtIndex:leftImageIndex];
+        EDAMResource* rightResource = [resources objectAtIndex:rightImageIndex];
+        //check width and height of left and right images and don't return them unless they match
+        NSArray* leftSize = [MER imageSize:leftResource];
+        NSArray* rightSize = [MER imageSize:rightResource];
+        int leftWidth = round(((NSNumber*)leftSize[0]).doubleValue);
+        int rightWidth = round(((NSNumber*)rightSize[0]).doubleValue);
+        int leftHeight = round(((NSNumber*)leftSize[1]).doubleValue);
+        int rightHeight = round(((NSNumber*)rightSize[1]).doubleValue);
+        if (leftWidth == rightWidth && leftHeight == rightHeight) {
+            return [[NSArray alloc] initWithObjects:leftResource, rightResource, nil];
+        }
     }
     return [[NSArray alloc] initWithObjects: nil];
+}
+
++ (NSArray*) imageSize:(EDAMResource*)imageResource {
+    NSString* cmod_string = imageResource.attributes.cameraModel;
+    if (!cmod_string || cmod_string.length == 0)
+        return nil;
+    NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
+    NSError* error;
+    NSArray* model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
+    CameraModel* cameraModel = [CameraModel model:model_json];
+    return [cameraModel size];
 }
 
 + (NSString*) imageID:(EDAMResource*) resource {
