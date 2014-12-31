@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) NSDictionary* cameraFOVs;
 
++ (NSArray*) imageSize:(EDAMResource*)imageResource;
+
 @end

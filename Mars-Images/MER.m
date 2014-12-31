@@ -7,7 +7,6 @@
 //
 
 #import "MER.h"
-#import "CameraModel.h"
 #import "MarsImageNotebook.h"
 #import "MarsTime.h"
 
@@ -139,8 +138,8 @@ typedef enum {
         EDAMResource* leftResource = [resources objectAtIndex:leftImageIndex];
         EDAMResource* rightResource = [resources objectAtIndex:rightImageIndex];
         //check width and height of left and right images and don't return them unless they match
-        NSArray* leftSize = [MER imageSize:leftResource];
-        NSArray* rightSize = [MER imageSize:rightResource];
+        NSArray* leftSize = [Rover imageSize:leftResource];
+        NSArray* rightSize = [Rover imageSize:rightResource];
         int leftWidth = round(((NSNumber*)leftSize[0]).doubleValue);
         int rightWidth = round(((NSNumber*)rightSize[0]).doubleValue);
         int leftHeight = round(((NSNumber*)leftSize[1]).doubleValue);
@@ -150,17 +149,6 @@ typedef enum {
         }
     }
     return [[NSArray alloc] initWithObjects: nil];
-}
-
-+ (NSArray*) imageSize:(EDAMResource*)imageResource {
-    NSString* cmod_string = imageResource.attributes.cameraModel;
-    if (!cmod_string || cmod_string.length == 0)
-        return nil;
-    NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
-    NSError* error;
-    NSArray* model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
-    CameraModel* cameraModel = [CameraModel model:model_json];
-    return [cameraModel size];
 }
 
 + (NSString*) imageID:(EDAMResource*) resource {

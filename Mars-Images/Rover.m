@@ -9,6 +9,7 @@
 #import "Rover.h"
 
 #import "CHCSVParser.h"
+#import "CameraModel.h"
 
 @implementation Rover
 
@@ -186,5 +187,15 @@
     return [fov floatValue];
 }
 
++ (NSArray*) imageSize:(EDAMResource*)imageResource {
+    NSString* cmod_string = imageResource.attributes.cameraModel;
+    if (!cmod_string || cmod_string.length == 0)
+        return nil;
+    NSData* json = [cmod_string dataUsingEncoding:NSUTF8StringEncoding];
+    NSError* error;
+    NSArray* model_json = [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
+    CameraModel* cameraModel = [CameraModel model:model_json];
+    return [cameraModel size];
+}
 
 @end
