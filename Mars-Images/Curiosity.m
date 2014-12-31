@@ -10,6 +10,7 @@
 #import "MarsImageNotebook.h"
 #import "MarsTime.h"
 #import "Title.h"
+#import <NSString+URLEncoding.h>
 
 #define SOL @"Sol"
 #define LTST @"LTST"
@@ -156,6 +157,7 @@ typedef enum {
     NSArray* tokens = [url componentsSeparatedByCharactersInSet:slashAndDot];
     int numTokens = (int)tokens.count;
     NSString* imageid = [tokens objectAtIndex:numTokens-2];
+    imageid = [imageid URLDecodedString];
     return imageid;
 }
 

@@ -9,6 +9,7 @@
 #import "MER.h"
 #import "MarsImageNotebook.h"
 #import "MarsTime.h"
+#import <NSString+URLEncoding.h>
 
 #define SOL @"Sol"
 #define LTST @"LTST"
@@ -88,6 +89,8 @@ typedef enum {
 
 - (NSString*) imageName:(EDAMResource*) resource {
     NSString* imageid = [MER imageID:resource];
+    
+    imageid = [imageid URLDecodedString];
     
     if ([resource.attributes.sourceURL rangeOfString:@"False"].location != NSNotFound)
         return @"Color";
