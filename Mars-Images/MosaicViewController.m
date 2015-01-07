@@ -12,6 +12,7 @@
 #import "AGLKContext.h"
 #import "ImageUtility.h"
 #import "Math.h"
+#import <ActionSheetStringPicker.h>
 
 #define NEAR_DISTANCE 0.1f
 #define FAR_DISTANCE 8.0f
@@ -22,6 +23,7 @@
 
 typedef enum {
     BACK_BUTTON,
+    GOTO_BUTTON,
     FORWARD_BUTTON
 } Buttons;
 
@@ -111,6 +113,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     
     _segmentedControl = [[UISegmentedControl alloc] init];
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"left_arrow.png"] atIndex:BACK_BUTTON animated:NO];
+    [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"binoculars.png"] atIndex:GOTO_BUTTON animated:NO];
     [_segmentedControl insertSegmentWithImage:[UIImage imageNamed:@"right_arrow.png"] atIndex:FORWARD_BUTTON animated:NO];
     _segmentedControl.momentary = YES;
     [_segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
@@ -137,6 +140,38 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     _caption.text = [NSString stringWithFormat:@"%@ at location %d-%d", [MarsImageNotebook instance].missionName, site, drive];
 }
 
+- (IBAction)chooseLocation:(id)sender {
+    NSArray *locations = [[MarsImageNotebook instance] getNamedLocations].allKeys;
+    
+    [ActionSheetStringPicker showPickerWithTitle:@"Select a Location"
+                                            rows:locations
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           NSLog(@"Picker: %@", picker);
+                                           NSLog(@"Selected Index: %ld", (long)selectedIndex);
+                                           NSLog(@"Selected Value: %@", selectedValue);
+                                           NSArray* chosenRMC = (NSArray*)[[MarsImageNotebook instance] getNamedLocations][selectedValue];
+                                           [_scene deleteImages];
+                                           if (chosenRMC) {
+                                               //update HUD controls and display
+                                               NSArray* oneMoreNextRmc = [[MarsImageNotebook instance] getNextRMC:chosenRMC];
+                                               [_segmentedControl setEnabled:YES forSegmentAtIndex:BACK_BUTTON];
+                                               if (!oneMoreNextRmc) {
+                                                   [_segmentedControl setEnabled:NO forSegmentAtIndex:FORWARD_BUTTON];
+                                               }
+                                               [_hud show:YES];
+                                               
+                                               //load new image mosaic
+                                               [_scene addImagesToScene: chosenRMC];
+                                               [self updateCaption:chosenRMC];
+                                           }
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+                                         NSLog(@"Block Picker Canceled");
+                                     }
+                                          origin:sender];
+}
+
 - (void) defaultsChanged:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -159,6 +194,10 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
                 [_scene addImagesToScene: prevRMC];
                 [self updateCaption:prevRMC];
             }
+            break;
+        }
+        case GOTO_BUTTON: {
+            [self chooseLocation:sender];
             break;
         }
         case FORWARD_BUTTON: {

@@ -57,5 +57,6 @@
 - (void) hideHud;
 - (float) computeFOVRadians;
 - (void) updateCaption:(NSArray*)rmc;
+- (IBAction)chooseLocation:(id)sender;
 
 @end
