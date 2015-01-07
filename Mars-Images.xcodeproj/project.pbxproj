@@ -55,6 +55,7 @@
 		4A909B89187E6F910040017C /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B87187E6F910040017C /* clock@2x.png */; };
 		4A909B8C187E75110040017C /* rovericon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B8A187E75110040017C /* rovericon.png */; };
 		4A909B8D187E75110040017C /* rovericon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A909B8B187E75110040017C /* rovericon@2x.png */; };
+		4A9294CE1A5CA9770017EF60 /* binoculars.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9294CD1A5CA9770017EF60 /* binoculars.png */; };
 		4A9928C61970520200BB9200 /* hover_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9928C51970520200BB9200 /* hover_compass.png */; };
 		4A9F46451773CDDF00F8D689 /* map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9F46441773CDDF00F8D689 /* map_icon.png */; };
 		4AA1D531192DB1BB007A3E4D /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1D530192DB1BB007A3E4D /* Quaternion.m */; };
@@ -193,6 +194,7 @@
 		4A909B87187E6F910040017C /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		4A909B8A187E75110040017C /* rovericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rovericon.png; sourceTree = "<group>"; };
 		4A909B8B187E75110040017C /* rovericon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rovericon@2x.png"; sourceTree = "<group>"; };
+		4A9294CD1A5CA9770017EF60 /* binoculars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = binoculars.png; sourceTree = "<group>"; };
 		4A9928C51970520200BB9200 /* hover_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hover_compass.png; sourceTree = "<group>"; };
 		4A9F46441773CDDF00F8D689 /* map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_icon.png; sourceTree = "<group>"; };
 		4AA1D52F192DB1BB007A3E4D /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 		4AC5DD04165864F400A79555 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A9294CD1A5CA9770017EF60 /* binoculars.png */,
 				4AAFF481196B9CEC004B93C8 /* black_background.png */,
 				4A13755918AAE03900C7B8E0 /* clearbackground.png */,
 				4A909B86187E6F910040017C /* clock.png */,
@@ -633,6 +636,7 @@
 				4AFCBC2B196E1D4E00172409 /* panorama_icon.png in Resources */,
 				4AEA8F5F1A1ED49A002071FA /* map_icon@3x.png in Resources */,
 				4A9928C61970520200BB9200 /* hover_compass.png in Resources */,
+				4A9294CE1A5CA9770017EF60 /* binoculars.png in Resources */,
 				4A909B88187E6F910040017C /* clock.png in Resources */,
 				4ABF33771863A327001C9AE8 /* placeholder.png in Resources */,
 				4AAFF47E196A5F94004B93C8 /* right_arrow.png in Resources */,
