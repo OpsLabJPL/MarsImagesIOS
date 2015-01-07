@@ -27,6 +27,7 @@
     [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
     //load locations in background
     [[MarsImageNotebook instance] getLocations];
+    [[MarsImageNotebook instance] getNamedLocations];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
