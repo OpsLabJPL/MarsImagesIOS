@@ -95,7 +95,9 @@ static dispatch_queue_t noteDownloadQueue = nil;
 
 - (void) reloadLocations {
     _locations = nil;
+    _namedLocations = nil;
     [self getLocations];
+    [self getNamedLocations];
 }
 
 - (void) loadMoreNotes: (int) startIndex
@@ -394,6 +396,46 @@ static dispatch_queue_t noteDownloadQueue = nil;
         }
     }];
     return _locations;
+}
+
+- (NSDictionary*) getNamedLocations {
+    if (_namedLocations) return _namedLocations;
+    
+    NSString* urlPrefix = [[MarsImageNotebook instance] mission].urlPrefix;
+    NSURL* locationsURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/locations/named_locations.csv", urlPrefix]];
+    NSLog(@"location url: %@", locationsURL);
+    NSURLRequest *request = [NSURLRequest requestWithURL:locationsURL];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (response) {
+            NSString *csvString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSASCIIStringEncoding];
+            
+            NSArray* rows = [csvString CSVComponents];
+            if ([rows count] <= 0) {
+                NSLog(@"Brown alert: there are no locations. %@", csvString);
+            }
+            
+            _namedLocations = [[NSMutableDictionary alloc] initWithCapacity:[rows count]];
+            for (int i = 0; i < [rows count]; i++) {
+                NSArray* row = [rows objectAtIndex:i];
+                if ([row count] >= 3) {
+                    NSNumber* site_index = [NSNumber numberWithInt:(int)[[row objectAtIndex:0] integerValue]];
+                    NSNumber* drive_index = [NSNumber numberWithInt:(int)[[row objectAtIndex:1] integerValue]];
+                    NSString* locationName = [row objectAtIndex:2];
+                    ((NSMutableDictionary*)_namedLocations)[locationName] = [NSArray arrayWithObjects:site_index, drive_index, nil];
+                }
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:LOCATIONS_LOADED object:nil userInfo:nil];
+            
+        } else {
+            NSLog(@"Brown alert: Unexpected nil response from locations.");
+        }
+        
+        if (connectionError) {
+            NSLog(@"Error: %@", connectionError);
+        }
+    }];
+    return _namedLocations;
 }
 
 @end

@@ -45,6 +45,7 @@
 @property(nonatomic, strong) NSArray*      notePhotosArray;
 @property(nonatomic, strong) NSString*     searchWords;
 @property(nonatomic, strong) NSArray*      locations;
+@property(nonatomic, strong) NSDictionary* namedLocations;
 
 + (MarsImageNotebook*) instance;
 
@@ -78,5 +79,7 @@
 
 - (NSArray*) getLocations;
 - (void) reloadLocations;
+
+- (NSDictionary*) getNamedLocations;
 
 @end
