@@ -173,11 +173,11 @@ typedef enum {
     return [imageId substringWithRange:NSMakeRange(0, 2)];
 }
 
-- (BOOL) isTopLayer:(NSString *)cameraId {
+- (int) layer:(NSString *)cameraId imageId:(NSString*)imageId {
     if ([cameraId characterAtIndex:0] == 'N') {
-        return NO;
+        return 2;
     }
-    return YES;
+    return 1;
 }
 
 + (Title*) tokenize: (NSString*) title {

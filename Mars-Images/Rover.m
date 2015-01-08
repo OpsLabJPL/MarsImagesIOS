@@ -127,7 +127,7 @@
                                  userInfo:nil];
 }
 
-- (BOOL) isTopLayer:(NSString *)cameraId {
+- (int) layer:(NSString *)cameraId imageId:(NSString*)imageId {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];

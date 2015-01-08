@@ -32,7 +32,7 @@
 @property (nonatomic, strong) NSString* imageId;
 @property (nonatomic, strong) NSString* cameraId;
 @property (nonatomic, assign) int textureSize;
-@property (nonatomic, assign) BOOL isTopLayer;
+@property (nonatomic, assign) int layer;
 
 - (id)initWithModel:(id<Model>)model
                 qLL:(Quaternion*)qLL

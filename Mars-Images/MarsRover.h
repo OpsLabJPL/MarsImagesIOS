@@ -37,6 +37,6 @@
 - (NSString*) imageId:(EDAMResource*) resource;
 - (NSString*) getCameraId:(NSString*) imageId;
 - (float) getCameraFOV:(NSString*) cameraId;
-- (BOOL) isTopLayer:(NSString*) cameraId;
+- (int) layer:(NSString*) cameraId imageId:(NSString*)imageId;
 
 @end

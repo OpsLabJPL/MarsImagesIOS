@@ -34,9 +34,9 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
     
     GLfloat *vertPointer = malloc(sizeof(GLfloat)*12);
     NSString* cameraId = [[MarsImageNotebook instance].mission getCameraId:imageID];
-    BOOL topLayer = [[MarsImageNotebook instance].mission isTopLayer:cameraId];
+    int layer = [[MarsImageNotebook instance].mission layer:cameraId imageId:(NSString*)imageID];
  
-    [ImageQuad getImageVertices:model qLL:qLL vertices:vertPointer distance:(topLayer) ? 5 : 6];
+    [ImageQuad getImageVertices:model qLL:qLL vertices:vertPointer distance:5+layer];
 
     if (nil != (self = [super initWithPositionCoords:vertPointer
                                           texCoords0:textureCoords
@@ -70,7 +70,7 @@ static const float textureCoords[] = {0.f, 1.f, 1.f, 1.f, 1.f, 0.f, 0.f, 0.f};
 
         self.imageId = imageID;
         self.cameraId = cameraId;
-        self.isTopLayer = topLayer;
+        self.layer = layer;
     }
     
     free(vertPointer);
