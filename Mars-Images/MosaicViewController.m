@@ -154,11 +154,13 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
                                            [_scene deleteImages];
                                            if (chosenRMC) {
                                                //update HUD controls and display
-                                               NSArray* oneMoreNextRmc = [[MarsImageNotebook instance] getNextRMC:chosenRMC];
-                                               [_segmentedControl setEnabled:YES forSegmentAtIndex:BACK_BUTTON];
-                                               if (!oneMoreNextRmc) {
-                                                   [_segmentedControl setEnabled:NO forSegmentAtIndex:FORWARD_BUTTON];
-                                               }
+                                               NSArray* prevRmc = [[MarsImageNotebook instance] getPreviousRMC:chosenRMC];
+                                               BOOL hasPrevRmc = prevRmc != nil;
+                                               [_segmentedControl setEnabled:hasPrevRmc forSegmentAtIndex:BACK_BUTTON];
+
+                                               NSArray* nextRmc = [[MarsImageNotebook instance] getNextRMC:chosenRMC];
+                                               BOOL hasNextRMC = nextRmc != nil;
+                                               [_segmentedControl setEnabled:hasNextRMC forSegmentAtIndex:FORWARD_BUTTON];
                                                [_hud show:YES];
                                                
                                                //load new image mosaic
