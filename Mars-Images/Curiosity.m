@@ -251,7 +251,7 @@ typedef enum {
 }
 
 - (NSString*) urlPrefix {
-    return @"https://msl-raws.s3.amazonaws.com";
+    return @"https://s3-us-west-1.amazonaws.com/msl-raws";
 }
 
 @end

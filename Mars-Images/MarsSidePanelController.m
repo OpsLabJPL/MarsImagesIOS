@@ -7,7 +7,7 @@
 //
 
 #import "MarsSidePanelController.h"
-#import "IISideController.h"
+//#import "IISideController.h"
 #import "MarsImageNotebook.h"
 #import "MarsImageViewController.h"
 
@@ -20,30 +20,12 @@
 @implementation MarsSidePanelController
 
 - (void) viewDidLoad {
-    [super viewDidLoad];
-    [self setDelegate: self];
-    [self configureLeftPanel: [UIApplication sharedApplication].statusBarOrientation];
+
     //load first notes in background
     [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
     //load locations in background
     [[MarsImageNotebook instance] getLocations];
     [[MarsImageNotebook instance] getNamedLocations];
-}
-
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self configureLeftPanel:toInterfaceOrientation];
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-}
-
-- (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone &&
-        UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-//        [self setLeftSize:0.25]; //nearly zero but not quite makes the table view invisible in portrait mode without making the ViewDeck flip out and resize the image view badly :)
-        [self setLeftSize:250];
-    }
-    else {
-        [self setLeftSize:LEFT_PANEL_WIDTH];
-    }
 }
 
 - (void) imageSelected:(int)index
@@ -56,20 +38,20 @@
 
 #pragma mark IIViewDeckControllerDelegate
 
-- (void) viewDeckController:(IIViewDeckController *)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
-    for (UIViewController* vc in self.centerController.childViewControllers) {
-        if ([vc isKindOfClass:[MarsImageViewController class]]) {
-            [(MarsImageViewController*)vc configureToolbarAndNavbar];
-        }
-    }
-}
-
-- (void) viewDeckController:(IIViewDeckController *)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
-    for (UIViewController* vc in self.centerController.childViewControllers) {
-        if ([vc isKindOfClass:[MarsImageViewController class]]) {
-            [(MarsImageViewController*)vc configureToolbarAndNavbar];
-        }
-    }
-}
+//- (void) viewDeckController:(IIViewDeckController *)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+//    for (UIViewController* vc in self.centerController.childViewControllers) {
+//        if ([vc isKindOfClass:[MarsImageViewController class]]) {
+//            [(MarsImageViewController*)vc configureToolbarAndNavbar];
+//        }
+//    }
+//}
+//
+//- (void) viewDeckController:(IIViewDeckController *)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+//    for (UIViewController* vc in self.centerController.childViewControllers) {
+//        if ([vc isKindOfClass:[MarsImageViewController class]]) {
+//            [(MarsImageViewController*)vc configureToolbarAndNavbar];
+//        }
+//    }
+//}
 
 @end

@@ -79,11 +79,9 @@
     [Math scale:magi a:uvec3 toB:uvec3];
     
     /* Check and optionally correct for vector directions */
-    sgn = 1;
     [Math cross:v b:h toC:t];
     if ([Math dot:t b:a] < 0) {
         [Math scale:-1.0 a:uvec3 toB:uvec3];
-        sgn = -1;
 	}
 }
 

@@ -425,7 +425,7 @@ static dispatch_queue_t noteDownloadQueue = nil;
                     ((NSMutableDictionary*)_namedLocations)[locationName] = [NSArray arrayWithObjects:site_index, drive_index, nil];
                 }
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:LOCATIONS_LOADED object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NAMED_LOCATIONS_LOADED object:nil userInfo:nil];
             
         } else {
             NSLog(@"Brown alert: Unexpected nil response from locations.");

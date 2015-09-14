@@ -52,7 +52,6 @@ bool viewControllerIsClosing = NO;
     NSLog(@"center coordinate: %@", lastPos);
     _mapView = [[RMMapView alloc] initWithFrame:self.view.bounds andTilesource:source centerCoordinate:lastPos.coordinate zoomLevel:maxZoom-2 maxZoomLevel:maxZoom minZoomLevel:minZoom backgroundImage:nil];
     _mapView.delegate = self;
-    //_mapView.showLogoBug = NO; //there is a bug that makes this crash...check for fix later
     _mapView.adjustTilesForRetinaDisplay = YES;
     _mapView.hideAttribution = YES;
     _mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -150,7 +149,7 @@ bool viewControllerIsClosing = NO;
 
 - (NSDictionary*) getMapMetadata {
     NSString* missionName = [MarsImageNotebook instance].missionName;
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://merpublic.s3.amazonaws.com/maps/%@Map.json", missionName]];
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3-us-west-1.amazonaws.com/merpublic/maps/%@Map.json", missionName]];
     NSData* json = [NSData dataWithContentsOfURL:url];
     NSError* error;
     return [NSJSONSerialization JSONObjectWithData:json options:nil error:&error];
@@ -227,7 +226,7 @@ bool viewControllerIsClosing = NO;
             }
             
             latestSiteIndex -= 1;
-        } while ([_points count] == 0);
+        } while ([_points count] == 0); //as soon as there are any points from the most recent location that has some, stop
     }
 }
 

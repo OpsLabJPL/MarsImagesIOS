@@ -30,7 +30,7 @@
 }
 
 - (NSString*) urlPrefix {
-    return @"http://merpublic.s3.amazonaws.com";
+    return @"https://s3-us-west-1.amazonaws.com/merpublic";
 }
 
 @end

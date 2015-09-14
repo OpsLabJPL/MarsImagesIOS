@@ -7,8 +7,8 @@
 //
 
 #import "MarsImageViewController.h"
+#import "AppDelegate.h"
 #import "Evernote.h"
-#import "IIViewDeckController.h"
 #import "MarsImageCaptionView.h"
 #import "MarsImageNotebook.h"
 #import "MarsPhoto.h"
@@ -87,6 +87,10 @@ typedef enum {
     if (currentPhoto) {
         [self reloadData];
     }
+    if (!self.drawerController) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.drawerController = appDelegate.drawerController;
+    }
 }
 
 - (void)viewDidLayoutSubviews {
@@ -119,7 +123,7 @@ typedef enum {
 }
 
 - (IBAction) toggleTableView: (id)sender {
-    [self.viewDeckController toggleLeftViewAnimated:YES];
+    [self.drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void) segmentedControlButtonPressed: (id)sender {
@@ -326,7 +330,7 @@ typedef enum {
     if (index == count-1) {
         [[MarsImageNotebook instance] loadMoreNotes:count withTotal:NOTE_PAGE_SIZE];
     }
-    [(MarsSidePanelController*)self.viewDeckController imageSelected:(int)index from:self];
+//    [(MarsSidePanelController*)self.viewDeckController imageSelected:(int)index from:self];
 }
 
 - (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {

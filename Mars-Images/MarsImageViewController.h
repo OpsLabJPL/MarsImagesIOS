@@ -8,6 +8,7 @@
 
 #import "MWPhotoBrowser.h"
 #import "MarsPhoto.h"
+#import "MMDrawerController.h"
 
 @interface MarsImageViewController : MWPhotoBrowser<MWPhotoBrowserDelegate>
 
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) UIBarButtonItem*        imageSelectionButton;
 @property (strong, nonatomic) UIBarButtonItem*        shareButton;
 @property (strong, nonatomic) UISegmentedControl*     segmentedControl;
+@property (strong, nonatomic) MMDrawerController*     drawerController;
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
 - (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index;

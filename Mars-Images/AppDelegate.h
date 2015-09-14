@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDrawerController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) NSDate *lastSleepTime;
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong) MMDrawerController* drawerController;
 
 @end

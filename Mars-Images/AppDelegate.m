@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "IISideController.h"
 #import "MarsSidePanelController.h"
+#import "MMDrawerController.h"
+
 
 @implementation AppDelegate
 
@@ -26,15 +27,20 @@
     UINavigationController* tableNavVC = (UINavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"tableNavController"];
     UINavigationController* imageNavVC = (UINavigationController *) self.window.rootViewController;
     
-    IISideController* leftSideController = [[IISideController alloc] initWithViewController: tableNavVC];
-    MarsSidePanelController* viewDeckController =  [[MarsSidePanelController alloc] initWithCenterViewController:imageNavVC leftViewController:leftSideController rightViewController:nil];
-    viewDeckController.leftSideController = leftSideController;
-    self.window.rootViewController = viewDeckController;
-    viewDeckController.resizesCenterView = YES;
-    viewDeckController.sizeMode = IIViewDeckViewSizeMode;
-    viewDeckController.elastic = NO;
+    self.drawerController = [[MMDrawerController alloc]
+                                             initWithCenterViewController:imageNavVC
+                                             leftDrawerViewController:tableNavVC];
+    self.window.rootViewController = self.drawerController;
+    
+    [self.drawerController setShowsShadow:NO];
+    [self.drawerController setRestorationIdentifier:@"MMDrawer"];
+    [self.drawerController setMaximumRightDrawerWidth:200.0];
+    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar];
+    [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModePanningNavigationBar];
+    [self.drawerController setCenterHiddenInteractionMode:MMDrawerOpenCenterInteractionModeFull];
+    
     [self.window makeKeyAndVisible];
-    [viewDeckController configureLeftPanel:[UIApplication sharedApplication].statusBarOrientation];
+    
     return YES;
 }
 

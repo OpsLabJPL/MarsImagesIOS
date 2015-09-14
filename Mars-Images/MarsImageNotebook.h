@@ -21,6 +21,7 @@
 #define END_NOTE_LOADING   @"endNoteLoading"
 #define NUM_NOTES_RETURNED @"numNotesReturned"
 #define LOCATIONS_LOADED   @"locationsLoaded"
+#define NAMED_LOCATIONS_LOADED @"namedLocationsLoaded"
 
 #define OPPY_NOTEBOOK_ID   @"a7271bf8-0b06-495a-bb48-7c0c7af29f70"
 #define MSL_NOTEBOOK_ID    @"0296f732-694d-4ccd-9f5b-5983dc98b9e0"
