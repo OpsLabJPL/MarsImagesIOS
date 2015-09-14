@@ -12,8 +12,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) NSDate *lastSleepTime;
-
+@property int imageIndex;
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,strong) MMDrawerController* drawerController;
+
+- (void) imageSelected:(int)index from:(id)sender;
 
 @end

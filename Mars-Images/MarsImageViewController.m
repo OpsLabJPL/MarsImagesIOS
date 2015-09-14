@@ -78,6 +78,13 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notesLoaded:) name:END_NOTE_LOADING object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageSelected:) name:IMAGE_SELECTED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationsLoaded:) name:LOCATIONS_LOADED object:nil];
+    
+    //load first notes in background
+    [[MarsImageNotebook instance] loadMoreNotes:0 withTotal:NOTE_PAGE_SIZE];
+    //load locations in background
+    [[MarsImageNotebook instance] getLocations];
+    [[MarsImageNotebook instance] getNamedLocations];
+
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -330,7 +337,7 @@ typedef enum {
     if (index == count-1) {
         [[MarsImageNotebook instance] loadMoreNotes:count withTotal:NOTE_PAGE_SIZE];
     }
-//    [(MarsSidePanelController*)self.viewDeckController imageSelected:(int)index from:self];
+    [((AppDelegate*)[UIApplication sharedApplication].delegate) imageSelected:(int)index from:self];
 }
 
 - (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {

@@ -7,9 +7,9 @@
 //
 
 #import "MarsImageTableViewController.h"
+#import "AppDelegate.h"
 #import "Evernote.h"
 #import "FixedWidthImageTableViewCell.h"
-//#import "IIViewDeckController.h"
 #import "MarsImageNotebook.h"
 #import "MarsSidePanelController.h"
 #import "PSMenuItem.h"
@@ -69,8 +69,9 @@ BOOL gotZeroNotesReturned = NO;
     [super viewDidAppear:animated];
     UITableView* tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
     [tableView reloadData];
-//    MarsSidePanelController* sidePanel = (MarsSidePanelController*)[self viewDeckController];
-//    [self selectAndScrollToRow:sidePanel.imageIndex];
+    
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [self selectAndScrollToRow:appDelegate.imageIndex];
 }
 
 - (IBAction)titleButtonPressed {
@@ -280,7 +281,6 @@ BOOL gotZeroNotesReturned = NO;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    MarsSidePanelController* sidePanel = (MarsSidePanelController*)self.viewDeckController;
     int section = (int)indexPath.section;
     int row = (int)indexPath.row;
     int imageIndex = 0;
@@ -289,7 +289,7 @@ BOOL gotZeroNotesReturned = NO;
         imageIndex += ((NSArray*)[[MarsImageNotebook instance].notes objectForKey:sol]).count;
     }
     imageIndex += row;
-//    [sidePanel imageSelected: imageIndex from:self];
+    [((AppDelegate*)[UIApplication sharedApplication].delegate) imageSelected: imageIndex from:self];
 }
 
 #pragma mark UISearchBarDelegate

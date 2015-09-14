@@ -12,7 +12,6 @@
 
 @interface MarsImageViewController : MWPhotoBrowser<MWPhotoBrowserDelegate>
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem* tableViewButton;
 @property (strong, nonatomic) UIBarButtonItem*        imageSelectionButton;
 @property (strong, nonatomic) UIBarButtonItem*        shareButton;
 @property (strong, nonatomic) UISegmentedControl*     segmentedControl;

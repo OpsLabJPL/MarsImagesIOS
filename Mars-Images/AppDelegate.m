@@ -83,4 +83,12 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void) imageSelected:(int)index
+                  from:(UIViewController*) sender {
+    _imageIndex = index;
+    NSLog(@"Image %d was selected from %@.", index, sender);
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithInt:index], IMAGE_INDEX, sender, SENDER, nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IMAGE_SELECTED object:nil userInfo:dict];
+}
+
 @end
