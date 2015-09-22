@@ -5,3 +5,6 @@
 Pods
 Podfile.lock
 .ruby-version
+
+build/
+DerivedData
