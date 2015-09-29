@@ -34,21 +34,21 @@
 		<dict>
 			<key>s3-us-west-1.amazonaws.com</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-      			<true/>
 				<key>NSExceptionRequiresForwardSecrecy</key>
 				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
-      			<string>TLSv1.0</string>
+				<string>TLSv1.0</string>
 			</dict>
 			<key>s3.amazonaws.com</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-      			<true/>
 				<key>NSExceptionRequiresForwardSecrecy</key>
 				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
-      			<string>TLSv1.0</string>
+				<string>TLSv1.0</string>
 			</dict>
 		</dict>
 	</dict>
@@ -62,6 +62,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UIStatusBarTintParameters</key>

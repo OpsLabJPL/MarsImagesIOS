@@ -837,8 +837,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.powellware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Mars-Images";
-				PROVISIONING_PROFILE = "252c643d-671b-46dd-ac95-4c2871aaac7b";
-				"PROVISIONING_PROFILE[sdk=*]" = "252c643d-671b-46dd-ac95-4c2871aaac7b";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -953,8 +953,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.powellware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Mars-Images";
-				PROVISIONING_PROFILE = "252c643d-671b-46dd-ac95-4c2871aaac7b";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "252c643d-671b-46dd-ac95-4c2871aaac7b";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
