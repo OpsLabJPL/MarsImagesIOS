@@ -379,7 +379,7 @@ static const double NEGATIVE_VERTICAL_LIMIT = -M_PI_2 + 0.001;
     
     [self resetScroll];
     
-    [_scene handleZoomChanged];
+    [_scene handleZoomChanged: (sender.state == UIGestureRecognizerStateEnded)];
 }
 
 #pragma mark - UIScrollViewDelegate

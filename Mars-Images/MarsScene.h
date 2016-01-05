@@ -50,7 +50,7 @@
            withTitle: (NSString*) title
            grayscale: (BOOL) grayscale;
 
-- (void) handleZoomChanged;
+- (void) handleZoomChanged:(BOOL)endOfGesture;
 - (int) computeBestTextureResolution: (ImageQuad*) imageQuad;
 - (void) binImagesByPointing: (NSArray*) imagesForRMC;
 
