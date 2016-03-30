@@ -27,7 +27,7 @@ LICENSE
 
 The software is available under the [Apache V2.0 license](https://github.com/OpsLabJPL/MarsImagesIOS/blob/master/LICENSE.txt).
 
-Copyright © 2011-2014 California Institute of Technology. ALL RIGHTS
+Copyright © 2011-2016 California Institute of Technology. ALL RIGHTS
 RESERVED. United States Government Sponsorship Acknowledged. Any 
 commercial use must be negotiated with with Office of Technology 
 Transfer at the California Institute of Technology. This software may 
