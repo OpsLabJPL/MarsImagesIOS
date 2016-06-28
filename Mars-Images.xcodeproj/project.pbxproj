@@ -100,6 +100,7 @@
 		4AFCBC2B196E1D4E00172409 /* panorama_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCBC29196E1D4E00172409 /* panorama_icon.png */; };
 		4AFCBC2C196E1D4E00172409 /* panorama_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AFCBC2A196E1D4E00172409 /* panorama_icon@2x.png */; };
 		7409D9236771481BBCE7B2C2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA33E0049F041F884F26C22 /* libPods.a */; };
+		AC8F3A649AFB58141207E686 /* libPods-Mars-Images.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B29EDB9621050A598591CF58 /* libPods-Mars-Images.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0173471C86DC57C8E41D7C73 /* Pods-Mars-Images.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mars-Images.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Mars-Images/Pods-Mars-Images.distribution.xcconfig"; sourceTree = "<group>"; };
+		19A19A0C6D0380903509E28F /* Pods-Mars-Images.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mars-Images.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mars-Images/Pods-Mars-Images.release.xcconfig"; sourceTree = "<group>"; };
+		343143D96B869B9FD5F3E651 /* Pods-Mars-Images.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mars-Images.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mars-Images/Pods-Mars-Images.debug.xcconfig"; sourceTree = "<group>"; };
 		4A0C8163186FA53100E2DFC4 /* MarsTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsTimeView.h; sourceTree = "<group>"; };
 		4A0C8164186FA53100E2DFC4 /* MarsTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsTimeView.m; sourceTree = "<group>"; };
 		4A0C8166187237C000E2DFC4 /* MosaicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicViewController.h; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 		4AFC33A41861274F000C1F32 /* hamburger_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger_icon.png; sourceTree = "<group>"; };
 		4AFCBC29196E1D4E00172409 /* panorama_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panorama_icon.png; sourceTree = "<group>"; };
 		4AFCBC2A196E1D4E00172409 /* panorama_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@2x.png"; sourceTree = "<group>"; };
+		B29EDB9621050A598591CF58 /* libPods-Mars-Images.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mars-Images.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA13E235D3B3CEF8EF30C18 /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
 		D89066311F92C1561C18ED7C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E09F6E1D10F0D80B8A1850DD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -271,6 +276,7 @@
 				4A82D53818A85DBC00A6F2BE /* CoreLocation.framework in Frameworks */,
 				4A82D53618A85DB000A6F2BE /* CoreMotion.framework in Frameworks */,
 				7409D9236771481BBCE7B2C2 /* libPods.a in Frameworks */,
+				AC8F3A649AFB58141207E686 /* libPods-Mars-Images.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,9 @@
 				D89066311F92C1561C18ED7C /* Pods.debug.xcconfig */,
 				E09F6E1D10F0D80B8A1850DD /* Pods.release.xcconfig */,
 				BDA13E235D3B3CEF8EF30C18 /* Pods.distribution.xcconfig */,
+				343143D96B869B9FD5F3E651 /* Pods-Mars-Images.debug.xcconfig */,
+				19A19A0C6D0380903509E28F /* Pods-Mars-Images.release.xcconfig */,
+				0173471C86DC57C8E41D7C73 /* Pods-Mars-Images.distribution.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -398,6 +407,7 @@
 				4AC5DCFF165864F400A79555 /* Foundation.framework */,
 				4AC5DD01165864F400A79555 /* CoreGraphics.framework */,
 				FCA33E0049F041F884F26C22 /* libPods.a */,
+				B29EDB9621050A598591CF58 /* libPods-Mars-Images.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -528,11 +538,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AC5DD38165864F500A79555 /* Build configuration list for PBXNativeTarget "Mars-Images" */;
 			buildPhases = (
-				CB35C8F705C7447781C79F6A /* Check Pods Manifest.lock */,
+				CB35C8F705C7447781C79F6A /* [CP] Check Pods Manifest.lock */,
 				4AC5DCF5165864F400A79555 /* Sources */,
 				4AC5DCF6165864F400A79555 /* Frameworks */,
 				4AC5DCF7165864F400A79555 /* Resources */,
-				D51628F048294B9795D70692 /* Copy Pods Resources */,
+				D51628F048294B9795D70692 /* [CP] Copy Pods Resources */,
+				E1BCA61AF87F8A24C8C1AEDF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -665,14 +676,14 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		CB35C8F705C7447781C79F6A /* Check Pods Manifest.lock */ = {
+		CB35C8F705C7447781C79F6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -680,19 +691,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D51628F048294B9795D70692 /* Copy Pods Resources */ = {
+		D51628F048294B9795D70692 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mars-Images/Pods-Mars-Images-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1BCA61AF87F8A24C8C1AEDF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mars-Images/Pods-Mars-Images-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -823,7 +849,7 @@
 		};
 		4A9EB733168B848C000DB4DF /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDA13E235D3B3CEF8EF30C18 /* Pods.distribution.xcconfig */;
+			baseConfigurationReference = 0173471C86DC57C8E41D7C73 /* Pods-Mars-Images.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -920,7 +946,7 @@
 		};
 		4AC5DD39165864F500A79555 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D89066311F92C1561C18ED7C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 343143D96B869B9FD5F3E651 /* Pods-Mars-Images.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -940,7 +966,7 @@
 		};
 		4AC5DD3A165864F500A79555 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E09F6E1D10F0D80B8A1850DD /* Pods.release.xcconfig */;
+			baseConfigurationReference = 19A19A0C6D0380903509E28F /* Pods-Mars-Images.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
