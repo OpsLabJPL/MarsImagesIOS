@@ -151,7 +151,7 @@ typedef enum {
             return [[NSArray alloc] initWithObjects:leftResource, rightResource, nil];
         }
     }
-    return [[NSArray alloc] initWithObjects: nil];
+    return [[NSArray alloc] init];
 }
 
 + (NSString*) imageID:(EDAMResource*) resource {

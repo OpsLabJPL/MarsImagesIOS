@@ -158,6 +158,6 @@
         }
     }
     NSLog(@"Brown alert: pointing vector not found in camera model.");
-    return [NSArray arrayWithObjects:nil];
+    return [[NSArray alloc] init];
 }
 @end
