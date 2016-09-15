@@ -62,7 +62,7 @@
     double f[3];
     double g[3];
     double magi;
-    double sgn;
+//    double sgn;
     double t[3];
     
     /* The projection point is merely the C of the camera model */

@@ -119,11 +119,11 @@ typedef enum {
 
 - (NSArray*) stereoForImages:(NSArray *)resources {
     if (resources.count == 0)
-        return [[NSArray alloc] initWithObjects:nil];
+        return [[NSArray alloc] init];
     NSString* imageid = [MER imageID:[resources objectAtIndex:0]];
     NSString* instrument = [imageid substringWithRange:NSMakeRange(_instrumentIndex, 1)];
     if (![stereoInstruments containsObject:instrument] && ![imageid hasPrefix:@"Sol"])
-        return [[NSArray alloc] initWithObjects:nil];
+        return [[NSArray alloc] init];
     
     int leftImageIndex = -1;
     int rightImageIndex = -1;

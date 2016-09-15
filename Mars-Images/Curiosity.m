@@ -117,11 +117,11 @@ typedef enum {
 
 - (NSArray*) stereoForImages:(NSArray *)resources {
     if (resources.count == 0)
-        return [[NSArray alloc] initWithObjects:nil];
+        return [[NSArray alloc] init];
     NSString* imageid = [Curiosity imageID:[resources objectAtIndex:0]];
     NSString* instrument = [imageid substringWithRange:NSMakeRange(_instrumentIndex, 1)];
     if (![stereoInstruments containsObject:instrument])
-        return [[NSArray alloc] initWithObjects:nil];
+        return [[NSArray alloc] init];
     
     int leftImageIndex = -1;
     int rightImageIndex = -1;
@@ -149,7 +149,7 @@ typedef enum {
             return [[NSArray alloc] initWithObjects:leftResource, rightResource, nil];
         }
     }
-    return [[NSArray alloc] initWithObjects: nil];
+    return [[NSArray alloc] init];
 }
 
 + (NSString*) imageID:(EDAMResource*) resource { //TODO pull into superclass with MER
