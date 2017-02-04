@@ -139,7 +139,7 @@
         }
     }
     NSLog(@"Brown alert: origin not found in camera model.");
-    return [NSArray arrayWithObjects:nil];
+    return [[NSArray alloc] init];
 }
 
 + (NSArray*) pointingVector: (NSArray*) modelJson {
@@ -158,6 +158,6 @@
         }
     }
     NSLog(@"Brown alert: pointing vector not found in camera model.");
-    return [NSArray arrayWithObjects:nil];
+    return [[NSArray alloc] init];
 }
 @end

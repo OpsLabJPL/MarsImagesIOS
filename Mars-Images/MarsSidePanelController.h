@@ -13,12 +13,12 @@
 #define IMAGE_INDEX @"imageIndex"
 #define SENDER @"sender"
 
-@interface MarsSidePanelController// : IIViewDeckController<IIViewDeckControllerDelegate>
+@interface MarsSidePanelController : NSObject // : IIViewDeckController<IIViewDeckControllerDelegate>
 
 @property int imageIndex;
 //@property (strong, nonatomic) IISideController* leftSideController;
 
 - (void) imageSelected:(int)index from:(id)sender;
-- (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation;
+//- (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation;
 
 @end

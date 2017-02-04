@@ -15,7 +15,7 @@
 #endif
 
 + (BOOL) epsilonEquals:(double)a b:(double)b {
-    return abs(a-b) <= 0.001;
+    return fabs(a-b) <= 0.001;
 }
 
 + (BOOL) isPowerOfTwo: (int) x {

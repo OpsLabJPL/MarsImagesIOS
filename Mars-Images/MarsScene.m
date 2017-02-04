@@ -152,6 +152,12 @@ static dispatch_queue_t downloadQueue = nil;
         if (GL_NO_ERROR != error) {
             NSLog(@"GL Error: 0x%x", error);
         }
+        
+        //recheck texture size to make sure it's optimal for display, else request a reload
+        int textureSize = [self computeBestTextureResolution:imageQuad];
+        if (textureSize != imageQuad.textureSize) {
+            [self loadImageAndTexture:title];
+        }
     }
     else {
         // Draw lines to represent normal vectors and light direction
@@ -257,6 +263,14 @@ static dispatch_queue_t downloadQueue = nil;
     if (image) {
         ImageQuad* imageQuad = _photoQuads[title];
         int textureSize = [self computeBestTextureResolution:imageQuad];
+        
+        GLKTextureInfo* texInfo = _photoTextures[title];
+        if (texInfo) {
+            GLuint textureName = texInfo.name;
+            glDeleteTextures(1, &textureName);
+            [_photoTextures removeObjectForKey:title];
+        }
+
         imageQuad.textureSize = textureSize;
 
         image = [ImageUtility imageWithImage:image scaledToSize:CGSizeMake(textureSize, textureSize)];
@@ -277,14 +291,7 @@ static dispatch_queue_t downloadQueue = nil;
     }
 }
 
-- (void) handleZoomChanged {
-    for (NSString* title in _photoQuads.allKeys) {
-        ImageQuad* imageQuad = _photoQuads[title];
-        int textureSize = [self computeBestTextureResolution:imageQuad];
-        if (textureSize != imageQuad.textureSize) {
-            [self deleteImageAndTexture:title];
-        }
-    }
+- (void) handleZoomChanged:(BOOL)endOfGesture {
 }
 
 - (int) computeBestTextureResolution:(ImageQuad*)imageQuad {

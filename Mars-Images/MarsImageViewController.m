@@ -272,7 +272,7 @@ typedef enum {
                 [toolbar setItems:[NSArray arrayWithObjects:flexibleItem1, _imageSelectionButton, flexibleItem2, nil]];
             }
             else
-                [toolbar setItems:[NSArray arrayWithObjects:nil]];
+                [toolbar setItems:[[NSArray alloc] init]];
         }
     }
 
