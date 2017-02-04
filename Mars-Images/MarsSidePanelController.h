@@ -19,6 +19,6 @@
 //@property (strong, nonatomic) IISideController* leftSideController;
 
 - (void) imageSelected:(int)index from:(id)sender;
-- (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation;
+//- (void) configureLeftPanel: (UIInterfaceOrientation) interfaceOrientation;
 
 @end
