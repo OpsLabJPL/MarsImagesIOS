@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MarsImageTableViewController: UITableViewController {
 
@@ -111,18 +112,20 @@ class MarsImageTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: imageCell)!
         
-//        if catalog!.sols.count <= indexPath.section { TODO TECH DEBT
-//            return nil
-//        }
-        
-        //TODO do proper labels
         let imageset = imagesetsForSol[indexPath.row]
-        cell.textLabel?.text = imageset.title
-        return cell
+        cell.textLabel?.text = imageset.rowTitle
+        cell.detailTextLabel?.text = imageset.subtitle
         
         //TODO do load thumbnail
+        if let thumbnailUrl = imageset.thumbnailUrl {
+            cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder.png"))
+//            [NSURL URLWithString:thumbnailUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+
+        }
+        return cell
+        
     }
-    
+
     func loadAnotherPageIfAtEnd(_ indexPath:IndexPath, imagesets:[Imageset]) {
         //check for last row in last section & if so then load more imagesets
         //try to load more images if we are at the last cell in the table
@@ -147,5 +150,15 @@ extension MarsImageTableViewController: UISearchResultsUpdating {
         
         //TODO do this
         tableView.reloadData()
+    }
+}
+
+extension UITableViewCell {
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        let height = self.bounds.size.height;
+        self.imageView?.frame = CGRect(x:0,y:0,width:height,height:height)
+        self.textLabel?.frame = CGRect(x:50,y:2,width:500,height:20);
+        self.detailTextLabel?.frame = CGRect(x:50,y:24,width:500,height:20);
     }
 }

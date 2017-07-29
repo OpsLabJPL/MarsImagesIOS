@@ -34,10 +34,17 @@ protocol MarsImageCatalog {
 
 class Imageset {
     
+    var mission:Mission
     var title:String
+    var rowTitle:String
+    var subtitle:String
+    var thumbnailUrl:String?
     
     init (title:String) {
         self.title = title
+        self.mission = Mission.currentMission()
+        self.rowTitle = mission.rowTitle(title)
+        self.subtitle = mission.subtitle(title)
     }
     
 }
