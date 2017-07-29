@@ -11,11 +11,14 @@ import Foundation
 class Mission {
     static let names = [ OPPORTUNITY, SPIRIT, CURIOSITY ]
     static let missionKey = "mission"
-    static let OPPORTUNITY = "OPPORTUNITY"
-    static let SPIRIT = "SPIRIT"
-    static let CURIOSITY = "CURIOSITY"
-    
+    static let OPPORTUNITY = "Opportunity"
+    static let SPIRIT = "Spirit"
+    static let CURIOSITY = "Curiosity"
+    let EARTH_SECS_PER_MARS_SEC = 1.027491252
     static let missions:[String:Mission] = [OPPORTUNITY: Opportunity(), SPIRIT: Spirit(), CURIOSITY: Curiosity()]
+    
+    var epoch:Date?
+    var formatter:DateFormatter
     
     static func currentMission() -> Mission {
         return missions[currentMissionName()]!
@@ -28,6 +31,12 @@ class Mission {
             userDefaults.synchronize()
         }
         return userDefaults.value(forKey: missionKey) as! String
+    }
+    
+    init() {
+        self.formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateStyle = .long
     }
     
     func rowTitle(_ title: String) -> String {
@@ -45,6 +54,13 @@ class Mission {
     
     func getSortableImageFilename(url: String) -> String {
         return url
+    }
+
+    func solAndDate(sol:Int) -> String {
+        let interval = Double(sol*24*60*60)*EARTH_SECS_PER_MARS_SEC
+        let imageDate = Date(timeInterval: interval, since: epoch!)
+        let formattedDate = formatter.string(from: imageDate)
+        return "Sol \(sol) \(formattedDate)"
     }
 }
 

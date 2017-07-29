@@ -8,4 +8,5 @@ target 'MarsImages' do
     pod 'SwiftyJSON', '~> 3.1'
     pod 'EvernoteSDK', '~> 3.0'
     pod 'MWPhotoBrowser', '~> 2.1'
+    pod 'MKDropdownMenu', '~> 1.4'
 end

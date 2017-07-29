@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import MKDropdownMenu
 
 class MarsImageTableViewController: UITableViewController {
 
@@ -16,11 +17,31 @@ class MarsImageTableViewController: UITableViewController {
 
     var catalog:MarsImageCatalog?
 
-     @IBOutlet weak var refreshButton: UIBarButtonItem!
-    let searchController = UISearchController()
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    let searchController = UISearchController(searchResultsController: nil)
+    var navBarMenu:MKDropdownMenu?
+    let dropdowMenuWidth = 140
+    let dropdownMenuRowHeight = 44
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdowMenuWidth,height:dropdownMenuRowHeight))
+        navBarMenu?.dataSource = self
+        navBarMenu?.delegate = self
+        navBarMenu?.backgroundDimmingOpacity = -0.67
+        navBarMenu?.adjustsContentOffset = true
+        navBarMenu?.adjustsContentInset = true
+        navBarMenu?.dropdownShowsTopRowSeparator = false
+        navBarMenu?.dropdownBouncesScroll = false
+        navBarMenu?.dropdownShowsTopRowSeparator = true
+        navBarMenu?.dropdownShowsBottomRowSeparator = false
+        navBarMenu?.rowSeparatorColor = .gray
+        navBarMenu?.rowTextAlignment = .left
+        navBarMenu?.dropdownRoundedCorners = .allCorners
+        navBarMenu?.useFullScreenWidth = false
+        navigationItem.titleView = navBarMenu
+        
         tableView.scrollsToTop = true
         searchController.searchResultsUpdater = self
         
@@ -45,6 +66,7 @@ class MarsImageTableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
 
+        catalog?.reload()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,18 +78,19 @@ class MarsImageTableViewController: UITableViewController {
         let mission = Mission.currentMissionName()
         //TODO move this to Catalog
 //    if (! [[MarsImageNotebook instance].missionName isEqualToString:mission]) {
-//        [MarsImageNotebook instance].missionName = mission;
 //        [[MarsImageNotebook instance] reloadLocations];
 //        [MarsImageNotebook instance].searchWords = nil;
 //    }
         
 //        [_titleButton setTitle:mission forState:UIControlStateNormal]; TODO do this later
         
+        catalog?.mission = mission
         updateImagesets()
+        navBarMenu?.reloadAllComponents()
     }
     
     func imagesetsLoaded(notification: Notification) {
-        var numImagesetsReturned = 0;
+        var numImagesetsReturned = 0
         let num = notification.userInfo?[numImagesetsReturnedKey]
         if (num != nil) {
             numImagesetsReturned = num as! Int
@@ -99,9 +122,7 @@ class MarsImageTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let sol = catalog!.sols[section]
-
-        //TODO customize this
-        return "Sol \(sol)"
+        return Mission.currentMission().solAndDate(sol: sol)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -146,19 +167,65 @@ extension MarsImageTableViewController: UISearchResultsUpdating {
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        
-        //TODO do this
+    func filterContentForSearchText(searchText: String) {
+        catalog?.searchWords = searchText
         tableView.reloadData()
     }
 }
 
-extension UITableViewCell {
+class FixedWidthImageTableViewCell: UITableViewCell {
     open override func layoutSubviews() {
         super.layoutSubviews()
-        let height = self.bounds.size.height;
+        let height = self.bounds.size.height
         self.imageView?.frame = CGRect(x:0,y:0,width:height,height:height)
-        self.textLabel?.frame = CGRect(x:50,y:2,width:500,height:20);
-        self.detailTextLabel?.frame = CGRect(x:50,y:24,width:500,height:20);
+        self.textLabel?.frame = CGRect(x:50,y:2,width:500,height:20)
+        self.detailTextLabel?.frame = CGRect(x:50,y:24,width:500,height:20)
+    }
+}
+
+extension MarsImageTableViewController: MKDropdownMenuDataSource {
+    func numberOfComponents(in dropdownMenu: MKDropdownMenu) -> Int {
+        return 1
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, numberOfRowsInComponent component: Int) -> Int {
+        return Mission.names.count
+    }
+}
+
+extension MarsImageTableViewController: MKDropdownMenuDelegate {
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, didSelectRow row: Int, inComponent component: Int) {
+        let newMissionName = Mission.names[row]
+        if Mission.currentMissionName() != newMissionName {
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(newMissionName, forKey: Mission.missionKey)
+            userDefaults.synchronize()
+        }
+        dropdownMenu.closeAllComponents(animated: true)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, widthForComponent component: Int) -> CGFloat {
+        return CGFloat(dropdowMenuWidth)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, rowHeightForComponent component: Int) -> CGFloat {
+        return CGFloat(dropdownMenuRowHeight)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForComponent component: Int) -> String? {
+        return Mission.currentMissionName()
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Mission.names[row]
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, backgroundColorForRow row: Int, forComponent component: Int) -> UIColor? {
+        return UIColor.white
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, shouldUseFullRowWidthForComponent component: Int) -> Bool {
+        return false
     }
 }

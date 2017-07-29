@@ -89,7 +89,7 @@ class MER: Mission {
                 if mer.instrumentName.isEmpty {
                     mer.instrumentName = String(word)
                 } else {
-                    mer.instrumentName = "\(mer.instrumentName) \(word)"
+                    mer.instrumentName.append(" \(word)")
                 }
                 break
             case .MARS_LOCAL_TIME:
@@ -110,7 +110,7 @@ class MER: Mission {
     
     func parseCoursePlotTitle(title:String, mer: MERTitle) -> MERTitle {
         let tokens = title.components(separatedBy: " ")
-        var state = TitleState.START;
+        var state = TitleState.START
         for word in tokens {
             if word == COURSE {
                 mer.instrumentName = "Course Plot"
@@ -161,7 +161,7 @@ class MER: Mission {
                 print("Unexpected state in parsing course plot title: \(state)")
             }
         }
-        return mer;
+        return mer
     }
 
 }

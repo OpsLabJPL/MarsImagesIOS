@@ -10,4 +10,16 @@ import Foundation
 
 class Spirit: MER {
     
+    override init() {
+        super.init()
+        var comps = DateComponents()
+        comps.day=3
+        comps.month=1
+        comps.year=2004
+        comps.hour=13
+        comps.minute=36
+        comps.second=15
+        comps.timeZone = TimeZone(abbreviation: "UTC")
+        self.epoch = Calendar.current.date(from: comps)
+    }
 }

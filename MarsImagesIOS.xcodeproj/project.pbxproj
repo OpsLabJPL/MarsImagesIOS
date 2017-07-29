@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A11484F1F2C67740046E047 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A11484E1F2C67740046E047 /* placeholder.png */; };
 		4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680B41F2A8ECE004E30CC /* AppDelegate.swift */; };
 		4A1680B71F2A8ECE004E30CC /* MarsImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */; };
 		4A1680BA1F2A8ECE004E30CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A1680B81F2A8ECE004E30CC /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A11484E1F2C67740046E047 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		4A1680B11F2A8ECE004E30CC /* MarsImages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsImages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1680B41F2A8ECE004E30CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsImageTableViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +60,7 @@
 		4A1680D01F2A8ECE004E30CC /* MarsImagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsImagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1680D41F2A8ECE004E30CC /* MarsImagesIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsImagesIOSUITests.swift; sourceTree = "<group>"; };
 		4A1680D61F2A8ECE004E30CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A1680E21F2A8F32004E30CC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		4A1680E21F2A8F32004E30CC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4A1680E41F2AA316004E30CC /* SwinjectStoryboardSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardSetup.swift; sourceTree = "<group>"; };
 		4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCatalog.swift; sourceTree = "<group>"; };
 		4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteMarsimageCatalog.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4A1148501F2C67790046E047 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A11484E1F2C67740046E047 /* placeholder.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4A1680A81F2A8ECE004E30CC = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 				4A1680BB1F2A8ECE004E30CC /* Assets.xcassets */,
 				4A1680BD1F2A8ECE004E30CC /* LaunchScreen.storyboard */,
 				4A1680C01F2A8ECE004E30CC /* Info.plist */,
+				4A1148501F2C67790046E047 /* Supporting Files */,
 			);
 			path = MarsImagesIOS;
 			sourceTree = "<group>";
@@ -295,6 +306,7 @@
 				4A1680BF1F2A8ECE004E30CC /* LaunchScreen.storyboard in Resources */,
 				4A1680BC1F2A8ECE004E30CC /* Assets.xcassets in Resources */,
 				4A1680E31F2A8F32004E30CC /* Podfile in Resources */,
+				4A11484F1F2C67740046E047 /* placeholder.png in Resources */,
 				4A1680BA1F2A8ECE004E30CC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

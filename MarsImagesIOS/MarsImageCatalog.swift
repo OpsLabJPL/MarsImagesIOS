@@ -21,6 +21,10 @@ protocol MarsImageCatalog {
     
     func loadNextPage()
     
+    var mission:String { get set }
+    
+    var searchWords:String { get set }
+    
     var imagesetCount:Int { get }
     
     var imagesets:[Imageset] { get }

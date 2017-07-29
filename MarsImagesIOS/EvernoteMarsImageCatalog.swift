@@ -11,11 +11,21 @@ import EvernoteSDK
 
 class EvernoteMarsImageCatalog : MarsImageCatalog {
    
-    var missionName:String
+    var mission:String {
+        didSet {
+            notestore = nil //force reconnect for new notebook
+        }
+    }
+    
+    var searchWords = "" {
+        didSet {
+            reload()
+        }
+    }
+    
     var notestore: EDAMNoteStoreClient?
     var userinfo: EDAMPublicUserInfo?
     var user:String?
-    var searchWords:String?
     
     var sols:[Int] = []
     var imagesets:[Imageset] = []
@@ -44,9 +54,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     let notePageSize = 15
     
     init(missionName:String) {
-        self.missionName = missionName
+        self.mission = missionName
         self.user = EvernoteMarsImageCatalog.users[missionName]
-        connect()
     }
     
     func reload() {
@@ -72,19 +81,20 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             userinfo = userstore?.getPublicUserInfo(user)
             
             let notestoreUri = URL(string:(userinfo?.noteStoreUrl)!)
-            let agentString = "Mars Images/3.0;iOS/\(UIDevice.current.systemVersion)";
+            let agentString = "Mars Images/3.0;iOS/\(UIDevice.current.systemVersion)"
             let notestoreHttpClient = ENTHTTPClient(url: notestoreUri, userAgent: agentString, timeout: 15)
-                //noteStoreUri userAgent:agentString timeout:15];
+                //noteStoreUri userAgent:agentString timeout:15]
             
             let notestoreProtocol = ENTBinaryProtocol(transport: notestoreHttpClient)
-                //[[TBinaryProtocol alloc] initWithTransport:noteStoreHttpClient];
+                //[[TBinaryProtocol alloc] initWithTransport:noteStoreHttpClient]
             self.notestore = EDAMNoteStoreClient(with: notestoreProtocol)
         }
-        loadMoreNotes(startIndex: 0, total: 15)
     }
     
     func loadMoreNotes(startIndex:Int, total:Int) {
         //TODO guard against no network
+        
+        connect()
         
         EvernoteMarsImageCatalog.noteDownloadQueue.async {
             guard self.imagesets.count <= startIndex else { return }
@@ -92,13 +102,11 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             NotificationCenter.default.post(name: .beginImagesetLoading, object: nil)
 
             let filter = EDAMNoteFilter()
-            filter.notebookGuid = EvernoteMarsImageCatalog.notebookIDs[self.missionName]
+            filter.notebookGuid = EvernoteMarsImageCatalog.notebookIDs[self.mission]
             filter.order = NSNumber(value:NoteSortOrder_TITLE.rawValue)
             filter.ascending = NSNumber(value:false)
-            if let searchWords = self.searchWords {
-                if searchWords.isEmpty {
-                    filter.words = self.formatSearch(searchWords)
-                }
+            if !self.searchWords.isEmpty {
+                filter.words = self.formatSearch(self.searchWords)
             }
             if let notelist = self.notestore?.findNotes("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
                 for (j, aNote) in notelist.notes.enumerated() {
@@ -168,13 +176,38 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 return sol
             }
         }
-        return 0;
+        return 0
     }
     
     func formatSearch(_ searchWords:String) -> String {
-        return searchWords //TODO do this
+        let words = searchWords.components(separatedBy: .whitespacesAndNewlines)
+        var formattedText = ""
+        for w in words {
+            var word = w
+
+            let wordIntValue = Int(word)
+            if word.characters.count == 13 && word[word.index(word.startIndex, offsetBy:6)] == "-" {
+                //do nothing for an RMC formatted as XXXXXX-XXXXXX
+            }
+            else if let wordIntValue = wordIntValue {
+                if wordIntValue > 0 && !word.hasSuffix("*") {
+                    let formattedInt = String(format:"%05d", wordIntValue)
+                    word = "\"Sol \(formattedInt)\""
+                }
+            }
+            else {
+                word.append("*") //match partial word like Nav*, Pan*, Mast*, Haz*
+            }
+            
+            if !formattedText.isEmpty {
+                formattedText.append(" ")
+            }
+            
+            formattedText.append("intitle:\(word)")
+        }
+        print("search filter: \(formattedText)")
+        return formattedText
     }
-    
 }
 
 class EvernoteImageset : Imageset {
@@ -188,9 +221,8 @@ class EvernoteImageset : Imageset {
         
         if note.resources.count > 0 {
             let resource = note.resources[0]
-            let resGUID = resource.guid;
-            self.thumbnailUrl =
-            "\(userinfo.webApiUrlPrefix!)thm/res/\(resGUID!)?size=50";
+            let resGUID = resource.guid
+            self.thumbnailUrl = "\(userinfo.webApiUrlPrefix!)thm/res/\(resGUID!)?size=50"
         }
     }
     
