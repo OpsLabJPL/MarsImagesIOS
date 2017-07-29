@@ -103,7 +103,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             if let notelist = self.notestore?.findNotes("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
                 for (j, aNote) in notelist.notes.enumerated() {
                     let note = self.reorderResources(aNote)
-                    let imageset = EvernoteImageset(note: note)
+                    let imageset = EvernoteImageset(note: note, userinfo: self.userinfo!)
                     self.imagesets.append(imageset)
                     let sol = self.sol(note.title)
                     let lastSolIndex = self.sols.count-1
@@ -142,7 +142,22 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     }
     
     func reorderResources(_ note:EDAMNote) -> EDAMNote {
-        //TODO do this
+        var sortedResources:[EDAMResource] = []
+        var resourceFilenames:[String] = []
+        var resourcesByFile:[String:EDAMResource] = [:]
+        
+        for resource in note.resources {
+            let filename = Mission.currentMission().getSortableImageFilename(url: resource.attributes.sourceURL)
+            resourceFilenames.append(filename)
+            resourcesByFile[filename] = resource
+        }
+        
+        let sortedFilenames = resourceFilenames.sorted()
+        for filename in sortedFilenames {
+            sortedResources.append(resourcesByFile[filename]!)
+        }
+        
+        note.resources = sortedResources
         return note
     }
     
@@ -166,8 +181,18 @@ class EvernoteImageset : Imageset {
     
     var note:EDAMNote
     
-    init(note:EDAMNote) {
+    init(note:EDAMNote, userinfo:EDAMPublicUserInfo) {
         self.note = note
+
         super.init(title: note.title)
+        
+        if note.resources.count > 0 {
+            let resource = note.resources[0]
+            let resGUID = resource.guid;
+            self.thumbnailUrl =
+            "\(userinfo.webApiUrlPrefix!)thm/res/\(resGUID!)?size=50";
+        }
     }
+    
 }
+
