@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mlu-Jt-7OY">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mars Image Table View Controller-->
+        <scene sceneID="Cwe-dU-lAa">
+            <objects>
+                <tableViewController id="ydo-Li-Nc5" customClass="MarsImageTableViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pGJ-o1-9yP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" id="edI-W3-Mfi">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="edI-W3-Mfi" id="VLg-2V-aTs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ydo-Li-Nc5" id="88W-XU-EIq"/>
+                            <outlet property="delegate" destination="ydo-Li-Nc5" id="UlG-Wi-1dX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="znp-tc-2Xa">
+                        <barButtonItem key="leftBarButtonItem" title="Mission" id="D3g-3x-Kxz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="5je-3h-LT3"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="refreshButton" destination="5je-3h-LT3" id="3J9-7o-eE7"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91w-TV-PJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1385" y="112"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0vX-Yl-ceJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mlu-Jt-7OY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z2r-kK-Nxo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ydo-Li-Nc5" kind="relationship" relationship="rootViewController" id="QG5-tJ-dgw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pKj-Gz-Qte" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="446" y="112"/>
+        </scene>
+    </scenes>
+</document>
