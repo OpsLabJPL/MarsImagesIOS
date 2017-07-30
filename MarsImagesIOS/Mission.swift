@@ -33,6 +33,14 @@ class Mission {
         return userDefaults.value(forKey: missionKey) as! String
     }
     
+    func sol(_ title: String) -> Int {
+        let tokens = title.components(separatedBy: " ")
+        if tokens.count >= 2 {
+            return Int(tokens[1])!
+        }
+        return 0;
+    }
+    
     init() {
         self.formatter = DateFormatter()
         formatter.timeStyle = .none

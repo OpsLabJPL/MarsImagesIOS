@@ -11,7 +11,6 @@ import SDWebImage
 import MKDropdownMenu
 
 class MarsImageTableViewController: UITableViewController {
-
     
     let imageCell = "ImageCell"
 
@@ -63,7 +62,7 @@ class MarsImageTableViewController: UITableViewController {
         
         // listen to user defaults (such as mission) changed events
         NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
 
         catalog?.reload()
@@ -82,8 +81,6 @@ class MarsImageTableViewController: UITableViewController {
 //        [MarsImageNotebook instance].searchWords = nil;
 //    }
         
-//        [_titleButton setTitle:mission forState:UIControlStateNormal]; TODO do this later
-        
         catalog?.mission = mission
         updateImagesets()
         navBarMenu?.reloadAllComponents()
@@ -99,13 +96,68 @@ class MarsImageTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-
+    }
+    
+    func imageSelected(notification: Notification) {
+        var index = 0;
+        if let num = notification.userInfo?[Constants.imageIndexKey] as? Int {
+            index = Int(num)
+        }
+        if let sender = notification.userInfo?[Constants.senderKey] as? NSObject {
+            if sender != self {
+                selectAndScrollToRow(imageIndex:index)
+            }
+        }
     }
     
     func updateImagesets() {
         catalog?.reload()
         tableView.reloadData()
 //        [self.refreshControl endRefreshing]; TODO UIRefreshControl
+    }
+    
+    func selectAndScrollToRow(imageIndex: Int) {
+        guard imageIndex >= 0 || imageIndex < catalog!.imagesetCount else {
+            return
+        }
+        let imageset:Imageset = catalog!.imagesets[imageIndex]
+        let sol = Mission.currentMission().sol(imageset.title)
+        let section = catalog!.solIndices[sol]!
+        var rowIndex = 0;
+        let imagesets = catalog!.imagesetsForSol[sol]!
+        for iset in imagesets {
+            if iset == imageset {
+                break
+            }
+            rowIndex += 1;
+        }
+        if (rowIndex == imagesets.count) {
+            return
+        }
+        
+        // Get the cell rect and adjust it to consider scroll offset
+        let indexPath = IndexPath(row: rowIndex, section: section)
+        let selectedPath = tableView.indexPathForSelectedRow
+        if selectedPath != nil && selectedPath!.section == section && selectedPath!.row == rowIndex {
+            return
+        }
+        if tableView.numberOfSections <= section || tableView.numberOfRows(inSection: section) <= rowIndex {
+            return
+        }
+        
+        var cellRect = tableView.rectForRow(at: indexPath)
+        cellRect = cellRect.offsetBy(dx: -tableView.contentOffset.x, dy: -tableView.contentOffset.y)
+        let searchBarHeight = searchController.searchBar.frame.size.height
+        var scrollPosition = UITableViewScrollPosition.none
+        if cellRect.origin.y < tableView.frame.origin.y + searchBarHeight {
+            scrollPosition = UITableViewScrollPosition.top
+        }
+        else if cellRect.origin.y+cellRect.size.height > tableView.frame.origin.y+tableView.frame.size.height-searchBarHeight {
+            scrollPosition = UITableViewScrollPosition.bottom
+        }
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: scrollPosition)
+
+
     }
     
     ///MARK UITableViewDataSource
@@ -125,6 +177,12 @@ class MarsImageTableViewController: UITableViewController {
         return Mission.currentMission().solAndDate(sol: sol)
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = .darkGray
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = .white
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let sol = catalog!.sols[indexPath.section]
@@ -140,13 +198,23 @@ class MarsImageTableViewController: UITableViewController {
         //TODO do load thumbnail
         if let thumbnailUrl = imageset.thumbnailUrl {
             cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder.png"))
-//            [NSURL URLWithString:thumbnailUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-
         }
         return cell
-        
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        var imageIndex = 0
+        for i in 0..<section {
+            let sol = catalog!.sols[i]
+            imageIndex += catalog!.imagesetCountsBySol[sol]!
+        }
+        imageIndex += row;
+        let dict:[String:Any] = [ Constants.imageIndexKey: imageIndex, Constants.senderKey: self ]
+        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
+    }
+    
     func loadAnotherPageIfAtEnd(_ indexPath:IndexPath, imagesets:[Imageset]) {
         //check for last row in last section & if so then load more imagesets
         //try to load more images if we are at the last cell in the table
@@ -228,4 +296,8 @@ extension MarsImageTableViewController: MKDropdownMenuDelegate {
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, shouldUseFullRowWidthForComponent component: Int) -> Bool {
         return false
     }
+}
+
+extension Notification.Name {
+    static let imageSelected = Notification.Name("imageSelected")
 }

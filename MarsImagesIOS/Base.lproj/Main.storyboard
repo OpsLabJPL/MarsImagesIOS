@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mlu-Jt-7OY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UuX-nW-vYs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,38 +9,112 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Left Drawer View Controller-->
+        <scene sceneID="GAe-Jz-KFh">
+            <objects>
+                <viewController id="UuX-nW-vYs" customClass="LeftDrawerViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wGJ-gE-YbT"/>
+                        <viewControllerLayoutGuide type="bottom" id="JgZ-oU-RSi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pr2-Yu-Wvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-KK-ya4" userLabel="Left Drawer View">
+                                <rect key="frame" x="-240" y="0.0" width="260" height="667"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eos-R9-EMM">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="667"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="JdP-qe-Bk8"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="mlu-Jt-7OY" kind="embed" id="lwv-cw-eIB"/>
+                                        </connections>
+                                    </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZe-5k-idP" customClass="ArrowButton" customModule="MarsImages" customModuleProvider="target">
+                                        <rect key="frame" x="240" y="0.0" width="20" height="667"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="hf3-2I-pPk"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="leftDrawerButtonPressed:" destination="UuX-nW-vYs" eventType="touchUpInside" id="Z7X-1N-GvL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Eos-R9-EMM" firstAttribute="top" secondItem="GO9-KK-ya4" secondAttribute="top" id="7sU-De-nQn"/>
+                                    <constraint firstItem="Eos-R9-EMM" firstAttribute="leading" secondItem="GO9-KK-ya4" secondAttribute="leading" id="GaQ-pS-fj1"/>
+                                    <constraint firstItem="HZe-5k-idP" firstAttribute="leading" secondItem="Eos-R9-EMM" secondAttribute="trailing" id="Xat-KN-58E"/>
+                                    <constraint firstItem="HZe-5k-idP" firstAttribute="height" secondItem="Eos-R9-EMM" secondAttribute="height" id="b5G-EK-mDV"/>
+                                    <constraint firstAttribute="bottom" secondItem="Eos-R9-EMM" secondAttribute="bottom" id="eDo-Rt-S3x"/>
+                                    <constraint firstAttribute="width" constant="260" id="kb6-j4-akS"/>
+                                    <constraint firstItem="HZe-5k-idP" firstAttribute="top" secondItem="Eos-R9-EMM" secondAttribute="top" id="vQP-Ii-Kk4"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjd-9h-KZh">
+                                <rect key="frame" x="20" y="0.0" width="355" height="667"/>
+                                <connections>
+                                    <segue destination="lWo-eT-51W" kind="embed" id="CK5-qh-HdO"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kjd-9h-KZh" firstAttribute="top" secondItem="Pr2-Yu-Wvc" secondAttribute="top" id="7av-Kb-UCZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Kjd-9h-KZh" secondAttribute="trailing" id="8IU-ng-ITV"/>
+                            <constraint firstAttribute="bottom" secondItem="GO9-KK-ya4" secondAttribute="bottom" id="Iu5-5b-HHg"/>
+                            <constraint firstAttribute="bottom" secondItem="Kjd-9h-KZh" secondAttribute="bottom" id="VSO-I0-4bK"/>
+                            <constraint firstItem="GO9-KK-ya4" firstAttribute="leading" secondItem="Pr2-Yu-Wvc" secondAttribute="leading" constant="-240" id="Znp-6f-Uhc"/>
+                            <constraint firstItem="GO9-KK-ya4" firstAttribute="top" secondItem="Pr2-Yu-Wvc" secondAttribute="top" id="sRj-U7-3S1"/>
+                            <constraint firstItem="Kjd-9h-KZh" firstAttribute="leading" secondItem="GO9-KK-ya4" secondAttribute="trailing" id="wkb-FB-YAn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="leftDrawerButton" destination="HZe-5k-idP" id="gul-eb-8zo"/>
+                        <outlet property="leftDrawerLeadingConstraint" destination="Znp-6f-Uhc" id="PTC-qj-ExL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BfZ-qO-fNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1109.5999999999999" y="-587.85607196401804"/>
+        </scene>
         <!--Mars Image Table View Controller-->
         <scene sceneID="Cwe-dU-lAa">
             <objects>
                 <tableViewController id="ydo-Li-Nc5" customClass="MarsImageTableViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pGJ-o1-9yP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" textLabel="vWv-J6-Eps" detailTextLabel="otj-AX-jAc" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="edI-W3-Mfi" customClass="FixedWidthImageTableViewCell" customModule="MarsImages" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ImageCell" textLabel="vWv-J6-Eps" detailTextLabel="otj-AX-jAc" rowHeight="50" style="IBUITableViewCellStyleSubtitle" id="edI-W3-Mfi" customClass="FixedWidthImageTableViewCell" customModule="MarsImages" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="240" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="edI-W3-Mfi" id="VLg-2V-aTs">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vWv-J6-Eps">
                                             <rect key="frame" x="15" y="8" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="otj-AX-jAc">
                                             <rect key="frame" x="15" y="28.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -57,7 +131,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91w-TV-PJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1385" y="112"/>
+            <point key="canvasLocation" x="907" y="148"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0vX-Yl-ceJ">
@@ -67,6 +141,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z2r-kK-Nxo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -75,7 +153,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKj-Gz-Qte" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="446" y="112"/>
+            <point key="canvasLocation" x="387" y="148"/>
+        </scene>
+        <!--Mars Image View Controller-->
+        <scene sceneID="LEH-uO-Pch">
+            <objects>
+                <viewController id="S58-C2-8lD" customClass="MarsImageViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6OO-ZI-Hya"/>
+                        <viewControllerLayoutGuide type="bottom" id="Szj-aI-s1z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8l1-sT-SCn">
+                        <rect key="frame" x="0.0" y="0.0" width="355" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ngw-bK-N5D"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="huN-JH-P5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2788" y="-588.75562218890559"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OEL-Pw-oRb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lWo-eT-51W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v19-ZK-dM6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="S58-C2-8lD" kind="relationship" relationship="rootViewController" id="Pvf-lq-Pxd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PLL-wU-BXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848.8" y="-588.75562218890559"/>
         </scene>
     </scenes>
 </document>

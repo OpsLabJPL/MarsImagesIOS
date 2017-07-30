@@ -28,6 +28,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var user:String?
     
     var sols:[Int] = []
+    var solIndices: [Int : Int] = [:]
     var imagesets:[Imageset] = []
     var imagesetCount:Int {
         get {
@@ -37,7 +38,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var imagesetCountsBySol:[Int:Int] = [:]
     var imagesetsForSol: [Int : [Imageset]] = [:]
 
-    var notePhotos:[MarsPhoto] = []
+    var marsphotos:[MarsPhoto] = []
     
     static let OPPY_NOTEBOOK_ID   = "a7271bf8-0b06-495a-bb48-7c0c7af29f70"
     static let MSL_NOTEBOOK_ID    = "0296f732-694d-4ccd-9f5b-5983dc98b9e0"
@@ -61,9 +62,10 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     func reload() {
         imagesetsForSol.removeAll()
         imagesets.removeAll()
-        notePhotos.removeAll()
+        marsphotos.removeAll()
         imagesetCountsBySol.removeAll()
         sols.removeAll()
+        solIndices.removeAll()
         loadMoreNotes(startIndex: 0, total: notePageSize)
     }
     
@@ -117,17 +119,17 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     let lastSolIndex = self.sols.count-1
                     if lastSolIndex < 0 || self.sols[lastSolIndex] != sol {
                         self.sols.append(sol)
+                        self.solIndices[sol] = self.sols.count-1
                     }
                     var imagesetsInSol = self.imagesetsForSol[sol]
-                    if (imagesetsInSol == nil) {
+                    if imagesetsInSol == nil {
                         imagesetsInSol = []
                     }
                     imagesetsInSol!.append(imageset)
                     self.imagesetsForSol[sol] = imagesetsInSol!
                     let photo = self.getNotePhoto(j+startIndex, imageIndex:0)
-                    self.notePhotos.append(photo)
-                    self.imagesetCountsBySol.removeValue(forKey: sol) //TODO remove?
-                    self.imagesetCountsBySol[sol] = self.imagesetCountsBySol.count
+                    self.marsphotos.append(photo)
+                    self.imagesetCountsBySol[sol] = imagesetsInSol!.count
                     if self.imagesetCountsBySol.count != self.sols.count {
                         print("Brown alert: sections and sols counts don't match each other.")
                     }

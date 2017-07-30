@@ -29,26 +29,35 @@ protocol MarsImageCatalog {
     
     var imagesets:[Imageset] { get }
     
+    var marsphotos:[MarsPhoto] { get }
+    
     var imagesetsForSol:[Int:[Imageset]] { get }
     
     var sols:[Int] { get }
     
+    var solIndices:[Int:Int] { get }
+    
     var imagesetCountsBySol:[Int:Int] { get }
 }
 
-class Imageset {
+class Imageset: Equatable {
     
     var mission:Mission
     var title:String
     var rowTitle:String
     var subtitle:String
     var thumbnailUrl:String?
+    var sol:Int?
     
     init (title:String) {
         self.title = title
         self.mission = Mission.currentMission()
         self.rowTitle = mission.rowTitle(title)
         self.subtitle = mission.subtitle(title)
+        self.sol = mission.sol(title)
     }
     
+    static func ==(lhs: Imageset, rhs: Imageset) -> Bool {
+        return lhs.title == rhs.title
+    }
 }
