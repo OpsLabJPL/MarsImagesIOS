@@ -6,11 +6,18 @@
 //  Copyright © 2017 Mark Powell. All rights reserved.
 //
 
+import Swinject
 import SwinjectStoryboard
 
 extension SwinjectStoryboard {
     
     class func setup() {
+        
+        /* workaround for logging bug
+         https://github.com/Swinject/Swinject/issues/218
+         https://github.com/Swinject/Swinject/pull/160 */
+        Container.loggingFunction = nil
+        
         defaultContainer.storyboardInitCompleted(MarsImageTableViewController.self) { resolver,controller in
             controller.catalog = resolver.resolve(MarsImageCatalog.self)
         }
