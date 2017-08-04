@@ -8,7 +8,7 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
-  - ReachabilitySwift (2.4)
+  - ReachabilitySwift (3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -23,7 +23,7 @@ DEPENDENCIES:
   - EvernoteSDK (~> 3.0)
   - MKDropdownMenu (~> 1.4)
   - MWPhotoBrowser (~> 2.1)
-  - ReachabilitySwift (~> 2.4)
+  - ReachabilitySwift (~> 3)
   - SwiftMessages (~> 3.4)
   - SwiftyJSON (~> 3.1)
   - Swinject (~> 2.0)
@@ -36,13 +36,13 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
-  ReachabilitySwift: dc7452dab85ff881904215e1a113326ad8d07beb
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Swinject: 85e468ac75c5c2d234076f98c591d57d56bc64bc
   SwinjectStoryboard: 4c71c25f312322844d39ee06f0f523db7b9b10a3
 
-PODFILE CHECKSUM: c9a1f2279639e7a7e589e088aa71990821a94c14
+PODFILE CHECKSUM: ac4885d9418de7724d801d767ceb215dbab08d32
 
 COCOAPODS: 1.2.1

@@ -8,6 +8,7 @@
 
 import Foundation
 import EvernoteSDK
+import ReachabilitySwift
 
 class EvernoteMarsImageCatalog : MarsImageCatalog {
    
@@ -40,6 +41,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
 
     var marsphotos:[MarsPhoto] = []
     
+    var reachability: Reachability
+    
     static let OPPY_NOTEBOOK_ID   = "a7271bf8-0b06-495a-bb48-7c0c7af29f70"
     static let MSL_NOTEBOOK_ID    = "0296f732-694d-4ccd-9f5b-5983dc98b9e0"
     static let SPIRIT_NOTEBOOK_ID = "f1a72415-56e7-4244-8e12-def9be9c512b"
@@ -57,6 +60,12 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     init(missionName:String) {
         self.mission = missionName
         self.user = EvernoteMarsImageCatalog.users[missionName]
+        self.reachability = Reachability(hostname:"evernote.com")!
+        do {
+            try reachability.startNotifier()
+        } catch {
+            return
+        }
     }
     
     func reload() {
@@ -94,8 +103,12 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     }
     
     func loadMoreNotes(startIndex:Int, total:Int) {
-        //TODO guard against no network
         
+        guard reachability.isReachable else {
+            NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:0])
+            return
+        }
+    
         connect()
         
         EvernoteMarsImageCatalog.noteDownloadQueue.async {

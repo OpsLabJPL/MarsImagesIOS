@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReachabilitySwift
 
 let numImagesetsReturnedKey = "numImagesetsReturnedKey"
 
@@ -38,6 +39,8 @@ protocol MarsImageCatalog {
     var solIndices:[Int:Int] { get }
     
     var imagesetCountsBySol:[Int:Int] { get }
+    
+    var reachability:Reachability { get }
 }
 
 class Imageset: Equatable {

@@ -9,18 +9,20 @@
 import UIKit
 import SDWebImage
 import MKDropdownMenu
+import SwiftMessages
+import ReachabilitySwift
 
 class MarsImageTableViewController: UITableViewController {
     
     let imageCell = "ImageCell"
+    let dropdowMenuWidth = 140
+    let dropdownMenuRowHeight = 44
 
     var catalog:MarsImageCatalog?
-
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     let searchController = UISearchController(searchResultsController: nil)
     var navBarMenu:MKDropdownMenu?
-    let dropdowMenuWidth = 140
-    let dropdownMenuRowHeight = 44
+    var internetStatusUnreachable: MessageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +54,7 @@ class MarsImageTableViewController: UITableViewController {
         
         tableView.tableHeaderView = searchController.searchBar
         
-        //TODO add the PSMenuItem for mission or equivalent
-        
         //TODO add the UIRefreshControl or equivalent
-        
-        //TOOD add a mission title button in nav bar, or equivalent
         
         clearsSelectionOnViewWillAppear = false
         
@@ -64,7 +62,10 @@ class MarsImageTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: catalog?.reachability)
 
+        internetStatusUnreachable = InternetReachabilityStatus.createStatus()
+        
         catalog?.reload()
     }
 
@@ -195,7 +196,6 @@ class MarsImageTableViewController: UITableViewController {
         cell.textLabel?.text = imageset.rowTitle
         cell.detailTextLabel?.text = imageset.subtitle
         
-        //TODO do load thumbnail
         if let thumbnailUrl = imageset.thumbnailUrl {
             cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder.png"))
         }
@@ -225,6 +225,23 @@ class MarsImageTableViewController: UITableViewController {
         if sectionCount > 0 &&
             lastSection == indexPath.section && lastImageset == indexPath.row {
             catalog!.loadNextPage()
+        }
+    }
+    
+    @objc func reachabilityChanged(_ note: Notification) {
+        
+        let reachability = note.object as! Reachability
+        
+        var statusConfig = SwiftMessages.defaultConfig
+        statusConfig.duration = .forever
+        statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        
+        if let status = self.internetStatusUnreachable {
+            if reachability.isReachable {
+                SwiftMessages.hide()
+            } else {
+                SwiftMessages.show(config: statusConfig, view: status)
+            }
         }
     }
 }
