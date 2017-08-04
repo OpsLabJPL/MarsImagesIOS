@@ -27,6 +27,18 @@ class MarsImageViewController : MWPhotoBrowser {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
+        self.title = nil
+        
+        self.navigationItem.titleView = UILabel() //hide 1 of n title
+    }
+    
+    override func performLayout() {
+        super.performLayout()
+        //hide Done button
+        if let done = self.navigationItem.rightBarButtonItem {
+            done.isEnabled = false
+            done.title = ""
+        }
     }
     
     func imagesetsLoaded(notification: Notification) {
