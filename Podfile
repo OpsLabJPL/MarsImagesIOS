@@ -9,4 +9,6 @@ target 'MarsImages' do
     pod 'EvernoteSDK', '~> 3.0'
     pod 'MWPhotoBrowser', '~> 2.1'
     pod 'MKDropdownMenu', '~> 1.4'
+    pod 'SwiftMessages', '~> 3.4'
+    pod 'ReachabilitySwift', '~> 3'
 end
