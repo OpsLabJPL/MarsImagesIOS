@@ -21,6 +21,7 @@ class MarsImageTableViewController: UITableViewController {
     var catalog:MarsImageCatalog?
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     let searchController = UISearchController(searchResultsController: nil)
+    let aRefreshControl = UIRefreshControl()
     var navBarMenu:MKDropdownMenu?
     var internetStatusUnreachable: MessageView?
     
@@ -43,6 +44,15 @@ class MarsImageTableViewController: UITableViewController {
         navBarMenu?.useFullScreenWidth = false
         navigationItem.titleView = navBarMenu
         
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = aRefreshControl
+        } else {
+            tableView.addSubview(aRefreshControl)
+        }
+        aRefreshControl.attributedTitle = NSAttributedString(string:"Downlinking images from Mars", attributes:nil)
+        aRefreshControl.addTarget(self, action: #selector(refreshImages(_:)), for: .valueChanged)
+
+        
         tableView.scrollsToTop = true
         searchController.searchResultsUpdater = self
         
@@ -53,8 +63,6 @@ class MarsImageTableViewController: UITableViewController {
         definesPresentationContext = true
         
         tableView.tableHeaderView = searchController.searchBar
-        
-        //TODO add the UIRefreshControl or equivalent
         
         clearsSelectionOnViewWillAppear = false
         
@@ -85,6 +93,11 @@ class MarsImageTableViewController: UITableViewController {
         catalog?.mission = mission
         updateImagesets()
         navBarMenu?.reloadAllComponents()
+    }
+    
+    @IBAction func refreshImages(_ sender: Any) {
+        catalog?.reload()
+        aRefreshControl.endRefreshing()
     }
     
     func imagesetsLoaded(notification: Notification) {

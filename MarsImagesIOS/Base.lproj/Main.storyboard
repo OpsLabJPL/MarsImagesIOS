@@ -123,7 +123,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="znp-tc-2Xa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="5je-3h-LT3"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="5je-3h-LT3">
+                            <connections>
+                                <action selector="refreshImages:" destination="ydo-Li-Nc5" id="omF-gQ-Nfd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="refreshButton" destination="5je-3h-LT3" id="3J9-7o-eE7"/>
