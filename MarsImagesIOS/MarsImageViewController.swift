@@ -30,6 +30,7 @@ class MarsImageViewController : MWPhotoBrowser {
         self.title = nil
         
         self.navigationItem.titleView = UILabel() //hide 1 of n title
+        self.enableGrid = false //The default behavior of this grid feature doesn't work well. Refinement needed to make it good.
     }
     
     override func performLayout() {
@@ -92,6 +93,13 @@ extension MarsImageViewController : MWPhotoBrowserDelegate {
     func photoBrowser(_ photoBrowser: MWPhotoBrowser!, captionViewForPhotoAt index: UInt) -> MWCaptionView! {
         if catalog!.marsphotos.count > Int(index) {
             return MarsImageCaptionView(photo: catalog!.marsphotos[Int(index)])
+        }
+        return nil
+    }
+    
+    override func thumbPhoto(at index: UInt) -> MWPhotoProtocol! {
+        if let thumbURL = catalog!.imagesets[Int(index)].thumbnailUrl {
+            return MWPhoto(url: URL(string:thumbURL))
         }
         return nil
     }
