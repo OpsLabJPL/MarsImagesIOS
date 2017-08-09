@@ -111,7 +111,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
         connect()
         
-        EvernoteMarsImageCatalog.noteDownloadQueue.async {
+        EvernoteMarsImageCatalog.noteDownloadQueue.sync {
             guard self.imagesets.count <= startIndex else { return }
         
             NotificationCenter.default.post(name: .beginImagesetLoading, object: nil)
