@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-KK-ya4" userLabel="Left Drawer View">
-                                <rect key="frame" x="-240" y="0.0" width="260" height="667"/>
+                                <rect key="frame" x="-260" y="0.0" width="240" height="667"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eos-R9-EMM">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="667"/>
@@ -33,30 +33,17 @@
                                             <segue destination="mlu-Jt-7OY" kind="embed" id="lwv-cw-eIB"/>
                                         </connections>
                                     </containerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZe-5k-idP" customClass="ArrowButton" customModule="MarsImages" customModuleProvider="target">
-                                        <rect key="frame" x="240" y="0.0" width="20" height="667"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="hf3-2I-pPk"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="leftDrawerButtonPressed:" destination="UuX-nW-vYs" eventType="touchUpInside" id="Z7X-1N-GvL"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Eos-R9-EMM" firstAttribute="top" secondItem="GO9-KK-ya4" secondAttribute="top" id="7sU-De-nQn"/>
                                     <constraint firstItem="Eos-R9-EMM" firstAttribute="leading" secondItem="GO9-KK-ya4" secondAttribute="leading" id="GaQ-pS-fj1"/>
-                                    <constraint firstItem="HZe-5k-idP" firstAttribute="leading" secondItem="Eos-R9-EMM" secondAttribute="trailing" id="Xat-KN-58E"/>
-                                    <constraint firstItem="HZe-5k-idP" firstAttribute="height" secondItem="Eos-R9-EMM" secondAttribute="height" id="b5G-EK-mDV"/>
                                     <constraint firstAttribute="bottom" secondItem="Eos-R9-EMM" secondAttribute="bottom" id="eDo-Rt-S3x"/>
-                                    <constraint firstAttribute="width" constant="260" id="kb6-j4-akS"/>
-                                    <constraint firstItem="HZe-5k-idP" firstAttribute="top" secondItem="Eos-R9-EMM" secondAttribute="top" id="vQP-Ii-Kk4"/>
+                                    <constraint firstAttribute="width" constant="240" id="kb6-j4-akS"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjd-9h-KZh">
-                                <rect key="frame" x="20" y="0.0" width="355" height="667"/>
+                                <rect key="frame" x="-20" y="0.0" width="395" height="667"/>
                                 <connections>
                                     <segue destination="lWo-eT-51W" kind="embed" id="CK5-qh-HdO"/>
                                 </connections>
@@ -68,13 +55,12 @@
                             <constraint firstAttribute="trailing" secondItem="Kjd-9h-KZh" secondAttribute="trailing" id="8IU-ng-ITV"/>
                             <constraint firstAttribute="bottom" secondItem="GO9-KK-ya4" secondAttribute="bottom" id="Iu5-5b-HHg"/>
                             <constraint firstAttribute="bottom" secondItem="Kjd-9h-KZh" secondAttribute="bottom" id="VSO-I0-4bK"/>
-                            <constraint firstItem="GO9-KK-ya4" firstAttribute="leading" secondItem="Pr2-Yu-Wvc" secondAttribute="leading" constant="-240" id="Znp-6f-Uhc"/>
+                            <constraint firstItem="GO9-KK-ya4" firstAttribute="leading" secondItem="Pr2-Yu-Wvc" secondAttribute="leading" constant="-260" id="Znp-6f-Uhc"/>
                             <constraint firstItem="GO9-KK-ya4" firstAttribute="top" secondItem="Pr2-Yu-Wvc" secondAttribute="top" id="sRj-U7-3S1"/>
                             <constraint firstItem="Kjd-9h-KZh" firstAttribute="leading" secondItem="GO9-KK-ya4" secondAttribute="trailing" id="wkb-FB-YAn"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="leftDrawerButton" destination="HZe-5k-idP" id="gul-eb-8zo"/>
                         <outlet property="leftDrawerLeadingConstraint" destination="Znp-6f-Uhc" id="PTC-qj-ExL"/>
                     </connections>
                 </viewController>
@@ -168,7 +154,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Szj-aI-s1z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8l1-sT-SCn">
-                        <rect key="frame" x="0.0" y="0.0" width="355" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="395" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
