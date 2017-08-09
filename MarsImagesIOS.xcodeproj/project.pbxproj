@@ -194,6 +194,7 @@
 				4AAAB52F1F2E388C001D810D /* Constants.swift */,
 				4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */,
 				4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */,
+				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
 				4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */,
 				4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */,
 				4A9DE9D11F2C15B00059C9C9 /* MER.swift */,
@@ -209,7 +210,6 @@
 			children = (
 				4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */,
 				4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */,
-				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
 				4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */,
 			);
 			name = "View Controllers";

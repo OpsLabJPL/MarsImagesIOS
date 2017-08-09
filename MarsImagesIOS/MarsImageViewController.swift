@@ -7,30 +7,41 @@
 //
 
 import UIKit
+import MKDropdownMenu
 import MWPhotoBrowser
 
 class MarsImageViewController : MWPhotoBrowser {
     
+    let dropdownMenuWidth = 140
+    let dropdownMenuRowHeight = 44
+
     var catalog:MarsImageCatalog?
-    
+    var navBarMenu:MKDropdownMenu
+
     required init?(coder aDecoder: NSCoder) {
+        self.navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdownMenuWidth,height:dropdownMenuRowHeight))
         super.init(coder: aDecoder)
         self.delegate = self
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdownMenuWidth,height:dropdownMenuRowHeight))
         super.init(nibName: nibNameOrNil, bundle:nibBundleOrNil)
         self.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navBarMenu.dataSource = self
+        navBarMenu.delegate = self
+
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         self.title = nil
         
         self.navigationItem.titleView = UILabel() //hide 1 of n title
         self.enableGrid = false //The default behavior of this grid feature doesn't work well. Refinement needed to make it good.
+        
     }
     
     override func performLayout() {
@@ -40,6 +51,7 @@ class MarsImageViewController : MWPhotoBrowser {
             done.isEnabled = false
             done.title = ""
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBarMenu)
     }
     
     func imagesetsLoaded(notification: Notification) {
@@ -104,3 +116,45 @@ extension MarsImageViewController : MWPhotoBrowserDelegate {
         return nil
     }
 }
+
+extension MarsImageViewController: MKDropdownMenuDataSource {
+    func numberOfComponents(in dropdownMenu: MKDropdownMenu) -> Int {
+        return 1
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, numberOfRowsInComponent component: Int) -> Int {
+        return 2
+    }
+}
+
+extension MarsImageViewController: MKDropdownMenuDelegate {
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, didSelectRow row: Int, inComponent component: Int) {
+        dropdownMenu.closeAllComponents(animated: true)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, widthForComponent component: Int) -> CGFloat {
+        return CGFloat(dropdownMenuWidth)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, rowHeightForComponent component: Int) -> CGFloat {
+        return CGFloat(dropdownMenuRowHeight)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForComponent component: Int) -> String? {
+        return "Foo"
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "Foo"
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, backgroundColorForRow row: Int, forComponent component: Int) -> UIColor? {
+        return UIColor.white
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, shouldUseFullRowWidthForComponent component: Int) -> Bool {
+        return false
+    }
+}
+
