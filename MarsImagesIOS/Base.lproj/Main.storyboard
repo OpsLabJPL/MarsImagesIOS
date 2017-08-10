@@ -162,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huN-JH-P5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2788" y="-588.75562218890559"/>
+            <point key="canvasLocation" x="2724" y="-588"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OEL-Pw-oRb">
@@ -182,6 +182,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLL-wU-BXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1848.8" y="-588.75562218890559"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="mDr-mN-t2Q">
+            <objects>
+                <viewController storyboardIdentifier="aboutVC" id="Dwg-gT-5Yp" customClass="AboutViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rrn-ds-faN"/>
+                        <viewControllerLayoutGuide type="bottom" id="hzM-NC-Cro"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xhm-zy-UXG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blc-VU-uuR">
+                                <rect key="frame" x="10" y="10" width="355" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="blc-VU-uuR" firstAttribute="top" secondItem="Xhm-zy-UXG" secondAttribute="top" constant="10" id="B6D-jY-72R"/>
+                            <constraint firstAttribute="bottom" secondItem="blc-VU-uuR" secondAttribute="bottom" constant="10" id="e17-ys-cV1"/>
+                            <constraint firstItem="blc-VU-uuR" firstAttribute="leading" secondItem="Xhm-zy-UXG" secondAttribute="leading" constant="10" id="nSG-DM-es3"/>
+                            <constraint firstAttribute="trailing" secondItem="blc-VU-uuR" secondAttribute="trailing" constant="10" id="rAK-dU-PwK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="blc-VU-uuR" id="Zlr-RU-ex7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vLF-4C-4f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3641" y="-588"/>
         </scene>
     </scenes>
 </document>

@@ -22,6 +22,7 @@
 		4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680EA1F2AAFE9004E30CC /* Mission.swift */; };
 		4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */; };
 		4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */; };
+		4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A620E371F3BE79C00A82019 /* AboutViewController.swift */; };
 		4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */; };
 		4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */; };
 		4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */; };
@@ -75,6 +76,7 @@
 		4A1680EA1F2AAFE9004E30CC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrow@3x.png"; sourceTree = "<group>"; };
 		4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@3x.png"; sourceTree = "<group>"; };
+		4A620E371F3BE79C00A82019 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftDrawerViewController.swift; sourceTree = "<group>"; };
 		4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */,
 				4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */,
 				4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */,
+				4A620E371F3BE79C00A82019 /* AboutViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -393,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8DE7EE29DF703659DE6C2B4E /* [CP] Embed Pods Frameworks */ = {
@@ -472,6 +475,7 @@
 				4A9DE9D01F2BDA160059C9C9 /* MarsPhoto.swift in Sources */,
 				4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */,
 				4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */,
+				4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */,
 				4A8BB26E1F2D532400E07B49 /* MarsImageCaptionView.swift in Sources */,
 				4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */,
 				4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */,

@@ -23,6 +23,7 @@ class MarsImageViewController : MWPhotoBrowser {
     var drawerButton = UIBarButtonItem()
     var navBarMenu = MKDropdownMenu()
     var navBarButton = UIBarButtonItem()
+    let menuItemNames = [ "Clock", "About" ]
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -95,6 +96,10 @@ class MarsImageViewController : MWPhotoBrowser {
     func closeDrawer() {
         drawerClosed = true
         drawerButton.image = rightIcon
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
     
     override func performLayout() {
@@ -177,7 +182,7 @@ extension MarsImageViewController: MKDropdownMenuDataSource {
     }
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+        return menuItemNames.count
     }
 }
 
@@ -185,6 +190,26 @@ extension MarsImageViewController: MKDropdownMenuDelegate {
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, didSelectRow row: Int, inComponent component: Int) {
         dropdownMenu.closeAllComponents(animated: true)
+        let menuItemName = menuItemNames[row]
+        if menuItemName == "About" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "aboutVC") as! AboutViewController
+            vc.modalPresentationStyle = .popover
+            
+            let height = self.view.bounds.size.height
+            let width = self.view.bounds.size.width
+            
+            vc.preferredContentSize = CGSize(width:width * 0.8, height:height * 0.8)
+            
+            if let presentationController = vc.popoverPresentationController {
+                presentationController.delegate = self
+                presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
+                presentationController.sourceView = self.view
+                presentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, widthForComponent component: Int) -> CGFloat {
@@ -200,7 +225,7 @@ extension MarsImageViewController: MKDropdownMenuDelegate {
     }
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "Foo"
+        return menuItemNames[row]
     }
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, backgroundColorForRow row: Int, forComponent component: Int) -> UIColor? {
@@ -210,4 +235,8 @@ extension MarsImageViewController: MKDropdownMenuDelegate {
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, shouldUseFullRowWidthForComponent component: Int) -> Bool {
         return false
     }
+}
+
+extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
+    
 }
