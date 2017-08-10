@@ -20,8 +20,8 @@
 		4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */; };
 		4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */; };
 		4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680EA1F2AAFE9004E30CC /* Mission.swift */; };
-		4A620E311F3AC90700A82019 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E2F1F3AC90700A82019 /* leftArrow.png */; };
-		4A620E321F3AC90700A82019 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E301F3AC90700A82019 /* rightArrow.png */; };
+		4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */; };
+		4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */; };
 		4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */; };
 		4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */; };
 		4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */; };
@@ -73,8 +73,8 @@
 		4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCatalog.swift; sourceTree = "<group>"; };
 		4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteMarsimageCatalog.swift; sourceTree = "<group>"; };
 		4A1680EA1F2AAFE9004E30CC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
-		4A620E2F1F3AC90700A82019 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
-		4A620E301F3AC90700A82019 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
+		4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrow@3x.png"; sourceTree = "<group>"; };
+		4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@3x.png"; sourceTree = "<group>"; };
 		4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftDrawerViewController.swift; sourceTree = "<group>"; };
 		4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageViewController.swift; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		4A1148501F2C67790046E047 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4A620E2F1F3AC90700A82019 /* leftArrow.png */,
-				4A620E301F3AC90700A82019 /* rightArrow.png */,
+				4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */,
+				4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */,
 				4A11484E1F2C67740046E047 /* placeholder.png */,
 			);
 			name = "Supporting Files";
@@ -200,6 +200,7 @@
 				4AAAB52F1F2E388C001D810D /* Constants.swift */,
 				4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */,
 				4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */,
+				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
 				4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */,
 				4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */,
 				4A9DE9D11F2C15B00059C9C9 /* MER.swift */,
@@ -215,7 +216,6 @@
 			children = (
 				4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */,
 				4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */,
-				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
 				4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */,
 			);
 			name = "View Controllers";
@@ -353,8 +353,8 @@
 			files = (
 				4A1680BF1F2A8ECE004E30CC /* LaunchScreen.storyboard in Resources */,
 				4A1680BC1F2A8ECE004E30CC /* Assets.xcassets in Resources */,
-				4A620E321F3AC90700A82019 /* rightArrow.png in Resources */,
-				4A620E311F3AC90700A82019 /* leftArrow.png in Resources */,
+				4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */,
+				4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */,
 				4A1680E31F2A8F32004E30CC /* Podfile in Resources */,
 				4A11484F1F2C67740046E047 /* placeholder.png in Resources */,
 				4A1680BA1F2A8ECE004E30CC /* Main.storyboard in Resources */,

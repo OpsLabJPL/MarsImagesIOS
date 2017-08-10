@@ -15,7 +15,7 @@ import ReachabilitySwift
 class MarsImageTableViewController: UITableViewController {
     
     let imageCell = "ImageCell"
-    let dropdowMenuWidth = 140
+    let dropdownMenuWidth = 140
     let dropdownMenuRowHeight = 44
 
     var catalog:MarsImageCatalog?
@@ -28,7 +28,7 @@ class MarsImageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdowMenuWidth,height:dropdownMenuRowHeight))
+        navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdownMenuWidth,height:dropdownMenuRowHeight))
         navBarMenu?.dataSource = self
         navBarMenu?.delegate = self
         navBarMenu?.backgroundDimmingOpacity = -0.67
@@ -304,7 +304,7 @@ extension MarsImageTableViewController: MKDropdownMenuDelegate {
     }
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, widthForComponent component: Int) -> CGFloat {
-        return CGFloat(dropdowMenuWidth)
+        return CGFloat(dropdownMenuWidth)
     }
     
     func dropdownMenu(_ dropdownMenu: MKDropdownMenu, rowHeightForComponent component: Int) -> CGFloat {

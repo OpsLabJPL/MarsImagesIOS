@@ -169,9 +169,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lWo-eT-51W" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v19-ZK-dM6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="v19-ZK-dM6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <gestureRecognizers/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

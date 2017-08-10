@@ -7,29 +7,46 @@
 //
 
 import UIKit
+import MKDropdownMenu
 import MWPhotoBrowser
 
 class MarsImageViewController : MWPhotoBrowser {
     
+    let dropdownMenuWidth = 140
+    let dropdownMenuRowHeight = 44
+
     var catalog:MarsImageCatalog?
     let leftIcon = UIImage.init(named: "leftArrow.png")
     let rightIcon = UIImage.init(named: "rightArrow.png")
     
     var drawerClosed = true
-    var drawerButton: UIBarButtonItem?
-    
+    var drawerButton = UIBarButtonItem()
+    var navBarMenu = MKDropdownMenu()
+    var navBarButton = UIBarButtonItem()
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.delegate = self
+        self.makeButtons()
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle:nibBundleOrNil)
         self.delegate = self
+        self.makeButtons()
+    }
+    
+    func makeButtons() {
+        self.navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdownMenuWidth,height:dropdownMenuRowHeight))
+        self.navBarButton = UIBarButtonItem(customView: navBarMenu)
+        drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(manageDrawer(_:)))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navBarMenu.dataSource = self
+        navBarMenu.delegate = self
+
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openDrawer), name: .openDrawer, object: nil)
@@ -40,8 +57,12 @@ class MarsImageViewController : MWPhotoBrowser {
         self.navigationItem.titleView = UILabel() //hide 1 of n title
         self.enableGrid = false //The default behavior of this grid feature doesn't work well. Refinement needed to make it good.
         
-        drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(manageDrawer(_:)))
-        navigationItem.rightBarButtonItem = drawerButton
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(closeDrawerSwipe))
+        swipeLeft.direction = .left
+        self.navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(openDrawerSwipe))
+        swipeRight.direction = .right
+        self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
     }
 
     @IBAction func manageDrawer(_ sender: Any) {
@@ -52,27 +73,34 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
+    func closeDrawerSwipe() {
+        guard drawerClosed == false else {
+            return
+        }
+        NotificationCenter.default.post(name: .closeDrawer, object: nil)
+    }
+    
+    func openDrawerSwipe() {
+        guard drawerClosed else {
+            return
+        }
+        NotificationCenter.default.post(name: .openDrawer, object: nil)
+    }
+    
     func openDrawer() {
         drawerClosed = false
-        drawerButton?.image = leftIcon
-//        navigationController?.navigationBar.setNeedsLayout()
+        drawerButton.image = leftIcon
     }
     
     func closeDrawer() {
         drawerClosed = true
-        drawerButton?.image = rightIcon
-//        navigationController?.navigationBar.setNeedsLayout()
+        drawerButton.image = rightIcon
     }
     
     override func performLayout() {
         super.performLayout()
-        //hide Done button
-//        if let done = self.navigationItem.rightBarButtonItem {
-//            done.isEnabled = false
-//            done.title = ""
-//        }
-        navigationItem.rightBarButtonItem = drawerButton
-
+        //replace MWPhotoBrowser Done button with our action buttons
+        navigationItem.rightBarButtonItems = [ drawerButton, navBarButton]
     }
     
     func imagesetsLoaded(notification: Notification) {
@@ -141,4 +169,45 @@ extension MarsImageViewController : MWPhotoBrowserDelegate {
 extension Notification.Name {
     static let openDrawer = Notification.Name("OpenDrawer")
     static let closeDrawer = Notification.Name("CloseDrawer")
+}
+
+extension MarsImageViewController: MKDropdownMenuDataSource {
+    func numberOfComponents(in dropdownMenu: MKDropdownMenu) -> Int {
+        return 1
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, numberOfRowsInComponent component: Int) -> Int {
+        return 2
+    }
+}
+
+extension MarsImageViewController: MKDropdownMenuDelegate {
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, didSelectRow row: Int, inComponent component: Int) {
+        dropdownMenu.closeAllComponents(animated: true)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, widthForComponent component: Int) -> CGFloat {
+        return CGFloat(dropdownMenuWidth)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, rowHeightForComponent component: Int) -> CGFloat {
+        return CGFloat(dropdownMenuRowHeight)
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForComponent component: Int) -> String? {
+        return ""
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "Foo"
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, backgroundColorForRow row: Int, forComponent component: Int) -> UIColor? {
+        return UIColor.white
+    }
+    
+    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, shouldUseFullRowWidthForComponent component: Int) -> Bool {
+        return false
+    }
 }
