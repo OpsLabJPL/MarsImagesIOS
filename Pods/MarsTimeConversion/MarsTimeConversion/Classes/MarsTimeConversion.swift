@@ -8,6 +8,24 @@
 
 import Foundation
 
+
+public struct MarsTime {
+    public var jdut:Double = 0
+    public var tt_utc_diff:Double = 0
+    public var jdtt:Double = 0
+    public var deltaJ2000:Double = 0
+    public var marsMeanAnomaly:Double = 0
+    public var angleFictiousMeanSun:Double = 0
+    public var pbs:Double = 0
+    public var v_M_diff:Double = 0
+    public var ls:Double = 0
+    public var eot:Double = 0
+    public var msd:Double = 0
+    public var mtc:Double = 0
+    public var lmst:Double = 0
+    public var ltst:Double = 0
+}
+
 open class MarsTimeConversion {
     open static let EARTH_SECS_PER_MARS_SEC = 1.027491252
     open static let CURIOSITY_WEST_LONGITUDE = 137.4
@@ -200,6 +218,26 @@ open class MarsTimeConversion {
             return hours - 24
         }
         return hours
+    }
+    
+    open static func getMarsTime(_ date:Date, longitude:Double) -> MarsTime {
+        let times = getMarsTimes(date, longitude: longitude)
+        var time = MarsTime()
+        time.jdut = times.0
+        time.tt_utc_diff = times.1
+        time.jdtt = times.2
+        time.deltaJ2000 = times.3
+        time.marsMeanAnomaly = times.4
+        time.angleFictiousMeanSun = times.5
+        time.pbs = times.6
+        time.v_M_diff = times.7
+        time.ls = times.8
+        time.eot = times.9
+        time.msd = times.10
+        time.mtc = times.11
+        time.lmst = times.12
+        time.ltst = times.13
+        return time
     }
     
     open static func getMarsTimes(_ date:Date, longitude:Double) -> (Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double) {

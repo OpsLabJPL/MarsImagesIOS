@@ -24,6 +24,8 @@ class MarsImageViewController : MWPhotoBrowser {
     var navBarMenu = MKDropdownMenu()
     var navBarButton = UIBarButtonItem()
     let menuItemNames = [ "Clock", "About" ]
+    
+    var popover:UIPopoverPresentationController?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -108,6 +110,12 @@ class MarsImageViewController : MWPhotoBrowser {
         navigationItem.rightBarButtonItems = [ drawerButton, navBarButton]
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if let presentationController = popover {
+            presentationController.presentedViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     func imagesetsLoaded(notification: Notification) {
         var numImagesetsReturned = 0
         let num = notification.userInfo?[numImagesetsReturnedKey]
@@ -132,6 +140,10 @@ class MarsImageViewController : MWPhotoBrowser {
                 setCurrentPhotoIndex(UInt(index))
             }
         }
+    }
+    
+    func sourceRectForPopupController(_ bounds: CGRect) -> CGRect {
+        return CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
     }
 }
 
@@ -195,18 +207,31 @@ extension MarsImageViewController: MKDropdownMenuDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "aboutVC") as! AboutViewController
             vc.modalPresentationStyle = .popover
-            
-            let height = self.view.bounds.size.height
-            let width = self.view.bounds.size.width
-            
-            vc.preferredContentSize = CGSize(width:width * 0.8, height:height * 0.8)
-            
-            if let presentationController = vc.popoverPresentationController {
+            popover = vc.popoverPresentationController
+            if let presentationController = popover {
                 presentationController.delegate = self
                 presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
                 presentationController.sourceView = self.view
-                presentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-
+                presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
+                presentationController.presentedViewController.preferredContentSize =
+                    CGSize(width: self.view.bounds.size.width*0.8,
+                            height: self.view.bounds.size.height*0.8)
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        else if menuItemName == "Clock" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "timeVC") as! TimeViewController
+            vc.modalPresentationStyle = .popover
+            popover = vc.popoverPresentationController
+            if let presentationController = popover {
+                presentationController.delegate = self
+                presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
+                presentationController.sourceView = self.view
+                presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
+                presentationController.presentedViewController.preferredContentSize =
+                    CGSize(width: self.view.bounds.size.width*0.8,
+                           height: self.view.bounds.size.height*0.8)
                 self.present(vc, animated: true, completion: nil)
             }
         }

@@ -20,6 +20,7 @@
 		4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */; };
 		4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */; };
 		4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680EA1F2AAFE9004E30CC /* Mission.swift */; };
+		4A28AA6D1F40BF1E006DEA66 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */; };
 		4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */; };
 		4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */; };
 		4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A620E371F3BE79C00A82019 /* AboutViewController.swift */; };
@@ -74,6 +75,7 @@
 		4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCatalog.swift; sourceTree = "<group>"; };
 		4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteMarsimageCatalog.swift; sourceTree = "<group>"; };
 		4A1680EA1F2AAFE9004E30CC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrow@3x.png"; sourceTree = "<group>"; };
 		4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@3x.png"; sourceTree = "<group>"; };
 		4A620E371F3BE79C00A82019 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */,
 				4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */,
 				4A620E371F3BE79C00A82019 /* AboutViewController.swift */,
+				4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A28AA6D1F40BF1E006DEA66 /* TimeViewController.swift in Sources */,
 				4A9DE9D21F2C15B00059C9C9 /* MER.swift in Sources */,
 				4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */,
 				4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */,
