@@ -72,23 +72,6 @@ class MarsImageViewController : MWPhotoBrowser {
 
         super.viewDidLoad()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        SDImageCache.shared().maxMemoryCost = 0
-//        let thisPhoto = currentPhoto()
-//        if thisPhoto != nil {
-//            self.reloadData()
-//        }
-    }
-    
-    func currentPhoto() -> MarsPhoto? {
-        let i = Int(self.currentIndex)
-        if catalog!.imagesetCount > i {
-            return catalog!.marsphotos[i]
-        }
-        return nil
-    }
     
     @IBAction func manageDrawer(_ sender: Any) {
         if drawerClosed {
@@ -146,7 +129,6 @@ class MarsImageViewController : MWPhotoBrowser {
         }
         if numImagesetsReturned > 0 {
             self.reloadData()
-            self.setCurrentPhotoIndex(self.currentIndex)
         }
     }
     
@@ -170,12 +152,10 @@ class MarsImageViewController : MWPhotoBrowser {
 
 extension MarsImageViewController : MWPhotoBrowserDelegate {
     func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
-        print("number of photos: \(UInt(catalog!.imagesetCount))")
         return UInt(catalog!.imagesetCount)
     }
     
     func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
-        print("number of photos: \(catalog!.marsphotos.count)")
         if catalog!.marsphotos.count > Int(index) {
             return catalog!.marsphotos[Int(index)]
         }
