@@ -9,6 +9,7 @@
 import UIKit
 import MKDropdownMenu
 import MWPhotoBrowser
+import SDWebImage
 
 class MarsImageViewController : MWPhotoBrowser {
     
@@ -46,7 +47,8 @@ class MarsImageViewController : MWPhotoBrowser {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        SDImageCache.shared().maxMemoryCost = 0
+
         navBarMenu.dataSource = self
         navBarMenu.delegate = self
 
@@ -66,8 +68,28 @@ class MarsImageViewController : MWPhotoBrowser {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(openDrawerSwipe))
         swipeRight.direction = .right
         self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
+        catalog?.reload()
+
+        super.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        SDImageCache.shared().maxMemoryCost = 0
+//        let thisPhoto = currentPhoto()
+//        if thisPhoto != nil {
+//            self.reloadData()
+//        }
+    }
+    
+    func currentPhoto() -> MarsPhoto? {
+        let i = Int(self.currentIndex)
+        if catalog!.imagesetCount > i {
+            return catalog!.marsphotos[i]
+        }
+        return nil
+    }
+    
     @IBAction func manageDrawer(_ sender: Any) {
         if drawerClosed {
             NotificationCenter.default.post(name: .openDrawer, object: nil)
@@ -123,9 +145,8 @@ class MarsImageViewController : MWPhotoBrowser {
             numImagesetsReturned = num as! Int
         }
         if numImagesetsReturned > 0 {
-            DispatchQueue.main.async {
-                self.reloadData()
-            }
+            self.reloadData()
+            self.setCurrentPhotoIndex(self.currentIndex)
         }
     }
     
@@ -149,10 +170,12 @@ class MarsImageViewController : MWPhotoBrowser {
 
 extension MarsImageViewController : MWPhotoBrowserDelegate {
     func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
+        print("number of photos: \(UInt(catalog!.imagesetCount))")
         return UInt(catalog!.imagesetCount)
     }
     
     func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
+        print("number of photos: \(catalog!.marsphotos.count)")
         if catalog!.marsphotos.count > Int(index) {
             return catalog!.marsphotos[Int(index)]
         }

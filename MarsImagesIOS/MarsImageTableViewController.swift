@@ -73,8 +73,6 @@ class MarsImageTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: catalog?.reachability)
 
         internetStatusUnreachable = InternetReachabilityStatus.createStatus()
-        
-        catalog?.reload()
     }
 
     override func didReceiveMemoryWarning() {
