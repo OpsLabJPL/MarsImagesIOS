@@ -99,12 +99,6 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     func imagesetsLoaded(notification: Notification) {
-        var numImagesetsReturned = 0
-        let num = notification.userInfo?[numImagesetsReturnedKey]
-        if (num != nil) {
-            numImagesetsReturned = num as! Int
-        }
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

@@ -56,6 +56,7 @@ class MarsImageViewController : MWPhotoBrowser {
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openDrawer), name: .openDrawer, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(closeDrawer), name: .closeDrawer, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
 
         self.title = nil
         
@@ -121,15 +122,15 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
+    func defaultsChanged() {
+        //set the image page to the first page when the mission changes
+        self.setCurrentPhotoIndex(UInt(0))
+    }
+    
     func imagesetsLoaded(notification: Notification) {
-        var numImagesetsReturned = 0
-        let num = notification.userInfo?[numImagesetsReturnedKey]
-        if (num != nil) {
-            numImagesetsReturned = num as! Int
-        }
-        if numImagesetsReturned > 0 {
-            self.reloadData()
-        }
+        self.reloadData()
+        //need to reload the image in case the mission has changed and current image page index has stayed the same
+        self.photo(at: self.currentIndex)?.performLoadUnderlyingImageAndNotify()
     }
     
     func imageSelected(notification:Notification) {
