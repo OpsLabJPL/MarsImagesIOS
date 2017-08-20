@@ -56,6 +56,11 @@ class Mission {
         return "\(marstime) LST"
     }
     
+    func caption(_ title: String) -> String {
+        let t = tokenize(title)
+        return "\(t.instrumentName) image taken on Sol \(t.sol)."
+    }
+    
     func tokenize(_ title: String) -> Title {
         return Title()
     }

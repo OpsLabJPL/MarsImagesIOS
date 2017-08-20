@@ -51,6 +51,20 @@ class MER: Mission {
         return merTitle.instrumentName
     }
     
+    override func caption(_ title: String) -> String {
+        if let t = tokenize(title) as? MERTitle {
+            if (t.instrumentName == "Course Plot") {
+                return String(format:"Drive for %.2f meters on Sol %d", t.distance, t.sol)
+            }
+            else {
+                return "\(t.instrumentName) image taken on Sol \(t.sol)."
+            }
+        }
+        else {
+            return super.caption(title)
+        }
+    }
+    
     override func tokenize(_ title: String) -> Title {
         var mer = MERTitle()
         let tokens = title.components(separatedBy: " ")
