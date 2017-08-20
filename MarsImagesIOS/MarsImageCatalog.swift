@@ -43,6 +43,10 @@ protocol MarsImageCatalog {
     var reachability:Reachability { get }
     
     func imageName(imageset: Imageset, imageIndexInSet: Int) -> String
+    
+    func getImagesetCount(imageset: Imageset) -> Int
+    
+    func changeToImage(imagesetIndex: Int, imageIndexInSet: Int)
 
 }
 

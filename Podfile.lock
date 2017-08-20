@@ -9,6 +9,7 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - PSMenuItem (0.0.1)
   - ReachabilitySwift (3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
   - MKDropdownMenu (~> 1.4)
   - MWPhotoBrowser (~> 2.1)
+  - PSMenuItem (~> 0.0.1)
   - ReachabilitySwift (~> 3)
   - SwiftMessages (~> 3.4)
   - SwiftyJSON (~> 3.1)
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  PSMenuItem: e81c682356ca17734fc85b3b37abdda75748de54
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
@@ -55,6 +58,6 @@ SPEC CHECKSUMS:
   Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwinjectStoryboard: 4c71c25f312322844d39ee06f0f523db7b9b10a3
 
-PODFILE CHECKSUM: ab843bc383ba162f14443110b066ef5c0666caad
+PODFILE CHECKSUM: 4a4e4c7800b05630bed08b23768150db798867e2
 
 COCOAPODS: 1.2.1

@@ -9,6 +9,7 @@
 import UIKit
 import MKDropdownMenu
 import MWPhotoBrowser
+import PSMenuItem
 import SDWebImage
 
 class MarsImageViewController : MWPhotoBrowser {
@@ -53,7 +54,7 @@ class MarsImageViewController : MWPhotoBrowser {
 
         navBarMenu.dataSource = self
         navBarMenu.delegate = self
-
+        PSMenuItem.installMenuHandler(for: self)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openDrawer), name: .openDrawer, object: nil)
@@ -153,7 +154,6 @@ class MarsImageViewController : MWPhotoBrowser {
     
     func imageSelected(notification:Notification) {
         var index = 0
-        selectedImageIndexInImageset = 0
         if let num = notification.userInfo?[Constants.imageIndexKey] as? Int {
             index = Int(num)
         }
@@ -163,6 +163,7 @@ class MarsImageViewController : MWPhotoBrowser {
                 setCurrentPhotoIndex(UInt(index))
             }
         }
+        selectedImageIndexInImageset = catalog!.marsphotos[index].indexInImageset
         
         var imageName = ""
 //        if photo.leftAndRight { //TODO add this
@@ -190,7 +191,45 @@ class MarsImageViewController : MWPhotoBrowser {
     }
     
     func imageSelectionPressed() {
+        becomeFirstResponder()
+        let imageset = catalog!.imagesets[Int(currentIndex)]
+        let imageCount = catalog!.getImagesetCount(imageset: imageset)
         
+        var menuItems:[PSMenuItem] = []
+        for r in 0..<imageCount {
+            let imageName = catalog!.imageName(imageset: imageset, imageIndexInSet: r)
+            let menuItem = PSMenuItem(title: imageName, block: {
+                self.catalog!.changeToImage(imagesetIndex: Int(self.currentIndex), imageIndexInSet: r)
+                self.reloadData()
+                self.imageSelectionButton.title = imageName
+            })!
+            
+            menuItems.append(menuItem)
+        }
+        
+        //TODO add anaglyph later
+//        NSArray* leftAndRight = [[MarsImageNotebook instance].mission stereoForImages:resources];
+//        if (leftAndRight.count > 0) {
+//            PSMenuItem* menuItem = [[PSMenuItem alloc] initWithTitle:@"Anaglyph"
+//                block:^{
+//                [[MarsImageNotebook instance] changeToAnaglyph: leftAndRight noteIndex:(int)self.currentIndex];
+//                [self reloadData];
+//                }];
+//            [menuItems addObject:menuItem];
+//        }
+        
+//        if ([menuItems count] > 1) {
+//            [UIMenuController sharedMenuController].menuItems = menuItems;
+//            CGRect bounds = self.navigationController.toolbar.frame;
+//            bounds.origin.y -= bounds.size.height;
+//            [[UIMenuController sharedMenuController] setTargetRect:bounds inView:self.view];
+//            [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
+//        }
+        if menuItems.count > 0 {
+            UIMenuController.shared.menuItems = menuItems
+            UIMenuController.shared.setTargetRect(getToolbar()!.bounds, in: getToolbar()!)
+            UIMenuController.shared.setMenuVisible(true, animated: true)
+        }
     }
 }
 

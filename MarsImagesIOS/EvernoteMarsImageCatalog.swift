@@ -244,6 +244,18 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         imageid = imageid.removingPercentEncoding!
         return imageid;
     }
+    
+    func getImagesetCount(imageset: Imageset) -> Int {
+        if let imageset = imageset as? EvernoteImageset {
+            return imageset.note.resources.count
+        }
+        return 1
+    }
+    
+    func changeToImage(imagesetIndex: Int, imageIndexInSet: Int) {        
+        let photo = getNotePhoto(imagesetIndex, imageIndex: imageIndexInSet)
+        marsphotos[imagesetIndex] = photo
+    }
 }
 
 class EvernoteImageset : Imageset {

@@ -12,4 +12,5 @@ target 'MarsImages' do
     pod 'SwiftMessages', '~> 3.4'
     pod 'ReachabilitySwift', '~> 3'
     pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
+    pod 'PSMenuItem', '~> 0.0.1'
 end

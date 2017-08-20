@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PSMenuItem.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MarsImages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,12 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17CEAD1B3EC4E80098DF5F8AA00BE966</key>
+		<key>09539F0AAF8747923135EE632560FE17</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>28B8398BC0C68D4A4A11537E905ACD0C</key>
+		<key>17CEAD1B3EC4E80098DF5F8AA00BE966</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,17 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4812FD6CCA90F2E64F125B954B54217F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>68EFFA52E98831BD77C47BCEE90DC729</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6B1714E816AE794962516E2ECBB40A5A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>733655784D6C4B35EFD30C663444CA51</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7B032742E0236FCC366A059334DDC99E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +137,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80BFCA1A4AB2E3D2F85D91858AA54DD1</key>
+		<key>82B6FC64C3279FBA710390D542AC1601</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +147,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C00CA14A6B9DDDE7A0C0BC72814937A</key>
+		<key>8B3D4323A279FD73FF97DD41DB188A23</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A256E7E872420404C01AD68EA8F2B7A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A326C04FEB6A85F7C86A4159E9A457B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,17 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D507CDE883F364C5674EF3FF6ED4A2BA</key>
+		<key>CA7C64F1A52A81248D1DF2EA7A432378</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F5998E20F683EE1E9022DCED6FFD564C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FCB0F8151F66B7F485F0C514B064C03B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
