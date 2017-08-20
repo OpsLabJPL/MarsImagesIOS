@@ -39,6 +39,9 @@ class Curiosity: Mission {
         comps.second=00
         comps.timeZone = TimeZone(abbreviation: "UTC")
         self.epoch = Calendar.current.date(from: comps)
+        self.eyeIndex = 1
+        self.instrumentIndex = 0
+        self.sampleTypeIndex = 17
     }
     
     override func rowTitle(_ title: String) -> String {
@@ -95,6 +98,22 @@ class Curiosity: Mission {
             }
         }
         return msl
+    }
+    
+    override func imageName(imageId: String) -> String {
+        let irange = imageId.index(imageId.startIndex, offsetBy: instrumentIndex)..<imageId.index(imageId.startIndex, offsetBy: instrumentIndex+1)
+        let instrument = imageId[irange]
+        if instrument == "N" || instrument == "F" || instrument == "R" {
+            let erange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+1)
+            let eye = imageId[erange]
+            if eye == "L" {
+                return "Left"
+            } else {
+                return "Right"
+            }
+        }
+        
+        return ""
     }
 
 }

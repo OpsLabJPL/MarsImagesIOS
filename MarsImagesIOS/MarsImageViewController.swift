@@ -25,6 +25,8 @@ class MarsImageViewController : MWPhotoBrowser {
     var navBarMenu = MKDropdownMenu()
     var navBarButton = UIBarButtonItem()
     let menuItemNames = [ "Clock", "About" ]
+    var imageSelectionButton = UIBarButtonItem()
+    var selectedImageIndexInImageset = 0
     
     var popover:UIPopoverPresentationController?
 
@@ -71,7 +73,11 @@ class MarsImageViewController : MWPhotoBrowser {
         self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
         catalog?.reload()
 
+
         super.viewDidLoad()
+        
+        imageSelectionButton = UIBarButtonItem(title:"", style:.plain, target:self, action:#selector(imageSelectionPressed))
+        addToolbarButtons()
     }
     
     @IBAction func manageDrawer(_ sender: Any) {
@@ -110,10 +116,22 @@ class MarsImageViewController : MWPhotoBrowser {
         return .none
     }
     
+    func addToolbarButtons() {
+        //add image selection button to bottom toolbar
+        if let toolbar = getToolbar() {
+            if var items = toolbar.items {
+                items.insert(imageSelectionButton, at: 0)
+                toolbar.setItems(items, animated: true)
+            }
+        }
+    }
+    
     override func performLayout() {
         super.performLayout()
         //replace MWPhotoBrowser Done button with our action buttons
         navigationItem.rightBarButtonItems = [ drawerButton, navBarButton]
+        
+        addToolbarButtons()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -134,7 +152,8 @@ class MarsImageViewController : MWPhotoBrowser {
     }
     
     func imageSelected(notification:Notification) {
-        var index = 0;
+        var index = 0
+        selectedImageIndexInImageset = 0
         if let num = notification.userInfo?[Constants.imageIndexKey] as? Int {
             index = Int(num)
         }
@@ -144,10 +163,34 @@ class MarsImageViewController : MWPhotoBrowser {
                 setCurrentPhotoIndex(UInt(index))
             }
         }
+        
+        var imageName = ""
+//        if photo.leftAndRight { //TODO add this
+//            imageName = "Anaglyph"
+//        }
+//        else {
+        let imageset = catalog!.imagesets[Int(currentIndex)]
+        imageName = catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset)
+//    }
+        imageSelectionButton.title = imageName
+        getToolbar()?.setNeedsLayout()
     }
     
     func sourceRectForPopupController(_ bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
+    }
+    
+    func getToolbar() -> UIToolbar? {
+        for subview in self.view.subviews {
+            if let v = subview as? UIToolbar {
+                return v
+            }
+        }
+        return nil
+    }
+    
+    func imageSelectionPressed() {
+        
     }
 }
 

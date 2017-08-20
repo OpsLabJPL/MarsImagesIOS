@@ -41,6 +41,9 @@ protocol MarsImageCatalog {
     var imagesetCountsBySol:[Int:Int] { get }
     
     var reachability:Reachability { get }
+    
+    func imageName(imageset: Imageset, imageIndexInSet: Int) -> String
+
 }
 
 class Imageset: Equatable {

@@ -29,6 +29,13 @@ class MER: Mission {
                 ROVER_MOTION_COUNTER
     }
     
+    override init() {
+        super.init()
+        self.eyeIndex = 23
+        self.instrumentIndex = 1
+        self.sampleTypeIndex = 12
+    }
+    
     override func getSortableImageFilename(url: String) -> String {
         let tokens = url.components(separatedBy: "/")
         let filename = tokens[tokens.count-1]
@@ -176,6 +183,31 @@ class MER: Mission {
             }
         }
         return mer
+    }
+
+    override func imageName(imageId: String) -> String {
+        
+        if imageId.range(of:"False") != nil {
+            return "Color"
+        }
+        
+        let irange = imageId.index(imageId.startIndex, offsetBy: instrumentIndex)..<imageId.index(imageId.startIndex, offsetBy: instrumentIndex+1)
+        let instrument = imageId[irange]
+
+        if instrument == "N" || instrument == "F" || instrument == "R" {
+            let erange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+1)
+            let eye = imageId[erange]
+            if eye == "L" {
+                return "Left"
+            } else {
+                return "Right"
+            }
+        } else if instrument == "P" {
+            let prange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+2)
+            return imageId[prange]
+        }
+        
+        return ""
     }
 
 }

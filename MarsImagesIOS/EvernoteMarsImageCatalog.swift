@@ -57,6 +57,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
     let notePageSize = 15
     
+    let slashAndDot = CharacterSet(charactersIn: "/.")
+    
     init(missionName:String) {
         self.mission = missionName
         self.user = EvernoteMarsImageCatalog.users[missionName]
@@ -161,7 +163,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         let resource = imageset.note.resources[imageIndex]
         let resGUID = resource.guid!
         let imageURL = "\(userinfo!.webApiUrlPrefix!)res/\(resGUID)"
-        return MarsPhoto(url:URL(string:imageURL)!, imageset: imageset) //TODO FIX MY TECH DEBT extricate MarsPhoto from EDAMNote & EDAMResource
+        return MarsPhoto(url:URL(string:imageURL)!, imageset: imageset, indexInImageset: imageIndex)
     }
     
     func reorderResources(_ note:EDAMNote) -> EDAMNote {
@@ -222,6 +224,25 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         }
         print("search filter: \(formattedText)")
         return formattedText
+    }
+    
+    func imageName(imageset: Imageset, imageIndexInSet: Int) -> String {
+        if let imageset = imageset as? EvernoteImageset {
+            if imageIndexInSet < imageset.note.resources.count {
+                let resource = imageset.note.resources[imageIndexInSet]
+                let imageId = imageID(url:resource.attributes.sourceURL)
+                return Mission.currentMission().imageName(imageId: imageId)
+            }
+        }
+        return ""
+    }
+    
+    func imageID(url: String) -> String {
+        let tokens = url.components(separatedBy: slashAndDot)
+        let numTokens = tokens.count
+        var imageid = tokens[numTokens-2]
+        imageid = imageid.removingPercentEncoding!
+        return imageid;
     }
 }
 

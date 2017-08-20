@@ -13,6 +13,7 @@ class MarsPhoto: MWPhoto {
     
     var url:URL
     var imageset:Imageset
+    var indexInImageset:Int
     var isLoading = false
     
     var leftImage:UIImage?
@@ -20,9 +21,10 @@ class MarsPhoto: MWPhoto {
     var leftAndRight:[URL]?
     
     
-    init (url:URL, imageset: Imageset) {
+    init (url:URL, imageset: Imageset, indexInImageset: Int) {
         self.url = url
         self.imageset = imageset
+        self.indexInImageset = indexInImageset
         super.init(url:url)
         self.caption = Mission.currentMission().caption(self.imageset.title)
     }

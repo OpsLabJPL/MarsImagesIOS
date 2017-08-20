@@ -19,6 +19,9 @@ class Mission {
     
     var epoch:Date?
     var formatter:DateFormatter
+    var eyeIndex = 0
+    var instrumentIndex = 0
+    var sampleTypeIndex = 0
     
     static func currentMission() -> Mission {
         return missions[currentMissionName()]!
@@ -74,6 +77,11 @@ class Mission {
         let imageDate = Date(timeInterval: interval, since: epoch!)
         let formattedDate = formatter.string(from: imageDate)
         return "Sol \(sol) \(formattedDate)"
+    }
+ 
+    func imageName(imageId: String) -> String {
+        print("You should never call me: override me in a subclass instead.")
+        return ""
     }
 }
 
