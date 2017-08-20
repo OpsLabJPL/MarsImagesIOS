@@ -22,6 +22,7 @@ class MarsPhoto: MWPhoto {
     override init (url:URL) {
         self.url = url
         super.init(url:url)
+//        self.caption = Mission.currentMission().
     }
     
     override func performLoadUnderlyingImageAndNotify() {
