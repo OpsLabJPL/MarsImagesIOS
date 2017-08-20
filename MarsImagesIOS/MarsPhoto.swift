@@ -12,6 +12,7 @@ import MWPhotoBrowser
 class MarsPhoto: MWPhoto {
     
     var url:URL
+    var imageset:Imageset
     var isLoading = false
     
     var leftImage:UIImage?
@@ -19,10 +20,11 @@ class MarsPhoto: MWPhoto {
     var leftAndRight:[URL]?
     
     
-    override init (url:URL) {
+    init (url:URL, imageset: Imageset) {
         self.url = url
+        self.imageset = imageset
         super.init(url:url)
-//        self.caption = Mission.currentMission().
+        self.caption = Mission.currentMission().caption(self.imageset.title)
     }
     
     override func performLoadUnderlyingImageAndNotify() {

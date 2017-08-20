@@ -161,7 +161,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         let resource = imageset.note.resources[imageIndex]
         let resGUID = resource.guid!
         let imageURL = "\(userinfo!.webApiUrlPrefix!)res/\(resGUID)"
-        return MarsPhoto(url:URL(string:imageURL)!) //TODO FIX MY TECH DEBT extricate MarsPhoto from EDAMNote & EDAMResource
+        return MarsPhoto(url:URL(string:imageURL)!, imageset: imageset) //TODO FIX MY TECH DEBT extricate MarsPhoto from EDAMNote & EDAMResource
     }
     
     func reorderResources(_ note:EDAMNote) -> EDAMNote {

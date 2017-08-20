@@ -11,10 +11,11 @@ import MWPhotoBrowser
 
 class MarsImageCaptionView : MWCaptionView {
     
+    //if it's still fine looking after testing, just let the caption always display even when in a compressed width
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        if size.width > 100 {
+//        if size.width > 100 {
             return super.sizeThatFits(size)
-        }
-        return CGSize(width: 0, height: 0)
+//        }
+//        return CGSize(width: 0, height: 0)
     }
 }
