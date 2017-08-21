@@ -162,8 +162,6 @@ class MarsImageTableViewController: UITableViewController {
             scrollPosition = UITableViewScrollPosition.bottom
         }
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: scrollPosition)
-
-
     }
     
     ///MARK UITableViewDataSource

@@ -47,6 +47,10 @@ protocol MarsImageCatalog {
     func getImagesetCount(imageset: Imageset) -> Int
     
     func changeToImage(imagesetIndex: Int, imageIndexInSet: Int)
+    
+    func changeToAnaglyph(leftAndRight: (Int,Int), imageIndex: Int)
+    
+    func stereoForImages(imagesetIndex: Int) -> (Int,Int)?
 
 }
 

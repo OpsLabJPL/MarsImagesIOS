@@ -83,6 +83,13 @@ class Mission {
         print("You should never call me: override me in a subclass instead.")
         return ""
     }
+    
+    func stereoImageIndices(imageIDs: [String]) -> (Int,Int)? {
+        print("You should never call me: override me in a subclass instead.")
+        return nil
+    }
+    
+
 }
 
 class Title {

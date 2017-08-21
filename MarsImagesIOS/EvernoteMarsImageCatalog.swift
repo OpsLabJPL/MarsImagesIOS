@@ -9,6 +9,7 @@
 import Foundation
 import EvernoteSDK
 import ReachabilitySwift
+import SwiftyJSON
 
 class EvernoteMarsImageCatalog : MarsImageCatalog {
    
@@ -255,6 +256,54 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     func changeToImage(imagesetIndex: Int, imageIndexInSet: Int) {        
         let photo = getNotePhoto(imagesetIndex, imageIndex: imageIndexInSet)
         marsphotos[imagesetIndex] = photo
+    }
+    
+    func changeToAnaglyph(leftAndRight: (Int,Int), imageIndex: Int) {
+        let imageset = imagesets[imageIndex] as! EvernoteImageset
+        let leftResource = imageset.note.resources[leftAndRight.0]
+        let rightResource = imageset.note.resources[leftAndRight.1]
+        let urls = (leftResource.attributes.sourceURL as String,
+                    rightResource.attributes.sourceURL as String)
+        
+        let anaglyph = MarsPhoto(imagesets[imageIndex], leftAndRight:urls)
+        marsphotos[imageIndex] = anaglyph
+    }
+    
+    func stereoForImages(imagesetIndex: Int) -> (Int, Int)? {
+        let imageset = imagesets[imagesetIndex] as! EvernoteImageset
+        guard imageset.note.resources.count > 0 else {
+            return nil
+        }
+        
+        var imageIDs:[String] = []
+        for r in imageset.note.resources {
+            imageIDs.append(imageID(url:r.attributes.sourceURL))
+        }
+
+        if let stereoImageIndices = Mission.currentMission().stereoImageIndices(imageIDs: imageIDs) {
+            let leftImageIndex = stereoImageIndices.0
+            let rightImageIndex = stereoImageIndices.1
+            let leftResource = imageset.note.resources[leftImageIndex]
+            let rightResource = imageset.note.resources[rightImageIndex]
+
+            //check width and height of left and right images and don't return them unless they match
+            let leftModel = CameraModel.model(getModelJSON(leftResource))
+            let rightModel = CameraModel.model(getModelJSON(rightResource))
+            let leftWidth = leftModel.xdim
+            let rightWidth = rightModel.xdim
+            let leftHeight = leftModel.ydim
+            let rightHeight = rightModel.ydim
+            if leftWidth == rightWidth && leftHeight == rightHeight {
+                return stereoImageIndices
+            }
+        }
+        return nil
+    }
+    
+    func getModelJSON(_ resource: EDAMResource) -> JSON {
+        let cmod_string = resource.attributes.cameraModel!
+        let jsondata = cmod_string.data(using: .utf8)!
+        return JSON(data:jsondata)
     }
 }
 

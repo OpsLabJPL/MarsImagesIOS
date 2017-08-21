@@ -35,6 +35,12 @@
 		4A9DE9D81F2C15D30059C9C9 /* Curiosity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */; };
 		4AAAB5301F2E388C001D810D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAAB52F1F2E388C001D810D /* Constants.swift */; };
 		4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */; };
+		4AE403661F4A4A5F00163394 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE403651F4A4A5F00163394 /* Model.swift */; };
+		4AE403681F4A524100163394 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE403671F4A524100163394 /* CameraModel.swift */; };
+		4AE4036A1F4A5B5600163394 /* CAHV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE403691F4A5B5600163394 /* CAHV.swift */; };
+		4AE4036C1F4A794200163394 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE4036B1F4A794200163394 /* Math.swift */; };
+		4AE4036E1F4A881F00163394 /* CAHVOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE4036D1F4A881F00163394 /* CAHVOR.swift */; };
+		4AE403701F4A886F00163394 /* CAHVORE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE4036F1F4A886F00163394 /* CAHVORE.swift */; };
 		89D074072359D75154E31CDF /* Pods_MarsImages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911EF7DAB933C437351874D6 /* Pods_MarsImages.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +96,12 @@
 		4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curiosity.swift; sourceTree = "<group>"; };
 		4AAAB52F1F2E388C001D810D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetReachabilityStatus.swift; sourceTree = "<group>"; };
+		4AE403651F4A4A5F00163394 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		4AE403671F4A524100163394 /* CameraModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
+		4AE403691F4A5B5600163394 /* CAHV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAHV.swift; sourceTree = "<group>"; };
+		4AE4036B1F4A794200163394 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		4AE4036D1F4A881F00163394 /* CAHVOR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAHVOR.swift; sourceTree = "<group>"; };
+		4AE4036F1F4A886F00163394 /* CAHVORE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAHVORE.swift; sourceTree = "<group>"; };
 		7FD17C24C82940BFB208369B /* Pods-MarsImages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImages/Pods-MarsImages.debug.xcconfig"; sourceTree = "<group>"; };
 		911EF7DAB933C437351874D6 /* Pods_MarsImages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C82EBE8631449A8EFD942727 /* Pods-MarsImages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImages/Pods-MarsImages.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,14 +213,20 @@
 		4AAAB5311F2E4459001D810D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4AE403691F4A5B5600163394 /* CAHV.swift */,
+				4AE4036D1F4A881F00163394 /* CAHVOR.swift */,
+				4AE4036F1F4A886F00163394 /* CAHVORE.swift */,
+				4AE403671F4A524100163394 /* CameraModel.swift */,
 				4AAAB52F1F2E388C001D810D /* Constants.swift */,
 				4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */,
 				4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */,
 				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
 				4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */,
 				4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */,
+				4AE4036B1F4A794200163394 /* Math.swift */,
 				4A9DE9D11F2C15B00059C9C9 /* MER.swift */,
 				4A1680EA1F2AAFE9004E30CC /* Mission.swift */,
+				4AE403651F4A4A5F00163394 /* Model.swift */,
 				4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */,
 				4A9DE9D51F2C15CC0059C9C9 /* Spirit.swift */,
 			);
@@ -468,23 +486,29 @@
 			files = (
 				4A28AA6D1F40BF1E006DEA66 /* TimeViewController.swift in Sources */,
 				4A9DE9D21F2C15B00059C9C9 /* MER.swift in Sources */,
+				4AE403701F4A886F00163394 /* CAHVORE.swift in Sources */,
 				4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */,
 				4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */,
 				4A9DE9D81F2C15D30059C9C9 /* Curiosity.swift in Sources */,
 				4A1680B71F2A8ECE004E30CC /* MarsImageTableViewController.swift in Sources */,
 				4A9DE9D41F2C15C00059C9C9 /* Opportunity.swift in Sources */,
+				4AE4036C1F4A794200163394 /* Math.swift in Sources */,
 				4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */,
 				4AAAB5301F2E388C001D810D /* Constants.swift in Sources */,
+				4AE4036E1F4A881F00163394 /* CAHVOR.swift in Sources */,
 				4A9DE9D61F2C15CC0059C9C9 /* Spirit.swift in Sources */,
 				4A9DE9D01F2BDA160059C9C9 /* MarsPhoto.swift in Sources */,
 				4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */,
 				4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */,
 				4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */,
 				4A8BB26E1F2D532400E07B49 /* MarsImageCaptionView.swift in Sources */,
+				4AE403661F4A4A5F00163394 /* Model.swift in Sources */,
 				4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */,
 				4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */,
 				4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */,
 				4A1680E51F2AA316004E30CC /* SwinjectStoryboardSetup.swift in Sources */,
+				4AE403681F4A524100163394 /* CameraModel.swift in Sources */,
+				4AE4036A1F4A5B5600163394 /* CAHV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -165,14 +165,15 @@ class MarsImageViewController : MWPhotoBrowser {
         }
         selectedImageIndexInImageset = catalog!.marsphotos[index].indexInImageset
         
-        var imageName = ""
-//        if photo.leftAndRight { //TODO add this
-//            imageName = "Anaglyph"
-//        }
-//        else {
         let imageset = catalog!.imagesets[Int(currentIndex)]
-        imageName = catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset)
-//    }
+        let photo = catalog!.marsphotos[Int(currentIndex)]
+        var imageName = ""
+        if photo.leftAndRight != nil {
+            imageName = "Anaglyph"
+        }
+        else {
+            imageName = catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset)
+        }
         imageSelectionButton.title = imageName
         getToolbar()?.setNeedsLayout()
     }
@@ -203,29 +204,20 @@ class MarsImageViewController : MWPhotoBrowser {
                 self.reloadData()
                 self.imageSelectionButton.title = imageName
             })!
-            
             menuItems.append(menuItem)
         }
         
-        //TODO add anaglyph later
-//        NSArray* leftAndRight = [[MarsImageNotebook instance].mission stereoForImages:resources];
-//        if (leftAndRight.count > 0) {
-//            PSMenuItem* menuItem = [[PSMenuItem alloc] initWithTitle:@"Anaglyph"
-//                block:^{
-//                [[MarsImageNotebook instance] changeToAnaglyph: leftAndRight noteIndex:(int)self.currentIndex];
-//                [self reloadData];
-//                }];
-//            [menuItems addObject:menuItem];
-//        }
-        
-//        if ([menuItems count] > 1) {
-//            [UIMenuController sharedMenuController].menuItems = menuItems;
-//            CGRect bounds = self.navigationController.toolbar.frame;
-//            bounds.origin.y -= bounds.size.height;
-//            [[UIMenuController sharedMenuController] setTargetRect:bounds inView:self.view];
-//            [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
-//        }
-        if menuItems.count > 0 {
+        let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(currentIndex))
+        if let leftAndRight = leftAndRight {
+            let menuItem = PSMenuItem(title: "Anaglyph", block: {
+                self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.currentIndex))
+                self.reloadData()
+                self.imageSelectionButton.title = "Anaglyph"
+            })!
+            menuItems.append(menuItem)
+        }
+                
+        if menuItems.count > 1 {
             UIMenuController.shared.menuItems = menuItems
             UIMenuController.shared.setTargetRect(getToolbar()!.bounds, in: getToolbar()!)
             UIMenuController.shared.setMenuVisible(true, animated: true)
