@@ -210,6 +210,36 @@ class MER: Mission {
         return ""
     }
 
+    override func stereoImageIndices(imageIDs: [String]) -> (Int,Int)? {
+        let imageid = imageIDs[0]
+        let instrument = getInstrument(imageId: imageid)
+        if !isStereo(instrument: instrument) {
+            return nil
+        }
+        
+        var leftImageIndex = -1;
+        var rightImageIndex = -1;
+        var index = 0;
+        for imageId in imageIDs {
+            let eye = getEye(imageId: imageId)
+            if leftImageIndex == -1 && eye=="L" && !imageId.hasPrefix("Sol") {
+                leftImageIndex = index;
+            }
+            if rightImageIndex == -1 && eye=="R" {
+                rightImageIndex = index;
+            }
+            index += 1;
+        }
+        
+        if (leftImageIndex >= 0 && rightImageIndex >= 0) {
+            return (Int(leftImageIndex), Int(rightImageIndex))
+        }
+        return nil
+    }
+    
+    func isStereo(instrument:String) -> Bool {
+        return instrument == "F" || instrument == "R" || instrument == "N" || instrument == "P"
+    }
 }
 
 class MERTitle: Title {

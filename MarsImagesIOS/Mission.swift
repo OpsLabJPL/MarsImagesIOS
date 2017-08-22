@@ -88,7 +88,16 @@ class Mission {
         print("You should never call me: override me in a subclass instead.")
         return nil
     }
+  
+    func getInstrument(imageId:String) -> String {
+        let irange = imageId.index(imageId.startIndex, offsetBy: instrumentIndex)..<imageId.index(imageId.startIndex, offsetBy: instrumentIndex+1)
+        return imageId[irange]
+    }
     
+    func getEye(imageId:String) -> String {
+        let erange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+1)
+        return imageId[erange]
+    }
 
 }
 

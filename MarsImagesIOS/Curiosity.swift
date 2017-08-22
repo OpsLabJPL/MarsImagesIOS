@@ -114,16 +114,6 @@ class Curiosity: Mission {
         return ""
     }
     
-    func getInstrument(imageId:String) -> String {
-        let irange = imageId.index(imageId.startIndex, offsetBy: instrumentIndex)..<imageId.index(imageId.startIndex, offsetBy: instrumentIndex+1)
-        return imageId[irange]
-    }
-    
-    func getEye(imageId:String) -> String {
-        let erange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+1)
-        return imageId[erange]
-    }
-    
     func isStereo(instrument:String) -> Bool {
         return instrument == "F" || instrument == "R" || instrument == "N"
     }
