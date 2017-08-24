@@ -42,7 +42,7 @@ class MarsPhoto: MWPhoto {
     func downloadImage(_ url:URL, _ setImageFunc:@escaping (_ image:UIImage?)->()) {
         let manager = SDWebImageManager.shared()!
 
-        manager.downloadImage(with: url, options: [.retryFailed, .refreshCached],
+        manager.downloadImage(with: url, options: [.allowInvalidSSLCertificates],
                               progress:  { (receivedSize, expectedSize) -> Void in
                                 if expectedSize > 0 {
                                     let progress = Float(receivedSize)/Float(expectedSize)
@@ -57,7 +57,7 @@ class MarsPhoto: MWPhoto {
                                 }
                                 setImageFunc(image)
                                 if let leftImage = self.leftImage, let rightImage = self.rightImage {
-                                    ImageUtility.anaglyphImages(leftImage, right:rightImage)
+                                    self.underlyingImage = ImageUtility.anaglyph(left: leftImage, right:rightImage)
                                     self.decompressImageAndFinishLoading()
                                 }
         })
@@ -70,67 +70,31 @@ class MarsPhoto: MWPhoto {
             return
         }
         
-        do {
-            let leftUrl = leftAndRight!.0
-            downloadImage(URL(string:leftUrl)!, { image in
-                self.leftImage = image
-            })
-            let rightUrl = leftAndRight!.1
-            downloadImage(URL(string:rightUrl)!, { image in
-                self.rightImage = image
-            })
-            
-//            _leftImageOperation = [manager downloadImageWithURL:leftUrl
-//                options:0
-//                progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//                if (expectedSize > 0) {
-//                float progress = receivedSize / (float)expectedSize;
-//                NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
-//                [NSNumber numberWithFloat:progress], @"progress",
-//                self, @"photo", nil];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_PROGRESS_NOTIFICATION object:dict];
-//                }
-//                }
-//                completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL* url) {
-//                if (error) {
-//                NSLog(@"SDWebImage failed to download image: %@", error);
-//                }
-//                _leftImageOperation = nil;
-//                _leftImage = image;
-//                if (_rightImage) {
-//                self.underlyingImage = [ImageUtility anaglyphImages:_leftImage right:_rightImage];
-//                [self decompressImageAndFinishLoading];
-//                }
-//                }];
-//        } catch  {
-//            NSLog(@"Photo from web: %@", e);
-//            _leftImageOperation = nil;
-//            [self decompressImageAndFinishLoading];
-        }
+        let leftUrl = leftAndRight!.0
+        downloadImage(URL(string:leftUrl)!, { image in
+            self.leftImage = image
+        })
+        let rightUrl = leftAndRight!.1
+        downloadImage(URL(string:rightUrl)!, { image in
+            self.rightImage = image
+        })
     }
 
     func decompressImageAndFinishLoading() {
-    //    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
-    //    if (self.underlyingImage) {
-    //        // Decode image async to avoid lagging when UIKit lazy loads
-    //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //            self.underlyingImage = [UIImage decodedImageWithImage:self.underlyingImage];
-    //            dispatch_async(dispatch_get_main_queue(), ^{
-    //                // Finish on main thread
-    //                [self imageLoadingComplete];
-    //                });
-    //            });
-    //    } else {
-    //        // Failed
-    //        [self imageLoadingComplete];
-    //    }
+        if let image = self.underlyingImage {
+            DispatchQueue.global().async {
+                self.underlyingImage = UIImage.decodedImage(with: image)
+                DispatchQueue.main.async {
+                    self.imageLoadComplete()
+                }
+            }
+        }
+        imageLoadComplete()
     }
 
     func imageLoadComplete() {
         isLoading = false
-        DispatchQueue.global().async {
-            NotificationCenter.default.post(name: .mwphotoLoadingDidEndNotification, object: self)
-        }
+        NotificationCenter.default.post(name: .mwphotoLoadingDidEndNotification, object: self)
     }
 }
 

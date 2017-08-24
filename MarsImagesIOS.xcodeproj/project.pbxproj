@@ -20,6 +20,7 @@
 		4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */; };
 		4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */; };
 		4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680EA1F2AAFE9004E30CC /* Mission.swift */; };
+		4A27873F1F4F22D200CA47C7 /* ImageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */; };
 		4A28AA6D1F40BF1E006DEA66 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */; };
 		4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */; };
 		4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */; };
@@ -81,6 +82,7 @@
 		4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCatalog.swift; sourceTree = "<group>"; };
 		4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteMarsimageCatalog.swift; sourceTree = "<group>"; };
 		4A1680EA1F2AAFE9004E30CC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtility.swift; sourceTree = "<group>"; };
 		4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrow@3x.png"; sourceTree = "<group>"; };
 		4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@3x.png"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				4AAAB52F1F2E388C001D810D /* Constants.swift */,
 				4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */,
 				4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */,
+				4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */,
 				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
 				4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */,
 				4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */,
@@ -506,6 +509,7 @@
 				4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */,
 				4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */,
 				4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */,
+				4A27873F1F4F22D200CA47C7 /* ImageUtility.swift in Sources */,
 				4A1680E51F2AA316004E30CC /* SwinjectStoryboardSetup.swift in Sources */,
 				4AE403681F4A524100163394 /* CameraModel.swift in Sources */,
 				4AE4036A1F4A5B5600163394 /* CAHV.swift in Sources */,
