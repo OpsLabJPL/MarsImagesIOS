@@ -7,16 +7,99 @@
 //
 
 import UIKit
+import SwinjectStoryboard
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var catalog:MarsImageCatalog?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let options = launchOptions {
+            let value = options[.localNotification] as? UILocalNotification
+            if let notification = value {
+                self.application(application, didReceive: notification)
+            }
+        } else {
+            let settings = UIUserNotificationSettings(types: .alert, categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        catalog = SwinjectStoryboard.defaultContainer.resolve(MarsImageCatalog.self)
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types == [] {
+            application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalNever)
+            return
+        }
+        
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+    }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        var soldataNeedsWriteUpdate = false
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let path = paths.appending("latestsols.plist")
+        var soldata = NSMutableDictionary()
+        let dictFromFile = NSMutableDictionary(contentsOfFile:path)
+        if let dictFromFile = dictFromFile {
+            soldata = dictFromFile
+        } else {
+            soldataNeedsWriteUpdate = true
+        }
+        let oppyLastKnownSol = soldata.object(forKey: Mission.OPPORTUNITY)
+        let mslLastKnownSol = soldata.object(forKey: Mission.CURIOSITY)
+        
+        
+        catalog?.mission = Mission.OPPORTUNITY
+        catalog?.reload()
+        if let oppyImageSet = catalog?.imagesets[0] {
+            let oppyLatestSol = oppyImageSet.sol
+            if let oppyLatestSol = oppyLatestSol {
+                soldata.setValue(oppyLatestSol, forKey: Mission.OPPORTUNITY)
+                if oppyLastKnownSol != nil && oppyLatestSol > oppyLastKnownSol as! Int {
+                    soldataNeedsWriteUpdate = true
+                    displayLocalNotification(application, message: "New images from Opportunity sol \(oppyLatestSol) have arrived!")
+                }
+            }
+        }
+        
+        catalog?.mission = Mission.CURIOSITY
+        catalog?.reload()
+        if let mslImageSet = catalog?.imagesets[0] {
+            let mslLatestSol = mslImageSet.sol
+            if let mslLatestSol = mslLatestSol {
+                soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)
+                if mslLastKnownSol != nil && mslLatestSol > mslLastKnownSol as! Int {
+                    soldataNeedsWriteUpdate = true
+                    displayLocalNotification(application, message:"New image from Curiosity sol \(mslLatestSol) have arrived!")
+                }
+            }
+        }
+        
+        if soldataNeedsWriteUpdate {
+            soldata.write(toFile: path, atomically: true)
+            completionHandler(.newData)
+        } else {
+            completionHandler(.noData)
+        }
+    }
+    
+    func displayLocalNotification(_ application: UIApplication, message:String) {
+        let notification = UILocalNotification()
+        notification.fireDate = Date(timeIntervalSinceNow: 0)
+        notification.timeZone = Calendar.current.timeZone
+        notification.alertBody = message
+        notification.hasAction = true
+        notification.alertAction = "View"
+        application.scheduleLocalNotification(notification)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -41,6 +124,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        //
+    }
 }
 

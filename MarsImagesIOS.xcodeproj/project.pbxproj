@@ -91,6 +91,7 @@
 		4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftDrawerViewController.swift; sourceTree = "<group>"; };
 		4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageViewController.swift; sourceTree = "<group>"; };
 		4A8BB26D1F2D532400E07B49 /* MarsImageCaptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCaptionView.swift; sourceTree = "<group>"; };
+		4A9A88C91F550ACF00DF9378 /* MarsImages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MarsImages.entitlements; sourceTree = "<group>"; };
 		4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsPhoto.swift; sourceTree = "<group>"; };
 		4A9DE9D11F2C15B00059C9C9 /* MER.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MER.swift; sourceTree = "<group>"; };
 		4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
@@ -157,6 +158,7 @@
 		4A1680A81F2A8ECE004E30CC = {
 			isa = PBXGroup;
 			children = (
+				4A9A88C91F550ACF00DF9378 /* MarsImages.entitlements */,
 				4A1680E21F2A8F32004E30CC /* Podfile */,
 				4A1680B31F2A8ECE004E30CC /* MarsImagesIOS */,
 				4A1680C81F2A8ECE004E30CC /* MarsImagesIOSTests */,
@@ -338,6 +340,14 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 3SJ2422ERE;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					4A1680C41F2A8ECE004E30CC = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -667,6 +677,7 @@
 			baseConfigurationReference = 7FD17C24C82940BFB208369B /* Pods-MarsImages.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
 				INFOPLIST_FILE = MarsImagesIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -681,6 +692,7 @@
 			baseConfigurationReference = C82EBE8631449A8EFD942727 /* Pods-MarsImages.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
 				INFOPLIST_FILE = MarsImagesIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
