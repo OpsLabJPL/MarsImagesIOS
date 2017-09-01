@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 soldata.setValue(oppyLatestSol, forKey: Mission.OPPORTUNITY)
                 if oppyLastKnownSol != nil && oppyLatestSol > oppyLastKnownSol as! Int {
                     soldataNeedsWriteUpdate = true
-                    displayLocalNotification(application, message: "New images from Opportunity sol \(oppyLatestSol) have arrived!")
+                    displayLocalNotification( "New images from Opportunity sol \(oppyLatestSol) have arrived!")
                 }
             }
         }
@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)
                 if mslLastKnownSol != nil && mslLatestSol > mslLastKnownSol as! Int {
                     soldataNeedsWriteUpdate = true
-                    displayLocalNotification(application, message:"New image from Curiosity sol \(mslLatestSol) have arrived!")
+                    displayLocalNotification("New images from Curiosity sol \(mslLatestSol) have arrived!")
                 }
             }
         }
@@ -92,14 +92,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func displayLocalNotification(_ application: UIApplication, message:String) {
+    func displayLocalNotification(_ message:String) {
         let notification = UILocalNotification()
         notification.fireDate = Date(timeIntervalSinceNow: 0)
         notification.timeZone = Calendar.current.timeZone
         notification.alertBody = message
         notification.hasAction = true
         notification.alertAction = "View"
-        application.scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
