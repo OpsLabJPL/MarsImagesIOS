@@ -2,8 +2,8 @@
 *.xcuserstate
 *.xccheckout
 *.xcbkptlist
-Pods
-Podfile.lock
+#Pods
+#Podfile.lock
 .ruby-version
 
 build/

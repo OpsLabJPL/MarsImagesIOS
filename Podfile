@@ -1,12 +1,17 @@
-platform :ios, '7.0'
-target 'Mars-Images' do
-pod 'Evernote-SDK-iOS', '~> 1.3.1'
-pod 'Mapbox-iOS-SDK', :git => 'https://github.com/noodlewerk/mapbox-ios-sdk-legacy.git', :tag => '1.4.1'
-pod 'Reachability', '~> 3.1.1'
-pod 'MWPhotoBrowser', '~> 1.4.1'
-pod 'MMDrawerController', :git => 'https://github.com/drmarkpowell/MMDrawerController.git'
-pod 'PSMenuItem', '~> 0.0.1'
-pod 'AFNetworking', '~> 2.0'
-pod 'CHCSVParser', '~> 2.0'
-pod 'ActionSheetPicker-3.0', '~> 1.3.9'
+platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
+use_frameworks!
+
+target 'MarsImages' do
+    pod 'Swinject', '~> 2.0'
+    pod 'SwinjectStoryboard', '1.1.1'
+    pod 'Alamofire', '~> 4.4'
+    pod 'SwiftyJSON', '~> 3.1'
+    pod 'EvernoteSDK', '~> 3.0'
+    pod 'MWPhotoBrowser', '~> 2.1'
+    pod 'MKDropdownMenu', '~> 1.4'
+    pod 'SwiftMessages', '~> 3.4'
+    pod 'ReachabilitySwift', '~> 3'
+    pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
+    pod 'PSMenuItem', '~> 0.0.1'
+    pod 'BuddyBuildSDK', '~> 1.0'
 end

@@ -1,0 +1,6 @@
+framework module EvernoteSDK {
+  umbrella header "EvernoteSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
