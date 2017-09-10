@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var soldataNeedsWriteUpdate = false
         
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let path = paths.appending("latestsols.plist")
+        let path = paths.appending("/latestsols.plist")
         var soldata = NSMutableDictionary()
         let dictFromFile = NSMutableDictionary(contentsOfFile:path)
         if let dictFromFile = dictFromFile {
