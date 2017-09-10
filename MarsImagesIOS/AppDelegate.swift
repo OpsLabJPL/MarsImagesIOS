@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         catalog = SwinjectStoryboard.defaultContainer.resolve(MarsImageCatalog.self)
+        
+        BuddyBuildSDK.setup()
+        
         return true
     }
     

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
+  - BuddyBuildSDK (1.0.16)
   - DACircularProgress (2.3.1)
   - EvernoteSDK (3.0.0)
   - MarsTimeConversion (0.1.9)
@@ -22,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - BuddyBuildSDK (~> 1.0)
   - EvernoteSDK (~> 3.0)
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
   - MKDropdownMenu (~> 1.4)
@@ -44,6 +46,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  BuddyBuildSDK: 2c5469eee2981a3365386e46393e97068d75e4f4
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
   MarsTimeConversion: 6684058841ac55567b1b5c8d38fdf2bde3533cde
@@ -58,6 +61,6 @@ SPEC CHECKSUMS:
   Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwinjectStoryboard: 4c71c25f312322844d39ee06f0f523db7b9b10a3
 
-PODFILE CHECKSUM: 4a4e4c7800b05630bed08b23768150db798867e2
+PODFILE CHECKSUM: f52d504a1065d28a5ff2df6b82990e948a41ba1f
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
