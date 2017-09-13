@@ -34,6 +34,7 @@
 		4A9DE9D41F2C15C00059C9C9 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */; };
 		4A9DE9D61F2C15CC0059C9C9 /* Spirit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D51F2C15CC0059C9C9 /* Spirit.swift */; };
 		4A9DE9D81F2C15D30059C9C9 /* Curiosity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */; };
+		4AA2EFE11F62404B00398E93 /* MosaicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */; };
 		4AAAB5301F2E388C001D810D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAAB52F1F2E388C001D810D /* Constants.swift */; };
 		4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */; };
 		4AE403661F4A4A5F00163394 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE403651F4A4A5F00163394 /* Model.swift */; };
@@ -97,6 +98,7 @@
 		4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
 		4A9DE9D51F2C15CC0059C9C9 /* Spirit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spirit.swift; sourceTree = "<group>"; };
 		4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curiosity.swift; sourceTree = "<group>"; };
+		4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicViewController.swift; sourceTree = "<group>"; };
 		4AAAB52F1F2E388C001D810D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetReachabilityStatus.swift; sourceTree = "<group>"; };
 		4AE403651F4A4A5F00163394 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */,
 				4A620E371F3BE79C00A82019 /* AboutViewController.swift */,
 				4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */,
+				4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				4A9DE9D41F2C15C00059C9C9 /* Opportunity.swift in Sources */,
 				4AE4036C1F4A794200163394 /* Math.swift in Sources */,
 				4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */,
+				4AA2EFE11F62404B00398E93 /* MosaicViewController.swift in Sources */,
 				4AAAB5301F2E388C001D810D /* Constants.swift in Sources */,
 				4AE4036E1F4A881F00163394 /* CAHVOR.swift in Sources */,
 				4A9DE9D61F2C15CC0059C9C9 /* Spirit.swift in Sources */,

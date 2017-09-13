@@ -25,7 +25,7 @@ class MarsImageViewController : MWPhotoBrowser {
     var drawerButton = UIBarButtonItem()
     var navBarMenu = MKDropdownMenu()
     var navBarButton = UIBarButtonItem()
-    let menuItemNames = [ "Clock", "About" ]
+    let menuItemNames = [ "Clock", "About", "Mosaic" ]
     var imageSelectionButton = UIBarButtonItem()
     var selectedImageIndexInImageset = 0
     
@@ -73,7 +73,6 @@ class MarsImageViewController : MWPhotoBrowser {
         swipeRight.direction = .right
         self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
         catalog?.reload()
-
 
         super.viewDidLoad()
         
@@ -312,6 +311,9 @@ extension MarsImageViewController: MKDropdownMenuDelegate {
                            height: self.view.bounds.size.height*0.8)
                 self.present(vc, animated: true, completion: nil)
             }
+        }
+        else if menuItemName == "Mosaic" {
+            performSegue(withIdentifier: "mosaic", sender: self)
         }
     }
     
