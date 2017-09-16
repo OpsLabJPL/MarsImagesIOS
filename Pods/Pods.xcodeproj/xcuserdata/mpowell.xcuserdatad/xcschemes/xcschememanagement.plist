@@ -54,6 +54,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MarsImagesTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MarsImagesUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -167,7 +177,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C7FE842A220BB984B7B5A4C58B271DEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CA7C64F1A52A81248D1DF2EA7A432378</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC65634AA5325E370EA878C6942B72C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

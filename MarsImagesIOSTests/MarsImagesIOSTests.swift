@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MarsImagesIOS
+@testable import MarsImages
 
 class MarsImagesIOSTests: XCTestCase {
     

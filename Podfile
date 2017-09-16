@@ -9,8 +9,19 @@ target 'MarsImages' do
     pod 'EvernoteSDK', '~> 3.0'
     pod 'MWPhotoBrowser', '~> 2.1'
     pod 'MKDropdownMenu', '~> 1.4'
-    pod 'SwiftMessages', '~> 3.4'
+    pod 'SwiftMessages', '~> 3.5'
     pod 'ReachabilitySwift', '~> 3'
     pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
     pod 'PSMenuItem', '~> 0.0.1'
+    
+    target 'MarsImagesTests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+    
+    target 'MarsImagesUITests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+
 end

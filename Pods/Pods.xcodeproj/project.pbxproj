@@ -66,6 +66,7 @@
 		1C3F2345B36D9EEEFC63D8FEB51D010C /* ENOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BFC1B1DEA1041B94A26370681B50CC /* ENOAuthViewController.m */; };
 		1D0BF58B207512DB81BBB40D3E97DBAE /* ImageError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BA7AAE7461FB125EB0A76C48137945A5 /* ImageError@2x.png */; };
 		1D3E9E4C3BC23AE1B37EF7724C55E898 /* ENNotebookPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DBFF918E3CBB07812C6BAED8768183B /* ENNotebookPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D8D56AD5C42AA9B17C40C5B9CFEE2B2 /* Pods-MarsImagesTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D4329C196090C6D3F74E6F809DFEA67A /* Pods-MarsImagesTests-dummy.m */; };
 		1E13B929D3705A619E86B07D8D4070CB /* KSXMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 105466F179FD67F871F86B2464BACE7A /* KSXMLWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E3D2AE05BB3E07774A8447C30559606 /* EDAMUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE8840F1A1D20B44E98F74E74EFB35E /* EDAMUserStore.m */; };
 		1E45129EFA0B546C7E199368C5427085 /* Storyboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6985715F6C46E0CFF18A22C73463E9C8 /* Storyboard+Swizzling.swift */; };
@@ -105,6 +106,7 @@
 		34B80A7E2D1FCE1EC9CB2C02EB4C327D /* NSString+EDAMNilAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 759B6122BEE56B24D4E9FBB4ECE07E80 /* NSString+EDAMNilAdditions.m */; };
 		34FC706D7DE17383C654A931A1A0CE10 /* ENStoreClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F9662DCA10B3E1A8E0FB4012CE012F /* ENStoreClient.m */; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEC83310ADD43505A1DFFAFAD3076C4 /* TaskDelegate.swift */; };
+		376314082FA68112D33B1EF33CBF442A /* Pods-MarsImagesTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D0E4E542356E0E7A2BCAD7842657B454 /* Pods-MarsImagesTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37F0B321251268DD766825C9B98EEEBE /* EDAMNoteStoreClient+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = A0721167DD5817E61F5D70D76AF845A0 /* EDAMNoteStoreClient+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38604C30F9B65B733059C7A8A052CCA8 /* ENCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = B6B2C5C706D0ECD56F17828E19F64DC6 /* ENCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B952921E10B81B18C06B71F3F707C6F /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D74D232BFB70EA8DBAAAA741A40541 /* SwinjectStoryboard.swift */; };
@@ -139,6 +141,7 @@
 		4D79A1821E287BFFC0683B7325ABB339 /* ENOAuthAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAA2535DBE524A6547964BE54E5A07E /* ENOAuthAuthenticator.m */; };
 		4E3FC7846FDC9F701FC2EA1511F095E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8A8C38213486A5B2D491223D83B34 /* Foundation.framework */; };
 		4E4F0BE0BD9B2B4E9FA8AFC052850E4E /* SDWebImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 925A308FC15EDA373F92F5AA2D77323E /* SDWebImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E7A2FA7D82698DF02412B9AD7B169B4 /* Pods-MarsImagesUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E63172789B4CD99838F212BD207CF9 /* Pods-MarsImagesUITests-dummy.m */; };
 		4EA513BF344F31734C0BDF2386198C59 /* NSString+XMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD101870B86C3CF1E6A701A94C2CDFB /* NSString+XMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EC26C5503CF8E5E453C505B11A98A39 /* ENUserStoreClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FE67D0663CB743D11F2A70A2E5F39A83 /* ENUserStoreClient.m */; };
 		4EC40E657629A7E2755F77913472EFDC /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D670AA958128B7F687A925F10F0E6B /* SwinjectStoryboard+StoryboardReference.swift */; };
@@ -168,7 +171,7 @@
 		5E94F72D0AA2419AF6CA5069CBD563EC /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB122167924CF2434040ECEE7987FF /* Presenter.swift */; };
 		5E9DAC767693B0A737BF44D63BBDC23F /* ENPlainNoteContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AF63DE0810F1E32D9362D6956ADF435 /* ENPlainNoteContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F1F0CD90AE6B72349DEB824D4BC8098 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CF76284ACC2EA2037F85936699EFF3BE /* MWPhoto.m */; };
-		5FEA42748BA7728F9B29AF8423F51A38 /* Pods-MarsImages-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E25C532FA8332BBB5DA03FCBCB0CD6 /* Pods-MarsImages-dummy.m */; };
+		5FEA42748BA7728F9B29AF8423F51A38 /* Pods-MarsImages-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CDABF5D9C27887031F3E33FEC96B6FA5 /* Pods-MarsImages-dummy.m */; };
 		60949CD09288CEE6227A06FF00F2CACB /* SwinjectStoryboard.h in Headers */ = {isa = PBXBuildFile; fileRef = C13483FC7AB5DC23A1EE2115063DEAF1 /* SwinjectStoryboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60FB38C27EEC31DCB8563A2F460D3B7B /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD3F89493D04A00EFEFA3CF41F71B12 /* SDWebImageCompat.m */; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C88EB03011D0734839352A7E5F6F4B0 /* DispatchQueue+Alamofire.swift */; };
@@ -176,7 +179,7 @@
 		623BE556BADB488A17B92471CA0491F5 /* ENAFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BAA7165E140BE95E42C992D82CA2391 /* ENAFURLConnectionOperation.m */; };
 		624FEA477F5C7D754C4C506FC69349DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133FA3EEBA0AB7B72687E91A0FF5E469 /* UIKit.framework */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D445BF69692C53763D54177DEFE9078A /* ServerTrustPolicy.swift */; };
-		661972A0AF68C18802136F3798B3BD70 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EADBB5F31ADB26DAF15ECDAD92C81940 /* MWPhotoBrowser.bundle */; };
+		661972A0AF68C18802136F3798B3BD70 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D0BABA316161756A5B0D6AA05147391 /* MWPhotoBrowser.bundle */; };
 		667A30F4CB35FE9861D5B2E3B4692BF4 /* ENMLUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = A33E26498C798DBB4D03C8A605203E6A /* ENMLUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		676F2749A66AFB733DDA2527A2EEA207 /* MWTapDetectingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 661AB339783B279D18EE87A26F6A1F19 /* MWTapDetectingView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		677276538E4281F13F043BC6CA11F788 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE5FFB68272327E9C8E89D00BB1F10 /* SwiftyJSON.swift */; };
@@ -211,6 +214,7 @@
 		7B2D01385EFDFF8549CAE662B8237A0B /* ENShareURLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1EE7A31BFC76D9F904DA66841491B9 /* ENShareURLHelper.m */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0800C5DBDC419ABFF0A0B75B93798F63 /* SessionDelegate.swift */; };
 		7B6DAB33849C8F61095CBDCF938ECF8A /* ENLinkedNoteStoreClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AF80B671D923655AF02EC2E1C81A6A /* ENLinkedNoteStoreClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BA88FDD069E99F1F39C26A3FF7AB630 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8A8C38213486A5B2D491223D83B34 /* Foundation.framework */; };
 		7BD9E5D7FB9E3DAC44A480C7FCF2429C /* ENNoteSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 322F1F5B17DFF5815495CFD566AAF9B9 /* ENNoteSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CD39921888160AF4DA8FA34D8C2DA69 /* ImageSelectedOn.png in Resources */ = {isa = PBXBuildFile; fileRef = CF5931A25B0925CCC73E6B3C034F1992 /* ImageSelectedOn.png */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E79A96700C9DD67ADBFD00A7C1123AC /* Result.swift */; };
@@ -332,11 +336,12 @@
 		C6B34BE945407D4F987ED2C8E7ADAC80 /* KSWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB41A5A0802FABEBE2C71C5772880A4 /* KSWriter.m */; };
 		C6C3529B7C462C38CBF98122CAC28AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8A8C38213486A5B2D491223D83B34 /* Foundation.framework */; };
 		C6E7F1A0A7DB15F5447AF948CB022B3B /* ENSSKeychainQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 68DD7A6A3523870C2F1DA9F69E87C957 /* ENSSKeychainQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8D3A33578EA414BF644DDE0CB6D058F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8A8C38213486A5B2D491223D83B34 /* Foundation.framework */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE2440CA02117D92E167EFF831C83A1 /* Response.swift */; };
 		CB9C80CD067E2CF4A3012455BFF0789F /* MWPhotoBrowser-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA366602B9D9E4521DE225AD54D7327E /* MWPhotoBrowser-dummy.m */; };
 		CBABEFAD0079D2EF5F9E320C87B2DCE9 /* MaskingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76C25B1C5A9C662D98190BE84BEB92C /* MaskingView.swift */; };
 		CC4B1EA6C2449EE8BB79535645E8E812 /* ENHTMLNoteContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 1893FDE4F362523C0EA8814661678498 /* ENHTMLNoteContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CCCAAA168975BE1027D97FE1F63F86E0 /* SwiftMessages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B1547F4D19DB1223866683F521B5F6B /* SwiftMessages.bundle */; };
+		CCCAAA168975BE1027D97FE1F63F86E0 /* SwiftMessages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63D005A5B30D05D44B1D8477E1FA5FEE /* SwiftMessages.bundle */; };
 		CD088390DC6501FB955D804B65F2D603 /* MessageViewIOS8.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6DA8E0B501145B6770B33575D27094 /* MessageViewIOS8.xib */; };
 		CD66B526EEE5419795D9351A778164A6 /* NSData+EvernoteSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6632F62BED0EB539D45619AA1CC4AB /* NSData+EvernoteSDK.m */; };
 		CDCC27E6650A13696A7AC0EDB368EFC8 /* ENNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 645DCC1536756AA262E13B6C7D4C1371 /* ENNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -357,6 +362,7 @@
 		D6EF426F423791AE01021E52136A9CF6 /* ENTException.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E893220F939552EBB2DFC1E4963E50 /* ENTException.m */; };
 		D70FB499977D2AE8F7C0A76DE3A41948 /* ENOAuthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CE1D899635179F5F86313B8853B43550 /* ENOAuthViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7AC00779494E7BE93F33F5A9E5F5A28 /* ENNotebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD9A38F6A837F008D565D446C3D70E0 /* ENNotebookCell.m */; };
+		D7CB90FE78668DE32D716CA7BB29E871 /* Pods-MarsImagesUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A46AF4E1BBC7B2517FE041D6EEA3C8BB /* Pods-MarsImagesUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D7FBB129D3ABFBB615C53C46BFE9D572 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404104650FC6434FACF2F54CEDC3A38 /* ServiceEntry.swift */; };
 		D857D39E9CC39CFF66ADB3E57B5BEBA7 /* UIImage+MWPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = 16E2D667B8725F41EA09883FEC7CE9B4 /* UIImage+MWPhotoBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D85EF81843C8EDF18BCE7763A17325DF /* ENSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9BDA730DA0F09C947DBBEE0751637BA9 /* ENSDKResources.bundle */; };
@@ -386,7 +392,7 @@
 		EC2F659E29588A861559B2914F54DBBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8A8C38213486A5B2D491223D83B34 /* Foundation.framework */; };
 		ECBA1F4D70AF4600563FD39112D5997B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA8A8C38213486A5B2D491223D83B34 /* Foundation.framework */; };
 		ED406C2C15A24D773E2F86BD668B8D71 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A318C7E79F2E9F2EBEA74DF269ACC /* SDWebImageDownloader.m */; };
-		ED68FE2097B2FD8F6C334EE6716D24F4 /* Pods-MarsImages-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 891A6EA4A5014DD9BEDEDF9C00D775BE /* Pods-MarsImages-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED68FE2097B2FD8F6C334EE6716D24F4 /* Pods-MarsImages-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C281E1AB91C668BDB3785D2531AF925 /* Pods-MarsImages-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED97785454BF6F7D260DDDA94070FC2C /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D5714A33B962089B24D23066D4F952 /* Identifiable.swift */; };
 		EE228C68C67B112C48D2116541BC9654 /* SDWebImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 439FA24B8C73CFCAC8D3DEB1EB89DB92 /* SDWebImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFA094ADEBD4D61CDFC32B9879B137CA /* SDWebImageCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F56DC8B76B919E5352AD78CC7CD0D24 /* SDWebImageCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -576,7 +582,8 @@
 		0493E8D3A8283283AE1381638569CDBB /* EDAMNoteStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EDAMNoteStore.m; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMNoteStore.m"; sourceTree = "<group>"; };
 		04FEFF1BEDFEA5D0EA6FA3D720796808 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+HighlightedWebCache.m"; path = "SDWebImage/UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
 		055B729135DC54538E49C048C466390D /* PSMenuItem-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PSMenuItem-dummy.m"; sourceTree = "<group>"; };
-		05F8947C7AF1D3FBAAF1659426F8C873 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07082C118328CA1A71E8F3DB604F3F1C /* Pods-MarsImagesUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MarsImagesUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		07145E83F11DD21BB00251D09ED50665 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BEF9C4CF072E9E052D21143F0D9662 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderOperation.h; path = SDWebImage/SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
 		07C86C74DB02670C2BAFA07A79E39492 /* ENStoreClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENStoreClient.h; path = "evernote-sdk-ios/ENSDK/Private/ENStoreClient.h"; sourceTree = "<group>"; };
 		07DFF895A5241583E834028C2C113730 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
@@ -597,11 +604,12 @@
 		11149C92DD72334B44B61E86920795A7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1145EC9C993E55D4C8DA7FF6A846CBA3 /* SwiftMessages-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMessages-prefix.pch"; sourceTree = "<group>"; };
 		115AF1233509E36856F6AC7E3DC34257 /* ENAuthCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENAuthCache.m; path = "evernote-sdk-ios/ENSDK/Private/ENAuthCache.m"; sourceTree = "<group>"; };
+		12688499C5654098D08E28041A234FDA /* Pods-MarsImages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImages.release.xcconfig"; sourceTree = "<group>"; };
 		126BAF446D3A5A24C105227F72691178 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		133FA3EEBA0AB7B72687E91A0FF5E469 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		1390116C8B9654C7EC99EDF6D1DB66C7 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		140E7DC92AE07A7C78949B4F9A212AB4 /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWPhotoBrowserPrivate.h; path = Pod/Classes/MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
-		149699CB6D7772711DE04ED8A3DFFB0C /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		159A0ABB40EF231D714A1083784B0C2D /* Pods-MarsImages-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MarsImages-acknowledgements.markdown"; sourceTree = "<group>"; };
 		16B5D7584D45C8109C786F45AC15079A /* ENSaveToEvernoteActivity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSaveToEvernoteActivity.h; path = "evernote-sdk-ios/ENSDK/SendToEvernoteActivity/ENSaveToEvernoteActivity.h"; sourceTree = "<group>"; };
 		16E2D667B8725F41EA09883FEC7CE9B4 /* UIImage+MWPhotoBrowser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MWPhotoBrowser.h"; path = "Pod/Classes/UIImage+MWPhotoBrowser.h"; sourceTree = "<group>"; };
 		17159C327F1D10B04E62EB2006CAAC2E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
@@ -616,6 +624,7 @@
 		209EDEFF4F8D591C906F763E16AA86E7 /* RMSTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMSTextField.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/RMSTokenView/RMSTextField.h"; sourceTree = "<group>"; };
 		22F06E1E765338CFC0E10B985E28CF23 /* MarsTimeConversion-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MarsTimeConversion-prefix.pch"; sourceTree = "<group>"; };
 		23A55B5B0789389EC5C37097D5BF3077 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		23F8ACEB93651CF2E5C02FFADA25AB73 /* Pods-MarsImagesUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MarsImagesUITests.modulemap"; sourceTree = "<group>"; };
 		2447A83936E12A5D0F905EECFA461C0D /* MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MBProgressHUD.modulemap; sourceTree = "<group>"; };
 		25CA19ACCB8DE3543CF15D99CEA510AC /* ENHTMLtoENMLConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENHTMLtoENMLConverter.h; path = "evernote-sdk-ios/ENSDK/Private/ENHTMLtoENMLConverter.h"; sourceTree = "<group>"; };
 		26862CB99289F0EA06B447E5635381AB /* ObjectScope.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectScope.swift; path = Sources/ObjectScope.swift; sourceTree = "<group>"; };
@@ -629,8 +638,7 @@
 		2AEED41BAED500B308EC24B114016216 /* NSRegularExpression+ENAGRegex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSRegularExpression+ENAGRegex.h"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/NSRegularExpression+ENAGRegex.h"; sourceTree = "<group>"; };
 		2B29E1B20A5764EC737A3681CB0E8421 /* ENEncryptedContentInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENEncryptedContentInfo.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENEncryptedContentInfo.h"; sourceTree = "<group>"; };
 		2BAA7165E140BE95E42C992D82CA2391 /* ENAFURLConnectionOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENAFURLConnectionOperation.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/AFNetworking/ENAFURLConnectionOperation.m"; sourceTree = "<group>"; };
-		2E05218956CBAB982D0F51CA625F7AB6 /* MKDropdownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MKDropdownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E6DBBE34F376A9E665E1271E5CBABCC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C281E1AB91C668BDB3785D2531AF925 /* Pods-MarsImages-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MarsImages-umbrella.h"; sourceTree = "<group>"; };
 		2ED489BA7ACFD3181BCEA9755A52DE4C /* ENNotebookChooserViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebookChooserViewController.h; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookChooserViewController.h"; sourceTree = "<group>"; };
 		2F56DC8B76B919E5352AD78CC7CD0D24 /* SDWebImageCompat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = SDWebImage/SDWebImageCompat.h; sourceTree = "<group>"; };
 		2F9425CAFF62AF7EA85E7CEDF20B1200 /* MWCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWCommon.h; path = Pod/Classes/MWCommon.h; sourceTree = "<group>"; };
@@ -638,9 +646,8 @@
 		311DC67230BE2C669ABE8A031EF1FCAE /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWTapDetectingImageView.m; path = Pod/Classes/MWTapDetectingImageView.m; sourceTree = "<group>"; };
 		322F1F5B17DFF5815495CFD566AAF9B9 /* ENNoteSearch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNoteSearch.h; path = "evernote-sdk-ios/ENSDK/ENNoteSearch.h"; sourceTree = "<group>"; };
 		33A4A210343A8C6746A72D362FF6D637 /* NSDate+EDAMAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+EDAMAdditions.h"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/NSDate+EDAMAdditions.h"; sourceTree = "<group>"; };
-		33EBD85EBD581A005C9C62A8ABE66531 /* DACircularProgress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DACircularProgress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F9662DCA10B3E1A8E0FB4012CE012F /* ENStoreClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENStoreClient.m; path = "evernote-sdk-ios/ENSDK/Private/ENStoreClient.m"; sourceTree = "<group>"; };
-		342B3116F8533DE527D5C6EB43FB0391 /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MWPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3438738499BD3786982E32BF213A6C21 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		344DB153166E2DB4AB347F5DA89931D6 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _SwinjectStoryboardBase.h; path = "Sources/iOS-tvOS/_SwinjectStoryboardBase.h"; sourceTree = "<group>"; };
 		34D74D232BFB70EA8DBAAAA741A40541 /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwinjectStoryboard.swift; path = Sources/SwinjectStoryboard.swift; sourceTree = "<group>"; };
 		34DDFB8E4ED8245A8EEA0E7B1C6124F8 /* ImageError@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "ImageError@3x.png"; path = "Pod/Assets/ImageError@3x.png"; sourceTree = "<group>"; };
@@ -648,11 +655,13 @@
 		3585EECCE8FA4668CCA40F6B19404615 /* Container.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Container.swift; path = Sources/Container.swift; sourceTree = "<group>"; };
 		362B07EA3FE0B898BE352C6C2BABF534 /* MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		36B21B10AFC32F7DC94C90EDCF2141D2 /* MWGridCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWGridCell.m; path = Pod/Classes/MWGridCell.m; sourceTree = "<group>"; };
+		37B9BB8133D05F3623FC2390A6CD0AA3 /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MWPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		383A9CA3B0CEC6C4F967C7C2218C3628 /* PSMenuItem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSMenuItem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		386BB4C07B94769FCD72070C25C42BCF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39259D701951EDA4368B8F5C06F600AA /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderOperation.m; path = SDWebImage/SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
 		39D3A2BDD6B89C9998308EE0774A7992 /* TopBottomAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TopBottomAnimation.swift; path = SwiftMessages/TopBottomAnimation.swift; sourceTree = "<group>"; };
 		3A14C8A4F0CBE7B350E4137502E5FBF0 /* NSData+EvernoteSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+EvernoteSDK.h"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/NSData+EvernoteSDK.h"; sourceTree = "<group>"; };
 		3AD75EB3938870B2722CE1E644CC2E09 /* SwinjectStoryboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwinjectStoryboard.xcconfig; sourceTree = "<group>"; };
-		3B1547F4D19DB1223866683F521B5F6B /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMessages.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4080764F0CA3D3966CAF21AF8780D1 /* VideoOverlay@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "VideoOverlay@2x.png"; path = "Pod/Assets/VideoOverlay@2x.png"; sourceTree = "<group>"; };
 		3B84EC7D617DB06C351E3E2CCE4A1B95 /* SwinjectStoryboard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwinjectStoryboard-umbrella.h"; sourceTree = "<group>"; };
 		3BDAFEF4A42CC75C3A52FDB1EFCF482D /* InstanceStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InstanceStorage.swift; path = Sources/InstanceStorage.swift; sourceTree = "<group>"; };
@@ -662,7 +671,6 @@
 		3CB6E158E9AAB6A8FB84EE35403FD8DF /* KSWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSWriter.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/KSWriter.h"; sourceTree = "<group>"; };
 		3D7B01B1C81D475E076411B6599974B6 /* ReachabilitySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReachabilitySwift-dummy.m"; sourceTree = "<group>"; };
 		3E0A318C7E79F2E9F2EBEA74DF269ACC /* SDWebImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloader.m; path = SDWebImage/SDWebImageDownloader.m; sourceTree = "<group>"; };
-		3E0DDAC0D0BDCBF633742D425442226E /* Pods-MarsImages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImages.release.xcconfig"; sourceTree = "<group>"; };
 		3E36B19320B4AB6989DD993509F3E705 /* UIBarButtonItemGrid.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = UIBarButtonItemGrid.png; path = Pod/Assets/UIBarButtonItemGrid.png; sourceTree = "<group>"; };
 		3E4D4757FDBB5D32CD4273072D411425 /* WindowViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WindowViewController.swift; path = SwiftMessages/WindowViewController.swift; sourceTree = "<group>"; };
 		3E6D5ED7128A90ADB1AED263AB204D0D /* MarsTimeConversion.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MarsTimeConversion.xcconfig; sourceTree = "<group>"; };
@@ -681,7 +689,6 @@
 		419361DED966A8AA9644C5F6236FD070 /* ENXMLDTD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENXMLDTD.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENXMLDTD.m"; sourceTree = "<group>"; };
 		41D66675A3F0216953E47D2F0E1E617B /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		41E398DA38760930AFD0E621C17B3055 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "evernote-sdk-ios/ENSDK/Private/NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		41F3755CDDB7BBB7D94E9B899B4086B5 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		439FA24B8C73CFCAC8D3DEB1EB89DB92 /* SDWebImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-umbrella.h"; sourceTree = "<group>"; };
 		43AD940A676AB8D2F069B07F6086FFDD /* EDAM.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAM.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAM.h"; sourceTree = "<group>"; };
 		44888492C499FE08E3E9011EAF375C0A /* ENXMLWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENXMLWriter.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENXMLWriter.m"; sourceTree = "<group>"; };
@@ -695,9 +702,11 @@
 		4853AFA4C07908067DC855732F6DA59F /* ENCredentials.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENCredentials.m; path = "evernote-sdk-ios/ENSDK/Private/ENCredentials.m"; sourceTree = "<group>"; };
 		4922F4981A12245C9FEDE68B5D35A711 /* ENOAuthAuthenticator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENOAuthAuthenticator.h; path = "evernote-sdk-ios/ENSDK/Private/ENOAuthAuthenticator.h"; sourceTree = "<group>"; };
 		49817EEEECB3790CE6464AC6D966FA2E /* ServiceKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServiceKey.swift; path = Sources/ServiceKey.swift; sourceTree = "<group>"; };
+		49F827821446D9F928329AEA5DE924DE /* Pods-MarsImagesTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MarsImagesTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		4AF52CDF0377A8914416475054D5A088 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDecoder.h; path = SDWebImage/SDWebImageDecoder.h; sourceTree = "<group>"; };
 		4BE8840F1A1D20B44E98F74E74EFB35E /* EDAMUserStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EDAMUserStore.m; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMUserStore.m"; sourceTree = "<group>"; };
 		4C873603834135BBBFF384CDA303018C /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		4C9150C783D223E2671E90FCB287FDEF /* Pods-MarsImagesUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImagesUITests-frameworks.sh"; sourceTree = "<group>"; };
 		4D855BACE3DDAE96A7C8A9E86093799E /* ReachabilitySwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-umbrella.h"; sourceTree = "<group>"; };
 		4DA53C7BFEBD3054E860FB53A54D1EBD /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
 		4DE2440CA02117D92E167EFF831C83A1 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
@@ -725,41 +734,47 @@
 		5779526CFCF592882EDF97AA53AE6714 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+MultiFormat.m"; path = "SDWebImage/UIImage+MultiFormat.m"; sourceTree = "<group>"; };
 		57E893220F939552EBB2DFC1E4963E50 /* ENTException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENTException.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTException.m"; sourceTree = "<group>"; };
 		58FD9AB4AEF5426CB6BE13DA36E062A7 /* ENSSKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSSKeychain.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/SSKeychain/ENSSKeychain.h"; sourceTree = "<group>"; };
-		5923876D2CAC5C568DC8E7A480B9730E /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		590A4260D533AE3E4C97B9AFBEA42DA5 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		594B4CA0534184D3D1D29F024EDB2541 /* PassthroughView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PassthroughView.swift; path = SwiftMessages/PassthroughView.swift; sourceTree = "<group>"; };
 		59EC553B9F7B25C416728BBF936A9F5C /* ImageError.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = ImageError.png; path = Pod/Assets/ImageError.png; sourceTree = "<group>"; };
 		5A5B0ABD47EDB6F5FD857E27C5DC2F47 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Reachability/Reachability.swift; sourceTree = "<group>"; };
 		5D52273634D9A3D1037FF0621DA53EBD /* MWPhoto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWPhoto.h; path = Pod/Classes/MWPhoto.h; sourceTree = "<group>"; };
+		5D84DE4B83AB3343CCEB8C2345B4E2CD /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCCEB596C0C07CDBB46AF7275952600 /* UIBarButtonItemGrid@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "UIBarButtonItemGrid@2x.png"; path = "Pod/Assets/UIBarButtonItemGrid@2x.png"; sourceTree = "<group>"; };
+		5E132B4C89F0599A94BDD4000259C78C /* Pods-MarsImages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MarsImages.modulemap"; sourceTree = "<group>"; };
 		5EAD2751AD0460204B89CCA5F5499D89 /* UnavailableItems.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnavailableItems.swift; path = Sources/UnavailableItems.swift; sourceTree = "<group>"; };
 		5EECE8D3FEC64025C3B83FE96C90FF60 /* MWZoomingScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWZoomingScrollView.h; path = Pod/Classes/MWZoomingScrollView.h; sourceTree = "<group>"; };
 		5EF1F6CBD460914AE0308FB85BEA4FC0 /* MWCaptionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWCaptionView.m; path = Pod/Classes/MWCaptionView.m; sourceTree = "<group>"; };
-		5EFAECB42087E9036307A50A8A68DBE5 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F1EE7A31BFC76D9F904DA66841491B9 /* ENShareURLHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENShareURLHelper.m; path = "evernote-sdk-ios/ENSDK/Private/ENShareURLHelper.m"; sourceTree = "<group>"; };
 		5FB924261F902BC71554275F7D0E0836 /* ENWebResource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENWebResource.h; path = "evernote-sdk-ios/ENSDK/Private/ENWebResource.h"; sourceTree = "<group>"; };
 		5FDD7CA7EC8DC8439D4432CF6A770C8E /* EDAMLimits.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAMLimits.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMLimits.h"; sourceTree = "<group>"; };
 		6055E54881836F79735B1FC08DB8D532 /* SwiftMessages-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMessages-umbrella.h"; sourceTree = "<group>"; };
 		60667EB5002D8193DCC199010A6D53B9 /* UIImage+GIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+GIF.h"; path = "SDWebImage/UIImage+GIF.h"; sourceTree = "<group>"; };
+		60EA25956D405F5E0404D136CBC1DBAB /* Pods-MarsImagesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImagesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6102B5FDFF1CE3748BFB2D91490F9404 /* ENNotebook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebook.h; path = "evernote-sdk-ios/ENSDK/ENNotebook.h"; sourceTree = "<group>"; };
 		61305F0EC8C50C554C8F0855B365A4BE /* ENSaveToEvernoteViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENSaveToEvernoteViewController.m; path = "evernote-sdk-ios/ENSDK/SendToEvernoteActivity/ENSaveToEvernoteViewController.m"; sourceTree = "<group>"; };
-		61AC2A5B9DEE5177F9B464D89E7CC029 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61E5BAD5C3E76BAF407F3A92981D1199 /* Pods-MarsImages-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImages-resources.sh"; sourceTree = "<group>"; };
 		6220BBEDF936AF28E6750434B4273FB7 /* PSMenuItem.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PSMenuItem.xcconfig; sourceTree = "<group>"; };
 		62BC860F6E68C8D479362E7AB8674A23 /* MWPhotoBrowser.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MWPhotoBrowser.xcconfig; sourceTree = "<group>"; };
 		62DB769A4D1335565E8E0D4AB90D2131 /* ENHTMLNoteContent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENHTMLNoteContent.m; path = "evernote-sdk-ios/ENSDK/Private/ENHTMLNoteContent.m"; sourceTree = "<group>"; };
+		63D005A5B30D05D44B1D8477E1FA5FEE /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMessages.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		645DCC1536756AA262E13B6C7D4C1371 /* ENNote.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNote.h; path = "evernote-sdk-ios/ENSDK/ENNote.h"; sourceTree = "<group>"; };
 		65F199BD4104386DD53D150B40C2265A /* RMSTokenView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RMSTokenView.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/RMSTokenView/RMSTokenView.h"; sourceTree = "<group>"; };
 		661AB339783B279D18EE87A26F6A1F19 /* MWTapDetectingView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWTapDetectingView.h; path = Pod/Classes/MWTapDetectingView.h; sourceTree = "<group>"; };
+		664B9FEFC34B06F185758F642978A036 /* SwinjectStoryboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwinjectStoryboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67209BFA6C758DC5D914438A0847A4B5 /* EvernoteSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EvernoteSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		673A8AC974BE0CE5E6E00D9089B9B835 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67C4DFDE6298015474A21D82D3D4BA46 /* ENAuthCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENAuthCache.h; path = "evernote-sdk-ios/ENSDK/Private/ENAuthCache.h"; sourceTree = "<group>"; };
 		67D3A93F7D8B6AD7E8F120C17F61F2F0 /* VideoOverlay@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "VideoOverlay@3x.png"; path = "Pod/Assets/VideoOverlay@3x.png"; sourceTree = "<group>"; };
 		680B029C41618E7D39F8EC2A7A2D3CD9 /* PlayButtonOverlayLarge.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = PlayButtonOverlayLarge.png; path = Pod/Assets/PlayButtonOverlayLarge.png; sourceTree = "<group>"; };
 		68DD7A6A3523870C2F1DA9F69E87C957 /* ENSSKeychainQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSSKeychainQuery.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/SSKeychain/ENSSKeychainQuery.h"; sourceTree = "<group>"; };
-		68E25C532FA8332BBB5DA03FCBCB0CD6 /* Pods-MarsImages-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MarsImages-dummy.m"; sourceTree = "<group>"; };
 		69403DE003DDA509AA1DE898FE8A3B41 /* InjectionVerifiable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InjectionVerifiable.swift; path = Sources/InjectionVerifiable.swift; sourceTree = "<group>"; };
 		6985715F6C46E0CFF18A22C73463E9C8 /* Storyboard+Swizzling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Storyboard+Swizzling.swift"; path = "Sources/Storyboard+Swizzling.swift"; sourceTree = "<group>"; };
 		6A0C684D0ECBC5134C181AC5D4C6CE27 /* DebugHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DebugHelper.swift; path = Sources/DebugHelper.swift; sourceTree = "<group>"; };
 		6AE37ED1DA888141B24B1BDFE79F6C8F /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
 		6C5417BC4E311F2C5103450D5FD2527A /* Swinject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Swinject.h; path = Sources/Swinject.h; sourceTree = "<group>"; };
 		6C9AB25C91CFB6BE33DC6475891D5DAE /* TabView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TabView.xib; path = SwiftMessages/Resources/TabView.xib; sourceTree = "<group>"; };
+		6D0BABA316161756A5B0D6AA05147391 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWPhotoBrowser.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D630A5161AF93936900429731FEA46C /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
 		6D84283BB202F59A93E793E4B406C2AE /* MKDropdownMenu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MKDropdownMenu.h; path = MKDropdownMenu/MKDropdownMenu.h; sourceTree = "<group>"; };
 		6D9457E950F70988F46A4322E2D9E6C8 /* Assembly.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assembly.swift; path = Sources/Assembly.swift; sourceTree = "<group>"; };
@@ -767,6 +782,7 @@
 		6E5785C06BAA3D0B44647BC193C8D986 /* SwinjectStoryboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwinjectStoryboard-dummy.m"; sourceTree = "<group>"; };
 		6EC209B954F94A04DB2DC172C728B3E6 /* SwiftMessages-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftMessages-dummy.m"; sourceTree = "<group>"; };
 		6F1CC7BE9CCF795D43801F324FCEC28F /* ENNotebookChooserViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNotebookChooserViewController.m; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookChooserViewController.m"; sourceTree = "<group>"; };
+		6F45D708F5A68D19DBFB2DFA0FF3BE45 /* Pods-MarsImagesTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MarsImagesTests.modulemap"; sourceTree = "<group>"; };
 		712A6D6538566F2C2DFB6B00C5B8DA89 /* RMSTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMSTextField.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/RMSTokenView/RMSTextField.m"; sourceTree = "<group>"; };
 		71F034F180D359906CE6E9BEC36C7C16 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72C7C9D88CD111C50543E248E3617935 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -774,12 +790,14 @@
 		7347CE9034C894B9FA6985EBB3E0B826 /* EDAMNoteStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAMNoteStore.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMNoteStore.h"; sourceTree = "<group>"; };
 		74B1241669DBF1A1D4D6E0EDDAA4AB1F /* ENLinkedNotebookRef.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENLinkedNotebookRef.m; path = "evernote-sdk-ios/ENSDK/Private/ENLinkedNotebookRef.m"; sourceTree = "<group>"; };
 		74B535890CDD995926B6046843823C84 /* ResourceBundle-SwiftMessages-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SwiftMessages-Info.plist"; sourceTree = "<group>"; };
+		74C96F6C4C488527C58C05FBE33AD43F /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7536FC2E6161EBB5AE7EACC42D253DA2 /* ENCredentialStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENCredentialStore.m; path = "evernote-sdk-ios/ENSDK/Private/ENCredentialStore.m"; sourceTree = "<group>"; };
 		759B6122BEE56B24D4E9FBB4ECE07E80 /* NSString+EDAMNilAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+EDAMNilAdditions.m"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/NSString+EDAMNilAdditions.m"; sourceTree = "<group>"; };
 		762EF67507C192BADD07436BEBB8D8B3 /* PhysicsPanHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhysicsPanHandler.swift; path = SwiftMessages/PhysicsPanHandler.swift; sourceTree = "<group>"; };
 		7646D784E19E304DBB07A29880F8DE06 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		768B4F8BBAE759946845F2B8372A6CCE /* ENSDKAdvanced.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSDKAdvanced.h; path = "evernote-sdk-ios/ENSDK/Advanced/ENSDKAdvanced.h"; sourceTree = "<group>"; };
 		76F1E523773060AF46D6A1A11156B5A7 /* NSRegularExpression+ENAGRegex.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSRegularExpression+ENAGRegex.m"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/NSRegularExpression+ENAGRegex.m"; sourceTree = "<group>"; };
+		7741D4207B551A582F611FE923D5F0E5 /* Pods-MarsImagesUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImagesUITests-resources.sh"; sourceTree = "<group>"; };
 		77F0F47B2F44BECED53362655ED26057 /* ENSDKResourceLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSDKResourceLoader.h; path = "evernote-sdk-ios/ENSDK/Private/ENSDKResourceLoader.h"; sourceTree = "<group>"; };
 		7844B06F7B7E5231EB072AEE85D9CB68 /* DACircularProgress-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DACircularProgress-dummy.m"; sourceTree = "<group>"; };
 		7A044DEBBBD938B5C51CC6B5266EC237 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
@@ -801,8 +819,11 @@
 		7FB41A5A0802FABEBE2C71C5772880A4 /* KSWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSWriter.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/KSWriter.m"; sourceTree = "<group>"; };
 		805391116F4BA59B5776F2D278C153B3 /* DACircularProgress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DACircularProgress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80BD73914C03631D38E0CC23786002EF /* FATField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FATField.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/FATField.h"; sourceTree = "<group>"; };
+		81B6F0A58E15512B8C08C1186C69D3F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82F34460B29CE670F29A4F522C067D3B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83E23142C4BD3F3F9D8AD50028442AB7 /* Pods-MarsImages-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImages-frameworks.sh"; sourceTree = "<group>"; };
 		84B6C0EEC932C89FED7DD7A14611DE3D /* SwinjectStoryboardProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwinjectStoryboardProtocol.swift; path = Sources/SwinjectStoryboardProtocol.swift; sourceTree = "<group>"; };
+		853A83ADD5A4EE2A86C3FB18E040B2CD /* DACircularProgress.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DACircularProgress.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		853DB95F4D9ED098701EF4DF3724846F /* SDWebImageDecoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDecoder.m; path = SDWebImage/SDWebImageDecoder.m; sourceTree = "<group>"; };
 		859948754A056AD5C844DFF39072E98E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		85A8D96C41F3D7925BF28A4B63CF9220 /* UIBarButtonItemArrowLeft@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "UIBarButtonItemArrowLeft@2x.png"; path = "Pod/Assets/UIBarButtonItemArrowLeft@2x.png"; sourceTree = "<group>"; };
@@ -816,21 +837,20 @@
 		8812C8478801122D47E619A491962A43 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		8896A677ECD6FF55AC25D711F6296A6C /* ENWebResource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENWebResource.m; path = "evernote-sdk-ios/ENSDK/Private/ENWebResource.m"; sourceTree = "<group>"; };
 		889CD5FCAA8FBBE90CD538328DA69E1B /* ENThrift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENThrift.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENThrift.h"; sourceTree = "<group>"; };
-		88F9DE328F47EDFFA114B2AC6AE552AE /* PSMenuItem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PSMenuItem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		891A6EA4A5014DD9BEDEDF9C00D775BE /* Pods-MarsImages-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MarsImages-umbrella.h"; sourceTree = "<group>"; };
 		89F8979A02EF9F2A0F67CADAC9A8C673 /* ENNoteStoreClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNoteStoreClient.m; path = "evernote-sdk-ios/ENSDK/Advanced/ENNoteStoreClient.m"; sourceTree = "<group>"; };
 		8AD71A87ABEB304E765669B3AF24E8D3 /* KSForwardingWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSForwardingWriter.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/KSForwardingWriter.m"; sourceTree = "<group>"; };
 		8BE0B2FB9D07E448D57E9FCFD9B313DD /* DACircularProgress.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DACircularProgress.xcconfig; sourceTree = "<group>"; };
 		8C6DDDA88E2902E0B68096507D954246 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		8C7A683B76A8E84A02F86ED6034BBBD7 /* ENXMLUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENXMLUtils.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENXMLUtils.h"; sourceTree = "<group>"; };
 		8D05B74AD347908644693D4CB458BA07 /* Container.Arguments.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Container.Arguments.swift; path = Sources/Container.Arguments.swift; sourceTree = "<group>"; };
+		8D7FB41BEC2A88B614F07A3FF32071FF /* Pods-MarsImagesTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImagesTests-frameworks.sh"; sourceTree = "<group>"; };
 		8D83374E7BE768E460A6A24A5133BF6A /* ENPreferencesStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENPreferencesStore.h; path = "evernote-sdk-ios/ENSDK/Advanced/ENPreferencesStore.h"; sourceTree = "<group>"; };
 		8F135DF1B201B3E235C130BDE7B2B611 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "SDWebImage/UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		8F188A937BA7B8025C456C27999F8961 /* ENSDKPrivate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENSDKPrivate.m; path = "evernote-sdk-ios/ENSDK/Private/ENSDKPrivate.m"; sourceTree = "<group>"; };
 		910788183092C3539CDE16C3CAC9E60A /* KSHTMLWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSHTMLWriter.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/KSHTMLWriter.m"; sourceTree = "<group>"; };
 		914D9286FBFBE9A04A8D1BD75E8547DD /* MessageView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MessageView.xib; path = SwiftMessages/Resources/MessageView.xib; sourceTree = "<group>"; };
+		9252A2CFF3812A1C24EF42BC5F61F881 /* Pods-MarsImages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImages.debug.xcconfig"; sourceTree = "<group>"; };
 		925A308FC15EDA373F92F5AA2D77323E /* SDWebImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloader.h; path = SDWebImage/SDWebImageDownloader.h; sourceTree = "<group>"; };
-		92E4377D1D7D5C8FD411B495EBA48B60 /* Pods-MarsImages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImages.debug.xcconfig"; sourceTree = "<group>"; };
 		930B6B9B8CB74A2586BA9D74C2C1850C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		9353E33229A66A0230F9C4FF4078D415 /* Weak.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Weak.swift; path = SwiftMessages/Weak.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -842,6 +862,7 @@
 		964CB591961E77924C2F35E3799AB35D /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		9692032BB2C7A03BD2930C9068280C44 /* ENXMLDTD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENXMLDTD.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENXMLDTD.h"; sourceTree = "<group>"; };
 		969402D49844C0E5B877764D40775F05 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98DB0745DC72896CF8AB604873A371A2 /* Pods_MarsImagesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImagesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990488E4F92E1A36089EB90A93C725FA /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		995FD93ACBE1B5BEE67CA16773528DFD /* EvernoteSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EvernoteSDK.xcconfig; sourceTree = "<group>"; };
 		9B184D70D553CBC28EE3744B9C886590 /* ENWebClipNoteBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENWebClipNoteBuilder.m; path = "evernote-sdk-ios/ENSDK/Private/ENWebClipNoteBuilder.m"; sourceTree = "<group>"; };
@@ -862,10 +883,10 @@
 		A251BAE4411156D4BB47EB81A89789C5 /* ViewController+Swinject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ViewController+Swinject.swift"; path = "Sources/ViewController+Swinject.swift"; sourceTree = "<group>"; };
 		A33E26498C798DBB4D03C8A605203E6A /* ENMLUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENMLUtility.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLUtility.h"; sourceTree = "<group>"; };
 		A36E40205C164FB75711950CE9ACAD12 /* MWPhotoProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWPhotoProtocol.h; path = Pod/Classes/MWPhotoProtocol.h; sourceTree = "<group>"; };
+		A46AF4E1BBC7B2517FE041D6EEA3C8BB /* Pods-MarsImagesUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MarsImagesUITests-umbrella.h"; sourceTree = "<group>"; };
 		A58716488897C0D0FEE973D60BAC3D12 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		A6802FD1CC16CCE0957C7CFDF744CA4F /* Pods-MarsImagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		A6D50D0B7DEB40D52E3D42B88D416DCD /* DACircularProgress-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DACircularProgress-umbrella.h"; sourceTree = "<group>"; };
-		A7497CC5E3AF2B694CA2E17C9166217D /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7C62AE87DD25F6431088E013FB7011D /* Pods-MarsImages-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MarsImages-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A7D5714A33B962089B24D23066D4F952 /* Identifiable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Identifiable.swift; path = SwiftMessages/Identifiable.swift; sourceTree = "<group>"; };
 		A8C8E97B4F570853B7C7D6EB76AD1AC7 /* EvernoteSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EvernoteSDK-dummy.m"; sourceTree = "<group>"; };
 		A93CBDAEFEE47E5E77F2547DF3E5D477 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SwiftMessages/Resources/Images.xcassets; sourceTree = "<group>"; };
@@ -877,12 +898,12 @@
 		AD5F47E48B68F00F9F61679358ED08F5 /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		AE5812914C81606676B4D034C8A4A73F /* SwinjectStoryboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwinjectStoryboard.modulemap; sourceTree = "<group>"; };
 		AE5D17FE2C74A97A2F77D0F15A66D5DA /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		AEC5C257B69B90C743B06DD5D116FFC3 /* Pods-MarsImages-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImages-frameworks.sh"; sourceTree = "<group>"; };
 		AFD3F7DC6AAE332AA6391615866DCCE5 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		B10475FC81D881BC0651C2C7280EA24F /* ENGCOAuth.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENGCOAuth.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/cocoa-oauth/ENGCOAuth.h"; sourceTree = "<group>"; };
 		B1178EA0434EAFC4AB6344E95452F962 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		B139897E23455E4F02AF50A4046A0504 /* PSMenuItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PSMenuItem.m; sourceTree = "<group>"; };
 		B1ED75EBBFB37F1F0D65E6578ED385BB /* ENMLWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENMLWriter.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENMLWriter.m"; sourceTree = "<group>"; };
+		B2F6DC936F24288CECCC633A53B266E1 /* MarsTimeConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarsTimeConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B331839DCB0A403FEEA276295FA97555 /* NSBundle+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBundle+Utils.swift"; path = "SwiftMessages/NSBundle+Utils.swift"; sourceTree = "<group>"; };
 		B33CA5543C82057B9B44DD64CEFC6993 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4945D4CA438E1A79A3EF904C052E95F /* ENXMLSaxParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENXMLSaxParser.h; path = "evernote-sdk-ios/ENSDK/Private/ENXMLSaxParser.h"; sourceTree = "<group>"; };
@@ -917,7 +938,6 @@
 		C172F764FB141EAC9F6CA2316A6EBC3F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1DEE727747B5B0D3D6441B6AD403FD1 /* EDAMLimits.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EDAMLimits.m; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMLimits.m"; sourceTree = "<group>"; };
 		C277BCEC48E06DCEDDD33F4BF50308A2 /* ENMLUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENMLUtility.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLUtility.m"; sourceTree = "<group>"; };
-		C2D7B21E484E0E8E4D719618BC0C359A /* SwinjectStoryboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwinjectStoryboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3457FB30FD5A43206C7D79C01FBD159 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImagePrefetcher.h; path = SDWebImage/SDWebImagePrefetcher.h; sourceTree = "<group>"; };
 		C443CA7A250DEDE3F06D5331C4363089 /* ENTException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENTException.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTException.h"; sourceTree = "<group>"; };
 		C4B253D9B146811C68794DC8329E6B9A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -936,6 +956,8 @@
 		CB6632F62BED0EB539D45619AA1CC4AB /* NSData+EvernoteSDK.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+EvernoteSDK.m"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/NSData+EvernoteSDK.m"; sourceTree = "<group>"; };
 		CC38B302CF79C6F2246B3DE99063E994 /* SwiftMessages.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftMessages.swift; path = SwiftMessages/SwiftMessages.swift; sourceTree = "<group>"; };
 		CC45BC3ECB42699931508E85A89CC455 /* ENMIMEUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENMIMEUtils.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENMIMEUtils.m"; sourceTree = "<group>"; };
+		CD1B933066E0666E43DCACFFBD6CAA0F /* MKDropdownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MKDropdownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDABF5D9C27887031F3E33FEC96B6FA5 /* Pods-MarsImages-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MarsImages-dummy.m"; sourceTree = "<group>"; };
 		CDFB599001122C879F146C287534623C /* UIButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+WebCache.m"; path = "SDWebImage/UIButton+WebCache.m"; sourceTree = "<group>"; };
 		CE14546C97CE764EC6D9843BC66BEF60 /* Swinject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Swinject.modulemap; sourceTree = "<group>"; };
 		CE1D899635179F5F86313B8853B43550 /* ENOAuthViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENOAuthViewController.h; path = "evernote-sdk-ios/ENSDK/Private/ENOAuthViewController.h"; sourceTree = "<group>"; };
@@ -948,32 +970,39 @@
 		CF76284ACC2EA2037F85936699EFF3BE /* MWPhoto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWPhoto.m; path = Pod/Classes/MWPhoto.m; sourceTree = "<group>"; };
 		CFF12017259A686E76CF0E6DE6DC4A9D /* FATField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FATField.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/FATField.m"; sourceTree = "<group>"; };
 		CFFC3094567A5AC7A03DAFAB05A1BA4F /* FATObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FATObject.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/FATObject.h"; sourceTree = "<group>"; };
+		D05C86A90F92D7311A84D65656489301 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0E4E542356E0E7A2BCAD7842657B454 /* Pods-MarsImagesTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MarsImagesTests-umbrella.h"; sourceTree = "<group>"; };
 		D1868C27186ACEFBABC86DE87BA3353E /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F4A4D0417FD363A2963A7139411111 /* ENNotebookCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebookCell.h; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookCell.h"; sourceTree = "<group>"; };
-		D2378D4FB5994D6A1EC52B801360AEE1 /* MarsTimeConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarsTimeConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D7EB5A66ACC5B00E8143215E7F8AF3 /* Pods-MarsImagesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImagesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D2E4E1EBE33E3B9A10434EE46CFDB5BB /* ENResource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENResource.h; path = "evernote-sdk-ios/ENSDK/ENResource.h"; sourceTree = "<group>"; };
 		D327D4557FCB27CCB8CE531D129C6B9C /* DACircularProgress.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DACircularProgress.modulemap; sourceTree = "<group>"; };
 		D4169494FA959B016093E189912604A9 /* Array+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+Utils.swift"; path = "SwiftMessages/Array+Utils.swift"; sourceTree = "<group>"; };
 		D419AFAF5D0CE6899A3E72D261824031 /* ENTTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENTTransport.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTTransport.m"; sourceTree = "<group>"; };
+		D4329C196090C6D3F74E6F809DFEA67A /* Pods-MarsImagesTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MarsImagesTests-dummy.m"; sourceTree = "<group>"; };
 		D445BF69692C53763D54177DEFE9078A /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		D5A9011BC5A217D35EB6FF88A5B07D79 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
 		D5C110BE1365408372A6D5A37CC58FF3 /* ENWebContentTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENWebContentTransformer.h; path = "evernote-sdk-ios/ENSDK/Private/ENWebContentTransformer.h"; sourceTree = "<group>"; };
 		D695F26033C2DC46AEC05199A95C340A /* ImageSelectedSmallOn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "ImageSelectedSmallOn@3x.png"; path = "Pod/Assets/ImageSelectedSmallOn@3x.png"; sourceTree = "<group>"; };
 		D7BF8C686B3490EE95E576F433172107 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		D8D1236E903E59EED075E8F3BAD77BAE /* Pods_MarsImages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D33D6098D45150FF86E2AB1942CEE6 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
 		D8F981AE701BF33BBA88FD231D7227F1 /* EDAMErrors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EDAMErrors.m; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMErrors.m"; sourceTree = "<group>"; };
+		D9A2CEAE3587B4F9F0A602FC6E057D74 /* Pods-MarsImagesTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImagesTests-resources.sh"; sourceTree = "<group>"; };
+		D9E63172789B4CD99838F212BD207CF9 /* Pods-MarsImagesUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MarsImagesUITests-dummy.m"; sourceTree = "<group>"; };
 		DB41418D11CB7D1CF70AC61D57CDBEFF /* MBProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-umbrella.h"; sourceTree = "<group>"; };
 		DB6DA8E0B501145B6770B33575D27094 /* MessageViewIOS8.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MessageViewIOS8.xib; path = SwiftMessages/Resources/MessageViewIOS8.xib; sourceTree = "<group>"; };
 		DC57FF5783CA5EE40E41A8B058499130 /* ENLinkedNoteStoreClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENLinkedNoteStoreClient.m; path = "evernote-sdk-ios/ENSDK/Private/ENLinkedNoteStoreClient.m"; sourceTree = "<group>"; };
 		DCA066ABEECADF894EF51BDC2CE86CA6 /* ENError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENError.m; path = "evernote-sdk-ios/ENSDK/ENError.m"; sourceTree = "<group>"; };
 		DD01880DF020F63B61CFC1C7459485C4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD3FEE71694A7B9287621BCD62CBB0BE /* Pods_MarsImagesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImagesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFEAD78F89962E549DB29A68B28CA5C /* EDAMTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAMTypes.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMTypes.h"; sourceTree = "<group>"; };
 		DF76CA1A84274F12F58A5D253089E7EE /* ENNote.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNote.m; path = "evernote-sdk-ios/ENSDK/ENNote.m"; sourceTree = "<group>"; };
 		DFAE2CF565E8E98C0C1F3DAA59564270 /* UIBarButtonItemGrid@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "UIBarButtonItemGrid@3x.png"; path = "Pod/Assets/UIBarButtonItemGrid@3x.png"; sourceTree = "<group>"; };
 		E00AA34BE8A7EAAA2D3F8396653D0660 /* FunctionType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FunctionType.swift; path = Sources/FunctionType.swift; sourceTree = "<group>"; };
 		E01695065DB76BC2AD45E1A94607648F /* SDWebImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SDWebImage.xcconfig; sourceTree = "<group>"; };
-		E01BA40CAF1945B54C345F558230906B /* EvernoteSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EvernoteSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DB740D84BB4781AC97B7AC9199409F /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		E125A0F8E53953CFCD724E92E4B3E068 /* Pods-MarsImagesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MarsImagesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E273E2B00AA554EF4A701E5DC4D66896 /* EvernoteSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EvernoteSDK.h; path = "evernote-sdk-ios/ENSDK/EvernoteSDK.h"; sourceTree = "<group>"; };
 		E3235E910201F1166AE714279BB45676 /* MWCaptionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MWCaptionView.h; path = Pod/Classes/MWCaptionView.h; sourceTree = "<group>"; };
 		E346D64D993EF6F228FA0FC22AB1BA84 /* ENEncryptedContentInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENEncryptedContentInfo.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENEncryptedContentInfo.m"; sourceTree = "<group>"; };
@@ -984,19 +1013,20 @@
 		E56F5D136B9747DDA5748896BE14E4AF /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _SwinjectStoryboardBase.m; path = "Sources/iOS-tvOS/_SwinjectStoryboardBase.m"; sourceTree = "<group>"; };
 		E5CFD59A4453A024100BF82B83372D5D /* UIViewController+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Utils.swift"; path = "SwiftMessages/UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		E5D670AA958128B7F687A925F10F0E6B /* SwinjectStoryboard+StoryboardReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SwinjectStoryboard+StoryboardReference.swift"; path = "Sources/SwinjectStoryboard+StoryboardReference.swift"; sourceTree = "<group>"; };
-		E6610F9B69419EC41E5FE569FB4BC7AF /* Pods_MarsImages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6834BDA98AB63B5466E5AE24C5B2185 /* KSXMLWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSXMLWriter.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/KSXMLWriter.m"; sourceTree = "<group>"; };
 		E6D83F521AD4981B15AE3645A666F3FE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		E79171A0BAE378D110B65A236A182942 /* EDAMAuthenticationTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAMAuthenticationTypes.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMAuthenticationTypes.h"; sourceTree = "<group>"; };
 		E79880E4284F8CF54D1F973E168C2A9B /* MWPhotoBrowser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWPhotoBrowser.m; path = Pod/Classes/MWPhotoBrowser.m; sourceTree = "<group>"; };
 		E7DC8FA42C5DEC002CDEA5CE524F41A2 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		E826FF5C33611F024658FE9446F9EB19 /* Pods-MarsImagesUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MarsImagesUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E8E8428CCCF3533D34706AE9C4E48EB5 /* PSMenuItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PSMenuItem.h; sourceTree = "<group>"; };
 		E98732CAE2A4B72843456F2749BBC1CF /* Container+SwinjectStoryboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Container+SwinjectStoryboard.swift"; path = "Sources/Container+SwinjectStoryboard.swift"; sourceTree = "<group>"; };
 		E9AA4530AEC480930C6E53DF274B12B6 /* EDAMTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EDAMTypes.m; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMTypes.m"; sourceTree = "<group>"; };
 		EAD3F89493D04A00EFEFA3CF41F71B12 /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
-		EADBB5F31ADB26DAF15ECDAD92C81940 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWPhotoBrowser.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6ACDE843C5CD42B56106AD033101AA /* Pods-MarsImagesTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MarsImagesTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		EB7B2CB13715A9CF199565CE2D06EC00 /* ENSDKPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSDKPrivate.h; path = "evernote-sdk-ios/ENSDK/Private/ENSDKPrivate.h"; sourceTree = "<group>"; };
 		EB81A0953F772C02397DF24BE70D5900 /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SDWebImage.modulemap; sourceTree = "<group>"; };
+		EBED8F641717A79C2EDC7880837055D7 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC016E9BC09D4E3CB4E52A848183E497 /* ImageSelectedSmallOff@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "ImageSelectedSmallOff@2x.png"; path = "Pod/Assets/ImageSelectedSmallOff@2x.png"; sourceTree = "<group>"; };
 		ED7808BE4BCE64BCC8D3525CB25A9E6A /* ENNoteContent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNoteContent.m; path = "evernote-sdk-ios/ENSDK/ENNoteContent.m"; sourceTree = "<group>"; };
 		EDD101870B86C3CF1E6A701A94C2CDFB /* NSString+XMLAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+XMLAdditions.h"; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/NSString+XMLAdditions.h"; sourceTree = "<group>"; };
@@ -1005,19 +1035,18 @@
 		EF14CCEBCE4DB1E919EBCD64A4E3A570 /* ENWebClipNoteBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENWebClipNoteBuilder.h; path = "evernote-sdk-ios/ENSDK/Private/ENWebClipNoteBuilder.h"; sourceTree = "<group>"; };
 		EF170FD585DF7236D8D4D780D13F5B6D /* Box.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Box.swift; path = Sources/Box.swift; sourceTree = "<group>"; };
 		EF2B12EFFE1C2F276B270694D414BF94 /* ENWebArchive.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENWebArchive.h; path = "evernote-sdk-ios/ENSDK/Private/ENWebArchive.h"; sourceTree = "<group>"; };
+		EFEA21DB772A44D879287E607F582150 /* Pods-MarsImages-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MarsImages-acknowledgements.plist"; sourceTree = "<group>"; };
 		F0102EF318D40E481B5419C629C4F79E /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
 		F0A99BABBE5D4031E8BCBBC3E0EE3ABF /* RMSTokenConstraintManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RMSTokenConstraintManager.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/RMSTokenView/RMSTokenConstraintManager.m"; sourceTree = "<group>"; };
 		F11D9D739C16825FD42624D2340EBDB6 /* UIBarButtonItemArrowRight@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "UIBarButtonItemArrowRight@3x.png"; path = "Pod/Assets/UIBarButtonItemArrowRight@3x.png"; sourceTree = "<group>"; };
 		F14BD47A1C00049B1F43AE475643EB97 /* MessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageView.swift; path = SwiftMessages/MessageView.swift; sourceTree = "<group>"; };
 		F1661C8C8664B39E513147BB33AC291D /* ResourceBundle-MWPhotoBrowser-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MWPhotoBrowser-Info.plist"; sourceTree = "<group>"; };
 		F184296B82810B6DAD978A951760870F /* MKDropdownMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MKDropdownMenu-dummy.m"; sourceTree = "<group>"; };
-		F1C7813075360A8629DF412415E57EFF /* Pods-MarsImages-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MarsImages-acknowledgements.plist"; sourceTree = "<group>"; };
 		F1D389095020FE1CEF91FA547E85894F /* ENNoteRef.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNoteRef.m; path = "evernote-sdk-ios/ENSDK/ENNoteRef.m"; sourceTree = "<group>"; };
 		F2F85CE9642E92D467EAB574097A6D70 /* ENSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSession.h; path = "evernote-sdk-ios/ENSDK/ENSession.h"; sourceTree = "<group>"; };
 		F32DC0DBC2E6E56A5DC018BB6247FBF1 /* PlayButtonOverlayLarge@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "PlayButtonOverlayLarge@3x.png"; path = "Pod/Assets/PlayButtonOverlayLarge@3x.png"; sourceTree = "<group>"; };
 		F36B71FE3FEEEF37B2A83463B1ED2E33 /* UnavailableItems.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnavailableItems.swift; path = Sources/UnavailableItems.swift; sourceTree = "<group>"; };
 		F47DB9029B5D24E3E1F48962DCBFDCB9 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "SDWebImage/NSData+ImageContentType.h"; sourceTree = "<group>"; };
-		F59273227D6AAF67D4033E721358DE08 /* Pods-MarsImages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MarsImages.modulemap"; sourceTree = "<group>"; };
 		F698C3C85FCAAD56DC96101609544437 /* PlayButtonOverlayLarge@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "PlayButtonOverlayLarge@2x.png"; path = "Pod/Assets/PlayButtonOverlayLarge@2x.png"; sourceTree = "<group>"; };
 		F90F400189A92F8EC6764A3877DD4E1F /* ImageSelectedOn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "ImageSelectedOn@2x.png"; path = "Pod/Assets/ImageSelectedOn@2x.png"; sourceTree = "<group>"; };
 		FA020312FD38E98AB5C2FBC5189B69B9 /* MWPhotoBrowser-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MWPhotoBrowser-prefix.pch"; sourceTree = "<group>"; };
@@ -1030,7 +1059,6 @@
 		FE9063F721347EDAF65F01722F8BF682 /* ENSaveToEvernoteActivity.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENSaveToEvernoteActivity.m; path = "evernote-sdk-ios/ENSDK/SendToEvernoteActivity/ENSaveToEvernoteActivity.m"; sourceTree = "<group>"; };
 		FEB9D81F53839A9ABA46ABB9C9C182DB /* MWTapDetectingView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MWTapDetectingView.m; path = Pod/Classes/MWTapDetectingView.m; sourceTree = "<group>"; };
 		FF0A3D7D24A73BABCFD02DC729913501 /* ENBusinessNoteStoreClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENBusinessNoteStoreClient.m; path = "evernote-sdk-ios/ENSDK/Advanced/ENBusinessNoteStoreClient.m"; sourceTree = "<group>"; };
-		FF10341290EEE8BD80FECE87152C9851 /* Pods-MarsImages-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImages-resources.sh"; sourceTree = "<group>"; };
 		FFDB657250808D679A54C4AC91F388F4 /* ENNoteRefInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNoteRefInternal.h; path = "evernote-sdk-ios/ENSDK/Private/ENNoteRefInternal.h"; sourceTree = "<group>"; };
 		FFE75B62273FCFA9D9B1D03174B1A999 /* PlayButtonOverlayLargeTap.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = PlayButtonOverlayLargeTap.png; path = Pod/Assets/PlayButtonOverlayLargeTap.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1074,6 +1102,14 @@
 			files = (
 				4E3FC7846FDC9F701FC2EA1511F095E3 /* Foundation.framework in Frameworks */,
 				20EBA77FAC71CA3BA1ED0D6521D3C6AA /* Swinject.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C32FF8CC5EA6A872DB4B607FDA8DD25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA88FDD069E99F1F39C26A3FF7AB630 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1203,14 @@
 			files = (
 				987B71AF2B872DFC9AC5B4753E5E0A78 /* Foundation.framework in Frameworks */,
 				89B7DF4E3FDEA6D466770103E570CDF3 /* ImageIO.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDDBC89BE5BAF21108164506B11CE254 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8D3A33578EA414BF644DDE0CB6D058F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1309,6 +1353,24 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1BE50F044800CA4B90DBFE5A94B0A5F7 /* Pods-MarsImages */ = {
+			isa = PBXGroup;
+			children = (
+				81B6F0A58E15512B8C08C1186C69D3F7 /* Info.plist */,
+				5E132B4C89F0599A94BDD4000259C78C /* Pods-MarsImages.modulemap */,
+				159A0ABB40EF231D714A1083784B0C2D /* Pods-MarsImages-acknowledgements.markdown */,
+				EFEA21DB772A44D879287E607F582150 /* Pods-MarsImages-acknowledgements.plist */,
+				CDABF5D9C27887031F3E33FEC96B6FA5 /* Pods-MarsImages-dummy.m */,
+				83E23142C4BD3F3F9D8AD50028442AB7 /* Pods-MarsImages-frameworks.sh */,
+				61E5BAD5C3E76BAF407F3A92981D1199 /* Pods-MarsImages-resources.sh */,
+				2C281E1AB91C668BDB3785D2531AF925 /* Pods-MarsImages-umbrella.h */,
+				9252A2CFF3812A1C24EF42BC5F61F881 /* Pods-MarsImages.debug.xcconfig */,
+				12688499C5654098D08E28041A234FDA /* Pods-MarsImages.release.xcconfig */,
+			);
+			name = "Pods-MarsImages";
+			path = "Target Support Files/Pods-MarsImages";
+			sourceTree = "<group>";
+		};
 		20451D13904999D3D978F156C4928E42 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
@@ -1355,14 +1417,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		232F1A89305A39EF221BDC02CB0143A2 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6FD25A71780EFD9CFCB1F2BC6C3EFF6B /* Pods-MarsImages */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
 		2EB80D4066DE8744DA8B6D5710CF2AB8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1375,30 +1429,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ReachabilitySwift";
-			sourceTree = "<group>";
-		};
-		38B16E9DB055159D10681C9CCE7E8066 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				05F8947C7AF1D3FBAAF1659426F8C873 /* Alamofire.framework */,
-				33EBD85EBD581A005C9C62A8ABE66531 /* DACircularProgress.framework */,
-				E01BA40CAF1945B54C345F558230906B /* EvernoteSDK.framework */,
-				D2378D4FB5994D6A1EC52B801360AEE1 /* MarsTimeConversion.framework */,
-				61AC2A5B9DEE5177F9B464D89E7CC029 /* MBProgressHUD.framework */,
-				2E05218956CBAB982D0F51CA625F7AB6 /* MKDropdownMenu.framework */,
-				EADBB5F31ADB26DAF15ECDAD92C81940 /* MWPhotoBrowser.bundle */,
-				342B3116F8533DE527D5C6EB43FB0391 /* MWPhotoBrowser.framework */,
-				E6610F9B69419EC41E5FE569FB4BC7AF /* Pods_MarsImages.framework */,
-				88F9DE328F47EDFFA114B2AC6AE552AE /* PSMenuItem.framework */,
-				A7497CC5E3AF2B694CA2E17C9166217D /* ReachabilitySwift.framework */,
-				5EFAECB42087E9036307A50A8A68DBE5 /* SDWebImage.framework */,
-				3B1547F4D19DB1223866683F521B5F6B /* SwiftMessages.bundle */,
-				149699CB6D7772711DE04ED8A3DFFB0C /* SwiftMessages.framework */,
-				5923876D2CAC5C568DC8E7A480B9730E /* SwiftyJSON.framework */,
-				41F3755CDDB7BBB7D94E9B899B4086B5 /* Swinject.framework */,
-				C2D7B21E484E0E8E4D719618BC0C359A /* SwinjectStoryboard.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3E57A97B632BD6962F633B3F40CA969C /* EvernoteSDK */ = {
@@ -1680,24 +1710,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		6FD25A71780EFD9CFCB1F2BC6C3EFF6B /* Pods-MarsImages */ = {
-			isa = PBXGroup;
-			children = (
-				2E6DBBE34F376A9E665E1271E5CBABCC /* Info.plist */,
-				F59273227D6AAF67D4033E721358DE08 /* Pods-MarsImages.modulemap */,
-				A7C62AE87DD25F6431088E013FB7011D /* Pods-MarsImages-acknowledgements.markdown */,
-				F1C7813075360A8629DF412415E57EFF /* Pods-MarsImages-acknowledgements.plist */,
-				68E25C532FA8332BBB5DA03FCBCB0CD6 /* Pods-MarsImages-dummy.m */,
-				AEC5C257B69B90C743B06DD5D116FFC3 /* Pods-MarsImages-frameworks.sh */,
-				FF10341290EEE8BD80FECE87152C9851 /* Pods-MarsImages-resources.sh */,
-				891A6EA4A5014DD9BEDEDF9C00D775BE /* Pods-MarsImages-umbrella.h */,
-				92E4377D1D7D5C8FD411B495EBA48B60 /* Pods-MarsImages.debug.xcconfig */,
-				3E0DDAC0D0BDCBF633742D425442226E /* Pods-MarsImages.release.xcconfig */,
-			);
-			name = "Pods-MarsImages";
-			path = "Target Support Files/Pods-MarsImages";
-			sourceTree = "<group>";
-		};
 		72871A6FE146033B7A0B1D4D80A7710D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1718,8 +1730,8 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				ED6D3A4A6753F6A2198A9812EC6B2C77 /* Frameworks */,
 				22D63CC252820C9048597B5372AD85CD /* Pods */,
-				38B16E9DB055159D10681C9CCE7E8066 /* Products */,
-				232F1A89305A39EF221BDC02CB0143A2 /* Targets Support Files */,
+				EB699C9B841C6B69B96610A5A5584C5D /* Products */,
+				87CECD207BA41261E7C4A2639DD22EC8 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1740,6 +1752,16 @@
 				5272D8F1DDD1388C36C71FCB51E8D102 /* Support Files */,
 			);
 			path = PSMenuItem;
+			sourceTree = "<group>";
+		};
+		87CECD207BA41261E7C4A2639DD22EC8 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1BE50F044800CA4B90DBFE5A94B0A5F7 /* Pods-MarsImages */,
+				A84AD8EF6DD73A5724FEF38E0A8FAF5F /* Pods-MarsImagesTests */,
+				A7BD4322BA2A1ED8AB058CB2D3090C6B /* Pods-MarsImagesUITests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		95AA72511AB53CFB9FC3523EFDEF5F96 /* MKDropdownMenu */ = {
@@ -1827,6 +1849,42 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/MKDropdownMenu";
+			sourceTree = "<group>";
+		};
+		A7BD4322BA2A1ED8AB058CB2D3090C6B /* Pods-MarsImagesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				673A8AC974BE0CE5E6E00D9089B9B835 /* Info.plist */,
+				23F8ACEB93651CF2E5C02FFADA25AB73 /* Pods-MarsImagesUITests.modulemap */,
+				E826FF5C33611F024658FE9446F9EB19 /* Pods-MarsImagesUITests-acknowledgements.markdown */,
+				07082C118328CA1A71E8F3DB604F3F1C /* Pods-MarsImagesUITests-acknowledgements.plist */,
+				D9E63172789B4CD99838F212BD207CF9 /* Pods-MarsImagesUITests-dummy.m */,
+				4C9150C783D223E2671E90FCB287FDEF /* Pods-MarsImagesUITests-frameworks.sh */,
+				7741D4207B551A582F611FE923D5F0E5 /* Pods-MarsImagesUITests-resources.sh */,
+				A46AF4E1BBC7B2517FE041D6EEA3C8BB /* Pods-MarsImagesUITests-umbrella.h */,
+				D2D7EB5A66ACC5B00E8143215E7F8AF3 /* Pods-MarsImagesUITests.debug.xcconfig */,
+				60EA25956D405F5E0404D136CBC1DBAB /* Pods-MarsImagesUITests.release.xcconfig */,
+			);
+			name = "Pods-MarsImagesUITests";
+			path = "Target Support Files/Pods-MarsImagesUITests";
+			sourceTree = "<group>";
+		};
+		A84AD8EF6DD73A5724FEF38E0A8FAF5F /* Pods-MarsImagesTests */ = {
+			isa = PBXGroup;
+			children = (
+				386BB4C07B94769FCD72070C25C42BCF /* Info.plist */,
+				6F45D708F5A68D19DBFB2DFA0FF3BE45 /* Pods-MarsImagesTests.modulemap */,
+				EB6ACDE843C5CD42B56106AD033101AA /* Pods-MarsImagesTests-acknowledgements.markdown */,
+				49F827821446D9F928329AEA5DE924DE /* Pods-MarsImagesTests-acknowledgements.plist */,
+				D4329C196090C6D3F74E6F809DFEA67A /* Pods-MarsImagesTests-dummy.m */,
+				8D7FB41BEC2A88B614F07A3FF32071FF /* Pods-MarsImagesTests-frameworks.sh */,
+				D9A2CEAE3587B4F9F0A602FC6E057D74 /* Pods-MarsImagesTests-resources.sh */,
+				D0E4E542356E0E7A2BCAD7842657B454 /* Pods-MarsImagesTests-umbrella.h */,
+				E125A0F8E53953CFCD724E92E4B3E068 /* Pods-MarsImagesTests.debug.xcconfig */,
+				A6802FD1CC16CCE0957C7CFDF744CA4F /* Pods-MarsImagesTests.release.xcconfig */,
+			);
+			name = "Pods-MarsImagesTests";
+			path = "Target Support Files/Pods-MarsImagesTests";
 			sourceTree = "<group>";
 		};
 		B7CD1BEF51DEA5AF73AA2930C85AB8E4 /* Core */ = {
@@ -1958,6 +2016,32 @@
 				9BDA730DA0F09C947DBBEE0751637BA9 /* ENSDKResources.bundle */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		EB699C9B841C6B69B96610A5A5584C5D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07145E83F11DD21BB00251D09ED50665 /* Alamofire.framework */,
+				853A83ADD5A4EE2A86C3FB18E040B2CD /* DACircularProgress.framework */,
+				67209BFA6C758DC5D914438A0847A4B5 /* EvernoteSDK.framework */,
+				B2F6DC936F24288CECCC633A53B266E1 /* MarsTimeConversion.framework */,
+				5D84DE4B83AB3343CCEB8C2345B4E2CD /* MBProgressHUD.framework */,
+				CD1B933066E0666E43DCACFFBD6CAA0F /* MKDropdownMenu.framework */,
+				6D0BABA316161756A5B0D6AA05147391 /* MWPhotoBrowser.bundle */,
+				37B9BB8133D05F3623FC2390A6CD0AA3 /* MWPhotoBrowser.framework */,
+				D8D1236E903E59EED075E8F3BAD77BAE /* Pods_MarsImages.framework */,
+				DD3FEE71694A7B9287621BCD62CBB0BE /* Pods_MarsImagesTests.framework */,
+				98DB0745DC72896CF8AB604873A371A2 /* Pods_MarsImagesUITests.framework */,
+				383A9CA3B0CEC6C4F967C7C2218C3628 /* PSMenuItem.framework */,
+				590A4260D533AE3E4C97B9AFBEA42DA5 /* ReachabilitySwift.framework */,
+				3438738499BD3786982E32BF213A6C21 /* SDWebImage.framework */,
+				63D005A5B30D05D44B1D8477E1FA5FEE /* SwiftMessages.bundle */,
+				EBED8F641717A79C2EDC7880837055D7 /* SwiftMessages.framework */,
+				74C96F6C4C488527C58C05FBE33AD43F /* SwiftyJSON.framework */,
+				D05C86A90F92D7311A84D65656489301 /* Swinject.framework */,
+				664B9FEFC34B06F185758F642978A036 /* SwinjectStoryboard.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		ED6D3A4A6753F6A2198A9812EC6B2C77 /* Frameworks */ = {
@@ -2124,6 +2208,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		556290EA2DD815ABC8AD506E51809F93 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				376314082FA68112D33B1EF33CBF442A /* Pods-MarsImagesTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CF91E0B745FCEEB1DFB6D794C30CEC0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2146,6 +2238,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED68FE2097B2FD8F6C334EE6716D24F4 /* Pods-MarsImages-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		809CE5058D8A34D0EB070B208FBEB7C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7CB90FE78668DE32D716CA7BB29E871 /* Pods-MarsImagesUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2254,7 +2354,7 @@
 			);
 			name = MWPhotoBrowser;
 			productName = MWPhotoBrowser;
-			productReference = 342B3116F8533DE527D5C6EB43FB0391 /* MWPhotoBrowser.framework */;
+			productReference = 37B9BB8133D05F3623FC2390A6CD0AA3 /* MWPhotoBrowser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		09539F0AAF8747923135EE632560FE17 /* SwiftMessages */ = {
@@ -2273,7 +2373,7 @@
 			);
 			name = SwiftMessages;
 			productName = SwiftMessages;
-			productReference = 149699CB6D7772711DE04ED8A3DFFB0C /* SwiftMessages.framework */;
+			productReference = EBED8F641717A79C2EDC7880837055D7 /* SwiftMessages.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		17CEAD1B3EC4E80098DF5F8AA00BE966 /* DACircularProgress */ = {
@@ -2290,7 +2390,7 @@
 			);
 			name = DACircularProgress;
 			productName = DACircularProgress;
-			productReference = 33EBD85EBD581A005C9C62A8ABE66531 /* DACircularProgress.framework */;
+			productReference = 853A83ADD5A4EE2A86C3FB18E040B2CD /* DACircularProgress.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		312523E671496687E368B56DD8AC2F35 /* EvernoteSDK */ = {
@@ -2308,7 +2408,7 @@
 			);
 			name = EvernoteSDK;
 			productName = EvernoteSDK;
-			productReference = E01BA40CAF1945B54C345F558230906B /* EvernoteSDK.framework */;
+			productReference = 67209BFA6C758DC5D914438A0847A4B5 /* EvernoteSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		3E368CC5132BCE4FB3AF2083B7D340CA /* MarsTimeConversion */ = {
@@ -2325,7 +2425,7 @@
 			);
 			name = MarsTimeConversion;
 			productName = MarsTimeConversion;
-			productReference = D2378D4FB5994D6A1EC52B801360AEE1 /* MarsTimeConversion.framework */;
+			productReference = B2F6DC936F24288CECCC633A53B266E1 /* MarsTimeConversion.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4812FD6CCA90F2E64F125B954B54217F /* SwiftMessages-SwiftMessages */ = {
@@ -2342,7 +2442,7 @@
 			);
 			name = "SwiftMessages-SwiftMessages";
 			productName = "SwiftMessages-SwiftMessages";
-			productReference = 3B1547F4D19DB1223866683F521B5F6B /* SwiftMessages.bundle */;
+			productReference = 63D005A5B30D05D44B1D8477E1FA5FEE /* SwiftMessages.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		68EFFA52E98831BD77C47BCEE90DC729 /* SwiftyJSON */ = {
@@ -2359,7 +2459,7 @@
 			);
 			name = SwiftyJSON;
 			productName = SwiftyJSON;
-			productReference = 5923876D2CAC5C568DC8E7A480B9730E /* SwiftyJSON.framework */;
+			productReference = 74C96F6C4C488527C58C05FBE33AD43F /* SwiftyJSON.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6B1714E816AE794962516E2ECBB40A5A /* MBProgressHUD */ = {
@@ -2376,7 +2476,7 @@
 			);
 			name = MBProgressHUD;
 			productName = MBProgressHUD;
-			productReference = 61AC2A5B9DEE5177F9B464D89E7CC029 /* MBProgressHUD.framework */;
+			productReference = 5D84DE4B83AB3343CCEB8C2345B4E2CD /* MBProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7BAAEC1386420288825150BB5315CA52 /* SDWebImage */ = {
@@ -2393,7 +2493,7 @@
 			);
 			name = SDWebImage;
 			productName = SDWebImage;
-			productReference = 5EFAECB42087E9036307A50A8A68DBE5 /* SDWebImage.framework */;
+			productReference = 3438738499BD3786982E32BF213A6C21 /* SDWebImage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		82B6FC64C3279FBA710390D542AC1601 /* ReachabilitySwift */ = {
@@ -2410,7 +2510,7 @@
 			);
 			name = ReachabilitySwift;
 			productName = ReachabilitySwift;
-			productReference = A7497CC5E3AF2B694CA2E17C9166217D /* ReachabilitySwift.framework */;
+			productReference = 590A4260D533AE3E4C97B9AFBEA42DA5 /* ReachabilitySwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
@@ -2427,7 +2527,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 05F8947C7AF1D3FBAAF1659426F8C873 /* Alamofire.framework */;
+			productReference = 07145E83F11DD21BB00251D09ED50665 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8B3D4323A279FD73FF97DD41DB188A23 /* Swinject */ = {
@@ -2444,7 +2544,7 @@
 			);
 			name = Swinject;
 			productName = Swinject;
-			productReference = 41F3755CDDB7BBB7D94E9B899B4086B5 /* Swinject.framework */;
+			productReference = D05C86A90F92D7311A84D65656489301 /* Swinject.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A256E7E872420404C01AD68EA8F2B7A5 /* SwinjectStoryboard */ = {
@@ -2462,7 +2562,7 @@
 			);
 			name = SwinjectStoryboard;
 			productName = SwinjectStoryboard;
-			productReference = C2D7B21E484E0E8E4D719618BC0C359A /* SwinjectStoryboard.framework */;
+			productReference = 664B9FEFC34B06F185758F642978A036 /* SwinjectStoryboard.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A326C04FEB6A85F7C86A4159E9A457B5 /* Pods-MarsImages */ = {
@@ -2493,7 +2593,7 @@
 			);
 			name = "Pods-MarsImages";
 			productName = "Pods-MarsImages";
-			productReference = E6610F9B69419EC41E5FE569FB4BC7AF /* Pods_MarsImages.framework */;
+			productReference = D8D1236E903E59EED075E8F3BAD77BAE /* Pods_MarsImages.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A3B3CA69641375F94D39F255650BF877 /* MWPhotoBrowser-MWPhotoBrowser */ = {
@@ -2510,8 +2610,25 @@
 			);
 			name = "MWPhotoBrowser-MWPhotoBrowser";
 			productName = "MWPhotoBrowser-MWPhotoBrowser";
-			productReference = EADBB5F31ADB26DAF15ECDAD92C81940 /* MWPhotoBrowser.bundle */;
+			productReference = 6D0BABA316161756A5B0D6AA05147391 /* MWPhotoBrowser.bundle */;
 			productType = "com.apple.product-type.bundle";
+		};
+		C7FE842A220BB984B7B5A4C58B271DEF /* Pods-MarsImagesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18BF55E373FCBDDD901C89567DD2AD23 /* Build configuration list for PBXNativeTarget "Pods-MarsImagesUITests" */;
+			buildPhases = (
+				D717428A97F9BC2254D93FC87EFAB022 /* Sources */,
+				3C32FF8CC5EA6A872DB4B607FDA8DD25 /* Frameworks */,
+				809CE5058D8A34D0EB070B208FBEB7C7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-MarsImagesUITests";
+			productName = "Pods-MarsImagesUITests";
+			productReference = 98DB0745DC72896CF8AB604873A371A2 /* Pods_MarsImagesUITests.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		CA7C64F1A52A81248D1DF2EA7A432378 /* PSMenuItem */ = {
 			isa = PBXNativeTarget;
@@ -2527,7 +2644,24 @@
 			);
 			name = PSMenuItem;
 			productName = PSMenuItem;
-			productReference = 88F9DE328F47EDFFA114B2AC6AE552AE /* PSMenuItem.framework */;
+			productReference = 383A9CA3B0CEC6C4F967C7C2218C3628 /* PSMenuItem.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CC65634AA5325E370EA878C6942B72C5 /* Pods-MarsImagesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCA9396F8356943C6FF889EA1234F20B /* Build configuration list for PBXNativeTarget "Pods-MarsImagesTests" */;
+			buildPhases = (
+				7A9E525C7D239C6997ED24960545C29C /* Sources */,
+				EDDBC89BE5BAF21108164506B11CE254 /* Frameworks */,
+				556290EA2DD815ABC8AD506E51809F93 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-MarsImagesTests";
+			productName = "Pods-MarsImagesTests";
+			productReference = DD3FEE71694A7B9287621BCD62CBB0BE /* Pods_MarsImagesTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F5998E20F683EE1E9022DCED6FFD564C /* MKDropdownMenu */ = {
@@ -2544,7 +2678,7 @@
 			);
 			name = MKDropdownMenu;
 			productName = MKDropdownMenu;
-			productReference = 2E05218956CBAB982D0F51CA625F7AB6 /* MKDropdownMenu.framework */;
+			productReference = CD1B933066E0666E43DCACFFBD6CAA0F /* MKDropdownMenu.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -2564,7 +2698,7 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 38B16E9DB055159D10681C9CCE7E8066 /* Products */;
+			productRefGroup = EB699C9B841C6B69B96610A5A5584C5D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2577,6 +2711,8 @@
 				05569F3C10FD91BB981D7CEE83CBC732 /* MWPhotoBrowser */,
 				A3B3CA69641375F94D39F255650BF877 /* MWPhotoBrowser-MWPhotoBrowser */,
 				A326C04FEB6A85F7C86A4159E9A457B5 /* Pods-MarsImages */,
+				CC65634AA5325E370EA878C6942B72C5 /* Pods-MarsImagesTests */,
+				C7FE842A220BB984B7B5A4C58B271DEF /* Pods-MarsImagesUITests */,
 				CA7C64F1A52A81248D1DF2EA7A432378 /* PSMenuItem */,
 				82B6FC64C3279FBA710390D542AC1601 /* ReachabilitySwift */,
 				7BAAEC1386420288825150BB5315CA52 /* SDWebImage */,
@@ -2836,6 +2972,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A9E525C7D239C6997ED24960545C29C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D8D56AD5C42AA9B17C40C5B9CFEE2B2 /* Pods-MarsImagesTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97DFCFDA72E47C855A2B865591F8EAE7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2977,6 +3121,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D717428A97F9BC2254D93FC87EFAB022 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E7A2FA7D82698DF02412B9AD7B169B4 /* Pods-MarsImagesUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7BFE647A1C3C15569A64C5C454EF45D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3112,9 +3264,9 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07311DE700E98684E69C84AF5006199C /* Release */ = {
+		000C2249FE8CE860045462474F2C6906 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC668E8667FC8F4A1EC3AD72E0A8E5D1 /* MBProgressHUD.xcconfig */;
+			baseConfigurationReference = A2006D12D5E3B954E2DB33297FF5071D /* ReachabilitySwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3128,49 +3280,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/ReachabilitySwift/ReachabilitySwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
+				MODULEMAP_FILE = "Target Support Files/ReachabilitySwift/ReachabilitySwift.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MBProgressHUD;
+				PRODUCT_NAME = ReachabilitySwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		0AE7BF2CE3C858BB6CA90E754B1F5229 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AD75EB3938870B2722CE1E644CC2E09 /* SwinjectStoryboard.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwinjectStoryboard/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwinjectStoryboard;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3179,9 +3299,9 @@
 			};
 			name = Release;
 		};
-		0E7458E3507788780F137D1ECC9AEC7F /* Debug */ = {
+		01109AD69B0D1158A39D49B2483414BA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40B89B85905305D756E534297F32CA50 /* SwiftMessages.xcconfig */;
+			baseConfigurationReference = 3AD75EB3938870B2722CE1E644CC2E09 /* SwinjectStoryboard.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3195,17 +3315,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftMessages/SwiftMessages-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftMessages/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwinjectStoryboard/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftMessages/SwiftMessages.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftMessages;
+				PRODUCT_NAME = SwinjectStoryboard;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3213,6 +3333,76 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		012AC6CB896486963D12FDB8D9DCA5B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F768F30B36CA3474AA62A504FCADC49 /* Swinject.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Swinject/Swinject-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Swinject/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Swinject/Swinject.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Swinject;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		077C4BB7DBEAA715DED46C057DC8051C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07DFF895A5241583E834028C2C113730 /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		17645735093E9EDDC1A515E3AF88CDC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3248,43 +3438,93 @@
 			};
 			name = Debug;
 		};
-		1CE179E49BB3337B0BB0EA7A09475916 /* Release */ = {
+		1C7D17A37D091C98D2F0DD886C3A9320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1178EA0434EAFC4AB6344E95452F962 /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		1F8D16963B2D7B36C1F55376DAB15C7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F768F30B36CA3474AA62A504FCADC49 /* Swinject.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Swinject/Swinject-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Swinject/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwiftyJSON;
+				MODULEMAP_FILE = "Target Support Files/Swinject/Swinject.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		1F973FDEA121988253CD3169CC93D09F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92E4377D1D7D5C8FD411B495EBA48B60 /* Pods-MarsImages.debug.xcconfig */;
+			baseConfigurationReference = 9252A2CFF3812A1C24EF42BC5F61F881 /* Pods-MarsImages.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3321,9 +3561,9 @@
 			};
 			name = Debug;
 		};
-		21AF8ADE9C7FFD17908F1F26E80EA05D /* Debug */ = {
+		27561A4A75E5E4B9089325FDBFA4E550 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC668E8667FC8F4A1EC3AD72E0A8E5D1 /* MBProgressHUD.xcconfig */;
+			baseConfigurationReference = 8BE0B2FB9D07E448D57E9FCFD9B313DD /* DACircularProgress.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3337,16 +3577,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/DACircularProgress/DACircularProgress-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DACircularProgress/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
+				MODULEMAP_FILE = "Target Support Files/DACircularProgress/DACircularProgress.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MBProgressHUD;
+				PRODUCT_NAME = DACircularProgress;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3354,42 +3595,9 @@
 			};
 			name = Debug;
 		};
-		2711FF72089415D2245E1D70A3D7A8AC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C6AD5F459614930DBEADED215293731 /* MKDropdownMenu.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MKDropdownMenu/MKDropdownMenu-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MKDropdownMenu/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MKDropdownMenu/MKDropdownMenu.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MKDropdownMenu;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		2782703F55608089A8EEB0C7E3CA2BCF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E0DDAC0D0BDCBF633742D425442226E /* Pods-MarsImages.release.xcconfig */;
+			baseConfigurationReference = 12688499C5654098D08E28041A234FDA /* Pods-MarsImages.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3425,42 +3633,42 @@
 			};
 			name = Release;
 		};
-		2AFD0B335ECF3E898FFAA3B0DB9DAB68 /* Debug */ = {
+		2DE7C089675FF01FFB2ADA9AD1B0237D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2006D12D5E3B954E2DB33297FF5071D /* ReachabilitySwift.xcconfig */;
+			baseConfigurationReference = 40B89B85905305D756E534297F32CA50 /* SwiftMessages.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ReachabilitySwift/ReachabilitySwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftMessages/SwiftMessages-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftMessages/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ReachabilitySwift/ReachabilitySwift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = ReachabilitySwift;
+				MODULEMAP_FILE = "Target Support Files/SwiftMessages/SwiftMessages.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftMessages;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		3072D888B187E97BA54BF0777A566BEA /* Debug */ = {
+		30AAE38177610F9CEEF9BB711A1773C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6220BBEDF936AF28E6750434B4273FB7 /* PSMenuItem.xcconfig */;
 			buildSettings = {
@@ -3486,6 +3694,7 @@
 				PRODUCT_NAME = PSMenuItem;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3537,77 +3746,9 @@
 			};
 			name = Release;
 		};
-		49783B7F03B13F90BC0B48A110FD839D /* Release */ = {
+		36866FB357940EEEBEFC5B23D78496F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40B89B85905305D756E534297F32CA50 /* SwiftMessages.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftMessages/SwiftMessages-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftMessages/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftMessages/SwiftMessages.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwiftMessages;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		4EC538EB2CF2B66415AEF6CD25951414 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E6D5ED7128A90ADB1AED263AB204D0D /* MarsTimeConversion.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MarsTimeConversion/MarsTimeConversion-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MarsTimeConversion/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MarsTimeConversion/MarsTimeConversion.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MarsTimeConversion;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5E1BEBF21C63F5CCA82F52B614655322 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E6D5ED7128A90ADB1AED263AB204D0D /* MarsTimeConversion.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3621,17 +3762,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MarsTimeConversion/MarsTimeConversion-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MarsTimeConversion/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftMessages/SwiftMessages-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftMessages/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MarsTimeConversion/MarsTimeConversion.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SwiftMessages/SwiftMessages.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = MarsTimeConversion;
+				PRODUCT_NAME = SwiftMessages;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3640,7 +3781,75 @@
 			};
 			name = Debug;
 		};
-		6B632875D1F0E58DD902F2A4945C3716 /* Release */ = {
+		401E4522BDF7D3E8B3674E5D608CAF03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 995FD93ACBE1B5BEE67CA16773528DFD /* EvernoteSDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EvernoteSDK/EvernoteSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EvernoteSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EvernoteSDK/EvernoteSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = EvernoteSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		441D31178ABE4C200B1A4BD77A159FBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BE0B2FB9D07E448D57E9FCFD9B313DD /* DACircularProgress.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DACircularProgress/DACircularProgress-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DACircularProgress/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DACircularProgress/DACircularProgress.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = DACircularProgress;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		44C3823EE897A4F37CC28FEF561A6DC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6220BBEDF936AF28E6750434B4273FB7 /* PSMenuItem.xcconfig */;
 			buildSettings = {
@@ -3666,6 +3875,7 @@
 				PRODUCT_NAME = PSMenuItem;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3673,310 +3883,7 @@
 			};
 			name = Release;
 		};
-		6FF95CB6CCD702795B6FB36EA0744B69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E01695065DB76BC2AD45E1A94607648F /* SDWebImage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SDWebImage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		75FC69A2F201DFF37B1D5DB55E8C0115 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F768F30B36CA3474AA62A504FCADC49 /* Swinject.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Swinject/Swinject-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Swinject/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Swinject/Swinject.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Swinject;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		760A6AF95D7E2043C8A95C55A567A12B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AD75EB3938870B2722CE1E644CC2E09 /* SwinjectStoryboard.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwinjectStoryboard/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwinjectStoryboard;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		7D072D0D174F12EAACC1862DA756E67A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07DFF895A5241583E834028C2C113730 /* Alamofire.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Alamofire;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		7F1EFC1A7904FF313ADC2A58728C862B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E01695065DB76BC2AD45E1A94607648F /* SDWebImage.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SDWebImage;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8D3E860617BBD06DC18804196EB93435 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40B89B85905305D756E534297F32CA50 /* SwiftMessages.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftMessages";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/SwiftMessages/ResourceBundle-SwiftMessages-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = SwiftMessages;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		9010A788998DD69A9E78D04DC818D43C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62BC860F6E68C8D479362E7AB8674A23 /* MWPhotoBrowser.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MWPhotoBrowser";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/MWPhotoBrowser/ResourceBundle-MWPhotoBrowser-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = MWPhotoBrowser;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		A08F3918D089BCB7570ECAA169BC0A28 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 995FD93ACBE1B5BEE67CA16773528DFD /* EvernoteSDK.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EvernoteSDK/EvernoteSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EvernoteSDK/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EvernoteSDK/EvernoteSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = EvernoteSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A35C86424DAEAB4057B5FA2DB7F40755 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 995FD93ACBE1B5BEE67CA16773528DFD /* EvernoteSDK.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EvernoteSDK/EvernoteSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EvernoteSDK/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EvernoteSDK/EvernoteSDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EvernoteSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		ACD5222D2DACA812660F3613C98D7215 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62BC860F6E68C8D479362E7AB8674A23 /* MWPhotoBrowser.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MWPhotoBrowser/MWPhotoBrowser-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MWPhotoBrowser/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MWPhotoBrowser/MWPhotoBrowser.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = MWPhotoBrowser;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BB29C60FDE02CA082DE3CD2D347D6468 /* Debug */ = {
+		4AF687B1AA23DC8528E9A4AE10923267 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62BC860F6E68C8D479362E7AB8674A23 /* MWPhotoBrowser.xcconfig */;
 			buildSettings = {
@@ -4002,6 +3909,7 @@
 				PRODUCT_NAME = MWPhotoBrowser;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4009,57 +3917,9 @@
 			};
 			name = Debug;
 		};
-		C104F7F091290C3D1E248192F07FE689 /* Debug */ = {
+		52D4B00F6D933C5ADE3B7388E96000EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_DEBUG=1",
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		C9660A42FEDD040185578ADA021EC8E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07DFF895A5241583E834028C2C113730 /* Alamofire.xcconfig */;
+			baseConfigurationReference = A2006D12D5E3B954E2DB33297FF5071D /* ReachabilitySwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4073,17 +3933,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/ReachabilitySwift/ReachabilitySwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MODULEMAP_FILE = "Target Support Files/ReachabilitySwift/ReachabilitySwift.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Alamofire;
+				PRODUCT_NAME = ReachabilitySwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4092,7 +3952,109 @@
 			};
 			name = Debug;
 		};
-		CA7666B4F6306D0CA7F5958FAFF18FE1 /* Debug */ = {
+		681168525F1DEEA37BE492BCEACE2747 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 995FD93ACBE1B5BEE67CA16773528DFD /* EvernoteSDK.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EvernoteSDK/EvernoteSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EvernoteSDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EvernoteSDK/EvernoteSDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = EvernoteSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		69F6BF740D2E3C6EBFABDCE7955BDC7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E01695065DB76BC2AD45E1A94607648F /* SDWebImage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SDWebImage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6E68596EA24F7424F73DAEDFDCCDE4D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E01695065DB76BC2AD45E1A94607648F /* SDWebImage.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SDWebImage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SDWebImage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6F88A81B4CC7E93D08D86470F7458A2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C6AD5F459614930DBEADED215293731 /* MKDropdownMenu.xcconfig */;
 			buildSettings = {
@@ -4118,6 +4080,7 @@
 				PRODUCT_NAME = MKDropdownMenu;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4125,75 +4088,41 @@
 			};
 			name = Debug;
 		};
-		D2E4992C3DC22293E5E58A315D908B05 /* Release */ = {
+		7A4C210F9EA44645C70B2DA63994E5C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2006D12D5E3B954E2DB33297FF5071D /* ReachabilitySwift.xcconfig */;
+			baseConfigurationReference = BC668E8667FC8F4A1EC3AD72E0A8E5D1 /* MBProgressHUD.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ReachabilitySwift/ReachabilitySwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ReachabilitySwift/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ReachabilitySwift/ReachabilitySwift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = ReachabilitySwift;
+				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MBProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		D32B05A06EA562A1B52CDE348ACC0E4C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F768F30B36CA3474AA62A504FCADC49 /* Swinject.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Swinject/Swinject-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Swinject/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Swinject/Swinject.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Swinject;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D8AF6B1E35992FCB1BA1D7A7452B4394 /* Debug */ = {
+		7B5323E687FE71F4803F31241970622A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1178EA0434EAFC4AB6344E95452F962 /* SwiftyJSON.xcconfig */;
 			buildSettings = {
@@ -4219,7 +4148,7 @@
 				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4228,9 +4157,9 @@
 			};
 			name = Debug;
 		};
-		DB4E5959D272694AC081CDEDC137D371 /* Debug */ = {
+		7BC62E0139AA01FC3970A1D9E9CE73B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BE0B2FB9D07E448D57E9FCFD9B313DD /* DACircularProgress.xcconfig */;
+			baseConfigurationReference = E125A0F8E53953CFCD724E92E4B3E068 /* Pods-MarsImagesTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4244,26 +4173,29 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DACircularProgress/DACircularProgress-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DACircularProgress/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MarsImagesTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DACircularProgress/DACircularProgress.modulemap";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MarsImagesTests/Pods-MarsImagesTests.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = DACircularProgress;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MarsImagesTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		F351010D7FD7512613AF6608E4A01B69 /* Release */ = {
+		8B0D46B46FFCAF792EDE6F104FC105BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BE0B2FB9D07E448D57E9FCFD9B313DD /* DACircularProgress.xcconfig */;
+			baseConfigurationReference = B1178EA0434EAFC4AB6344E95452F962 /* SwiftyJSON.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4277,16 +4209,402 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DACircularProgress/DACircularProgress-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DACircularProgress/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DACircularProgress/DACircularProgress.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = DACircularProgress;
+				PRODUCT_NAME = SwiftyJSON;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8D3E860617BBD06DC18804196EB93435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40B89B85905305D756E534297F32CA50 /* SwiftMessages.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SwiftMessages";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/SwiftMessages/ResourceBundle-SwiftMessages-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = SwiftMessages;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		8E8B73761FB7954289DE8FC17A9202F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD75EB3938870B2722CE1E644CC2E09 /* SwinjectStoryboard.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwinjectStoryboard/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwinjectStoryboard/SwinjectStoryboard.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwinjectStoryboard;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9010A788998DD69A9E78D04DC818D43C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62BC860F6E68C8D479362E7AB8674A23 /* MWPhotoBrowser.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/MWPhotoBrowser";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/MWPhotoBrowser/ResourceBundle-MWPhotoBrowser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = MWPhotoBrowser;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		A8D7DA021965879DC03927C128D7E5F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E6D5ED7128A90ADB1AED263AB204D0D /* MarsTimeConversion.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MarsTimeConversion/MarsTimeConversion-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MarsTimeConversion/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MarsTimeConversion/MarsTimeConversion.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MarsTimeConversion;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		ACE6E41E33393D0FEA91561A013C438A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2D7EB5A66ACC5B00E8143215E7F8AF3 /* Pods-MarsImagesUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MarsImagesUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MarsImagesUITests/Pods-MarsImagesUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MarsImagesUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AF02CEC2EF7AE9F565CC9923998F0F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E6D5ED7128A90ADB1AED263AB204D0D /* MarsTimeConversion.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MarsTimeConversion/MarsTimeConversion-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MarsTimeConversion/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MarsTimeConversion/MarsTimeConversion.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MarsTimeConversion;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B3DD043A26FCE6C0463C22710890C90E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6802FD1CC16CCE0957C7CFDF744CA4F /* Pods-MarsImagesTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MarsImagesTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MarsImagesTests/Pods-MarsImagesTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MarsImagesTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B950D157BA44E08CAB0944C21568A2A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62BC860F6E68C8D479362E7AB8674A23 /* MWPhotoBrowser.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MWPhotoBrowser/MWPhotoBrowser-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MWPhotoBrowser/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MWPhotoBrowser/MWPhotoBrowser.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MWPhotoBrowser;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BAD133369CF5C090965C56BFCDBD1B51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60EA25956D405F5E0404D136CBC1DBAB /* Pods-MarsImagesUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-MarsImagesUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MarsImagesUITests/Pods-MarsImagesUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_MarsImagesUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D60F8C4DE6B0D221A33959774DA3DAFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07DFF895A5241583E834028C2C113730 /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D644EFEB25413CEA4820C533FCFE29B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC668E8667FC8F4A1EC3AD72E0A8E5D1 /* MBProgressHUD.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MBProgressHUD/MBProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MBProgressHUD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MBProgressHUD/MBProgressHUD.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MBProgressHUD;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FACC7E83D15157CC3AEDED65103D3B6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C6AD5F459614930DBEADED215293731 /* MKDropdownMenu.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MKDropdownMenu/MKDropdownMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MKDropdownMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MKDropdownMenu/MKDropdownMenu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MKDropdownMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4300,8 +4618,17 @@
 		0A7F5D5454773A474D5C299C043654C1 /* Build configuration list for PBXNativeTarget "SwiftMessages" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E7458E3507788780F137D1ECC9AEC7F /* Debug */,
-				49783B7F03B13F90BC0B48A110FD839D /* Release */,
+				36866FB357940EEEBEFC5B23D78496F0 /* Debug */,
+				2DE7C089675FF01FFB2ADA9AD1B0237D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18BF55E373FCBDDD901C89567DD2AD23 /* Build configuration list for PBXNativeTarget "Pods-MarsImagesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE6E41E33393D0FEA91561A013C438A /* Debug */,
+				BAD133369CF5C090965C56BFCDBD1B51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4309,8 +4636,8 @@
 		1E24D1A545676FC595597DC54F670228 /* Build configuration list for PBXNativeTarget "EvernoteSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A08F3918D089BCB7570ECAA169BC0A28 /* Debug */,
-				A35C86424DAEAB4057B5FA2DB7F40755 /* Release */,
+				681168525F1DEEA37BE492BCEACE2747 /* Debug */,
+				401E4522BDF7D3E8B3674E5D608CAF03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4318,8 +4645,8 @@
 		28A1BDB3CE3F2F1CB0931DFEEDBA7936 /* Build configuration list for PBXNativeTarget "MBProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				21AF8ADE9C7FFD17908F1F26E80EA05D /* Debug */,
-				07311DE700E98684E69C84AF5006199C /* Release */,
+				7A4C210F9EA44645C70B2DA63994E5C1 /* Debug */,
+				D644EFEB25413CEA4820C533FCFE29B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4327,7 +4654,7 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C104F7F091290C3D1E248192F07FE689 /* Debug */,
+				1C7D17A37D091C98D2F0DD886C3A9320 /* Debug */,
 				34FE9531DA9AF2820790339988D5FF41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4336,8 +4663,8 @@
 		3DCD776C4FCAC02D7F3B7B11415A4F04 /* Build configuration list for PBXNativeTarget "MWPhotoBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB29C60FDE02CA082DE3CD2D347D6468 /* Debug */,
-				ACD5222D2DACA812660F3613C98D7215 /* Release */,
+				4AF687B1AA23DC8528E9A4AE10923267 /* Debug */,
+				B950D157BA44E08CAB0944C21568A2A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4345,8 +4672,8 @@
 		419E5D95491847CD79841B971A8A3277 /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9660A42FEDD040185578ADA021EC8E0 /* Debug */,
-				7D072D0D174F12EAACC1862DA756E67A /* Release */,
+				D60F8C4DE6B0D221A33959774DA3DAFF /* Debug */,
+				077C4BB7DBEAA715DED46C057DC8051C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4363,8 +4690,8 @@
 		50777C9A305736CB6B89520635A9245B /* Build configuration list for PBXNativeTarget "Swinject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				75FC69A2F201DFF37B1D5DB55E8C0115 /* Debug */,
-				D32B05A06EA562A1B52CDE348ACC0E4C /* Release */,
+				1F8D16963B2D7B36C1F55376DAB15C7A /* Debug */,
+				012AC6CB896486963D12FDB8D9DCA5B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4372,8 +4699,8 @@
 		71903C207C35EC4297E024A91AEBA665 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D8AF6B1E35992FCB1BA1D7A7452B4394 /* Debug */,
-				1CE179E49BB3337B0BB0EA7A09475916 /* Release */,
+				7B5323E687FE71F4803F31241970622A /* Debug */,
+				8B0D46B46FFCAF792EDE6F104FC105BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4390,8 +4717,8 @@
 		7A30A1B4B5C64B7177D21E129C72A9D7 /* Build configuration list for PBXNativeTarget "MKDropdownMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CA7666B4F6306D0CA7F5958FAFF18FE1 /* Debug */,
-				2711FF72089415D2245E1D70A3D7A8AC /* Release */,
+				6F88A81B4CC7E93D08D86470F7458A2A /* Debug */,
+				FACC7E83D15157CC3AEDED65103D3B6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4399,8 +4726,8 @@
 		8EDF3B8B941B6DC68EB1DD832CCC6E0E /* Build configuration list for PBXNativeTarget "MarsTimeConversion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5E1BEBF21C63F5CCA82F52B614655322 /* Debug */,
-				4EC538EB2CF2B66415AEF6CD25951414 /* Release */,
+				A8D7DA021965879DC03927C128D7E5F9 /* Debug */,
+				AF02CEC2EF7AE9F565CC9923998F0F3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4408,8 +4735,8 @@
 		934CDBA1E9BBC7B9EC5126D03A885FB8 /* Build configuration list for PBXNativeTarget "DACircularProgress" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DB4E5959D272694AC081CDEDC137D371 /* Debug */,
-				F351010D7FD7512613AF6608E4A01B69 /* Release */,
+				27561A4A75E5E4B9089325FDBFA4E550 /* Debug */,
+				441D31178ABE4C200B1A4BD77A159FBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4417,8 +4744,8 @@
 		94D7A15645E89B0F9CBCBECFBDC919E7 /* Build configuration list for PBXNativeTarget "SDWebImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7F1EFC1A7904FF313ADC2A58728C862B /* Debug */,
-				6FF95CB6CCD702795B6FB36EA0744B69 /* Release */,
+				6E68596EA24F7424F73DAEDFDCCDE4D1 /* Debug */,
+				69F6BF740D2E3C6EBFABDCE7955BDC7B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4426,8 +4753,17 @@
 		A4CC06BC8C046810D577388999A10378 /* Build configuration list for PBXNativeTarget "PSMenuItem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3072D888B187E97BA54BF0777A566BEA /* Debug */,
-				6B632875D1F0E58DD902F2A4945C3716 /* Release */,
+				30AAE38177610F9CEEF9BB711A1773C1 /* Debug */,
+				44C3823EE897A4F37CC28FEF561A6DC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCA9396F8356943C6FF889EA1234F20B /* Build configuration list for PBXNativeTarget "Pods-MarsImagesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BC62E0139AA01FC3970A1D9E9CE73B0 /* Debug */,
+				B3DD043A26FCE6C0463C22710890C90E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4435,8 +4771,8 @@
 		CDEC19CE7116C891461AE2553D65982A /* Build configuration list for PBXNativeTarget "SwinjectStoryboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				760A6AF95D7E2043C8A95C55A567A12B /* Debug */,
-				0AE7BF2CE3C858BB6CA90E754B1F5229 /* Release */,
+				01109AD69B0D1158A39D49B2483414BA /* Debug */,
+				8E8B73761FB7954289DE8FC17A9202F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4453,8 +4789,8 @@
 		FB438C74889D4F2EEC62D485E40B92C8 /* Build configuration list for PBXNativeTarget "ReachabilitySwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AFD0B335ECF3E898FFAA3B0DB9DAB68 /* Debug */,
-				D2E4992C3DC22293E5E58A315D908B05 /* Release */,
+				52D4B00F6D933C5ADE3B7388E96000EE /* Debug */,
+				000C2249FE8CE860045462474F2C6906 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
