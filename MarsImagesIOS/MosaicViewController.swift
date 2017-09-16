@@ -58,7 +58,7 @@ class MosaicViewController : UIViewController {
         scnScene.rootNode.addChildNode(cameraNode)
     }
     
-    func panGesture(gestureRecognize: UIPanGestureRecognizer){
+    func panGesture(gestureRecognize: UIPanGestureRecognizer) {
         
         switch gestureRecognize.state {
         case .began: previousTranslation = .zero
@@ -70,31 +70,9 @@ class MosaicViewController : UIViewController {
             previousTranslation = .zero
             currentTranslationDelta = .zero
         }
-        
-        updateCameraOrientation()
-//        let translation = gestureRecognize.translation(in: gestureRecognize.view!)
-//        
-//        let x = Float(translation.x)
-//        let y = Float(-translation.y)
-//        
-//        let anglePan = sqrt(pow(x,2)+pow(y,2))*(Float.pi)/180.0
-//        
-//        var rotationVector = SCNVector4()
-//        rotationVector.x = -y
-//        rotationVector.y = x
-//        rotationVector.z = 0
-//        rotationVector.w = anglePan
-//        
-//        cameraNode.rotation = rotationVector
-//        
-//        if (gestureRecognize.state == UIGestureRecognizerState.ended) {
-//            let currentPivot = cameraNode.pivot
-//            let changePivot = SCNMatrix4Invert( cameraNode.transform)
-//            cameraNode.pivot = SCNMatrix4Mult(changePivot, currentPivot)
-//            cameraNode.transform = SCNMatrix4Identity
-//        }
     }
     
+    //based on some nice work here: https://github.com/keithbhunter/PanoramicImageView/blob/master/PanoramicImageView.swift
     private func updateCameraOrientation() {
         let y = (currentTranslationDelta.x / scenekitView.bounds.size.width) * CGFloat.pi * 2
         let x = (currentTranslationDelta.y / scenekitView.bounds.size.height) * CGFloat.pi
