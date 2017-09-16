@@ -20,6 +20,7 @@
 		4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */; };
 		4A1680E91F2AA559004E30CC /* EvernoteMarsimageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */; };
 		4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680EA1F2AAFE9004E30CC /* Mission.swift */; };
+		4A19B3071F6CA146008BA1E6 /* mosaic.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A19B3061F6CA146008BA1E6 /* mosaic.scnassets */; };
 		4A27873F1F4F22D200CA47C7 /* ImageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */; };
 		4A28AA6D1F40BF1E006DEA66 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */; };
 		4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */; };
@@ -83,6 +84,7 @@
 		4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCatalog.swift; sourceTree = "<group>"; };
 		4A1680E81F2AA559004E30CC /* EvernoteMarsimageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteMarsimageCatalog.swift; sourceTree = "<group>"; };
 		4A1680EA1F2AAFE9004E30CC /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		4A19B3061F6CA146008BA1E6 /* mosaic.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = mosaic.scnassets; sourceTree = "<group>"; };
 		4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtility.swift; sourceTree = "<group>"; };
 		4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrow@3x.png"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				4AAAB5331F2E4485001D810D /* Views */,
 				4A1680B81F2A8ECE004E30CC /* Main.storyboard */,
 				4A1680BB1F2A8ECE004E30CC /* Assets.xcassets */,
+				4A19B3061F6CA146008BA1E6 /* mosaic.scnassets */,
 				4A1680BD1F2A8ECE004E30CC /* LaunchScreen.storyboard */,
 				4A1680C01F2A8ECE004E30CC /* Info.plist */,
 				4A1148501F2C67790046E047 /* Supporting Files */,
@@ -398,6 +401,7 @@
 				4A1680E31F2A8F32004E30CC /* Podfile in Resources */,
 				4A11484F1F2C67740046E047 /* placeholder.png in Resources */,
 				4A1680BA1F2A8ECE004E30CC /* Main.storyboard in Resources */,
+				4A19B3071F6CA146008BA1E6 /* mosaic.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
