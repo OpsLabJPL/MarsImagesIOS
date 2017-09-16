@@ -305,6 +305,27 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         let jsondata = cmod_string.data(using: .utf8)!
         return JSON(data:jsondata)
     }
+    
+    func getNearestRMC() -> (Int,Int)? {
+        for imageset in imagesets {
+            if imageset.title.range(of: "RMC", options: .backwards) != nil {
+                let rmcstring = String(imageset.title.characters.suffix(13))
+                let indices = rmcstring.components(separatedBy: "-")
+                let site = Int(indices[0])
+                let drive = Int(indices[1])
+            }
+        }
+        return nil
+    }
+    
+    func getNextRMC(rmc:(Int,Int)) -> (Int,Int)? {
+        return nil
+    }
+    
+    func getPreviousRMC(rmc:(Int,Int)) -> (Int,Int)? {
+        return nil
+    }
+
 }
 
 class EvernoteImageset : Imageset {

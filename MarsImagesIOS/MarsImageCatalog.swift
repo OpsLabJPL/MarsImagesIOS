@@ -51,6 +51,12 @@ protocol MarsImageCatalog {
     func changeToAnaglyph(leftAndRight: (Int,Int), imageIndex: Int)
     
     func stereoForImages(imagesetIndex: Int) -> (Int,Int)?
+    
+    func getNearestRMC() -> (Int,Int)?
+    
+    func getNextRMC(rmc:(Int,Int)) -> (Int,Int)?
+
+    func getPreviousRMC(rmc:(Int,Int)) -> (Int,Int)?
 
 }
 
