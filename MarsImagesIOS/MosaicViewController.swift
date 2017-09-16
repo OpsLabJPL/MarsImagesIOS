@@ -70,6 +70,7 @@ class MosaicViewController : UIViewController {
             previousTranslation = .zero
             currentTranslationDelta = .zero
         }
+        updateCameraOrientation()
     }
     
     //based on some nice work here: https://github.com/keithbhunter/PanoramicImageView/blob/master/PanoramicImageView.swift
