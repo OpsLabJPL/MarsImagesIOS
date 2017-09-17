@@ -13,6 +13,7 @@ target 'MarsImages' do
     pod 'ReachabilitySwift', '~> 3'
     pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
     pod 'PSMenuItem', '~> 0.0.1'
+    pod 'CSV.swift', '~> 2.0'
     
     target 'MarsImagesTests' do
         inherit! :search_paths

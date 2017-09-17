@@ -43,7 +43,11 @@ class Curiosity: Mission {
         self.instrumentIndex = 0
         self.sampleTypeIndex = 17
     }
-    
+
+    override func urlPrefix() -> String {
+        return "https://s3-us-west-1.amazonaws.com/msl-raws"
+    }
+
     override func rowTitle(_ title: String) -> String {
         return tokenize(title).instrumentName
     }

@@ -22,4 +22,7 @@ class Opportunity: MER {
         self.epoch = Calendar.current.date(from: comps)
     }
     
+    override func urlPrefix() -> String {
+        return "https://s3-us-west-1.amazonaws.com/merpublic"
+    }
 }

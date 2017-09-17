@@ -103,6 +103,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/EvernoteSDK/EvernoteSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
@@ -119,6 +120,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/EvernoteSDK/EvernoteSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"

@@ -7,26 +7,23 @@
 //
 
 import UIKit
-import MKDropdownMenu
 import MWPhotoBrowser
 import PSMenuItem
 import SDWebImage
 
 class MarsImageViewController : MWPhotoBrowser {
     
-    let dropdownMenuWidth = 140
-    let dropdownMenuRowHeight = 44
-
     var catalog:MarsImageCatalog?
     let leftIcon = UIImage.init(named: "leftArrow.png")
     let rightIcon = UIImage.init(named: "rightArrow.png")
     
     var drawerClosed = true
     var drawerButton = UIBarButtonItem()
-    var navBarMenu = MKDropdownMenu()
-    var navBarButton = UIBarButtonItem()
-    let menuItemNames = [ "Clock", "About", "Mosaic" ]
     var imageSelectionButton = UIBarButtonItem()
+    var infoButton = UIButton(type: UIButtonType.infoLight)
+    var aboutTheAppButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(showAboutView))
+    var mosaicViewButton = UIBarButtonItem(image: UIImage(named: "panorama_icon.png"), style: .plain, target: self, action: #selector(showMosaicView))
+    var timeViewButton = UIBarButtonItem(image: UIImage(named: "clock.png"), style: .plain, target: self, action: #selector(showTimeView))
     var selectedImageIndexInImageset = 0
     
     var popover:UIPopoverPresentationController?
@@ -44,16 +41,12 @@ class MarsImageViewController : MWPhotoBrowser {
     }
     
     func makeButtons() {
-        self.navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdownMenuWidth,height:dropdownMenuRowHeight))
-        self.navBarButton = UIBarButtonItem(customView: navBarMenu)
         drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(manageDrawer(_:)))
     }
     
     override func viewDidLoad() {
         SDImageCache.shared().maxMemoryCost = 0
 
-        navBarMenu.dataSource = self
-        navBarMenu.delegate = self
         PSMenuItem.installMenuHandler(for: self)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
@@ -65,6 +58,8 @@ class MarsImageViewController : MWPhotoBrowser {
         
         self.navigationItem.titleView = UILabel() //hide 1 of n title
         self.enableGrid = false //The default behavior of this grid feature doesn't work well. Refinement needed to make it good.
+        
+        aboutTheAppButton.image = infoButton.currentImage
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(closeDrawerSwipe))
         swipeLeft.direction = .left
@@ -119,9 +114,11 @@ class MarsImageViewController : MWPhotoBrowser {
     func addToolbarButtons() {
         //add image selection button to bottom toolbar
         if let toolbar = getToolbar() {
-            if var items = toolbar.items {
-                items.insert(imageSelectionButton, at: 0)
-                toolbar.setItems(items, animated: true)
+            let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            if let items = toolbar.items {
+                let share = items.last!
+                let buttons = [ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex, share]
+                toolbar.setItems(buttons, animated: true)
             }
         }
     }
@@ -129,7 +126,7 @@ class MarsImageViewController : MWPhotoBrowser {
     override func performLayout() {
         super.performLayout()
         //replace MWPhotoBrowser Done button with our action buttons
-        navigationItem.rightBarButtonItems = [ drawerButton, navBarButton]
+        navigationItem.rightBarButtonItems = [ drawerButton ]
         
         addToolbarButtons()
     }
@@ -222,6 +219,35 @@ class MarsImageViewController : MWPhotoBrowser {
             UIMenuController.shared.setMenuVisible(true, animated: true)
         }
     }
+    
+    func showAboutView() {
+        showPopoverVC("aboutVC")
+    }
+    
+    func showTimeView() {
+        showPopoverVC("timeVC")
+    }
+    
+    func showPopoverVC(_ vcName:String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: vcName)
+        vc.modalPresentationStyle = .popover
+        popover = vc.popoverPresentationController
+        if let presentationController = popover {
+            presentationController.delegate = self
+            presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
+            presentationController.sourceView = self.view
+            presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
+            presentationController.presentedViewController.preferredContentSize =
+                CGSize(width: self.view.bounds.size.width*0.8,
+                       height: self.view.bounds.size.height*0.8)
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func showMosaicView() {
+        performSegue(withIdentifier: "mosaic", sender: self)
+    }
 }
 
 extension MarsImageViewController : MWPhotoBrowserDelegate {
@@ -263,83 +289,6 @@ extension MarsImageViewController : MWPhotoBrowserDelegate {
 extension Notification.Name {
     static let openDrawer = Notification.Name("OpenDrawer")
     static let closeDrawer = Notification.Name("CloseDrawer")
-}
-
-extension MarsImageViewController: MKDropdownMenuDataSource {
-    func numberOfComponents(in dropdownMenu: MKDropdownMenu) -> Int {
-        return 1
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, numberOfRowsInComponent component: Int) -> Int {
-        return menuItemNames.count
-    }
-}
-
-extension MarsImageViewController: MKDropdownMenuDelegate {
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, didSelectRow row: Int, inComponent component: Int) {
-        dropdownMenu.closeAllComponents(animated: true)
-        let menuItemName = menuItemNames[row]
-        if menuItemName == "About" {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "aboutVC") as! AboutViewController
-            vc.modalPresentationStyle = .popover
-            popover = vc.popoverPresentationController
-            if let presentationController = popover {
-                presentationController.delegate = self
-                presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
-                presentationController.sourceView = self.view
-                presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
-                presentationController.presentedViewController.preferredContentSize =
-                    CGSize(width: self.view.bounds.size.width*0.8,
-                            height: self.view.bounds.size.height*0.8)
-                self.present(vc, animated: true, completion: nil)
-            }
-        }
-        else if menuItemName == "Clock" {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "timeVC") as! TimeViewController
-            vc.modalPresentationStyle = .popover
-            popover = vc.popoverPresentationController
-            if let presentationController = popover {
-                presentationController.delegate = self
-                presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
-                presentationController.sourceView = self.view
-                presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
-                presentationController.presentedViewController.preferredContentSize =
-                    CGSize(width: self.view.bounds.size.width*0.8,
-                           height: self.view.bounds.size.height*0.8)
-                self.present(vc, animated: true, completion: nil)
-            }
-        }
-        else if menuItemName == "Mosaic" {
-            performSegue(withIdentifier: "mosaic", sender: self)
-        }
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, widthForComponent component: Int) -> CGFloat {
-        return CGFloat(dropdownMenuWidth)
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, rowHeightForComponent component: Int) -> CGFloat {
-        return CGFloat(dropdownMenuRowHeight)
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForComponent component: Int) -> String? {
-        return ""
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, titleForRow row: Int, forComponent component: Int) -> String? {
-        return menuItemNames[row]
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, backgroundColorForRow row: Int, forComponent component: Int) -> UIColor? {
-        return UIColor.white
-    }
-    
-    func dropdownMenu(_ dropdownMenu: MKDropdownMenu, shouldUseFullRowWidthForComponent component: Int) -> Bool {
-        return false
-    }
 }
 
 extension MarsImageViewController: UIPopoverPresentationControllerDelegate {

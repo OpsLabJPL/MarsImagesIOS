@@ -47,6 +47,7 @@ class ImageUtility {
         filter.setValue(ciImage, forKey: kCIInputBackgroundImageKey)
         let outputImage = filter.outputImage!
 
+        //TODO had a crash here once. Watch for it again.
         let cgimg = context.createCGImage(outputImage, from: outputImage.extent)!
         return UIImage(cgImage: cgimg)
     }

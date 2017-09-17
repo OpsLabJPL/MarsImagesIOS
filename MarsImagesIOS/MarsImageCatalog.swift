@@ -14,6 +14,8 @@ let numImagesetsReturnedKey = "numImagesetsReturnedKey"
 extension Notification.Name {
     static let beginImagesetLoading = Notification.Name("BeginImagesetLoading")
     static let endImagesetLoading = Notification.Name("EndImagesetLoading")
+    static let locationsLoaded = Notification.Name("LocationsLoaded")
+    static let namedLocationsLoaded = Notification.Name("NamedLocationsLoaded")
 }
 
 protocol MarsImageCatalog {
@@ -57,6 +59,10 @@ protocol MarsImageCatalog {
     func getNextRMC(rmc:(Int,Int)) -> (Int,Int)?
 
     func getPreviousRMC(rmc:(Int,Int)) -> (Int,Int)?
+    
+    func getLocations() -> [(Int,Int)]?
+    
+    func getNamedLocations() -> [String:(Int,Int)]?
 
 }
 

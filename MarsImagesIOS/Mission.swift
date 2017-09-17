@@ -36,6 +36,10 @@ class Mission {
         return userDefaults.value(forKey: missionKey) as! String
     }
     
+    func urlPrefix() -> String {
+        return ""
+    }
+   
     func sol(_ title: String) -> Int {
         let tokens = title.components(separatedBy: " ")
         if tokens.count >= 2 {

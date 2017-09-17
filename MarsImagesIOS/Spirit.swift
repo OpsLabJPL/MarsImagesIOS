@@ -22,4 +22,8 @@ class Spirit: MER {
         comps.timeZone = TimeZone(abbreviation: "UTC")
         self.epoch = Calendar.current.date(from: comps)
     }
+    
+    override func urlPrefix() -> String {
+        return "https://s3-us-west-1.amazonaws.com/merpublic/spirit"
+    }
 }
