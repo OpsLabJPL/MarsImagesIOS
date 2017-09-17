@@ -12,6 +12,8 @@ import SceneKit
 
 class MosaicViewController : UIViewController {
     
+    var catalog:MarsImageCatalog?
+    var mosaicLoader:MosaicLoader?
     var scenekitView: SCNView!
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
@@ -49,6 +51,10 @@ class MosaicViewController : UIViewController {
         scnScene = SCNScene(named: "mosaic.scnassets/mosaic.scn")
         scenekitView.scene = scnScene
         cameraNode = scnScene.rootNode.childNode(withName: "camera", recursively: true)!
+        if let rmc = catalog!.getNearestRMC() {
+            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalog!)
+            mosaicLoader?.addImagesToScene(rmc, scene: scnScene)
+        }
     }
 
     func setupCamera() {

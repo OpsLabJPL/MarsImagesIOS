@@ -34,6 +34,7 @@
 		4A8AE58C1F6DFC5300FD729C /* panorama_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5861F6DFC5300FD729C /* panorama_icon@2x.png */; };
 		4A8AE58D1F6DFC5300FD729C /* panorama_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */; };
 		4A8AE58E1F6DFC5300FD729C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5881F6DFC5300FD729C /* clock.png */; };
+		4A8AE5941F6EF98E00FD729C /* MosaicLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */; };
 		4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */; };
 		4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */; };
 		4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */; };
@@ -107,6 +108,7 @@
 		4A8AE5861F6DFC5300FD729C /* panorama_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@2x.png"; sourceTree = "<group>"; };
 		4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@3x.png"; sourceTree = "<group>"; };
 		4A8AE5881F6DFC5300FD729C /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLoader.swift; sourceTree = "<group>"; };
 		4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftDrawerViewController.swift; sourceTree = "<group>"; };
 		4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				4AE403651F4A4A5F00163394 /* Model.swift */,
 				4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */,
 				4A9DE9D51F2C15CC0059C9C9 /* Spirit.swift */,
+				4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */,
 				4A8BB26E1F2D532400E07B49 /* MarsImageCaptionView.swift in Sources */,
 				4AE403661F4A4A5F00163394 /* Model.swift in Sources */,
+				4A8AE5941F6EF98E00FD729C /* MosaicLoader.swift in Sources */,
 				4A1680E91F2AA559004E30CC /* EvernoteMarsImageCatalog.swift in Sources */,
 				4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */,
 				4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */,

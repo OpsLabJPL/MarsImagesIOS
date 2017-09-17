@@ -26,6 +26,10 @@ extension SwinjectStoryboard {
             controller.catalog = resolver.resolve(MarsImageCatalog.self)
         }
         
+        defaultContainer.storyboardInitCompleted(MosaicViewController.self) { resolver, controller in
+            controller.catalog = resolver.resolve(MarsImageCatalog.self)
+        }
+
         defaultContainer.register(MarsImageCatalog.self) { _ in EvernoteMarsImageCatalog(missionName: Mission.currentMissionName()) }
             .inObjectScope(.container) //make it a singleton        
     }
