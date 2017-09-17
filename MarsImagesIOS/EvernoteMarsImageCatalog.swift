@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Alamofire
+import CSV
 import EvernoteSDK
 import ReachabilitySwift
 import SwiftyJSON
@@ -41,6 +43,9 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var imagesetsForSol: [Int : [Imageset]] = [:]
 
     var marsphotos:[MarsPhoto] = []
+    
+    var locations:[(Int,Int)]?
+    var namedLocations:[String:(Int,Int)]?
     
     var reachability: Reachability
     
@@ -313,19 +318,69 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 let indices = rmcstring.components(separatedBy: "-")
                 let site = Int(indices[0])
                 let drive = Int(indices[1])
+                //TODO finish impl
             }
         }
         return nil
     }
     
     func getNextRMC(rmc:(Int,Int)) -> (Int,Int)? {
+        //TODO finish impl
         return nil
     }
     
     func getPreviousRMC(rmc:(Int,Int)) -> (Int,Int)? {
+        //TODO finish impl
         return nil
     }
 
+    func getLocations() -> [(Int,Int)]? {
+    
+        if locations != nil {
+            return locations
+        }
+    
+        let urlPrefix = Mission.currentMission().urlPrefix()
+        let locationsURL = URL(string: "\(urlPrefix)/locations/location_manifest.csv")!
+        Alamofire.request(locationsURL).responseString{ response in
+            if let csvString = response.result.value {
+                let csv = try! CSVReader(string: csvString)
+                self.locations = []
+                while let row = csv.next() {
+                    let site = Int(row[0])!
+                    let drive = Int(row[1])!
+                    self.locations?.append((site,drive))
+                }
+                NotificationCenter.default.post(name: .locationsLoaded, object: nil, userInfo:nil)
+            }
+        }
+        return locations
+    }
+    
+    func getNamedLocations() -> [String:(Int,Int)]? {
+        
+        if namedLocations != nil {
+            return namedLocations
+        }
+        
+        let urlPrefix = Mission.currentMission().urlPrefix()
+        let locationsURL = URL(string: "\(urlPrefix)/locations/named_locations.csv")!
+        Alamofire.request(locationsURL).responseString{ response in
+            if let csvString = response.result.value {
+                let csv = try! CSVReader(string: csvString)
+                self.namedLocations = [:]
+                while let row = csv.next() {
+                    let site = Int(row[0])!
+                    let drive = Int(row[1])!
+                    let locationName = row[2]
+                    self.namedLocations![locationName] = (site,drive)
+                }
+                NotificationCenter.default.post(name: .namedLocationsLoaded, object: nil, userInfo:nil)
+
+            }
+        }
+        return namedLocations
+    }
 }
 
 class EvernoteImageset : Imageset {
