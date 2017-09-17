@@ -312,25 +312,61 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     }
     
     func getNearestRMC() -> (Int,Int)? {
+        var userSite = 0
+        var userDrive = 0
+        
         for imageset in imagesets {
             if imageset.title.range(of: "RMC", options: .backwards) != nil {
                 let rmcstring = String(imageset.title.characters.suffix(13))
                 let indices = rmcstring.components(separatedBy: "-")
-                let site = Int(indices[0])
-                let drive = Int(indices[1])
-                //TODO finish impl
+                userSite = Int(indices[0])!
+                userDrive = Int(indices[1])!
+                break
+            }
+        }
+
+        if let locations = self.locations {
+            var location = locations.last!
+            if userSite != 0 || userDrive != 0 {
+                for rmc in locations.reversed() {
+                    if rmc.0*100000+rmc.1 < userSite*100000+userDrive {
+                        break
+                    }
+                    location = rmc
+                }
+                return location
             }
         }
         return nil
     }
     
     func getNextRMC(rmc:(Int,Int)) -> (Int,Int)? {
-        //TODO finish impl
+        if locations == nil {
+            _ = getLocations()
+        }
+        if let locations = self.locations {
+            for i in 0..<locations.count {
+                let location = locations[i]
+                if location.0 == rmc.0 && location.1 == rmc.1 && i<locations.count-1 {
+                    return locations[i+1]
+                }
+            }
+        }
         return nil
     }
     
     func getPreviousRMC(rmc:(Int,Int)) -> (Int,Int)? {
-        //TODO finish impl
+        if locations == nil {
+            _ = getLocations()
+        }
+        if let locations = self.locations {
+            for i in 0..<locations.count {
+                let location = locations[i]
+                if location.0 == rmc.0 && location.1 == rmc.1 && i>0 {
+                    return locations[i-1]
+                }
+            }
+        }
         return nil
     }
 
