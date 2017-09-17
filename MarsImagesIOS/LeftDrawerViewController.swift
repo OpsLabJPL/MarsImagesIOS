@@ -20,23 +20,12 @@ class LeftDrawerViewController : UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(closeDrawer), name: .closeDrawer, object: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func leftDrawerButtonPressed(_ sender: Any) {
         if leftDrawerHidden {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.leftDrawerLeadingConstraint.constant = 0
-                self.view.layoutIfNeeded()
-            })
+            openDrawer()
         }
         else {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.leftDrawerLeadingConstraint.constant = -240
-                self.view.layoutIfNeeded()
-            })
+            closeDrawer()
         }
         leftDrawerHidden = !leftDrawerHidden
     }
