@@ -100,11 +100,13 @@ class MarsImageViewController : MWPhotoBrowser {
     func openDrawer() {
         drawerClosed = false
         drawerButton.image = leftIcon
+        addToolbarButtons()
     }
     
     func closeDrawer() {
         drawerClosed = true
         drawerButton.image = rightIcon
+        addToolbarButtons()
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
@@ -116,10 +118,20 @@ class MarsImageViewController : MWPhotoBrowser {
         if let toolbar = getToolbar() {
             let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             if let items = toolbar.items {
+                setImageSelectionButtonWidth()
                 let share = items.last!
-                let buttons = [ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex, share]
-                toolbar.setItems(buttons, animated: true)
+                if (drawerClosed) {
+                    toolbar.setItems([ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex, share], animated: true)
+                } else {
+                    toolbar.setItems([ imageSelectionButton, flex, share], animated: true)
+                }
             }
+        }
+    }
+    
+    func setImageSelectionButtonWidth() {
+        if let title = imageSelectionButton.title {
+            imageSelectionButton.width = title.width(withConstraintedHeight: getToolbar()!.frame.size.height, font: UIFont.systemFont(ofSize: 20))
         }
     }
     
@@ -171,6 +183,7 @@ class MarsImageViewController : MWPhotoBrowser {
             imageName = catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset)
         }
         imageSelectionButton.title = imageName
+        setImageSelectionButtonWidth()
         getToolbar()?.setNeedsLayout()
     }
     
@@ -199,6 +212,7 @@ class MarsImageViewController : MWPhotoBrowser {
                 self.catalog!.changeToImage(imagesetIndex: Int(self.currentIndex), imageIndexInSet: r)
                 self.reloadData()
                 self.imageSelectionButton.title = imageName
+                self.setImageSelectionButtonWidth()
             })!
             menuItems.append(menuItem)
         }
@@ -209,6 +223,7 @@ class MarsImageViewController : MWPhotoBrowser {
                 self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.currentIndex))
                 self.reloadData()
                 self.imageSelectionButton.title = "Anaglyph"
+                self.setImageSelectionButtonWidth()
             })!
             menuItems.append(menuItem)
         }
@@ -293,4 +308,20 @@ extension Notification.Name {
 
 extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
     
+}
+
+extension String {
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        
+        return ceil(boundingBox.height)
+    }
+    
+    func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        
+        return ceil(boundingBox.width)
+    }
 }
