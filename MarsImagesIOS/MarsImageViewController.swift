@@ -100,13 +100,17 @@ class MarsImageViewController : MWPhotoBrowser {
     func openDrawer() {
         drawerClosed = false
         drawerButton.image = leftIcon
-        addToolbarButtons()
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            addToolbarButtons()
+        }
     }
     
     func closeDrawer() {
         drawerClosed = true
         drawerButton.image = rightIcon
-        addToolbarButtons()
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            addToolbarButtons()
+        }
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
@@ -120,7 +124,7 @@ class MarsImageViewController : MWPhotoBrowser {
             if let items = toolbar.items {
                 setImageSelectionButtonWidth()
                 let share = items.last!
-                if (drawerClosed || UIDevice.current.userInterfaceIdiom == .pad) {
+                if (drawerClosed) {
                     toolbar.setItems([ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex, share], animated: true)
                 } else {
                     toolbar.setItems([ imageSelectionButton, flex, share], animated: true)
