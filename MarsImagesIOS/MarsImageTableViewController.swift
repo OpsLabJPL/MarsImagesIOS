@@ -81,15 +81,8 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     func defaultsChanged() {
-        let mission = Mission.currentMissionName()
-        //TODO move this to Catalog
-//    if (! [[MarsImageNotebook instance].missionName isEqualToString:mission]) {
-//        [[MarsImageNotebook instance] reloadLocations];
-//        [MarsImageNotebook instance].searchWords = nil;
-//    }
-        
-        catalog?.mission = mission
-        updateImagesets()
+        let mission = Mission.currentMissionName()        
+        catalog?.mission = mission //setting mission will reload catalog images and locations
         navBarMenu?.reloadAllComponents()
     }
     
@@ -116,11 +109,11 @@ class MarsImageTableViewController: UITableViewController {
         }
     }
     
-    func updateImagesets() {
-        catalog?.reload()
-        tableView.reloadData()
-//        [self.refreshControl endRefreshing]; TODO UIRefreshControl
-    }
+//    func updateImagesets() {
+//        catalog?.reload()
+//        tableView.reloadData()
+////        [self.refreshControl endRefreshing]; TODO UIRefreshControl
+//    }
     
     func selectAndScrollToRow(imageIndex: Int) {
         guard imageIndex >= 0 || imageIndex < catalog!.imagesetCount else {

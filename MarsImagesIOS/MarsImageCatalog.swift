@@ -63,6 +63,8 @@ protocol MarsImageCatalog {
     func getLocations() -> [(Int,Int)]?
     
     func getNamedLocations() -> [String:(Int,Int)]?
+    
+    func reloadLocations()
 
 }
 
