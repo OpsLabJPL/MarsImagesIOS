@@ -73,5 +73,22 @@ class CameraModel {
         }
         return CAHV()
     }
+    
+    static func pointingVector(_ modelJson:JSON) -> [Double] {
+        return vectorFromJSON(tripleKey: "camera_vector", modelJson: modelJson)
+    }
+    
+    static func origin(_ modelJson:JSON) -> [Double] {
+        return vectorFromJSON(tripleKey: "origin", modelJson: modelJson)
+    }
 
+    private static func vectorFromJSON(tripleKey:String, modelJson:JSON) -> [Double] {
+        let model = modelJson.arrayValue[1]
+        let comps = model[tripleKey]
+        let x:Double = Double(comps.arrayValue[0].stringValue)!
+        let y:Double = Double(comps.arrayValue[1].stringValue)!
+        let z:Double = Double(comps.arrayValue[2].stringValue)!
+        return [x,y,z]
+    }
+    
 }

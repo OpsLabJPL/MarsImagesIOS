@@ -16,12 +16,14 @@ class Mission {
     static let CURIOSITY = "Curiosity"
     let EARTH_SECS_PER_MARS_SEC = 1.027491252
     static let missions:[String:Mission] = [OPPORTUNITY: Opportunity(), SPIRIT: Spirit(), CURIOSITY: Curiosity()]
+    static let slashAndDot = CharacterSet(charactersIn: "/.")
     
     var epoch:Date?
     var formatter:DateFormatter
     var eyeIndex = 0
     var instrumentIndex = 0
     var sampleTypeIndex = 0
+    var cameraFOVs = [String:Double]()
     
     static func currentMission() -> Mission {
         return missions[currentMissionName()]!
@@ -34,6 +36,13 @@ class Mission {
             userDefaults.synchronize()
         }
         return userDefaults.value(forKey: missionKey) as! String
+    }
+    
+    static func imageId(url:String) -> String {
+        let tokens = url.components(separatedBy: slashAndDot)
+        let numTokens = tokens.count
+        let imageId = tokens[numTokens-2]
+        return imageId.removingPercentEncoding ?? ""
     }
     
     func urlPrefix() -> String {
@@ -102,6 +111,28 @@ class Mission {
         let erange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+1)
         return imageId[erange]
     }
+    
+    func getCameraId(imageId: String) -> String {
+        print("You should never call me: override me in a subclass instead.")
+        return ""    
+    }
+    
+    func getCameraFOV(cameraId:String) -> Double {
+        let fov = cameraFOVs[cameraId]
+        guard fov != nil else {
+            print("Brown alert: requested camera FOV for unrecognized camera id: \(cameraId)")
+            return 0.0
+        }
+        return fov!
+    }
+    
+    func layer(cameraId:String) -> Int {
+        if cameraId.hasPrefix("N") {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
 
 }
 
@@ -112,4 +143,25 @@ class Title {
     var marsLocalTime = ""
     var siteIndex = 0
     var driveIndex = 0
+}
+
+// http://www.dracotorre.com/blog/swift-substrings/
+// extend String to enable sub-script with Int to get Character or sub-string
+extension String
+{
+    subscript (i: Int) -> Character {
+        return self[self.index(self.startIndex, offsetBy: i)]
+    }
+    
+    // for convenience we should include String return
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = self.index(self.startIndex, offsetBy: r.lowerBound)
+        let end = self.index(self.startIndex, offsetBy: r.upperBound)
+        
+        return self[start...end]
+    }
 }

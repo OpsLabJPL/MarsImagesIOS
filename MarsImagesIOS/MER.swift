@@ -34,6 +34,8 @@ class MER: Mission {
         self.eyeIndex = 23
         self.instrumentIndex = 1
         self.sampleTypeIndex = 12
+        self.cameraFOVs["N"] = 0.78539816
+        self.cameraFOVs["P"] = 0.27925268
     }
     
     override func getSortableImageFilename(url: String) -> String {
@@ -239,6 +241,15 @@ class MER: Mission {
     
     func isStereo(instrument:String) -> Bool {
         return instrument == "F" || instrument == "R" || instrument == "N" || instrument == "P"
+    }
+    
+    
+    override func getCameraId(imageId: String) -> String {
+        if imageId.range(of:"Sol") != nil {
+            return "P";
+        } else {
+            return imageId[1]
+        }
     }
 }
 

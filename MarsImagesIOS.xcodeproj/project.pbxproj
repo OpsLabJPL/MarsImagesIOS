@@ -258,9 +258,9 @@
 				4A9DE9D11F2C15B00059C9C9 /* MER.swift */,
 				4A1680EA1F2AAFE9004E30CC /* Mission.swift */,
 				4AE403651F4A4A5F00163394 /* Model.swift */,
+				4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */,
 				4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */,
 				4A9DE9D51F2C15CC0059C9C9 /* Spirit.swift */,
-				4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
