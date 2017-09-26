@@ -251,6 +251,10 @@ class MER: Mission {
             return imageId[1]
         }
     }
+    
+    override func mastPosition() -> [Double] {
+        return [0.456,0.026,-1.0969]
+    }
 }
 
 class MERTitle: Title {

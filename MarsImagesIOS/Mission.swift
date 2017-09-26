@@ -133,6 +133,11 @@ class Mission {
             return 1;
         }
     }
+    
+    func mastPosition() -> [Double] {
+        print("You should never call me: override me in a subclass instead.")
+        return [0,0,0]
+    }
 
 }
 

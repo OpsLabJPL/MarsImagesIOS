@@ -120,8 +120,8 @@ class MarsPhoto: MWPhoto {
             return 0.0
         }
         
-        let v1 = CameraModel.pointingVector(self.modelJson!)
-        let v2 = CameraModel.pointingVector(otherImage.modelJson!)
+        let v1 = CameraModelUtils.pointingVector(self.modelJson!)
+        let v2 = CameraModelUtils.pointingVector(otherImage.modelJson!)
         let dotProduct = dot(v1,v2)
         return acos(dotProduct)
     }

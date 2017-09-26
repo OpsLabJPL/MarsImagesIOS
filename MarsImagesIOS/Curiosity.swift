@@ -162,4 +162,7 @@ class Curiosity: Mission {
         return nil
     }
 
+    override func mastPosition() -> [Double] {
+        return [0.80436, 0.55942, -1.90608]
+    }
 }

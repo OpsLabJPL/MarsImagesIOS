@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CAHV: Model {
+class CAHV: CameraModel {
     
     var xdim:Double = 0
     var ydim:Double = 0

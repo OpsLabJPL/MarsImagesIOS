@@ -307,8 +307,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             let rightResource = imageset.note.resources[rightImageIndex]
 
             //check width and height of left and right images and don't return them unless they match
-            let leftModel = CameraModel.model(getModelJSON(leftResource))
-            let rightModel = CameraModel.model(getModelJSON(rightResource))
+            let leftModel = CameraModelUtils.model(getModelJSON(leftResource))
+            let rightModel = CameraModelUtils.model(getModelJSON(rightResource))
             let leftWidth = leftModel.xdim
             let rightWidth = rightModel.xdim
             let leftHeight = leftModel.ydim
