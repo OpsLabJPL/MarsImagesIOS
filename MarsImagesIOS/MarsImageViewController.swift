@@ -159,9 +159,11 @@ class MarsImageViewController : MWPhotoBrowser {
     }
     
     func imagesetsLoaded(notification: Notification) {
-        self.reloadData()
-        //need to reload the image in case the mission has changed and current image page index has stayed the same
-        self.photo(at: self.currentIndex)?.performLoadUnderlyingImageAndNotify()
+        DispatchQueue.main.async {
+            self.reloadData()
+            //need to reload the image in case the mission has changed and current image page index has stayed the same
+            self.photo(at: self.currentIndex)?.performLoadUnderlyingImageAndNotify()
+        }
     }
     
     func imageSelected(notification:Notification) {
