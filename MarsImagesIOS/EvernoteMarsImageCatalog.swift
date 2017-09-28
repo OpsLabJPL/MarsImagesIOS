@@ -18,6 +18,13 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var mission:String {
         didSet {
             notestore = nil //force reconnect for new notebook
+            locations = nil
+            namedLocations = nil
+            searchWords = ""
+            DispatchQueue.global().async {
+                _ = self.getLocations()
+                _ = self.getNamedLocations()
+            }
         }
     }
     
@@ -84,6 +91,13 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         sols.removeAll()
         solIndices.removeAll()
         loadMoreNotes(startIndex: 0, total: notePageSize)
+    }
+    
+    func reloadLocations() {
+        locations = nil
+        namedLocations = nil
+        _ = getLocations()
+        _ = getNamedLocations()
     }
     
     func loadNextPage() {
@@ -169,7 +183,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         let resource = imageset.note.resources[imageIndex]
         let resGUID = resource.guid!
         let imageURL = "\(userinfo!.webApiUrlPrefix!)res/\(resGUID)"
-        return MarsPhoto(url:URL(string:imageURL)!, imageset: imageset, indexInImageset: imageIndex)
+        let marsPhoto = MarsPhoto(url:URL(string:imageURL)!, imageset: imageset, indexInImageset: imageIndex, sourceUrl: resource.attributes.sourceURL, modelJsonString: resource.attributes.cameraModel)
+        return marsPhoto
     }
     
     func reorderResources(_ note:EDAMNote) -> EDAMNote {
@@ -292,8 +307,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             let rightResource = imageset.note.resources[rightImageIndex]
 
             //check width and height of left and right images and don't return them unless they match
-            let leftModel = CameraModel.model(getModelJSON(leftResource))
-            let rightModel = CameraModel.model(getModelJSON(rightResource))
+            let leftModel = CameraModelUtils.model(getModelJSON(leftResource))
+            let rightModel = CameraModelUtils.model(getModelJSON(rightResource))
             let leftWidth = leftModel.xdim
             let rightWidth = rightModel.xdim
             let leftHeight = leftModel.ydim
@@ -383,8 +398,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 let csv = try! CSVReader(string: csvString)
                 self.locations = []
                 while let row = csv.next() {
-                    let site = Int(row[0])!
-                    let drive = Int(row[1])!
+                    let site = Int(row[0].trimmingCharacters(in: .whitespacesAndNewlines))!
+                    let drive = Int(row[1].trimmingCharacters(in: .whitespacesAndNewlines))!
                     self.locations?.append((site,drive))
                 }
                 NotificationCenter.default.post(name: .locationsLoaded, object: nil, userInfo:nil)
@@ -406,9 +421,9 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 let csv = try! CSVReader(string: csvString)
                 self.namedLocations = [:]
                 while let row = csv.next() {
-                    let site = Int(row[0])!
-                    let drive = Int(row[1])!
-                    let locationName = row[2]
+                    let site = Int(row[0].trimmingCharacters(in: .whitespacesAndNewlines))!
+                    let drive = Int(row[1].trimmingCharacters(in: .whitespacesAndNewlines))!
+                    let locationName = row[2].trimmingCharacters(in: .whitespacesAndNewlines)
                     self.namedLocations![locationName] = (site,drive)
                 }
                 NotificationCenter.default.post(name: .namedLocationsLoaded, object: nil, userInfo:nil)

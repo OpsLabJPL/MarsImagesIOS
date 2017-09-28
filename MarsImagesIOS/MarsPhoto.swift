@@ -9,6 +9,7 @@
 import Foundation
 import MWPhotoBrowser
 import SDWebImage
+import SwiftyJSON
 
 class MarsPhoto: MWPhoto {
     
@@ -16,16 +17,26 @@ class MarsPhoto: MWPhoto {
     var imageset:Imageset
     var indexInImageset:Int
     var isLoading = false
+    var sourceUrl:String
+    var modelJson:JSON?
     
     weak var leftImage:UIImage?
     weak var rightImage:UIImage?
     var leftAndRight:(String,String)?
+    var isIncludedInMosaic:Bool {
+        return imageset.title.range(of:"Navcam") != nil
+            || imageset.title.range(of:"Mastcam Left") != nil
+            || imageset.title.range(of:"Pancam") != nil
+    }
     
-    
-    init (url:URL, imageset: Imageset, indexInImageset: Int) {
+    init (url:URL, imageset: Imageset, indexInImageset: Int, sourceUrl:String, modelJsonString:String?) {
         self.url = url
         self.imageset = imageset
         self.indexInImageset = indexInImageset
+        self.sourceUrl = sourceUrl
+        if let model = modelJsonString {
+            modelJson = JSON.parse(model)
+        }
         super.init(url:url)
         self.caption = Mission.currentMission().caption(self.imageset.title)
     }
@@ -34,6 +45,7 @@ class MarsPhoto: MWPhoto {
         self.imageset = imageset
         self.leftAndRight = leftAndRight
         self.url = URL(string:leftAndRight.0)!
+        self.sourceUrl = ""
         self.indexInImageset = 0
         super.init()
         self.caption = Mission.currentMission().caption(self.imageset.title)
@@ -95,6 +107,23 @@ class MarsPhoto: MWPhoto {
     func imageLoadComplete() {
         isLoading = false
         NotificationCenter.default.post(name: .mwphotoLoadingDidEndNotification, object: self)
+    }
+    
+    func fieldOfView() -> Double {
+        let imageId = Mission.imageId(url: sourceUrl)
+        let cameraId = Mission.currentMission().getCameraId(imageId: imageId)
+        return Mission.currentMission().getCameraFOV(cameraId: cameraId) 
+    }
+    
+    func angularDistance(otherImage:MarsPhoto) -> Double {
+        guard modelJson != nil && otherImage.modelJson != nil else {
+            return 0.0
+        }
+        
+        let v1 = CameraModelUtils.pointingVector(self.modelJson!)
+        let v2 = CameraModelUtils.pointingVector(otherImage.modelJson!)
+        let dotProduct = dot(v1,v2)
+        return acos(dotProduct)
     }
 }
 

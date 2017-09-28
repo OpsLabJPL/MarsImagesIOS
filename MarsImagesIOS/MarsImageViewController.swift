@@ -68,7 +68,7 @@ class MarsImageViewController : MWPhotoBrowser {
         swipeRight.direction = .right
         self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
         catalog?.reload()
-
+        catalog?.reloadLocations()
         super.viewDidLoad()
         
         imageSelectionButton = UIBarButtonItem(title:"", style:.plain, target:self, action:#selector(imageSelectionPressed))

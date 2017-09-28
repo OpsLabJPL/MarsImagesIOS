@@ -1,5 +1,5 @@
 //
-//  CameraModel.swift
+//  Model.swift
 //  MarsImagesIOS
 //
 //  Created by Powell, Mark W (397F) on 8/20/17.
@@ -9,10 +9,20 @@
 import Foundation
 import SwiftyJSON
 
-class CameraModel {
+protocol CameraModel {
+    
+    var xdim:Double {get set}
+    var ydim:Double {get set}
+    
+    func cmod_2d_to_3d(pos2:[Double], pos3: inout [Double], uvec3: inout [Double])
+    
+    func cmod_3d_to_2d(pos3:[Double], range: inout [Double], pos2: inout [Double])
+}
 
-    static func model(_ json: JSON) -> Model {
-        var returnedModel: Model?
+class CameraModelUtils {
+    
+    static func model(_ json: JSON) -> CameraModel {
+        var returnedModel: CameraModel?
         var type = ""
         var mtype:Double
         var mparm:Double
@@ -36,7 +46,7 @@ class CameraModel {
         let area = dimensions["area"].arrayValue
         width = area[0].doubleValue
         height = area[1].doubleValue
-
+        
         if type == "CAHV" {
             let cahv = CAHV()
             cahv.c = [cDict![0].doubleValue, cDict![1].doubleValue, cDict![2].doubleValue]
@@ -73,5 +83,23 @@ class CameraModel {
         }
         return CAHV()
     }
-
+    
+    static func pointingVector(_ modelJson:JSON) -> [Double] {
+        return vectorFromJSON(tripleKey: "camera_vector", modelJson: modelJson)
+    }
+    
+    static func origin(_ modelJson:JSON) -> [Double] {
+        return vectorFromJSON(tripleKey: "origin", modelJson: modelJson)
+    }
+    
+    private static func vectorFromJSON(tripleKey:String, modelJson:JSON) -> [Double] {
+        let model = modelJson.arrayValue[1]
+        let comps = model[tripleKey]
+        let x:Double = Double(comps.arrayValue[0].stringValue)!
+        let y:Double = Double(comps.arrayValue[1].stringValue)!
+        let z:Double = Double(comps.arrayValue[2].stringValue)!
+        return [x,y,z]
+    }
+    
 }
+

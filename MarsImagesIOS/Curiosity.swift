@@ -42,6 +42,10 @@ class Curiosity: Mission {
         self.eyeIndex = 1
         self.instrumentIndex = 0
         self.sampleTypeIndex = 17
+        self.cameraFOVs["NL"] = 0.785398163
+        self.cameraFOVs["NR"] = 0.785398163
+        self.cameraFOVs["ML"] = 0.261799388
+        self.cameraFOVs["MR"] = 0.087266463
     }
 
     override func urlPrefix() -> String {
@@ -122,6 +126,15 @@ class Curiosity: Mission {
         return instrument == "F" || instrument == "R" || instrument == "N"
     }
     
+    override func getCameraId(imageId: String) -> String {
+        let c:Character = imageId[0]
+        if c >= "0" && c <= "9" {
+            return imageId[4..<5]
+        } else {
+            return imageId[0..<1]
+        }
+    }
+    
     override func stereoImageIndices(imageIDs: [String]) -> (Int,Int)? {
         let imageid = imageIDs[0]
         let instrument = getInstrument(imageId: imageid)
@@ -149,4 +162,7 @@ class Curiosity: Mission {
         return nil
     }
 
+    override func mastPosition() -> [Double] {
+        return [0.80436, 0.55942, -1.90608]
+    }
 }
