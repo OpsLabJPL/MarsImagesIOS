@@ -65,6 +65,8 @@ protocol MarsImageCatalog {
     func getNamedLocations() -> [String:(Int,Int)]?
     
     func reloadLocations()
+    
+    func localLevelQuaternion(_ rmc:(Int, Int), completionHandler:@escaping (Quaternion)->(Void))
 
 }
 

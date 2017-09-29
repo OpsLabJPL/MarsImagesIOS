@@ -14,16 +14,19 @@ class MosaicLoader {
     var catalog:MarsImageCatalog
     var photosInScene = [String:MarsPhoto]()
     var photoQuads = [String:ImageQuad]()
-    var qLL:Quaternion
+    var qLL = Quaternion()
     var scene:SCNScene
     
     init(rmc:(Int,Int), catalog:MarsImageCatalog, scene:SCNScene) {
         self.rmc = rmc
         self.catalog = catalog
         self.scene = scene
-        qLL = Quaternion() // catalog.localLevelQuaternion(rmc) TODO
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
-        addImagesToScene()
+
+        catalog.localLevelQuaternion(rmc, completionHandler: { quaternion in
+            self.qLL = quaternion
+            self.addImagesToScene()
+        })
     }
     
     func addImagesToScene() {

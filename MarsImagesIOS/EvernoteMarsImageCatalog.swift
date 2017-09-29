@@ -20,6 +20,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             notestore = nil //force reconnect for new notebook
             locations = nil
             namedLocations = nil
+            llQuaternions = nil
             searchWords = ""
             DispatchQueue.global().async {
                 _ = self.getLocations()
@@ -53,6 +54,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
     var locations:[(Int,Int)]?
     var namedLocations:[String:(Int,Int)]?
+    var llQuaternions: [Int:[Int:Quaternion]]?
     
     var reachability: Reachability
     
@@ -431,6 +433,42 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             }
         }
         return namedLocations
+    }
+    
+    func localLevelQuaternion(_ rmc: (Int, Int), completionHandler: @escaping (Quaternion) -> (Void)) {
+        let site = rmc.0, drive = rmc.1
+        
+        if llQuaternions == nil {
+            llQuaternions = Dictionary()
+        }
+        if llQuaternions![site] == nil {
+            llQuaternions![site] = Dictionary()
+        }
+        
+        if let qLL = llQuaternions![site]![drive] {
+            //already cached, our work here is done:
+            completionHandler(qLL)
+        } else {
+            //gotta go fetch it from the network
+            let urlPrefix = Mission.currentMission().urlPrefix()
+            let site6 = String(format:"%06d", site)
+            let siteCSVURL = URL(string: "\(urlPrefix)/locations/site_\(site6).csv")!
+            Alamofire.request(siteCSVURL).responseString{ response in
+                if let csvString = response.result.value {
+                    let csv = try! CSVReader(string: csvString)
+                    while let row = csv.next() {
+                        let driveIndex = Int(row[0].trimmingCharacters(in: .whitespacesAndNewlines))!
+                        let q = Quaternion()
+                        q.w = Double(row[1].trimmingCharacters(in: .whitespacesAndNewlines))!
+                        q.x = Double(row[2].trimmingCharacters(in: .whitespacesAndNewlines))!
+                        q.y = Double(row[3].trimmingCharacters(in: .whitespacesAndNewlines))!
+                        q.z = Double(row[4].trimmingCharacters(in: .whitespacesAndNewlines))!
+                        self.llQuaternions![site]![driveIndex] = q
+                    }
+                    completionHandler(self.llQuaternions![site]![drive]!)
+                }
+            }
+        }
     }
 }
 
