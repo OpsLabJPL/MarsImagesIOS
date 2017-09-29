@@ -13,15 +13,20 @@ class MosaicLoader {
     var rmc:(Int,Int)
     var catalog:MarsImageCatalog
     var photosInScene = [String:MarsPhoto]()
+    var photoQuads = [String:ImageQuad]()
+    var qLL:Quaternion
+    var scene:SCNScene
     
-    init(rmc:(Int,Int), catalog:MarsImageCatalog) {
+    init(rmc:(Int,Int), catalog:MarsImageCatalog, scene:SCNScene) {
         self.rmc = rmc
         self.catalog = catalog
+        self.scene = scene
+        qLL = Quaternion() // catalog.localLevelQuaternion(rmc) TODO
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
+        addImagesToScene()
     }
     
-    func addImagesToScene(_ rmc: (Int,Int), scene: SCNScene) {
-        self.rmc = rmc
+    func addImagesToScene() {
         catalog.searchWords = String(format:"%06d-%06d", rmc.0, rmc.1)
         catalog.reload()
     }
@@ -34,12 +39,21 @@ class MosaicLoader {
         }
         if numLoaded! > 0 {
             //not done loading imagesets, request to load remaining
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { //TODO: should this be on main? here to prevent deadlock on download queue
                 self.catalog.loadNextPage()
             }
         } else {
             //all done loading imagesets, add them all to the scene
             binImagesByPointing(catalog.marsphotos)
+            var mosaicCount = 0
+            for (title, photo) in photosInScene {
+                if let model = photo.modelJson {
+                    mosaicCount += 1
+                    let imageId = photo.imageId()
+                    photoQuads[title] = ImageQuad(model: CameraModelUtils.model(model), qLL: qLL, imageId: imageId)
+                    scene.rootNode.addChildNode(photoQuads[title]!.node)
+                }
+            }
         }
     }
     

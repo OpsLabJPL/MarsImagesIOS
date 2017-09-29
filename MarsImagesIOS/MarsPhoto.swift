@@ -115,6 +115,10 @@ class MarsPhoto: MWPhoto {
         return Mission.currentMission().getCameraFOV(cameraId: cameraId) 
     }
     
+    func imageId() -> String {
+        return Mission.imageId(url: sourceUrl)
+    }
+    
     func angularDistance(otherImage:MarsPhoto) -> Double {
         guard modelJson != nil && otherImage.modelJson != nil else {
             return 0.0

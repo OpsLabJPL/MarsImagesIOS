@@ -10,6 +10,10 @@ import SceneKit
 
 class ImageQuad {
     
+    public static let numberOfPositions = 4
+    public static let textureCoords = [0.0, 1, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
+    public static let vertexIndices:[UInt8] = [0,1,2,1,3,2]
+    
     let mast = Mission.currentMission().mastPosition()
     let xAxis = [1.0,0.0,0.0]
     let yAxis = [0.0,1.0,0.0]
@@ -19,7 +23,9 @@ class ImageQuad {
     var qLL:Quaternion
     var imageId:String
     
-    var vertexSource:SCNGeometrySource?
+    var node = SCNNode()
+    var cameraId:String
+    var vertexSource = SCNGeometrySource()
     var center = SCNVector3()
     var boundingSphereRadius = 0.0
     var corners = [SCNVector3]()
@@ -31,16 +37,40 @@ class ImageQuad {
         self.model = model
         self.qLL = qLL
         self.imageId = imageId
-        let cameraId = Mission.currentMission().getCameraId(imageId: imageId)
+        self.cameraId = Mission.currentMission().getCameraId(imageId: imageId)
         self.layer = Mission.currentMission().layer(cameraId: cameraId)
         
-        addCorner([0.0, model.ydim])
-        addCorner([model.xdim, model.ydim])
-        addCorner([model.xdim, 0.0])
-        addCorner([0.0, 0.0])
+        self.addCorner([0.0, model.ydim])
+        self.addCorner([model.xdim, model.ydim])
+        self.addCorner([0.0, 0.0])
+        self.addCorner([model.xdim, 0.0])
         center.x = (corners[0].x+corners[2].x)/2
         center.y = (corners[0].y+corners[2].y)/2
         center.z = (corners[0].z+corners[2].z)/2
+        
+        vertexSource = SCNGeometrySource(vertices: corners)
+        let indexData = Data(bytes: ImageQuad.vertexIndices) //(bytes: ImageQuad.vertexIndices, length: 6)
+        let element = SCNGeometryElement(data: indexData, primitiveType: .line, primitiveCount: 6, bytesPerIndex: MemoryLayout<UInt8>.size)
+        let geometry = SCNGeometry(sources: [vertexSource], elements: [element])
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.yellow
+
+        geometry.firstMaterial = material
+        node = SCNNode(geometry: geometry)
+    }
+    
+    func cameraFOVRadians(cameraId: String) -> Float {
+        if let fov = Mission.currentMission().cameraFOVs[cameraId] {
+            return Float(fov)
+        }
+        return 0
+    }
+    
+    func distanceBetween(pt1:SCNVector3, pt2:SCNVector3) -> Float {
+        let dx = pt1.x-pt2.x;
+        let dy = pt1.y-pt2.y;
+        let dz = pt1.z-pt2.z;
+        return Float(sqrt(dx*dx+dy*dy+dz*dz))
     }
     
     func addCorner(_ pos:[Double]) {

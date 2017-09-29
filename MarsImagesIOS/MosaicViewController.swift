@@ -52,8 +52,7 @@ class MosaicViewController : UIViewController {
         scenekitView.scene = scnScene
         cameraNode = scnScene.rootNode.childNode(withName: "camera", recursively: true)!
         if let rmc = catalog!.getNearestRMC() {
-            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalog!)
-            mosaicLoader?.addImagesToScene(rmc, scene: scnScene)
+            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalog!, scene: scnScene)
         }
     }
 
