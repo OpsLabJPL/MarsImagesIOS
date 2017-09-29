@@ -10,9 +10,8 @@ import SceneKit
 
 class ImageQuad {
     
-    public static let numberOfPositions = 4
-    public static let textureCoords = [0.0, 1, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
-    public static let vertexIndices:[UInt8] = [0,1,2,1,3,2]
+    let textureCoords = [0.0, 1, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
+    let triangleIndices:[Int32] = [0,1,2,1,3,2]
     
     let mast = Mission.currentMission().mastPosition()
     let xAxis = [1.0,0.0,0.0]
@@ -25,7 +24,13 @@ class ImageQuad {
     
     var node = SCNNode()
     var cameraId:String
-    var vertexSource = SCNGeometrySource()
+    var quadVertexSource = SCNGeometrySource()
+    var triangleGeometryElement = SCNGeometryElement()
+    var triangleGeometry = SCNGeometry()
+    
+    var outlineGeometryElements = [SCNGeometryElement]()
+    var outlineGeometry = SCNGeometry()
+    
     var center = SCNVector3()
     var boundingSphereRadius = 0.0
     var corners = [SCNVector3]()
@@ -48,15 +53,23 @@ class ImageQuad {
         center.y = (corners[0].y+corners[2].y)/2
         center.z = (corners[0].z+corners[2].z)/2
         
-        vertexSource = SCNGeometrySource(vertices: corners)
-        let indexData = Data(bytes: ImageQuad.vertexIndices) //(bytes: ImageQuad.vertexIndices, length: 6)
-        let element = SCNGeometryElement(data: indexData, primitiveType: .line, primitiveCount: 6, bytesPerIndex: MemoryLayout<UInt8>.size)
-        let geometry = SCNGeometry(sources: [vertexSource], elements: [element])
+        quadVertexSource = SCNGeometrySource(vertices: corners)
+        triangleGeometryElement = SCNGeometryElement(indices: triangleIndices, primitiveType: .triangles)
+        triangleGeometry = SCNGeometry(sources: [quadVertexSource], elements: [triangleGeometryElement])
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.yellow
 
-        geometry.firstMaterial = material
-        node = SCNNode(geometry: geometry)
+        triangleGeometry.firstMaterial = material
+        
+        outlineGeometryElements = [
+            SCNGeometryElement(indices:[Int32(0), Int32(1)], primitiveType: .line),
+            SCNGeometryElement(indices:[Int32(1), Int32(3)], primitiveType: .line),
+            SCNGeometryElement(indices:[Int32(3), Int32(2)], primitiveType: .line),
+            SCNGeometryElement(indices:[Int32(2), Int32(0)], primitiveType: .line)
+        ]
+        outlineGeometry = SCNGeometry(sources: [quadVertexSource], elements: outlineGeometryElements)
+        outlineGeometry.firstMaterial = material
+        node = SCNNode(geometry: outlineGeometry)
     }
     
     func cameraFOVRadians(cameraId: String) -> Float {
