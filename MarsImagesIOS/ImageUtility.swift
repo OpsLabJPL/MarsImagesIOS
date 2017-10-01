@@ -51,4 +51,13 @@ class ImageUtility {
         let cgimg = context.createCGImage(outputImage, from: outputImage.extent)!
         return UIImage(cgImage: cgimg)
     }
+    
+    static func image(_ image:UIImage, scaledTo:CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(scaledTo, false, 1.0)
+        image.draw(in: CGRect(x:0, y:0, width:scaledTo.width, height:scaledTo.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+
 }

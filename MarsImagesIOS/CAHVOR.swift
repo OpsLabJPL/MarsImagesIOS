@@ -35,7 +35,7 @@ class CAHVOR : CAHV {
         var poly = 0.0
         var pp = [0.0, 0.0, 0.0]
         var rr = [0.0, 0.0, 0.0]
-//        var t = [0.0, 0.0, 0.0]
+        var t = [0.0, 0.0, 0.0]
         var tau = 0.0
         var u = 0.0
         var u_2 = 0.0
@@ -55,20 +55,20 @@ class CAHVOR : CAHV {
         magi = 1.0/magi
         scale(magi, rr, &rr)
         
-        /* Check and optionally correct for vector directions. */
-//        sgn = 1
-//        cross(v, h, &t)
-//        if dot(t, a) < 0 {
-//            scale(-1.0, rr, &rr)
+        // Check and optionally correct for vector directions.
+//        var sgn = 1
+        cross(v, h, &t)
+        if dot(t, a) < 0 {
+            scale(-1.0, rr, &rr)
 //            sgn = -1
-//        }
+        }
         
         /* Remove the radial lens distortion.  Preliminary values of omega,  */
         /* lambda, and tau are computed from the rr vector including         */
         /* distortion, in order to obtain the coefficients of the equation   */
         /* k5*u^5 + k3*u^3 + k1*u = 1, which is solved for u by means of     */
         /* Newton's method.  This value is used to compute the corrected rr. */
-        omega = dot(r, o)
+        omega = dot(rr, o)
         omega_2 = omega * omega
         scale(omega, o, &wo)
         sub(rr, wo, &lambda)

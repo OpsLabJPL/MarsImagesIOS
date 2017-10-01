@@ -10,8 +10,8 @@ import SceneKit
 
 class ImageQuad {
     
-    let textureCoords = [0.0, 1, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0]
-    let triangleIndices:[Int32] = [0,1,2,1,3,2]
+    static let yellow = UIColor.yellow.withAlphaComponent(0.25)
+    let triangleIndices:[Int32] = [0,1,2,3]
     
     let mast = Mission.currentMission().mastPosition()
     let xAxis = [1.0,0.0,0.0]
@@ -31,11 +31,10 @@ class ImageQuad {
     var outlineGeometryElements = [SCNGeometryElement]()
     var outlineGeometry = SCNGeometry()
     
-    var center = SCNVector3()
-    var boundingSphereRadius = 0.0
+    var yellowMaterial = SCNMaterial()
+    
     var corners = [SCNVector3]()
-    var deltas = [Double]()
-    var textureSize = 16
+    var textureSize = 0
     var layer:Int
     
     public init(model:CameraModel, qLL:Quaternion, imageId:String) {
@@ -45,45 +44,34 @@ class ImageQuad {
         self.cameraId = Mission.currentMission().getCameraId(imageId: imageId)
         self.layer = Mission.currentMission().layer(cameraId: cameraId)
         
-        self.addCorner([0.0, model.ydim])
-        self.addCorner([model.xdim, model.ydim])
-        self.addCorner([0.0, 0.0])
-        self.addCorner([model.xdim, 0.0])
-        center.x = (corners[0].x+corners[2].x)/2
-        center.y = (corners[0].y+corners[2].y)/2
-        center.z = (corners[0].z+corners[2].z)/2
+        self.addCorner([0.0, 0.0])        //upper left
+        self.addCorner([0.0, model.ydim]) //lower left
+        self.addCorner([model.xdim, 0.0]) //upper right
+        self.addCorner([model.xdim, model.ydim]) //lower right
         
         quadVertexSource = SCNGeometrySource(vertices: corners)
-        triangleGeometryElement = SCNGeometryElement(indices: triangleIndices, primitiveType: .triangles)
-        triangleGeometry = SCNGeometry(sources: [quadVertexSource], elements: [triangleGeometryElement])
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.yellow
+        let uvSource = SCNGeometrySource(textureCoordinates:
+            [CGPoint(x:0,y:0), CGPoint(x:0,y:1), CGPoint(x:1,y:0), CGPoint(x:1,y:1)])
+        triangleGeometryElement = SCNGeometryElement(indices: triangleIndices, primitiveType: .triangleStrip)
+        triangleGeometry = SCNGeometry(sources: [quadVertexSource, uvSource], elements: [triangleGeometryElement])
 
-        triangleGeometry.firstMaterial = material
-        
         outlineGeometryElements = [
             SCNGeometryElement(indices:[Int32(0), Int32(1)], primitiveType: .line),
             SCNGeometryElement(indices:[Int32(1), Int32(3)], primitiveType: .line),
-            SCNGeometryElement(indices:[Int32(3), Int32(2)], primitiveType: .line),
+            SCNGeometryElement(indices:[Int32(2), Int32(3)], primitiveType: .line),
             SCNGeometryElement(indices:[Int32(2), Int32(0)], primitiveType: .line)
         ]
         outlineGeometry = SCNGeometry(sources: [quadVertexSource], elements: outlineGeometryElements)
-        outlineGeometry.firstMaterial = material
+        yellowMaterial.diffuse.contents = ImageQuad.yellow
+        outlineGeometry.firstMaterial = yellowMaterial
         node = SCNNode(geometry: outlineGeometry)
     }
     
-    func cameraFOVRadians(cameraId: String) -> Float {
+    func cameraFOVRadians() -> Double {
         if let fov = Mission.currentMission().cameraFOVs[cameraId] {
-            return Float(fov)
+            return fov
         }
-        return 0
-    }
-    
-    func distanceBetween(pt1:SCNVector3, pt2:SCNVector3) -> Float {
-        let dx = pt1.x-pt2.x;
-        let dy = pt1.y-pt2.y;
-        let dz = pt1.z-pt2.z;
-        return Float(sqrt(dx*dx+dy*dy+dz*dz))
+        return 0.0
     }
     
     func addCorner(_ pos:[Double]) {

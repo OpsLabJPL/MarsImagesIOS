@@ -14,27 +14,27 @@ func epsilonEquals(_ a:Double, _ b:Double) -> Bool {
     return fabs(a-b) <= 0.001
 }
 
-func isPowerOfTwo(x:Int) -> Bool {
+func isPowerOfTwo(_ x:Int) -> Bool {
     let exp = log2(Double(x))
     return epsilonEquals(round(exp), exp)
 }
 
-func ceilingPowerOfTwo(x:Double) -> Int {
+func ceilingPowerOfTwo(_ x:Double) -> Int {
     let y = ceil(log2(x))
     return Int(pow(2.0, y))
 }
 
-func floorPowerOfTwo(x:Double) -> Int {
+func floorPowerOfTwo(_ x:Double) -> Int {
     let y = floor(log2(x))
     return Int(pow(2.0, y))
 }
 
-func nextHighestPowerOfTwo(n:Int) -> Int {
+func nextHighestPowerOfTwo(_ n:Int) -> Int {
     let y = floor(log2(Double(n)))
     return Int(pow(2.0, y + 1))
 }
 
-func nextLowestPowerOfTwo(n:Int) -> Int {
+func nextLowestPowerOfTwo(_ n:Int) -> Int {
     let y = floor(log2(Double(n)))
     return Int(pow(2.0, y - 1))
 }
@@ -61,7 +61,6 @@ func sub(_ a:[Double], _ b:[Double], _ c: inout [Double]) {
     c[0] = a[0]-b[0]
     c[1] = a[1]-b[1]
     c[2] = a[2]-b[2]
-    
 }
 
 func cross(_ a:[Double], _ b:[Double], _ c: inout [Double]) {
