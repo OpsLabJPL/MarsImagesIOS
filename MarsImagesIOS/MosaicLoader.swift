@@ -81,22 +81,8 @@ class MosaicLoader {
                 //set triangle geometry and load or draw texture
                 if node.geometry != imageQuad.triangleGeometry {
                     if let texture = imageTextures[title] {
-                        print("Texture size: \(texture.size.width),\(texture.size.height)")
                         if node.geometry != imageQuad.triangleGeometry {
-                            //add texture
-                            if imageQuad.triangleGeometry.firstMaterial?.diffuse.contents as? UIImage != texture {
-                                let textureMaterial = SCNMaterial()
-                                textureMaterial.diffuse.contents = texture
-                                imageQuad.triangleGeometry.firstMaterial = textureMaterial
-                                imageQuad.outlineGeometry.firstMaterial?.diffuse.contents = UIColor.clear
-                            }
-                            node.geometry = imageQuad.triangleGeometry
-                        }
-                        
-                        //recheck texture size to make sure it's optimal for display, else request a reload
-                        let textureSize = computeBestTextureResolution(imageQuad)
-                        if (textureSize != imageQuad.textureSize) {
-                            loadImageAndTexture(title)
+                            setTriangleGeometry(texture, imageQuad, node)
                         }
                     } else {
                         loadImageAndTexture(title)
@@ -105,13 +91,15 @@ class MosaicLoader {
                     if let texture = imageTextures[title] {
                         if imageQuad.triangleGeometry.firstMaterial?.diffuse.contents as? UIImage != texture {
                             imageQuad.triangleGeometry.firstMaterial?.diffuse.contents = texture
-                        }
-                        //recheck texture size to make sure it's optimal for display, else request a reload
-                        let textureSize = computeBestTextureResolution(imageQuad)
-                        if (textureSize != imageQuad.textureSize) {
-                            loadImageAndTexture(title)
+                            imageQuad.textureSize = Int(texture.size.width)
                         }
                     }
+                }
+                //recheck texture size to make sure it's optimal for display, else request a reload
+                let textureSize = computeBestTextureResolution(imageQuad)
+                if (textureSize != imageQuad.textureSize) {
+                    print("have size \(imageQuad.textureSize), need size \(textureSize) for \(title)")
+                    loadImageAndTexture(title)
                 }
             }
             
@@ -128,14 +116,25 @@ class MosaicLoader {
         }
     }
     
+    func setTriangleGeometry(_ texture: UIImage, _ imageQuad: ImageQuad, _ node: SCNNode) {
+        //add texture
+        if imageQuad.triangleGeometry.firstMaterial?.diffuse.contents as? UIImage != texture {
+            let textureMaterial = SCNMaterial()
+            textureMaterial.diffuse.contents = texture
+            imageQuad.textureSize = Int(texture.size.width)
+            imageQuad.triangleGeometry.firstMaterial = textureMaterial
+            imageQuad.outlineGeometry.firstMaterial?.diffuse.contents = UIColor.clear
+        }
+        node.geometry = imageQuad.triangleGeometry
+    }
+    
     func loadImageAndTexture(_ title: String) {
         if let photo = imagesInScene[title] {
             if photo.underlyingImage == nil {
                 if photo.isLoading == false {
                     photo.performLoadUnderlyingImageAndNotify()
                 }
-            }
-             else {
+            } else {
                 makeTexture(title, photo)
                 //TODO this the old way: manage my own textures. Still need?
 //            [photo unloadUnderlyingImage]; //after making texture, improves memory management quite significantly
@@ -161,8 +160,8 @@ class MosaicLoader {
     func makeTexture(_ title: String, _ photo: MarsPhoto) {
         if let image = photo.underlyingImage {
             let quad = imageQuads[title]!
-            quad.textureSize = computeBestTextureResolution(quad)
-            imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:quad.textureSize, height:quad.textureSize))
+            let textureSize = computeBestTextureResolution(quad)
+            imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize))
         }
     }
     

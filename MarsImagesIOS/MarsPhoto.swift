@@ -109,6 +109,11 @@ class MarsPhoto: MWPhoto {
         NotificationCenter.default.post(name: .mwphotoLoadingDidEndNotification, object: self)
     }
     
+    override func unloadUnderlyingImage() {
+        isLoading = false
+        super.unloadUnderlyingImage()
+    }
+    
     func fieldOfView() -> Double {
         let imageId = Mission.imageId(url: sourceUrl)
         let cameraId = Mission.currentMission().getCameraId(imageId: imageId)
