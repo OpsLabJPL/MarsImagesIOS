@@ -14,6 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var catalog:MarsImageCatalog?
+    var backgroundTask:UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+    var soldata = NSMutableDictionary()
+    var fetchCompletionHandler:((UIBackgroundFetchResult) -> Void)?
+    var path:String?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -29,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         catalog = SwinjectStoryboard.defaultContainer.resolve(MarsImageCatalog.self)
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        path = paths.appending("latestsols.plist")
+
         return true
     }
     
@@ -43,53 +51,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
-        var soldataNeedsWriteUpdate = false
+        fetchCompletionHandler = completionHandler
         
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let path = paths.appending("latestsols.plist")
-        var soldata = NSMutableDictionary()
-        let dictFromFile = NSMutableDictionary(contentsOfFile:path)
+        self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
+            application.endBackgroundTask(self.backgroundTask)
+            self.backgroundTask = UIBackgroundTaskInvalid
+        })
+        let dictFromFile = NSMutableDictionary(contentsOfFile:path!)
         if let dictFromFile = dictFromFile {
             soldata = dictFromFile
-        } else {
-            soldataNeedsWriteUpdate = true
         }
-        let oppyLastKnownSol = soldata.object(forKey: Mission.OPPORTUNITY)
-        let mslLastKnownSol = soldata.object(forKey: Mission.CURIOSITY)
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(checkOppyImages), name: .endImagesetLoading, object: nil)
         catalog?.mission = Mission.OPPORTUNITY
-        catalog?.reload()
-        if let oppyImageSet = catalog?.imagesets[0] {
-            let oppyLatestSol = oppyImageSet.sol
-            if let oppyLatestSol = oppyLatestSol {
-                soldata.setValue(oppyLatestSol, forKey: Mission.OPPORTUNITY)
-                if oppyLastKnownSol != nil && oppyLatestSol > oppyLastKnownSol as! Int {
-                    soldataNeedsWriteUpdate = true
-                    displayLocalNotification(application, message: "New images from Opportunity sol \(oppyLatestSol) have arrived!")
+    }
+    
+    func checkOppyImages() {
+        DispatchQueue.global().async {
+            let oppyLastKnownSol = self.soldata.object(forKey: Mission.OPPORTUNITY)
+            if let oppyImageSet = self.catalog?.imagesets[0] {
+                let oppyLatestSol = oppyImageSet.sol
+                if let oppyLatestSol = oppyLatestSol {
+                    self.soldata.setValue(oppyLatestSol, forKey: Mission.OPPORTUNITY)
+                    if oppyLastKnownSol != nil && oppyLatestSol > oppyLastKnownSol as! Int {
+                        self.displayLocalNotification(UIApplication.shared, message: "New images from Opportunity sol \(oppyLatestSol) have arrived!")
+                    }
                 }
             }
+            NotificationCenter.default.removeObserver(self)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.checkMslImages), name: .endImagesetLoading, object: nil)
+            self.catalog?.mission = Mission.CURIOSITY
         }
-        
-        catalog?.mission = Mission.CURIOSITY
-        catalog?.reload()
+    }
+    
+    func checkMslImages() {
+        let mslLastKnownSol = soldata.object(forKey: Mission.CURIOSITY)
         if let mslImageSet = catalog?.imagesets[0] {
             let mslLatestSol = mslImageSet.sol
             if let mslLatestSol = mslLatestSol {
                 soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)
                 if mslLastKnownSol != nil && mslLatestSol > mslLastKnownSol as! Int {
-                    soldataNeedsWriteUpdate = true
-                    displayLocalNotification(application, message:"New image from Curiosity sol \(mslLatestSol) have arrived!")
+                    displayLocalNotification(UIApplication.shared, message:"New image from Curiosity sol \(mslLatestSol) have arrived!")
                 }
             }
         }
+        NotificationCenter.default.removeObserver(self)
         
-        if soldataNeedsWriteUpdate {
-            soldata.write(toFile: path, atomically: true)
-            completionHandler(.newData)
-        } else {
-            completionHandler(.noData)
-        }
+        soldata.write(toFile: path!, atomically: true)
+        fetchCompletionHandler!(.newData)
+        UIApplication.shared.endBackgroundTask(self.backgroundTask)
+        self.backgroundTask = UIBackgroundTaskInvalid
     }
     
     func displayLocalNotification(_ application: UIApplication, message:String) {
