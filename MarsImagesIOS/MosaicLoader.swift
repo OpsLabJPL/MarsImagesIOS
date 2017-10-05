@@ -34,7 +34,7 @@ class MosaicLoader {
             self.addImagesToScene()
         })
         
-      SDImageCache.shared().maxMemoryCost = 128000
+        SDImageCache.shared().maxMemoryCost = 128000
     }
     
     func addImagesToScene() {
@@ -50,19 +50,22 @@ class MosaicLoader {
         }
         if numLoaded! > 0 {
             //not done loading imagesets, request to load remaining
-            DispatchQueue.global().async {
-                self.catalog.loadNextPage()
+            if self.catalog.hasMoreImages() {
+                DispatchQueue.global().async {
+                    self.catalog.loadNextPage()
+                }
             }
-        } else {
-            //all done loading imagesets, add them all to the scene
-            binImagesByPointing(catalog.marsphotos)
-            var mosaicCount = 0
-            for (title, photo) in imagesInScene {
-                if let model = photo.modelJson {
-                    mosaicCount += 1
-                    let imageId = photo.imageId()
-                    imageQuads[title] = ImageQuad(model: CameraModelUtils.model(model), qLL: qLL, imageId: imageId)
-                    scene.rootNode.addChildNode(imageQuads[title]!.node)
+            else {
+                //all done loading imagesets, add them all to the scene
+                binImagesByPointing(catalog.marsphotos)
+                var mosaicCount = 0
+                for (title, photo) in imagesInScene {
+                    if let model = photo.modelJson {
+                        mosaicCount += 1
+                        let imageId = photo.imageId()
+                        imageQuads[title] = ImageQuad(model: CameraModelUtils.model(model), qLL: qLL, imageId: imageId)
+                        scene.rootNode.addChildNode(imageQuads[title]!.node)
+                    }
                 }
             }
         }

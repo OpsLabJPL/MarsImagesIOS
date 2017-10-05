@@ -22,6 +22,8 @@ protocol MarsImageCatalog {
 
     func reload()
     
+    func hasMoreImages() -> Bool
+    
     func loadNextPage()
     
     var mission:String { get set }

@@ -218,7 +218,8 @@ class MarsImageTableViewController: UITableViewController {
         let imageCount = imagesets.count
         let lastSection = sectionCount - 1
         let lastImageset = imageCount - 1
-        if sectionCount > 0 &&
+        if catalog!.hasMoreImages() &&
+            sectionCount > 0 &&
             lastSection == indexPath.section && lastImageset == indexPath.row {
             catalog!.loadNextPage()
         }

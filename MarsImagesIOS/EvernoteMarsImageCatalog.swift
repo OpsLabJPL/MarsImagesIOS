@@ -31,10 +31,12 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
     var searchWords = "" {
         didSet {
+            isSearchComplete = false
             reload()
         }
     }
     
+    var isSearchComplete = false
     var notestore: EDAMNoteStoreClient?
     var userinfo: EDAMPublicUserInfo?
     var user:String?
@@ -85,6 +87,10 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         }
     }
     
+    func hasMoreImages() -> Bool {
+        return !isSearchComplete
+    }
+    
     func reload() {
         imagesetsForSol.removeAll()
         imagesets.removeAll()
@@ -130,13 +136,20 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         
         guard reachability.isReachable else {
             NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:0])
+            isSearchComplete = true
             return
+        }
+        
+        if isSearchComplete {
+            print("You should not be asking to loadMoreNotes when the search is already complete.")
         }
     
         connect()
         
         EvernoteMarsImageCatalog.noteDownloadQueue.sync {
-            guard self.imagesets.count <= startIndex else { return }
+            guard self.imagesets.count <= startIndex else {
+                return
+            }
         
             NotificationCenter.default.post(name: .beginImagesetLoading, object: nil)
 
@@ -171,8 +184,13 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                         print("Brown alert: sections and sols counts don't match each other.")
                     }
                 }
+                
+                isSearchComplete = Int(notelist.totalNotes) - (Int(notelist.startIndex) + notelist.notes.count) <= 0
+                
                 NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
-           }
+            } else {
+                isSearchComplete = true
+            }
         }
     }
     

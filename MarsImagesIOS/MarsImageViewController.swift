@@ -285,7 +285,7 @@ extension MarsImageViewController : MWPhotoBrowserDelegate {
     
     func photoBrowser(_ photoBrowser: MWPhotoBrowser!, didDisplayPhotoAt index: UInt) {
         let count = UInt(catalog!.imagesetCount)
-        if index == count-1 {
+        if index == count-1  && catalog!.hasMoreImages() {
             catalog!.loadNextPage()
         }
         let dict:[String:Any] = [ Constants.imageIndexKey: Int(index), Constants.senderKey: self ]
