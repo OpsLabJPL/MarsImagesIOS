@@ -50,7 +50,7 @@ class MosaicLoader {
         }
         if numLoaded! > 0 {
             //not done loading imagesets, request to load remaining
-            DispatchQueue.main.async { //TODO: should this be on main? here to prevent deadlock on download queue
+            DispatchQueue.global().async {
                 self.catalog.loadNextPage()
             }
         } else {
