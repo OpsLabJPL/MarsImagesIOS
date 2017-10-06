@@ -1,39 +1,37 @@
 PODS:
   - Alamofire (4.5.0)
   - CSV.swift (2.1.0)
-  - DACircularProgress (2.3.1)
   - EvernoteSDK (3.0.0)
   - MarsTimeConversion (0.1.9)
-  - MBProgressHUD (0.9.2)
+  - MediaBrowser (1.0.1):
+    - SDWebImage (~> 4.0.0)
+    - UICircularProgressRing (~> 1.7.2)
   - MKDropdownMenu (1.4)
-  - MWPhotoBrowser (2.1.2):
-    - DACircularProgress (~> 2.3)
-    - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
   - PSMenuItem (0.0.1)
   - ReachabilitySwift (3)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
-  - SwiftMessages (3.5.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SwiftMessages (4.0.0)
   - SwiftyJSON (3.1.4)
   - Swinject (2.1.1)
   - SwinjectStoryboard (1.1.2):
     - Swinject (~> 2.1)
+  - UICircularProgressRing (1.7.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
-  - CSV.swift (~> 2.1)
-  - EvernoteSDK (~> 3.0)
+  - Alamofire (~> 4)
+  - CSV.swift (~> 2)
+  - EvernoteSDK (~> 3)
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
-  - MKDropdownMenu (~> 1.4)
-  - MWPhotoBrowser (~> 2.1)
+  - MediaBrowser (~> 1)
+  - MKDropdownMenu (~> 1)
   - PSMenuItem (~> 0.0.1)
   - ReachabilitySwift (~> 3)
-  - SwiftMessages (~> 3.5)
-  - SwiftyJSON (~> 3.1)
-  - Swinject (~> 2.1)
-  - SwinjectStoryboard (~> 1.1.2)
+  - SwiftMessages (~> 4)
+  - SwiftyJSON (~> 3)
+  - Swinject (~> 2)
+  - SwinjectStoryboard (~> 1)
 
 EXTERNAL SOURCES:
   MarsTimeConversion:
@@ -47,20 +45,19 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
   MarsTimeConversion: 6684058841ac55567b1b5c8d38fdf2bde3533cde
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MediaBrowser: 3ffd5d6cf55831e9f424953b4b5a8bb16333c1c8
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
-  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   PSMenuItem: e81c682356ca17734fc85b3b37abdda75748de54
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SwiftMessages: 323c2847255ebf380f01b95ad1121a750be4d117
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SwiftMessages: cd565e0e7d095584be1770c012c6b5be4183b5ee
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwinjectStoryboard: 92e75763c3299cdf627bef98a5180dc894864336
+  UICircularProgressRing: 5aca63423d913dc967661370e94e2af0770dd9cd
 
-PODFILE CHECKSUM: de274810d8d250745974a09e070697f05119fdd2
+PODFILE CHECKSUM: 5beeea4d2889e855c6bec12b28e441a2b9f858d9
 
 COCOAPODS: 1.3.1
