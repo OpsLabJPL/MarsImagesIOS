@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import MWPhotoBrowser
+import MediaBrowser
 import SDWebImage
 import SwiftyJSON
 
-class MarsPhoto: MWPhoto {
+class MarsPhoto: Media {
     
     var url:URL
     var imageset:Imageset
@@ -29,7 +29,7 @@ class MarsPhoto: MWPhoto {
             || imageset.title.range(of:"Pancam") != nil
     }
     
-    init (url:URL, imageset: Imageset, indexInImageset: Int, sourceUrl:String, modelJsonString:String?) {
+    required public init (url:URL, imageset: Imageset, indexInImageset: Int, sourceUrl:String, modelJsonString:String?) {
         self.url = url
         self.imageset = imageset
         self.indexInImageset = indexInImageset
@@ -52,17 +52,17 @@ class MarsPhoto: MWPhoto {
     }
     
     func downloadImage(_ url:URL, _ setImageFunc:@escaping (_ image:UIImage?)->()) {
-        let manager = SDWebImageManager.shared()!
+        let manager = SDWebImageManager.shared()
 
-        manager.downloadImage(with: url, options: [.allowInvalidSSLCertificates],
-                              progress:  { (receivedSize, expectedSize) -> Void in
+        manager.loadImage(with: url, options: [.allowInvalidSSLCertificates],
+                              progress:  { (receivedSize, expectedSize, targetUrl) -> Void in
                                 if expectedSize > 0 {
                                     let progress = Float(receivedSize)/Float(expectedSize)
                                     let dict:[String:Any] = ["progress": progress, "photo": self]
-                                    NotificationCenter.default.post(name: .mwphotoProgressNotification, object: dict)
+                                    NotificationCenter.default.post(name: .mediaLoadingProgressNotification, object: dict)
                                 }
         },
-                              completed: { (image, error, cacheType, finished, imageURL) -> Void in
+                              completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
                                 if let error = error {
                                     print("Error: \(url) \(error)")
                                     return
@@ -75,7 +75,7 @@ class MarsPhoto: MWPhoto {
         })
     }
     
-    override func performLoadUnderlyingImageAndNotify() {
+    override public func performLoadUnderlyingImageAndNotify() {
         isLoading = true
         guard (leftAndRight != nil) else {
             super.performLoadUnderlyingImageAndNotify()
@@ -106,7 +106,7 @@ class MarsPhoto: MWPhoto {
 
     func imageLoadComplete() {
         isLoading = false
-        NotificationCenter.default.post(name: .mwphotoLoadingDidEndNotification, object: self)
+        NotificationCenter.default.post(name: .mediaLoadingDidEndNotification, object: self)
     }
     
     override func unloadUnderlyingImage() {
@@ -137,6 +137,6 @@ class MarsPhoto: MWPhoto {
 }
 
 extension Notification.Name {
-    static let mwphotoLoadingDidEndNotification = Notification.Name(MWPHOTO_LOADING_DID_END_NOTIFICATION)
-    static let mwphotoProgressNotification = Notification.Name(MWPHOTO_PROGRESS_NOTIFICATION)
+    static let mediaLoadingDidEndNotification = Notification.Name(MEDIA_LOADING_DID_END_NOTIFICATION)
+    static let mediaLoadingProgressNotification = Notification.Name(MEDIA_PROGRESS_NOTIFICATION)
 }

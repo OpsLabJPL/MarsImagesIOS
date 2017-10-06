@@ -9,7 +9,7 @@
 import SwiftMessages
 
 class InternetReachabilityStatus {
-    static func createStatus(_ layout: MessageView.Layout = .StatusLine) -> MessageView {
+    static func createStatus(_ layout: MessageView.Layout = .statusLine) -> MessageView {
         let status = MessageView.viewFromNib(layout: layout)
         status.button?.isHidden = true
         status.iconLabel?.text = "❌"

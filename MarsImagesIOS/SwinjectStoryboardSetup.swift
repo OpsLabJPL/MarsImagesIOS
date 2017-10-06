@@ -11,7 +11,7 @@ import SwinjectStoryboard
 
 extension SwinjectStoryboard {
     
-    class func setup() {
+    @objc class func setup() {
         
         /* workaround for logging bug
          https://github.com/Swinject/Swinject/issues/218

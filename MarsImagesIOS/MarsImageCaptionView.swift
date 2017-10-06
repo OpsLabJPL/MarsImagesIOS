@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import MWPhotoBrowser
+import MediaBrowser
 
-class MarsImageCaptionView : MWCaptionView {
+class MarsImageCaptionView : MediaCaptionView {
     
     //if it's still fine looking after testing, just let the caption always display even when in a compressed width
     override func sizeThatFits(_ size: CGSize) -> CGSize {

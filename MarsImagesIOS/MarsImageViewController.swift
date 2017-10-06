@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import MWPhotoBrowser
+import MediaBrowser
 import PSMenuItem
 import SDWebImage
 
-class MarsImageViewController : MWPhotoBrowser {
+class MarsImageViewController : MediaBrowser {
     
     var catalog:MarsImageCatalog?
     let leftIcon = UIImage.init(named: "leftArrow.png")
@@ -155,14 +155,15 @@ class MarsImageViewController : MWPhotoBrowser {
     
     @objc func defaultsChanged() {
         //set the image page to the first page when the mission changes
-        self.setCurrentPhotoIndex(UInt(0))
+        self.setCurrentIndex(at: 0)
     }
     
     @objc func imagesetsLoaded(notification: Notification) {
         DispatchQueue.main.async {
             self.reloadData()
             //need to reload the image in case the mission has changed and current image page index has stayed the same
-            self.photo(at: self.currentIndex)?.performLoadUnderlyingImageAndNotify()
+//            self.photo(at: self.currentIndex)?.performLoadUnderlyingImageAndNotify()
+            self.media(for: self, at: self.currentIndex).performLoadUnderlyingImageAndNotify()
         }
     }
     
@@ -173,8 +174,8 @@ class MarsImageViewController : MWPhotoBrowser {
         }
         
         if let sender = notification.userInfo?[Constants.senderKey] as? NSObject {
-            if sender != self && index != Int(currentIndex) {
-                setCurrentPhotoIndex(UInt(index))
+            if sender != self && index != currentIndex {
+                setCurrentIndex(at: index)
             }
         }
         selectedImageIndexInImageset = catalog!.marsphotos[index].indexInImageset
@@ -269,21 +270,35 @@ class MarsImageViewController : MWPhotoBrowser {
     @objc func showMosaicView() {
         performSegue(withIdentifier: "mosaic", sender: self)
     }
+    
+    override func thumbPhotoAtIndex(index: Int) -> Media? {
+        if let thumbURL = catalog!.imagesets[Int(index)].thumbnailUrl {
+            return Media(url: URL(string:thumbURL)!)
+        }
+        return nil
+    }
 }
 
-extension MarsImageViewController : MWPhotoBrowserDelegate {
-    func numberOfPhotos(in photoBrowser: MWPhotoBrowser!) -> UInt {
-        return UInt(catalog!.imagesetCount)
+extension MarsImageViewController : MediaBrowserDelegate {
+    func numberOfMedia(in mediaBrowser: MediaBrowser) -> Int {
+        return catalog!.imagesetCount
     }
     
-    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, photoAt index: UInt) -> MWPhotoProtocol! {
+    func media(for mediaBrowser: MediaBrowser, at index: Int) -> Media {
+        guard index >= 0 && index < catalog!.marsphotos.count else {
+            fatalError("Index out of bounds in MediaBrowserDelegate: \(index)")
+        }
+        return catalog!.marsphotos[index]
+    }
+    
+    func photoBrowser(_ photoBrowser: MediaBrowser!, mediaAt index: UInt) -> Media! {
         if catalog!.marsphotos.count > Int(index) {
             return catalog!.marsphotos[Int(index)]
         }
         return nil
     }
     
-    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, didDisplayPhotoAt index: UInt) {
+    func photoBrowser(_ photoBrowser: MediaBrowser!, didDisplayPhotoAt index: UInt) {
         let count = UInt(catalog!.imagesetCount)
         if index == count-1  && catalog!.hasMoreImages() {
             catalog!.loadNextPage()
@@ -292,16 +307,9 @@ extension MarsImageViewController : MWPhotoBrowserDelegate {
         NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
     }
     
-    func photoBrowser(_ photoBrowser: MWPhotoBrowser!, captionViewForPhotoAt index: UInt) -> MWCaptionView! {
+    func photoBrowser(_ photoBrowser: MediaBrowser!, captionViewForPhotoAt index: UInt) -> MediaCaptionView! {
         if catalog!.marsphotos.count > Int(index) {
-            return MarsImageCaptionView(photo: catalog!.marsphotos[Int(index)])
-        }
-        return nil
-    }
-    
-    override func thumbPhoto(at index: UInt) -> MWPhotoProtocol! {
-        if let thumbURL = catalog!.imagesets[Int(index)].thumbnailUrl {
-            return MWPhoto(url: URL(string:thumbURL))
+            return MarsImageCaptionView(media: catalog!.marsphotos[Int(index)])
         }
         return nil
     }
