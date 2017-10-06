@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
-  - CSV.swift (2.0.1)
+  - CSV.swift (2.1.0)
   - DACircularProgress (2.3.1)
   - EvernoteSDK (3.0.0)
   - MarsTimeConversion (0.1.9)
@@ -18,12 +18,12 @@ PODS:
   - SwiftMessages (3.5.0)
   - SwiftyJSON (3.1.4)
   - Swinject (2.1.1)
-  - SwinjectStoryboard (1.1.1):
-    - Swinject (~> 2.0)
+  - SwinjectStoryboard (1.1.2):
+    - Swinject (~> 2.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4)
-  - CSV.swift (~> 2.0)
+  - Alamofire (~> 4.5)
+  - CSV.swift (~> 2.1)
   - EvernoteSDK (~> 3.0)
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
   - MKDropdownMenu (~> 1.4)
@@ -32,8 +32,8 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 3)
   - SwiftMessages (~> 3.5)
   - SwiftyJSON (~> 3.1)
-  - Swinject (~> 2.0)
-  - SwinjectStoryboard (= 1.1.1)
+  - Swinject (~> 2.1)
+  - SwinjectStoryboard (~> 1.1.2)
 
 EXTERNAL SOURCES:
   MarsTimeConversion:
@@ -46,7 +46,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  CSV.swift: b3b6390c1674982fd0086e96939360094dcdd402
+  CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
   MarsTimeConversion: 6684058841ac55567b1b5c8d38fdf2bde3533cde
@@ -59,8 +59,8 @@ SPEC CHECKSUMS:
   SwiftMessages: 323c2847255ebf380f01b95ad1121a750be4d117
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Swinject: afea49fd95f392b41171669f165842879c48fad6
-  SwinjectStoryboard: 4c71c25f312322844d39ee06f0f523db7b9b10a3
+  SwinjectStoryboard: 92e75763c3299cdf627bef98a5180dc894864336
 
-PODFILE CHECKSUM: bb62c493b10c97c60b1bc2bd75d61cb36b3dc7e1
+PODFILE CHECKSUM: de274810d8d250745974a09e070697f05119fdd2
 
 COCOAPODS: 1.3.1

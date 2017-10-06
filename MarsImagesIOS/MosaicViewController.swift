@@ -63,7 +63,7 @@ class MosaicViewController : UIViewController {
     }
 
     
-    func pinchGesture(gestureRecognize: UIPinchGestureRecognizer) {
+    @objc func pinchGesture(gestureRecognize: UIPinchGestureRecognizer) {
         
         if gestureRecognize.numberOfTouches == 2 {
             
@@ -90,7 +90,7 @@ class MosaicViewController : UIViewController {
         return cameraNode.camera!.xFov > 0 ? cameraNode.camera!.xFov : cameraNode.camera!.yFov
     }
 
-    func panGesture(gestureRecognize: UIPanGestureRecognizer) {
+    @objc func panGesture(gestureRecognize: UIPanGestureRecognizer) {
         
         switch gestureRecognize.state {
         case .began: previousTranslation = .zero

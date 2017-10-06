@@ -80,7 +80,7 @@ class MarsImageTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func defaultsChanged() {
+    @objc func defaultsChanged() {
         let mission = Mission.currentMissionName()        
         catalog?.mission = mission //setting mission will reload catalog images and locations
         navBarMenu?.reloadAllComponents()
@@ -91,13 +91,13 @@ class MarsImageTableViewController: UITableViewController {
         aRefreshControl.endRefreshing()
     }
     
-    func imagesetsLoaded(notification: Notification) {
+    @objc func imagesetsLoaded(notification: Notification) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    func imageSelected(notification: Notification) {
+    @objc func imageSelected(notification: Notification) {
         var index = 0;
         if let num = notification.userInfo?[Constants.imageIndexKey] as? Int {
             index = Int(num)

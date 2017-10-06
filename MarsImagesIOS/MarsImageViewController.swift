@@ -83,21 +83,21 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
-    func closeDrawerSwipe() {
+    @objc func closeDrawerSwipe() {
         guard drawerClosed == false else {
             return
         }
         NotificationCenter.default.post(name: .closeDrawer, object: nil)
     }
     
-    func openDrawerSwipe() {
+    @objc func openDrawerSwipe() {
         guard drawerClosed else {
             return
         }
         NotificationCenter.default.post(name: .openDrawer, object: nil)
     }
     
-    func openDrawer() {
+    @objc func openDrawer() {
         drawerClosed = false
         drawerButton.image = leftIcon
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -105,7 +105,7 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
-    func closeDrawer() {
+    @objc func closeDrawer() {
         drawerClosed = true
         drawerButton.image = rightIcon
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -153,12 +153,12 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
-    func defaultsChanged() {
+    @objc func defaultsChanged() {
         //set the image page to the first page when the mission changes
         self.setCurrentPhotoIndex(UInt(0))
     }
     
-    func imagesetsLoaded(notification: Notification) {
+    @objc func imagesetsLoaded(notification: Notification) {
         DispatchQueue.main.async {
             self.reloadData()
             //need to reload the image in case the mission has changed and current image page index has stayed the same
@@ -166,7 +166,7 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
-    func imageSelected(notification:Notification) {
+    @objc func imageSelected(notification:Notification) {
         var index = 0
         if let num = notification.userInfo?[Constants.imageIndexKey] as? Int {
             index = Int(num)
@@ -206,7 +206,7 @@ class MarsImageViewController : MWPhotoBrowser {
         return nil
     }
     
-    func imageSelectionPressed() {
+    @objc func imageSelectionPressed() {
         becomeFirstResponder()
         let imageset = catalog!.imagesets[Int(currentIndex)]
         let imageCount = catalog!.getImagesetCount(imageset: imageset)
@@ -241,11 +241,11 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
-    func showAboutView() {
+    @objc func showAboutView() {
         showPopoverVC("aboutVC")
     }
     
-    func showTimeView() {
+    @objc func showTimeView() {
         showPopoverVC("timeVC")
     }
     
@@ -266,7 +266,7 @@ class MarsImageViewController : MWPhotoBrowser {
         }
     }
     
-    func showMosaicView() {
+    @objc func showMosaicView() {
         performSegue(withIdentifier: "mosaic", sender: self)
     }
 }
@@ -319,14 +319,14 @@ extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         
         return ceil(boundingBox.height)
     }
     
     func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         
         return ceil(boundingBox.width)
     }

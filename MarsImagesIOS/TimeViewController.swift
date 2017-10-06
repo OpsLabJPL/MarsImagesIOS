@@ -32,7 +32,7 @@ class TimeViewController: UIViewController {
         updateTime()
     }
     
-    func updateTime() {
+    @objc func updateTime() {
         let today = Date(timeIntervalSinceNow: 0)
         earthTimeLabel.text = "\(dateFormat.string(from: today))T\(timeFormat.string(from: today)) UTC"
         let oppy = Mission.missions[Mission.OPPORTUNITY]!

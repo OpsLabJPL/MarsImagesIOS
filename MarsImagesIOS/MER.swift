@@ -206,7 +206,7 @@ class MER: Mission {
             }
         } else if instrument == "P" {
             let prange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+2)
-            return imageId[prange]
+            return String(imageId[prange])
         }
         
         return ""
