@@ -146,7 +146,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
         connect()
         
-        EvernoteMarsImageCatalog.noteDownloadQueue.sync {
+        EvernoteMarsImageCatalog.noteDownloadQueue.async {
             guard self.imagesets.count <= startIndex else {
                 return
             }
@@ -185,11 +185,11 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     }
                 }
                 
-                isSearchComplete = Int(notelist.totalNotes) - (Int(notelist.startIndex) + notelist.notes.count) <= 0
+                self.isSearchComplete = notelist.totalNotes.intValue - notelist.startIndex.intValue + notelist.notes.count <= 0
                 
                 NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
             } else {
-                isSearchComplete = true
+                self.isSearchComplete = true
             }
         }
     }
