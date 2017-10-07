@@ -181,7 +181,9 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        guard indexPath.section < catalog!.sols.count else {
+            return tableView.dequeueReusableCell(withIdentifier: imageCell)!
+        }
         let sol = catalog!.sols[indexPath.section]
         let imagesetsForSol = catalog!.imagesetsForSol[sol]!
         loadAnotherPageIfAtEnd(indexPath, imagesets: imagesetsForSol)

@@ -25,6 +25,7 @@ class MarsImageViewController : MediaBrowser {
     var mosaicViewButton = UIBarButtonItem(image: UIImage(named: "panorama_icon.png"), style: .plain, target: self, action: #selector(showMosaicView))
     var timeViewButton = UIBarButtonItem(image: UIImage(named: "clock.png"), style: .plain, target: self, action: #selector(showTimeView))
     var selectedImageIndexInImageset = 0
+    var missionChanged = false
     
     var popover:UIPopoverPresentationController?
 
@@ -155,14 +156,18 @@ class MarsImageViewController : MediaBrowser {
     
     @objc func defaultsChanged() {
         //set the image page to the first page when the mission changes
-        self.setCurrentIndex(at: 0)
+//        self.setCurrentIndex(at: 0)
+        self.missionChanged = true
     }
     
     @objc func imagesetsLoaded(notification: Notification) {
         DispatchQueue.main.async {
             self.reloadData()
+            if self.missionChanged {
+                self.setCurrentIndex(at: 0)
+                self.missionChanged = false
+            }
             //need to reload the image in case the mission has changed and current image page index has stayed the same
-//            self.photo(at: self.currentIndex)?.performLoadUnderlyingImageAndNotify()
             self.media(for: self, at: self.currentIndex).performLoadUnderlyingImageAndNotify()
         }
     }
@@ -298,7 +303,7 @@ extension MarsImageViewController : MediaBrowserDelegate {
         return nil
     }
     
-    func photoBrowser(_ photoBrowser: MediaBrowser!, didDisplayPhotoAt index: UInt) {
+    func didDisplayMedia(at index: Int, in mediaBrowser: MediaBrowser) {
         let count = UInt(catalog!.imagesetCount)
         if index == count-1  && catalog!.hasMoreImages() {
             catalog!.loadNextPage()
