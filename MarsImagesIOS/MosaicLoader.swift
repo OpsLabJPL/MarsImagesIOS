@@ -31,12 +31,16 @@ class MosaicLoader {
         self.screenWidthPixels = screenWidthPixels
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
 
-        catalog.localLevelQuaternion(rmc, completionHandler: { quaternion in
-            self.qLL = quaternion
-            self.addImagesToScene()
+        catalog.localLevelQuaternion(rmc, completionHandler: { [weak self] quaternion in
+            self?.qLL = quaternion
+            self?.addImagesToScene()
         })
         
         SDImageCache.shared().maxMemoryCost = 128000
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .endImagesetLoading, object: nil)
     }
     
     func addImagesToScene() {
