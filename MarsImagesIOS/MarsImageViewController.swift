@@ -168,7 +168,9 @@ class MarsImageViewController : MediaBrowser {
                 self.hasMissionChanged = false
             }
             //need to reload the image in case the mission has changed and current image page index has stayed the same
-            self.media(for: self, at: self.currentIndex).performLoadUnderlyingImageAndNotify()
+            if self.catalog!.imagesetCount > 0 {
+                self.media(for: self, at: self.currentIndex).performLoadUnderlyingImageAndNotify()
+            }
         }
     }
     
