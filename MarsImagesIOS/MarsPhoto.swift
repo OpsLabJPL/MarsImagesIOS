@@ -101,7 +101,8 @@ class MarsPhoto: Media {
                 }
             }
         }
-        imageLoadComplete()
+        // FIXME put this in else, or remove? or other?
+        //imageLoadComplete()
     }
 
     func imageLoadComplete() {
