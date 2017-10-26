@@ -67,7 +67,7 @@ class MarsImageTableViewController: UITableViewController {
         clearsSelectionOnViewWillAppear = false
         
         // listen to user defaults (such as mission) changed events
-        NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(missionChanged), name: .missionChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: catalog?.reachability)
@@ -80,7 +80,7 @@ class MarsImageTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func defaultsChanged() {
+    @objc func missionChanged() {
         let mission = Mission.currentMissionName()        
         catalog?.mission = mission //setting mission will reload catalog images and locations
         navBarMenu?.reloadAllComponents()
@@ -285,6 +285,7 @@ extension MarsImageTableViewController: MKDropdownMenuDelegate {
             let userDefaults = UserDefaults.standard
             userDefaults.set(newMissionName, forKey: Mission.missionKey)
             userDefaults.synchronize()
+            NotificationCenter.default.post(Notification(name: .missionChanged))
         }
         dropdownMenu.closeAllComponents(animated: true)
     }
@@ -316,4 +317,5 @@ extension MarsImageTableViewController: MKDropdownMenuDelegate {
 
 extension Notification.Name {
     static let imageSelected = Notification.Name("imageSelected")
+    static let missionChanged = Notification.Name("missionChanged")
 }

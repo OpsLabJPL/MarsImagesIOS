@@ -18,6 +18,9 @@ extension SwinjectStoryboard {
          https://github.com/Swinject/Swinject/pull/160 */
         Container.loggingFunction = nil
         
+        defaultContainer.register(MarsImageCatalog.self) { _ in EvernoteMarsImageCatalog(missionName: Mission.currentMissionName()) }
+            .inObjectScope(.container) //make it a singleton
+        
         defaultContainer.storyboardInitCompleted(MarsImageTableViewController.self) { resolver,controller in
             controller.catalog = resolver.resolve(MarsImageCatalog.self)
         }
@@ -30,7 +33,6 @@ extension SwinjectStoryboard {
             controller.catalog = resolver.resolve(MarsImageCatalog.self)
         }
 
-        defaultContainer.register(MarsImageCatalog.self) { _ in EvernoteMarsImageCatalog(missionName: Mission.currentMissionName()) }
-            .inObjectScope(.container) //make it a singleton        
+       
     }
 }

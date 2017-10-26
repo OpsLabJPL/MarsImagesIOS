@@ -25,7 +25,7 @@ class MarsImageViewController : MediaBrowser {
     var mosaicViewButton = UIBarButtonItem(image: UIImage(named: "panorama_icon.png"), style: .plain, target: self, action: #selector(showMosaicView))
     var timeViewButton = UIBarButtonItem(image: UIImage(named: "clock.png"), style: .plain, target: self, action: #selector(showTimeView))
     var selectedImageIndexInImageset = 0
-    var missionChanged = false
+    var hasMissionChanged = false
     
     var popover:UIPopoverPresentationController?
 
@@ -53,7 +53,7 @@ class MarsImageViewController : MediaBrowser {
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openDrawer), name: .openDrawer, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(closeDrawer), name: .closeDrawer, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(missionChanged), name: .missionChanged, object: nil)
 
         self.title = nil
         
@@ -154,18 +154,18 @@ class MarsImageViewController : MediaBrowser {
         }
     }
     
-    @objc func defaultsChanged() {
+    @objc func missionChanged(_ notification: Notification) {
         //set the image page to the first page when the mission changes
 //        self.setCurrentIndex(at: 0)
-        self.missionChanged = true
+        self.hasMissionChanged = true
     }
     
     @objc func imagesetsLoaded(notification: Notification) {
         DispatchQueue.main.async {
             self.reloadData()
-            if self.missionChanged {
+            if self.hasMissionChanged {
                 self.setCurrentIndex(at: 0)
-                self.missionChanged = false
+                self.hasMissionChanged = false
             }
             //need to reload the image in case the mission has changed and current image page index has stayed the same
             self.media(for: self, at: self.currentIndex).performLoadUnderlyingImageAndNotify()

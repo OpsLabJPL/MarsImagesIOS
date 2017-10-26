@@ -135,6 +135,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     func loadMoreNotes(startIndex:Int, total:Int) {
         
         guard reachability.isReachable else {
+            print("DEBUG got zero notes back, notifying")
+
             NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:0])
             isSearchComplete = true
             return
@@ -186,7 +188,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 }
                 
                 self.isSearchComplete = notelist.totalNotes.intValue - notelist.startIndex.intValue + notelist.notes.count <= 0
-                
+                print("DEBUG got \(notelist.notes.count) notes back, notifying")
                 NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
             } else {
                 self.isSearchComplete = true
