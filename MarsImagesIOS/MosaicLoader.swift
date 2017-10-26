@@ -20,13 +20,15 @@ class MosaicLoader {
     var scene:SCNScene
     var view:SCNView
     var camera:SCNCamera
+    var screenWidthPixels:Double
     
-    init(rmc:(Int,Int), catalog:MarsImageCatalog, scene:SCNScene, view: SCNView, camera: SCNCamera) {
+    init(rmc:(Int,Int), catalog:MarsImageCatalog, scene:SCNScene, view: SCNView, camera: SCNCamera, screenWidthPixels: Double) {
         self.rmc = rmc
         self.catalog = catalog
         self.scene = scene
         self.view = view
         self.camera = camera
+        self.screenWidthPixels = screenWidthPixels
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
 
         catalog.localLevelQuaternion(rmc, completionHandler: { quaternion in
@@ -188,7 +190,6 @@ class MosaicLoader {
     }
 
     func computeBestTextureResolution(_ imageQuad: ImageQuad) -> Int {
-        let screenWidthPixels = Double(view.bounds.width * view.contentScaleFactor) //convert width from points to pixels
         let fov = camera.xFov == 0 ? camera.yFov : camera.xFov
         let viewportFovRadians = fov / 180.0 * Double.pi
         let cameraFovRadians = imageQuad.cameraFOVRadians()
