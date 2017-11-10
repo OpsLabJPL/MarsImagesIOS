@@ -35,7 +35,7 @@ class MarsPhoto: Media {
         self.indexInImageset = indexInImageset
         self.sourceUrl = sourceUrl
         if let model = modelJsonString {
-            modelJson = JSON.parse(model)
+            modelJson = JSON(parseJSON:model)
         }
         super.init(url:url)
         self.caption = Mission.currentMission().caption(self.imageset.title)
