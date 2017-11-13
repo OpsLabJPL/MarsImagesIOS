@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import MediaBrowser
+import POWImageGallery
 import SDWebImage
 import SwiftyJSON
 
-class MarsPhoto: Media {
+class MarsPhoto: ImageCreator {
     
-    var url:URL
     var imageset:Imageset
     var indexInImageset:Int
-    var isLoading = false
     var sourceUrl:String
     var modelJson:JSON?
+    var caption:String
     
     weak var leftImage:UIImage?
     weak var rightImage:UIImage?
@@ -30,90 +29,88 @@ class MarsPhoto: Media {
     }
     
     required public init (url:URL, imageset: Imageset, indexInImageset: Int, sourceUrl:String, modelJsonString:String?) {
-        self.url = url
         self.imageset = imageset
         self.indexInImageset = indexInImageset
         self.sourceUrl = sourceUrl
         if let model = modelJsonString {
             modelJson = JSON(parseJSON:model)
         }
-        super.init(url:url)
         self.caption = Mission.currentMission().caption(self.imageset.title)
+        super.init(url:url, delegate:nil)
     }
     
     init (_ imageset: Imageset, leftAndRight:(String,String)) {
         self.imageset = imageset
         self.leftAndRight = leftAndRight
-        self.url = URL(string:leftAndRight.0)!
         self.sourceUrl = ""
         self.indexInImageset = 0
-        super.init()
         self.caption = Mission.currentMission().caption(self.imageset.title)
+        super.init(url:URL(string:leftAndRight.0)!, delegate:nil)
     }
     
-    func downloadImage(_ url:URL, _ setImageFunc:@escaping (_ image:UIImage?)->()) {
-        let manager = SDWebImageManager.shared()
-
-        manager.loadImage(with: url, options: [.allowInvalidSSLCertificates],
-                              progress:  { (receivedSize, expectedSize, targetUrl) -> Void in
-                                if expectedSize > 0 {
-                                    let progress = Float(receivedSize)/Float(expectedSize)
-                                    let dict:[String:Any] = ["progress": progress, "photo": self]
-                                    NotificationCenter.default.post(name: .mediaLoadingProgressNotification, object: dict)
-                                }
-        },
-                              completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
-                                if let error = error {
-                                    print("Error: \(url) \(error)")
-                                    return
-                                }
-                                setImageFunc(image)
-                                if let leftImage = self.leftImage, let rightImage = self.rightImage {
-                                    self.underlyingImage = ImageUtility.anaglyph(left: leftImage, right:rightImage)
-                                    self.decompressImageAndFinishLoading()
-                                }
-        })
-    }
+//    func downloadImage(_ url:URL, _ setImageFunc:@escaping (_ image:UIImage?)->()) {
+//        let manager = SDWebImageManager.shared()
+//
+//        manager.loadImage(with: url, options: [.allowInvalidSSLCertificates],
+//                              progress:  { (receivedSize, expectedSize, targetUrl) -> Void in
+//                                if expectedSize > 0 {
+//                                    let progress = Float(receivedSize)/Float(expectedSize)
+//                                    let dict:[String:Any] = ["progress": progress, "photo": self]
+//                                    NotificationCenter.default.post(name: .mediaLoadingProgressNotification, object: dict)
+//                                }
+//        },
+//                              completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
+//                                if let error = error {
+//                                    print("Error: \(url) \(error)")
+//                                    return
+//                                }
+//                                setImageFunc(image)
+//                                if let leftImage = self.leftImage, let rightImage = self.rightImage {
+//                                    self.underlyingImage = ImageUtility.anaglyph(left: leftImage, right:rightImage)
+//                                    self.decompressImageAndFinishLoading()
+//                                }
+//        })
+//    }
     
-    override public func performLoadUnderlyingImageAndNotify() {
-        isLoading = true
-        guard (leftAndRight != nil) else {
-            super.performLoadUnderlyingImageAndNotify()
-            return
-        }
-        
-        let leftUrl = leftAndRight!.0
-        downloadImage(URL(string:leftUrl)!, { image in
-            self.leftImage = image
-        })
-        let rightUrl = leftAndRight!.1
-        downloadImage(URL(string:rightUrl)!, { image in
-            self.rightImage = image
-        })
-    }
+//    override public func performLoadUnderlyingImageAndNotify() {
+//        isLoading = true
+//        guard (leftAndRight != nil) else {
+//            super.performLoadUnderlyingImageAndNotify()
+//            return
+//        }
+//
+//        let leftUrl = leftAndRight!.0
+//        downloadImage(URL(string:leftUrl)!, { image in
+//            self.leftImage = image
+//        })
+//        let rightUrl = leftAndRight!.1
+//        downloadImage(URL(string:rightUrl)!, { image in
+//            self.rightImage = image
+//        })
+//    }
 
-    func decompressImageAndFinishLoading() {
-        if let image = self.underlyingImage {
-            DispatchQueue.global().async {
-                self.underlyingImage = UIImage.decodedImage(with: image)
-                DispatchQueue.main.async {
-                    self.imageLoadComplete()
-                }
-            }
-        }
-        // FIXME put this in else, or remove? or other?
-        //imageLoadComplete()
-    }
+//    func decompressImageAndFinishLoading() {
+//        if let image = self.underlyingImage {
+//            DispatchQueue.global().async {
+//                self.underlyingImage = UIImage.decodedImage(with: image)
+//                DispatchQueue.main.async {
+//                    self.imageLoadComplete()
+//                }
+//            }
+//        }
+//        // FIXME put this in else, or remove? or other?
+//        //imageLoadComplete()
+//    }
 
-    func imageLoadComplete() {
-        isLoading = false
-        NotificationCenter.default.post(name: .mediaLoadingDidEndNotification, object: self)
-    }
+//    func imageLoadComplete() {
+//        isLoading = false
+//        NotificationCenter.default.post(name: .mediaLoadingDidEndNotification, object: self)
+//    }
     
-    override func unloadUnderlyingImage() {
-        isLoading = false
-        super.unloadUnderlyingImage()
-    }
+//    override func unloadUnderlyingImage() {
+//        isLoading = false
+//        super.unloadUnderlyingImage()
+//    }
     
     func fieldOfView() -> Double {
         let imageId = Mission.imageId(url: sourceUrl)
@@ -135,9 +132,4 @@ class MarsPhoto: Media {
         let dotProduct = dot(v1,v2)
         return acos(dotProduct)
     }
-}
-
-extension Notification.Name {
-    static let mediaLoadingDidEndNotification = Notification.Name(MEDIA_LOADING_DID_END_NOTIFICATION)
-    static let mediaLoadingProgressNotification = Notification.Name(MEDIA_PROGRESS_NOTIFICATION)
 }

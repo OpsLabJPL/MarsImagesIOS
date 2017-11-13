@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mark Powell. All rights reserved.
 //
 
+import POWImageGallery
 import SceneKit
 import SDWebImage
 
@@ -71,6 +72,7 @@ class MosaicLoader {
                     imageQuads[title] = ImageQuad(model: CameraModelUtils.model(model), qLL: qLL, imageId: imageId)
                     scene.rootNode.addChildNode(imageQuads[title]!.node)
                 }
+                photo.delegate = MosaicImageDelegate(title, self)
             }
         }
     }
@@ -137,24 +139,22 @@ class MosaicLoader {
     
     func loadImageAndTexture(_ title: String) {
         if let photo = imagesInScene[title] {
-            if photo.underlyingImage == nil {
-                if photo.isLoading == false {
-                    photo.performLoadUnderlyingImageAndNotify()
-                }
-            } else {
-                makeTexture(title, photo)
-                //TODO this the old way: manage my own textures. Still need?
-//            [photo unloadUnderlyingImage]; //after making texture, improves memory management quite significantly
-            }
+            photo.requestImage()
+//            if photo.underlyingImage == nil {
+//                if photo.isLoading == false {
+//                    photo.performLoadUnderlyingImageAndNotify()
+//                }
+//            } else {
+//                let quad = imageQuads[title]!
+//                let textureSize = computeBestTextureResolution(quad)
+//                imageTextures[title] = ImageUtility.image(photo.underlyingImage, scaledTo:CGSize(width:textureSize, height:textureSize))
+//             }
         }
     }
     
     func unloadImage(_ title: String) {
         if let photo = imagesInScene[title] {
-            if photo.underlyingImage != nil {
-                photo.unloadUnderlyingImage()
-            }
-            //TODO old way: delete my own managed texture. Still need?
+            photo.delegate = nil
         }
     }
     
@@ -162,14 +162,6 @@ class MosaicLoader {
         imagesInScene.removeAll()
         imageTextures.removeAll()
         imageQuads.removeAll()
-    }
-    
-    func makeTexture(_ title: String, _ photo: MarsPhoto) {
-        if let image = photo.underlyingImage {
-            let quad = imageQuads[title]!
-            let textureSize = computeBestTextureResolution(quad)
-            imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize))
-        }
     }
     
     func binImagesByPointing(_ imagesForRMC:[MarsPhoto]) {
@@ -203,3 +195,25 @@ class MosaicLoader {
         return bestTextureResolution > 1024  ? 1024 : bestTextureResolution
     }
 }
+
+class MosaicImageDelegate : ImageDelegate {
+    
+    let title:String
+    let mosaicLoader:MosaicLoader
+    
+    public init(_ title: String, _ mosaicLoader:MosaicLoader) {
+        self.title = title
+        self.mosaicLoader = mosaicLoader
+    }
+    
+    func finished(image: UIImage) {
+        let quad = mosaicLoader.imageQuads[title]!
+        let textureSize = mosaicLoader.computeBestTextureResolution(quad)
+        mosaicLoader.imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize))
+    }
+    
+    func failure() {
+        //TODO handle failure
+    }
+}
+

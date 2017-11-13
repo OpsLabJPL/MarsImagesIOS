@@ -36,7 +36,6 @@
 		4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */; };
 		4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */; };
 		4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */; };
-		4A8BB26E1F2D532400E07B49 /* MarsImageCaptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB26D1F2D532400E07B49 /* MarsImageCaptionView.swift */; };
 		4A9DE9D01F2BDA160059C9C9 /* MarsPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */; };
 		4A9DE9D21F2C15B00059C9C9 /* MER.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D11F2C15B00059C9C9 /* MER.swift */; };
 		4A9DE9D41F2C15C00059C9C9 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */; };
@@ -115,7 +114,6 @@
 		4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftDrawerViewController.swift; sourceTree = "<group>"; };
 		4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageViewController.swift; sourceTree = "<group>"; };
-		4A8BB26D1F2D532400E07B49 /* MarsImageCaptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCaptionView.swift; sourceTree = "<group>"; };
 		4A9A88C91F550ACF00DF9378 /* MarsImages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MarsImages.entitlements; sourceTree = "<group>"; };
 		4A9DE9CF1F2BDA160059C9C9 /* MarsPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsPhoto.swift; sourceTree = "<group>"; };
 		4A9DE9D11F2C15B00059C9C9 /* MER.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MER.swift; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */,
-				4A8BB26D1F2D532400E07B49 /* MarsImageCaptionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -543,7 +540,7 @@
 				"${BUILT_PRODUCTS_DIR}/EvernoteSDK/EvernoteSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/MKDropdownMenu/MKDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/MarsTimeConversion/MarsTimeConversion.framework",
-				"${BUILT_PRODUCTS_DIR}/MediaBrowser/MediaBrowser.framework",
+				"${BUILT_PRODUCTS_DIR}/POWImageGallery/POWImageGallery.framework",
 				"${BUILT_PRODUCTS_DIR}/PSMenuItem/PSMenuItem.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -551,7 +548,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
-				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -560,7 +556,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EvernoteSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKDropdownMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarsTimeConversion.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MediaBrowser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/POWImageGallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSMenuItem.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -568,7 +564,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -680,7 +675,6 @@
 				4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */,
 				4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */,
 				4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */,
-				4A8BB26E1F2D532400E07B49 /* MarsImageCaptionView.swift in Sources */,
 				4AE403661F4A4A5F00163394 /* CameraModel.swift in Sources */,
 				4A8AE5941F6EF98E00FD729C /* MosaicLoader.swift in Sources */,
 				4A1680E91F2AA559004E30CC /* EvernoteMarsImageCatalog.swift in Sources */,
@@ -791,7 +785,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -842,7 +836,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -859,7 +853,7 @@
 				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
 				INFOPLIST_FILE = MarsImagesIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.powellware.Mars-Images";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -876,7 +870,7 @@
 				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
 				INFOPLIST_FILE = MarsImagesIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.powellware.Mars-Images";
 				PRODUCT_NAME = "$(TARGET_NAME)";

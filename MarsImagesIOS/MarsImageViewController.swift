@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import MediaBrowser
+import POWImageGallery
 import PSMenuItem
 import SDWebImage
 
-class MarsImageViewController : MediaBrowser {
+class MarsImageViewController :  ImageGalleryViewController {
     
     var catalog:MarsImageCatalog?
     let leftIcon = UIImage.init(named: "leftArrow.png")
@@ -43,6 +43,8 @@ class MarsImageViewController : MediaBrowser {
     
     func makeButtons() {
         drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(manageDrawer(_:)))
+        navigationItem.rightBarButtonItem = drawerButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
     
     override func viewDidLoad() {
@@ -58,7 +60,6 @@ class MarsImageViewController : MediaBrowser {
         self.title = nil
         
         self.navigationItem.titleView = UILabel() //hide 1 of n title
-        self.enableGrid = false //The default behavior of this grid feature doesn't work well. Refinement needed to make it good.
         
         aboutTheAppButton.image = infoButton.currentImage
         
@@ -74,6 +75,9 @@ class MarsImageViewController : MediaBrowser {
         
         imageSelectionButton = UIBarButtonItem(title:"", style:.plain, target:self, action:#selector(imageSelectionPressed))
         addToolbarButtons()
+        
+        UINavigationBar.appearance().tintColor = UIColor.white
+        toolbar.tintColor = UIColor.white
     }
     
     @IBAction func manageDrawer(_ sender: Any) {
@@ -120,32 +124,19 @@ class MarsImageViewController : MediaBrowser {
     
     func addToolbarButtons() {
         //add image selection button to bottom toolbar
-        if let toolbar = getToolbar() {
-            let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            if let items = toolbar.items {
-                setImageSelectionButtonWidth()
-                let share = items.last!
-                if (drawerClosed) {
-                    toolbar.setItems([ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex, share], animated: true)
-                } else {
-                    toolbar.setItems([ imageSelectionButton, flex, share], animated: true)
-                }
-            }
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        setImageSelectionButtonWidth()
+        if (drawerClosed) {
+            toolbar.setItems([ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex /* , TODO share */], animated: true)
+        } else {
+            toolbar.setItems([ imageSelectionButton, flex /*, TODO share */], animated: true)
         }
-    }
+}
     
     func setImageSelectionButtonWidth() {
         if let title = imageSelectionButton.title {
-            imageSelectionButton.width = title.width(withConstraintedHeight: getToolbar()!.frame.size.height, font: UIFont.systemFont(ofSize: 20))
+            imageSelectionButton.width = title.width(withConstraintedHeight: toolbar.frame.size.height, font: UIFont.systemFont(ofSize: 20))
         }
-    }
-    
-    override func performLayout() {
-        super.performLayout()
-        //replace MWPhotoBrowser Done button with our action buttons
-        navigationItem.rightBarButtonItems = [ drawerButton ]
-        
-        addToolbarButtons()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -156,7 +147,7 @@ class MarsImageViewController : MediaBrowser {
     
     @objc func missionChanged(_ notification: Notification) {
         //set the image page to the first page when the mission changes
-//        self.setCurrentIndex(at: 0)
+        self.setPageIndex(0)
         self.hasMissionChanged = true
     }
     
@@ -164,12 +155,8 @@ class MarsImageViewController : MediaBrowser {
         DispatchQueue.main.async {
             self.reloadData()
             if self.hasMissionChanged {
-                self.setCurrentIndex(at: 0)
+                self.setPageIndex(0)
                 self.hasMissionChanged = false
-            }
-            //need to reload the image in case the mission has changed and current image page index has stayed the same
-            if self.catalog!.imagesetCount > 0 {
-                self.media(for: self, at: self.currentIndex).performLoadUnderlyingImageAndNotify()
             }
         }
     }
@@ -181,14 +168,14 @@ class MarsImageViewController : MediaBrowser {
         }
         
         if let sender = notification.userInfo?[Constants.senderKey] as? NSObject {
-            if sender != self && index != currentIndex {
-                setCurrentIndex(at: index)
+            if sender != self && index != pageIndex {
+                setPageIndex(index)
             }
         }
         selectedImageIndexInImageset = catalog!.marsphotos[index].indexInImageset
         
-        let imageset = catalog!.imagesets[Int(currentIndex)]
-        let photo = catalog!.marsphotos[Int(currentIndex)]
+        let imageset = catalog!.imagesets[Int(pageIndex)]
+        let photo = catalog!.marsphotos[Int(pageIndex)]
         var imageName = ""
         if photo.leftAndRight != nil {
             imageName = "Anaglyph"
@@ -198,32 +185,23 @@ class MarsImageViewController : MediaBrowser {
         }
         imageSelectionButton.title = imageName
         setImageSelectionButtonWidth()
-        getToolbar()?.setNeedsLayout()
+        toolbar.setNeedsLayout()
     }
     
     func sourceRectForPopupController(_ bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.midX, y: bounds.midY, width: 0, height: 0)
     }
     
-    func getToolbar() -> UIToolbar? {
-        for subview in self.view.subviews {
-            if let v = subview as? UIToolbar {
-                return v
-            }
-        }
-        return nil
-    }
-    
     @objc func imageSelectionPressed() {
         becomeFirstResponder()
-        let imageset = catalog!.imagesets[Int(currentIndex)]
+        let imageset = catalog!.imagesets[Int(pageIndex)]
         let imageCount = catalog!.getImagesetCount(imageset: imageset)
         
         var menuItems:[PSMenuItem] = []
         for r in 0..<imageCount {
             let imageName = catalog!.imageName(imageset: imageset, imageIndexInSet: r)
             let menuItem = PSMenuItem(title: imageName, block: {
-                self.catalog!.changeToImage(imagesetIndex: Int(self.currentIndex), imageIndexInSet: r)
+                self.catalog!.changeToImage(imagesetIndex: Int(self.pageIndex), imageIndexInSet: r)
                 self.reloadData()
                 self.imageSelectionButton.title = imageName
                 self.setImageSelectionButtonWidth()
@@ -231,10 +209,10 @@ class MarsImageViewController : MediaBrowser {
             menuItems.append(menuItem)
         }
         
-        let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(currentIndex))
+        let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(pageIndex))
         if let leftAndRight = leftAndRight {
             let menuItem = PSMenuItem(title: "Anaglyph", block: {
-                self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.currentIndex))
+                self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.pageIndex))
                 self.reloadData()
                 self.imageSelectionButton.title = "Anaglyph"
                 self.setImageSelectionButtonWidth()
@@ -244,7 +222,7 @@ class MarsImageViewController : MediaBrowser {
                 
         if menuItems.count > 1 {
             UIMenuController.shared.menuItems = menuItems
-            UIMenuController.shared.setTargetRect(getToolbar()!.bounds, in: getToolbar()!)
+            UIMenuController.shared.setTargetRect(toolbar.bounds, in: toolbar)
             UIMenuController.shared.setMenuVisible(true, animated: true)
         }
     }
@@ -278,47 +256,22 @@ class MarsImageViewController : MediaBrowser {
         performSegue(withIdentifier: "mosaic", sender: self)
     }
     
-    override func thumbPhotoAtIndex(index: Int) -> Media? {
-        if let thumbURL = catalog!.imagesets[Int(index)].thumbnailUrl {
-            return Media(url: URL(string:thumbURL)!)
+    override public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers:[UIViewController], transitionCompleted completed: Bool) {
+        super.pageViewController(pageViewController, didFinishAnimating: finished, previousViewControllers: previousViewControllers, transitionCompleted: completed)
+        if pageIndex == catalog!.imagesetCount-1 && catalog!.hasMoreImages() {
+            catalog!.loadNextPage()
         }
-        return nil
+        let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
+        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
     }
 }
 
-extension MarsImageViewController : MediaBrowserDelegate {
-    func numberOfMedia(in mediaBrowser: MediaBrowser) -> Int {
-        return catalog!.imagesetCount
-    }
-    
-    func media(for mediaBrowser: MediaBrowser, at index: Int) -> Media {
-        guard index >= 0 && index < catalog!.marsphotos.count else {
-            fatalError("Index out of bounds in MediaBrowserDelegate: \(index)")
+
+extension MarsImageViewController: ImageGalleryViewControllerDelegate {
+    var images: [ImageCreator] {
+        get {
+            return catalog!.marsphotos
         }
-        return catalog!.marsphotos[index]
-    }
-    
-    func photoBrowser(_ photoBrowser: MediaBrowser!, mediaAt index: UInt) -> Media! {
-        if catalog!.marsphotos.count > Int(index) {
-            return catalog!.marsphotos[Int(index)]
-        }
-        return nil
-    }
-    
-    func didDisplayMedia(at index: Int, in mediaBrowser: MediaBrowser) {
-        let count = UInt(catalog!.imagesetCount)
-        if index == count-1  && catalog!.hasMoreImages() {
-            catalog!.loadNextPage()
-        }
-        let dict:[String:Any] = [ Constants.imageIndexKey: Int(index), Constants.senderKey: self ]
-        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
-    }
-    
-    func photoBrowser(_ photoBrowser: MediaBrowser!, captionViewForPhotoAt index: UInt) -> MediaCaptionView! {
-        if catalog!.marsphotos.count > Int(index) {
-            return MarsImageCaptionView(media: catalog!.marsphotos[Int(index)])
-        }
-        return nil
     }
 }
 
@@ -331,18 +284,17 @@ extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
     
 }
 
+//TODO still need?
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
-        
         return ceil(boundingBox.height)
     }
     
     func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
-        
         return ceil(boundingBox.width)
     }
 }
