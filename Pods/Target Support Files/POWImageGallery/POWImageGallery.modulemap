@@ -1,0 +1,6 @@
+framework module POWImageGallery {
+  umbrella header "POWImageGallery-umbrella.h"
+
+  export *
+  module * { export * }
+}
