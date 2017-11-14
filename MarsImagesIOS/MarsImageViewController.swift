@@ -21,9 +21,10 @@ class MarsImageViewController :  ImageGalleryViewController {
     var drawerButton = UIBarButtonItem()
     var imageSelectionButton = UIBarButtonItem()
     var infoButton = UIButton(type: UIButtonType.infoLight)
-    var aboutTheAppButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(showAboutView))
-    var mosaicViewButton = UIBarButtonItem(image: UIImage(named: "panorama_icon.png"), style: .plain, target: self, action: #selector(showMosaicView))
-    var timeViewButton = UIBarButtonItem(image: UIImage(named: "clock.png"), style: .plain, target: self, action: #selector(showTimeView))
+    var aboutTheAppButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(MarsImageViewController.showAboutView))
+    var mosaicViewButton = UIBarButtonItem(image: UIImage(named: "panorama_icon.png"), style: .plain, target: self, action: #selector(MarsImageViewController.showMosaicView))
+    var timeViewButton = UIBarButtonItem(image: UIImage(named: "clock.png"), style: .plain, target: self, action: #selector(MarsImageViewController.showTimeView))
+    var shareImageButton = UIBarButtonItem(barButtonSystemItem: .action, target:self, action:#selector(MarsImageViewController.shareImage))
     var selectedImageIndexInImageset = 0
     var hasMissionChanged = false
     
@@ -127,9 +128,9 @@ class MarsImageViewController :  ImageGalleryViewController {
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         setImageSelectionButtonWidth()
         if (drawerClosed) {
-            toolbar.setItems([ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex /* , TODO share */], animated: true)
+            toolbar.setItems([ imageSelectionButton, flex, aboutTheAppButton, flex, mosaicViewButton, flex, timeViewButton, flex, shareImageButton], animated: true)
         } else {
-            toolbar.setItems([ imageSelectionButton, flex /*, TODO share */], animated: true)
+            toolbar.setItems([ imageSelectionButton, flex, shareImageButton], animated: true)
         }
 }
     
@@ -254,6 +255,18 @@ class MarsImageViewController :  ImageGalleryViewController {
     
     @objc func showMosaicView() {
         performSegue(withIdentifier: "mosaic", sender: self)
+    }
+    
+    @objc func shareImage() {
+        if let image = (pageViewController.viewControllers?[0] as? ImageViewController)?.imageView.image {
+            
+            let imageToShare = [ image ]
+            let activityVC = UIActivityViewController(activityItems: imageToShare, applicationActivities: [])
+            activityVC.excludedActivityTypes = []
+            activityVC.popoverPresentationController?.sourceView = self.view
+            
+            pageViewController.present(activityVC, animated: true, completion: {})
+        }
     }
     
     override public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers:[UIViewController], transitionCompleted completed: Bool) {

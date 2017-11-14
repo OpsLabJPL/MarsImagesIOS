@@ -7,5 +7,5 @@
 //
 
 public protocol ImageGalleryViewControllerDelegate {
-    var urls: [URL] { get set }
+    var images: [ImageCreator] { get }
 }
