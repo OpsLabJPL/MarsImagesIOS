@@ -44,7 +44,7 @@ class MER: Mission {
         if filename.hasPrefix("Sol") {
             return "0" //sort Cornell Pancam images first
         }
-        else if (filename.hasPrefix("1") || filename.hasPrefix("2")) && filename.characters.count == 31 {
+        else if (filename.hasPrefix("1") || filename.hasPrefix("2")) && filename.count == 31 {
             let index = filename.index(filename.startIndex, offsetBy: 23)
             return filename.substring(from: index)
         }
@@ -206,7 +206,7 @@ class MER: Mission {
             }
         } else if instrument == "P" {
             let prange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+2)
-            return imageId[prange]
+            return String(imageId[prange])
         }
         
         return ""

@@ -55,15 +55,16 @@ class MosaicViewController : UIViewController {
     
     func setupScene() {
         scnScene = SCNScene(named: "mosaic.scnassets/mosaic.scn")
+        let screenWidthPixels = Double(view.bounds.width * view.contentScaleFactor) //convert width from points to pixels
         scenekitView.scene = scnScene
         cameraNode = scnScene.rootNode.childNode(withName: "camera", recursively: true)!
         if let rmc = catalog!.getNearestRMC() {
-            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalog!, scene: scnScene, view: scenekitView, camera: cameraNode!.camera!)
+            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalog!, scene: scnScene, view: scenekitView, camera: cameraNode!.camera!, screenWidthPixels: screenWidthPixels)
         }
     }
 
     
-    func pinchGesture(gestureRecognize: UIPinchGestureRecognizer) {
+    @objc func pinchGesture(gestureRecognize: UIPinchGestureRecognizer) {
         
         if gestureRecognize.numberOfTouches == 2 {
             
@@ -90,7 +91,7 @@ class MosaicViewController : UIViewController {
         return cameraNode.camera!.xFov > 0 ? cameraNode.camera!.xFov : cameraNode.camera!.yFov
     }
 
-    func panGesture(gestureRecognize: UIPanGestureRecognizer) {
+    @objc func panGesture(gestureRecognize: UIPanGestureRecognizer) {
         
         switch gestureRecognize.state {
         case .began: previousTranslation = .zero

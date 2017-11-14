@@ -30,14 +30,14 @@ class LeftDrawerViewController : UIViewController {
         leftDrawerHidden = !leftDrawerHidden
     }
 
-    func openDrawer() {
+    @objc func openDrawer() {
         UIView.animate(withDuration: 0.5, animations: {
             self.leftDrawerLeadingConstraint.constant = 0
             self.view.layoutIfNeeded()
         })
     }
     
-    func closeDrawer() {
+    @objc func closeDrawer() {
         UIView.animate(withDuration: 0.5, animations: {
             self.leftDrawerLeadingConstraint.constant = -240
             self.view.layoutIfNeeded()

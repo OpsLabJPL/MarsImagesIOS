@@ -104,12 +104,12 @@ class Mission {
   
     func getInstrument(imageId:String) -> String {
         let irange = imageId.index(imageId.startIndex, offsetBy: instrumentIndex)..<imageId.index(imageId.startIndex, offsetBy: instrumentIndex+1)
-        return imageId[irange]
+        return String(imageId[irange])
     }
     
     func getEye(imageId:String) -> String {
         let erange = imageId.index(imageId.startIndex, offsetBy: eyeIndex)..<imageId.index(imageId.startIndex, offsetBy:eyeIndex+1)
-        return imageId[erange]
+        return String(imageId[erange])
     }
     
     func getCameraId(imageId: String) -> String {
@@ -167,6 +167,6 @@ extension String
         let start = self.index(self.startIndex, offsetBy: r.lowerBound)
         let end = self.index(self.startIndex, offsetBy: r.upperBound)
         
-        return self[start...end]
+        return String(self[start...end])
     }
 }

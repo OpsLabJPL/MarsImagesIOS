@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         catalog?.mission = Mission.OPPORTUNITY
     }
     
-    func checkOppyImages() {
+    @objc func checkOppyImages() {
         DispatchQueue.global().async {
             let oppyLastKnownSol = self.soldata.object(forKey: Mission.OPPORTUNITY)
             if let oppyImageSet = self.catalog?.imagesets[0] {
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func checkMslImages() {
+    @objc func checkMslImages() {
         let mslLastKnownSol = soldata.object(forKey: Mission.CURIOSITY)
         if let mslImageSet = catalog?.imagesets[0] {
             let mslLatestSol = mslImageSet.sol

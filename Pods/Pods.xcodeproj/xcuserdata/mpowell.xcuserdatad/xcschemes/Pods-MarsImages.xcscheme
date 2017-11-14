@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18143F4A9EC34BF619C0AB590E37B44F"
+               BlueprintIdentifier = "4EF11077C9CA1C3BD1749F70055D2B56"
                BuildableName = "Pods_MarsImages.framework"
                BlueprintName = "Pods-MarsImages"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -36,6 +37,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -45,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18143F4A9EC34BF619C0AB590E37B44F"
+            BlueprintIdentifier = "4EF11077C9CA1C3BD1749F70055D2B56"
             BuildableName = "Pods_MarsImages.framework"
             BlueprintName = "Pods-MarsImages"
             ReferencedContainer = "container:Pods.xcodeproj">

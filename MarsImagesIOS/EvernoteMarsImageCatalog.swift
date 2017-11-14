@@ -135,6 +135,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     func loadMoreNotes(startIndex:Int, total:Int) {
         
         guard reachability.isReachable else {
+            print("DEBUG got zero notes back, notifying")
+
             NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:0])
             isSearchComplete = true
             return
@@ -146,7 +148,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
         connect()
         
-        EvernoteMarsImageCatalog.noteDownloadQueue.sync {
+        EvernoteMarsImageCatalog.noteDownloadQueue.async {
             guard self.imagesets.count <= startIndex else {
                 return
             }
@@ -185,11 +187,11 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     }
                 }
                 
-                isSearchComplete = Int(notelist.totalNotes) - (Int(notelist.startIndex) + notelist.notes.count) <= 0
-                
+                self.isSearchComplete = notelist.totalNotes.intValue - notelist.startIndex.intValue + notelist.notes.count <= 0
+                print("DEBUG got \(notelist.notes.count) notes back, notifying")
                 NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
             } else {
-                isSearchComplete = true
+                self.isSearchComplete = true
             }
         }
     }
@@ -244,7 +246,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             var word = w
 
             let wordIntValue = Int(word)
-            if word.characters.count == 13 && word[word.index(word.startIndex, offsetBy:6)] == "-" {
+            if word.count == 13 && word[word.index(word.startIndex, offsetBy:6)] == "-" {
                 //do nothing for an RMC formatted as XXXXXX-XXXXXX
             }
             else if let wordIntValue = wordIntValue {
@@ -352,7 +354,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         
         for imageset in imagesets {
             if imageset.title.range(of: "RMC", options: .backwards) != nil {
-                let rmcstring = String(imageset.title.characters.suffix(13))
+                let rmcstring = String(imageset.title.suffix(13))
                 let indices = rmcstring.components(separatedBy: "-")
                 userSite = Int(indices[0])!
                 userDrive = Int(indices[1])!

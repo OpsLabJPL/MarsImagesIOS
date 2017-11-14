@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mark Powell. All rights reserved.
 //
 
+import POWImageGallery
 import SceneKit
 import SDWebImage
 
@@ -20,21 +21,27 @@ class MosaicLoader {
     var scene:SCNScene
     var view:SCNView
     var camera:SCNCamera
+    var screenWidthPixels:Double
     
-    init(rmc:(Int,Int), catalog:MarsImageCatalog, scene:SCNScene, view: SCNView, camera: SCNCamera) {
+    init(rmc:(Int,Int), catalog:MarsImageCatalog, scene:SCNScene, view: SCNView, camera: SCNCamera, screenWidthPixels: Double) {
         self.rmc = rmc
         self.catalog = catalog
         self.scene = scene
         self.view = view
         self.camera = camera
+        self.screenWidthPixels = screenWidthPixels
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
 
-        catalog.localLevelQuaternion(rmc, completionHandler: { quaternion in
-            self.qLL = quaternion
-            self.addImagesToScene()
+        catalog.localLevelQuaternion(rmc, completionHandler: { [weak self] quaternion in
+            self?.qLL = quaternion
+            self?.addImagesToScene()
         })
         
         SDImageCache.shared().maxMemoryCost = 128000
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .endImagesetLoading, object: nil)
     }
     
     func addImagesToScene() {
@@ -51,22 +58,21 @@ class MosaicLoader {
         if numLoaded! > 0 {
             //not done loading imagesets, request to load remaining
             if self.catalog.hasMoreImages() {
-                DispatchQueue.global().async {
-                    self.catalog.loadNextPage()
-                }
+                self.catalog.loadNextPage()
             }
-            else {
-                //all done loading imagesets, add them all to the scene
-                binImagesByPointing(catalog.marsphotos)
-                var mosaicCount = 0
-                for (title, photo) in imagesInScene {
-                    if let model = photo.modelJson {
-                        mosaicCount += 1
-                        let imageId = photo.imageId()
-                        imageQuads[title] = ImageQuad(model: CameraModelUtils.model(model), qLL: qLL, imageId: imageId)
-                        scene.rootNode.addChildNode(imageQuads[title]!.node)
-                    }
+        }
+        else {
+            //all done loading imagesets, add them all to the scene
+            binImagesByPointing(catalog.marsphotos)
+            var mosaicCount = 0
+            for (title, photo) in imagesInScene {
+                if let model = photo.modelJson {
+                    mosaicCount += 1
+                    let imageId = photo.imageId()
+                    imageQuads[title] = ImageQuad(model: CameraModelUtils.model(model), qLL: qLL, imageId: imageId)
+                    scene.rootNode.addChildNode(imageQuads[title]!.node)
                 }
+                photo.delegate = MosaicImageDelegate(title, self)
             }
         }
     }
@@ -133,24 +139,22 @@ class MosaicLoader {
     
     func loadImageAndTexture(_ title: String) {
         if let photo = imagesInScene[title] {
-            if photo.underlyingImage == nil {
-                if photo.isLoading == false {
-                    photo.performLoadUnderlyingImageAndNotify()
-                }
-            } else {
-                makeTexture(title, photo)
-                //TODO this the old way: manage my own textures. Still need?
-//            [photo unloadUnderlyingImage]; //after making texture, improves memory management quite significantly
-            }
+            photo.requestImage()
+//            if photo.underlyingImage == nil {
+//                if photo.isLoading == false {
+//                    photo.performLoadUnderlyingImageAndNotify()
+//                }
+//            } else {
+//                let quad = imageQuads[title]!
+//                let textureSize = computeBestTextureResolution(quad)
+//                imageTextures[title] = ImageUtility.image(photo.underlyingImage, scaledTo:CGSize(width:textureSize, height:textureSize))
+//             }
         }
     }
     
     func unloadImage(_ title: String) {
         if let photo = imagesInScene[title] {
-            if photo.underlyingImage != nil {
-                photo.unloadUnderlyingImage()
-            }
-            //TODO old way: delete my own managed texture. Still need?
+            photo.delegate = nil
         }
     }
     
@@ -158,14 +162,6 @@ class MosaicLoader {
         imagesInScene.removeAll()
         imageTextures.removeAll()
         imageQuads.removeAll()
-    }
-    
-    func makeTexture(_ title: String, _ photo: MarsPhoto) {
-        if let image = photo.underlyingImage {
-            let quad = imageQuads[title]!
-            let textureSize = computeBestTextureResolution(quad)
-            imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize))
-        }
     }
     
     func binImagesByPointing(_ imagesForRMC:[MarsPhoto]) {
@@ -190,7 +186,6 @@ class MosaicLoader {
     }
 
     func computeBestTextureResolution(_ imageQuad: ImageQuad) -> Int {
-        let screenWidthPixels = Double(view.bounds.width * view.contentScaleFactor) //convert width from points to pixels
         let fov = camera.xFov == 0 ? camera.yFov : camera.xFov
         let viewportFovRadians = fov / 180.0 * Double.pi
         let cameraFovRadians = imageQuad.cameraFOVRadians()
@@ -200,3 +195,25 @@ class MosaicLoader {
         return bestTextureResolution > 1024  ? 1024 : bestTextureResolution
     }
 }
+
+class MosaicImageDelegate : ImageDelegate {
+    
+    let title:String
+    let mosaicLoader:MosaicLoader
+    
+    public init(_ title: String, _ mosaicLoader:MosaicLoader) {
+        self.title = title
+        self.mosaicLoader = mosaicLoader
+    }
+    
+    func finished(image: UIImage) {
+        let quad = mosaicLoader.imageQuads[title]!
+        let textureSize = mosaicLoader.computeBestTextureResolution(quad)
+        mosaicLoader.imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize))
+    }
+    
+    func failure() {
+        //TODO handle failure
+    }
+}
+
