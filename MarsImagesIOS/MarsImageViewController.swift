@@ -49,7 +49,7 @@ class MarsImageViewController :  ImageGalleryViewController {
     }
     
     override func viewDidLoad() {
-        SDImageCache.shared().maxMemoryCost = 0
+        SDImageCache.shared().maxMemoryCost = 128000
 
         PSMenuItem.installMenuHandler(for: self)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
@@ -132,7 +132,7 @@ class MarsImageViewController :  ImageGalleryViewController {
         } else {
             toolbar.setItems([ imageSelectionButton, flex, shareImageButton], animated: true)
         }
-}
+    }
     
     func setImageSelectionButtonWidth() {
         if let title = imageSelectionButton.title {
@@ -177,16 +177,18 @@ class MarsImageViewController :  ImageGalleryViewController {
         
         let imageset = catalog!.imagesets[Int(pageIndex)]
         let photo = catalog!.marsphotos[Int(pageIndex)]
-        var imageName = ""
         if photo.leftAndRight != nil {
-            imageName = "Anaglyph"
+            setImageSelectionButtonTitle("Anaglyph")
         }
         else {
-            imageName = catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset)
+            setImageSelectionButtonTitle(catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset))
         }
-        imageSelectionButton.title = imageName
-        setImageSelectionButtonWidth()
         toolbar.setNeedsLayout()
+    }
+    
+    func setImageSelectionButtonTitle(_ title: String) {
+        imageSelectionButton.title = title
+        setImageSelectionButtonWidth()
     }
     
     func sourceRectForPopupController(_ bounds: CGRect) -> CGRect {
@@ -274,6 +276,11 @@ class MarsImageViewController :  ImageGalleryViewController {
         if pageIndex == catalog!.imagesetCount-1 && catalog!.hasMoreImages() {
             catalog!.loadNextPage()
         }
+        let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
+        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
+    }
+    
+    override func imageLoaded() {
         let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
         NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
     }

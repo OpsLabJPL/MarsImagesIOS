@@ -107,6 +107,7 @@ open class ImageGalleryViewController : UIViewController {
     
     open func makeImageViewController(imageIndex:Int, image: ImageCreator) -> ImageViewController {
         let vc = ImageViewController()
+        vc.delegate = self
         vc.imageIndex = imageIndex
         vc.image = image
         image.delegate = vc
@@ -193,5 +194,11 @@ extension ImageGalleryViewController : UIPageViewControllerDelegate {
             }
         }
         hideControlsAfterDelay()
+    }
+}
+
+extension ImageGalleryViewController : ImageViewControllerDelegate {
+    open func imageLoaded() {
+        //do nothing by default
     }
 }

@@ -8,6 +8,10 @@
 import UIKit
 import SDWebImage
 
+@objc public protocol ImageViewControllerDelegate {
+    @objc optional func imageLoaded()
+}
+
 open class ImageViewController : UIViewController {
     
     @objc public var imageView: UIImageView!
@@ -26,6 +30,9 @@ open class ImageViewController : UIViewController {
     var imageViewRightConstraint = NSLayoutConstraint()
     var imageViewTopConstraint = NSLayoutConstraint()
     var imageViewBottomConstraint = NSLayoutConstraint()
+
+    public var delegate: ImageViewControllerDelegate?
+    
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -131,6 +138,7 @@ extension ImageViewController: ImageDelegate {
         loadViewIfNeeded()
         imageView?.image = image
         loadInProgress = false
+        delegate?.imageLoaded?()
     }
     
     public func failure() {
