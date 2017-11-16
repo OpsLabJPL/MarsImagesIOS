@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092F26FC3E869AA99B055C5D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90095D70CF1C0D57DFD86EE /* CoreVideo.framework */; };
+		18C68755F0F7B728F62E427A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66D5C827854168A7B02D4FF /* CoreText.framework */; };
+		1E8D641EF578C4A5D056727B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECCB11CC5E3AA5D41448189E /* CoreTelephony.framework */; };
+		363CB67181F2FC9220DD6ECB /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB0C2263DB5E4B4229F5069 /* BuddyBuildSDK.framework */; };
+		46ED118CB9869771224D2B78 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F689BFCDD74395A5A1C33FC2 /* AssetsLibrary.framework */; };
 		4A11484F1F2C67740046E047 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A11484E1F2C67740046E047 /* placeholder.png */; };
 		4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680B41F2A8ECE004E30CC /* AppDelegate.swift */; };
 		4A1680B71F2A8ECE004E30CC /* MarsImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */; };
@@ -53,7 +58,11 @@
 		4AE4036E1F4A881F00163394 /* CAHVOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE4036D1F4A881F00163394 /* CAHVOR.swift */; };
 		4AE403701F4A886F00163394 /* CAHVORE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE4036F1F4A886F00163394 /* CAHVORE.swift */; };
 		50C2125B5022DD67069ACD03 /* Pods_MarsImagesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBF826EF924C813553C4827 /* Pods_MarsImagesTests.framework */; };
+		63549E851D88CFA70D695ED1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEECD7C3E6ACE3589C1A4FD6 /* AVFoundation.framework */; };
+		B35FF75FAB5C5C9B2982D1F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7B156D5570DF0FD0ACADCE /* QuartzCore.framework */; };
+		BF4A1B16C55CE630ECBE5159 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21B79A2C2DDC09341648D39 /* SystemConfiguration.framework */; };
 		C9D96EC87A90F36FB4F5847A /* Pods_MarsImages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBE5C98E80D1BBED3D290DF /* Pods_MarsImages.framework */; };
+		CF38A2CE2269693FE308B551 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A22408CEE08A874793958F /* CoreMedia.framework */; };
 		D0EAB7103E739E82F49374B8 /* Pods_MarsImagesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E3D9EDCB92E1DDA5B2CA33 /* Pods_MarsImagesUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,7 +144,17 @@
 		4EE74FDCD2F101C54D3C90AB /* Pods-MarsImagesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImagesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImagesTests/Pods-MarsImagesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		80EDBB854FD066C0FD11671B /* Pods-MarsImagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImagesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImagesTests/Pods-MarsImagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		954E79874BFB4D625133B5C2 /* Pods-MarsImagesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImagesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImagesUITests/Pods-MarsImagesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		96A22408CEE08A874793958F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9C7B156D5570DF0FD0ACADCE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9D4F917DACE5CEDC37C16609 /* Pods-MarsImages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImages.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImages/Pods-MarsImages.release.xcconfig"; sourceTree = "<group>"; };
+		B5847D9CA25F2A40C94E1283 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		B66D5C827854168A7B02D4FF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		C21B79A2C2DDC09341648D39 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C90095D70CF1C0D57DFD86EE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		CBB0C2263DB5E4B4229F5069 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		ECCB11CC5E3AA5D41448189E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EEECD7C3E6ACE3589C1A4FD6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F689BFCDD74395A5A1C33FC2 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +163,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9D96EC87A90F36FB4F5847A /* Pods_MarsImages.framework in Frameworks */,
+				363CB67181F2FC9220DD6ECB /* BuddyBuildSDK.framework in Frameworks */,
+				46ED118CB9869771224D2B78 /* AssetsLibrary.framework in Frameworks */,
+				18C68755F0F7B728F62E427A /* CoreText.framework in Frameworks */,
+				1E8D641EF578C4A5D056727B /* CoreTelephony.framework in Frameworks */,
+				BF4A1B16C55CE630ECBE5159 /* SystemConfiguration.framework in Frameworks */,
+				B35FF75FAB5C5C9B2982D1F2 /* QuartzCore.framework in Frameworks */,
+				63549E851D88CFA70D695ED1 /* AVFoundation.framework in Frameworks */,
+				CF38A2CE2269693FE308B551 /* CoreMedia.framework in Frameworks */,
+				092F26FC3E869AA99B055C5D /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +234,7 @@
 				4A1680B21F2A8ECE004E30CC /* Products */,
 				44781952AD078E579E83D215 /* Pods */,
 				8E6DB2D67E50BF1989C53761 /* Frameworks */,
+				B5847D9CA25F2A40C94E1283 /* Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -309,6 +338,15 @@
 				3FBE5C98E80D1BBED3D290DF /* Pods_MarsImages.framework */,
 				4DBF826EF924C813553C4827 /* Pods_MarsImagesTests.framework */,
 				42E3D9EDCB92E1DDA5B2CA33 /* Pods_MarsImagesUITests.framework */,
+				CBB0C2263DB5E4B4229F5069 /* BuddyBuildSDK.framework */,
+				F689BFCDD74395A5A1C33FC2 /* AssetsLibrary.framework */,
+				B66D5C827854168A7B02D4FF /* CoreText.framework */,
+				ECCB11CC5E3AA5D41448189E /* CoreTelephony.framework */,
+				C21B79A2C2DDC09341648D39 /* SystemConfiguration.framework */,
+				9C7B156D5570DF0FD0ACADCE /* QuartzCore.framework */,
+				EEECD7C3E6ACE3589C1A4FD6 /* AVFoundation.framework */,
+				96A22408CEE08A874793958F /* CoreMedia.framework */,
+				C90095D70CF1C0D57DFD86EE /* CoreVideo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -852,11 +890,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MarsImagesIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.powellware.Mars-Images";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -869,11 +912,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MarsImagesIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.powellware.Mars-Images";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
