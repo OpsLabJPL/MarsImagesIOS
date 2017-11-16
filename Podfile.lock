@@ -4,7 +4,7 @@ PODS:
   - EvernoteSDK (3.0.0)
   - MarsTimeConversion (0.1.9)
   - MKDropdownMenu (1.4)
-  - POWImageGallery (0.1.0):
+  - POWImageGallery (0.1.1):
     - SDWebImage (~> 4.2)
   - PSMenuItem (0.0.1)
   - ReachabilitySwift (3)
@@ -42,7 +42,7 @@ CHECKOUT OPTIONS:
     :commit: acaf27454d24c77b80dd4bc62f5dcdc2afb81b8c
     :git: https://github.com/OpsLabJPL/MarsTimeConversion.git
   POWImageGallery:
-    :commit: 461fc318921f7bc293e74ee088e3fb6edd513065
+    :commit: 1bf381a75f8765af4baddebc7c44b7e6f4f509c2
     :git: https://github.com/OpsLabJPL/POWImageGallery.git
 
 SPEC CHECKSUMS:
@@ -51,7 +51,7 @@ SPEC CHECKSUMS:
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
   MarsTimeConversion: 6684058841ac55567b1b5c8d38fdf2bde3533cde
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
-  POWImageGallery: e53e985c066abbf2ff378eee360d0441fae00ed8
+  POWImageGallery: 6ef2b91733f7b65380b73616daa04292f5366af3
   PSMenuItem: e81c682356ca17734fc85b3b37abdda75748de54
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198

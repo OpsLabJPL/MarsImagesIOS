@@ -19,8 +19,8 @@ class MarsPhoto: ImageCreator {
     var modelJson:JSON?
     var caption:String
     
-    weak var leftImage:UIImage?
-    weak var rightImage:UIImage?
+    var leftImage:UIImage?
+    var rightImage:UIImage?
     var leftAndRight:(String,String)?
     var isIncludedInMosaic:Bool {
         return imageset.title.range(of:"Navcam") != nil
@@ -48,69 +48,54 @@ class MarsPhoto: ImageCreator {
         super.init(url:URL(string:leftAndRight.0)!, delegate:nil)
     }
     
-//    func downloadImage(_ url:URL, _ setImageFunc:@escaping (_ image:UIImage?)->()) {
-//        let manager = SDWebImageManager.shared()
-//
-//        manager.loadImage(with: url, options: [.allowInvalidSSLCertificates],
-//                              progress:  { (receivedSize, expectedSize, targetUrl) -> Void in
-//                                if expectedSize > 0 {
-//                                    let progress = Float(receivedSize)/Float(expectedSize)
-//                                    let dict:[String:Any] = ["progress": progress, "photo": self]
-//                                    NotificationCenter.default.post(name: .mediaLoadingProgressNotification, object: dict)
-//                                }
-//        },
-//                              completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
-//                                if let error = error {
-//                                    print("Error: \(url) \(error)")
-//                                    return
-//                                }
-//                                setImageFunc(image)
-//                                if let leftImage = self.leftImage, let rightImage = self.rightImage {
-//                                    self.underlyingImage = ImageUtility.anaglyph(left: leftImage, right:rightImage)
-//                                    self.decompressImageAndFinishLoading()
-//                                }
-//        })
-//    }
-    
-//    override public func performLoadUnderlyingImageAndNotify() {
-//        isLoading = true
-//        guard (leftAndRight != nil) else {
-//            super.performLoadUnderlyingImageAndNotify()
-//            return
-//        }
-//
-//        let leftUrl = leftAndRight!.0
-//        downloadImage(URL(string:leftUrl)!, { image in
-//            self.leftImage = image
-//        })
-//        let rightUrl = leftAndRight!.1
-//        downloadImage(URL(string:rightUrl)!, { image in
-//            self.rightImage = image
-//        })
-//    }
+    override open func requestImage() {
+        guard (leftAndRight != nil) else {
+            super.requestImage()
+            return
+        }
 
-//    func decompressImageAndFinishLoading() {
-//        if let image = self.underlyingImage {
-//            DispatchQueue.global().async {
-//                self.underlyingImage = UIImage.decodedImage(with: image)
-//                DispatchQueue.main.async {
-//                    self.imageLoadComplete()
-//                }
-//            }
-//        }
-//        // FIXME put this in else, or remove? or other?
-//        //imageLoadComplete()
-//    }
+        if loadInProgress {
+            return
+        }
+        loadInProgress = true
 
-//    func imageLoadComplete() {
-//        isLoading = false
-//        NotificationCenter.default.post(name: .mediaLoadingDidEndNotification, object: self)
-//    }
+        let leftUrl = URL(string:leftAndRight!.0)
+        SDWebImageManager.shared().loadImage(with: leftUrl, options: .refreshCached,
+                                             progress:  { (receivedSize, expectedSize, targetUrl) -> Void in
+                                                self.delegate?.progress?(receivedSize:receivedSize, expectedSize:expectedSize)
+        },
+                                             completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
+                                                if let image = image {
+                                                    self.leftImage = image
+                                                    self.processImage()
+                                                } else {
+                                                    self.delegate?.failure()
+                                                }
+        })
+        let rightUrl = URL(string:leftAndRight!.1)
+        SDWebImageManager.shared().loadImage(with: rightUrl, options: .refreshCached,
+                                             progress:  { (receivedSize, expectedSize, targetUrl) -> Void in
+                                                self.delegate?.progress?(receivedSize:receivedSize, expectedSize:expectedSize)
+        },
+                                             completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
+                                                if let image = image {
+                                                    self.rightImage = image
+                                                    self.processImage()
+                                                } else {
+                                                    self.delegate?.failure()
+                                                }
+        })
+    }
     
-//    override func unloadUnderlyingImage() {
-//        isLoading = false
-//        super.unloadUnderlyingImage()
-//    }
+    func processImage() {
+        if let leftImage = self.leftImage, let rightImage = self.rightImage {
+            let anaglyphImage = ImageUtility.anaglyph(left: leftImage, right:rightImage)
+            self.delegate?.finished(image:anaglyphImage)
+            self.leftImage = nil
+            self.rightImage = nil
+            self.loadInProgress = false
+        }
+    }
     
     func fieldOfView() -> Double {
         let imageId = Mission.imageId(url: sourceUrl)
