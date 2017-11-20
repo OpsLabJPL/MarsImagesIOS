@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import SDWebImage
 
 @objc public protocol ImageViewControllerDelegate {
@@ -20,6 +21,11 @@ open class ImageViewController : UIViewController {
     public var image: ImageCreator? {
         didSet {
             loadInProgress = true
+            DispatchQueue.main.async {
+                self.progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+                self.progressHUD.mode = .annularDeterminate
+                self.progressHUD.label.text = "Loading"
+            }
             self.image?.requestImage()
          }
     }
@@ -32,7 +38,7 @@ open class ImageViewController : UIViewController {
     var imageViewBottomConstraint = NSLayoutConstraint()
 
     public var delegate: ImageViewControllerDelegate?
-    
+    @objc public var progressHUD: MBProgressHUD!
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -86,7 +92,6 @@ open class ImageViewController : UIViewController {
         super.viewDidAppear(animated)
     }
     
-    
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateMinZoomScaleForSize(view.bounds.size)
@@ -131,18 +136,26 @@ extension ImageViewController : UIScrollViewDelegate {
 
 extension ImageViewController: ImageDelegate {
     public func progress(receivedSize: Int, expectedSize:Int){
-        //TODO
+        DispatchQueue.main.async {
+            self.progressHUD.progress = Float(receivedSize)/Float(expectedSize)
+        }
     }
     
     public func finished(image: UIImage) {
         loadViewIfNeeded()
         imageView?.image = image
         loadInProgress = false
+        DispatchQueue.main.async {
+            self.progressHUD.hide(animated:true)
+        }
         delegate?.imageLoaded?()
     }
     
     public func failure() {
         //TODO
         loadInProgress = false
+        DispatchQueue.main.async {
+            self.progressHUD.hide(animated:true)
+        }
     }
 }

@@ -53,6 +53,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var imagesetsForSol: [Int : [Imageset]] = [:]
 
     var marsphotos:[MarsPhoto] = []
+    var captions:[String?] = []
     
     var locations:[(Int,Int)]?
     var namedLocations:[String:(Int,Int)]?
@@ -95,6 +96,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         imagesetsForSol.removeAll()
         imagesets.removeAll()
         marsphotos.removeAll()
+        captions.removeAll()
         imagesetCountsBySol.removeAll()
         sols.removeAll()
         solIndices.removeAll()
@@ -181,6 +183,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     self.imagesetsForSol[sol] = imagesetsInSol!
                     let photo = self.getNotePhoto(j+startIndex, imageIndex:0)
                     self.marsphotos.append(photo)
+                    self.captions.append(Mission.currentMission().caption(imageset.title))
                     self.imagesetCountsBySol[sol] = imagesetsInSol!.count
                     if self.imagesetCountsBySol.count != self.sols.count {
                         print("Brown alert: sections and sols counts don't match each other.")

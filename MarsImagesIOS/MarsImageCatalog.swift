@@ -34,6 +34,8 @@ protocol MarsImageCatalog {
     
     var imagesets:[Imageset] { get }
     
+    var captions:[String?] { get }
+    
     var marsphotos:[MarsPhoto] { get }
     
     var imagesetsForSol:[Int:[Imageset]] { get }
