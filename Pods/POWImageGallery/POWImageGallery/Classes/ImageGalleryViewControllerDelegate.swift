@@ -8,4 +8,5 @@
 
 public protocol ImageGalleryViewControllerDelegate {
     var images: [ImageCreator] { get }
+    var captions: [String?] { get }
 }

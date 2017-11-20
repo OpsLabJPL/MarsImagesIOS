@@ -288,11 +288,19 @@ class MarsImageViewController :  ImageGalleryViewController {
 
 
 extension MarsImageViewController: ImageGalleryViewControllerDelegate {
+    var captions: [String?] {
+        get {
+            return catalog!.captions
+        }
+    }
+    
     var images: [ImageCreator] {
         get {
             return catalog!.marsphotos
         }
     }
+    
+    
 }
 
 extension Notification.Name {

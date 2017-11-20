@@ -1,6 +1,6 @@
 {
   "name": "POWImageGallery",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "summary": "Image gallery view controller for iOS apps.",
   "description": "Image gallery view controller for iOS apps. Written in Swift 4 for XCode 9.",
   "homepage": "https://github.com/OpsLabJPL/POWImageGallery",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OpsLabJPL/POWImageGallery.git",
-    "tag": "0.1.1"
+    "tag": "0.1.3"
   },
   "platforms": {
     "ios": "9.0"
@@ -26,6 +26,9 @@
   "dependencies": {
     "SDWebImage": [
       "~> 4.2"
+    ],
+    "MBProgressHUD": [
+      "~> 1.1"
     ]
   }
 }
