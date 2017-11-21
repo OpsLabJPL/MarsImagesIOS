@@ -75,6 +75,17 @@ class MarsImageViewController :  ImageGalleryViewController {
         toolbar.tintColor = UIColor.white
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //this awkwardness avoids the PageViewController showing nothing (white, empty) after transitioning back from popping the mosaic VC off the nav VC
+        //TODO: figure out a better way to achieve this
+        if let count = pageViewController.viewControllers?.count {
+            if count > 0 {
+                pageViewController.setViewControllers(pageViewController.viewControllers, direction: .forward, animated: false, completion: nil)
+            }
+        }
+    }
+    
     func makeButtons() {
         drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(toggleDrawer(_:)))
         navigationItem.rightBarButtonItem = drawerButton
