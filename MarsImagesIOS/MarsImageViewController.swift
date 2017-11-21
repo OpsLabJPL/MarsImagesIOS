@@ -162,8 +162,11 @@ class MarsImageViewController :  ImageGalleryViewController {
     }
     
     @objc func imagesetsLoaded(notification: Notification) {
+
         DispatchQueue.main.async {
-            self.reloadData()
+            if self.pageViewController.viewControllers?.count == 0 {
+                self.reloadData()
+            }
             if self.hasMissionChanged {
                 self.setPageIndex(0)
                 self.hasMissionChanged = false
@@ -290,8 +293,9 @@ class MarsImageViewController :  ImageGalleryViewController {
     }
     
     override func imageLoaded() {
-        let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
-        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
+        //TODO: This was causing the tableview to scroll to back to the current image even if it was the table that was scrolled to the end that initiated the load, which I don't want. Keep an eye on this. Is this needed for anything else?
+//        let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
+//        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
     }
 }
 
@@ -319,19 +323,4 @@ extension Notification.Name {
 
 extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
     
-}
-
-//TODO still need?
-extension String {
-    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
-        return ceil(boundingBox.height)
-    }
-    
-    func width(withConstraintedHeight height: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
-        return ceil(boundingBox.width)
-    }
 }
