@@ -42,12 +42,6 @@ class MarsImageViewController :  ImageGalleryViewController {
         self.makeButtons()
     }
     
-    func makeButtons() {
-        drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(manageDrawer(_:)))
-        navigationItem.rightBarButtonItem = drawerButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-    }
-    
     override func viewDidLoad() {
         SDImageCache.shared().maxMemoryCost = 128000
 
@@ -81,14 +75,20 @@ class MarsImageViewController :  ImageGalleryViewController {
         toolbar.tintColor = UIColor.white
     }
     
-    @IBAction func manageDrawer(_ sender: Any) {
+    func makeButtons() {
+        drawerButton = UIBarButtonItem(image: rightIcon, style: .plain, target: self, action: #selector(toggleDrawer(_:)))
+        navigationItem.rightBarButtonItem = drawerButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+    }
+    
+    @IBAction func toggleDrawer(_ sender: Any) {
         if drawerClosed {
             NotificationCenter.default.post(name: .openDrawer, object: nil)
         } else {
             NotificationCenter.default.post(name: .closeDrawer, object: nil)
         }
     }
-    
+
     @objc func closeDrawerSwipe() {
         guard drawerClosed == false else {
             return
