@@ -147,8 +147,6 @@ class MarsImageViewController :  ImageGalleryViewController {
     }
     
     @objc func missionChanged(_ notification: Notification) {
-        //set the image page to the first page when the mission changes
-        self.setPageIndex(0)
         self.hasMissionChanged = true
     }
     
