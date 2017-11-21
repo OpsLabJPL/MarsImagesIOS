@@ -147,7 +147,7 @@ class MarsImageViewController :  ImageGalleryViewController {
     
     func setImageSelectionButtonWidth() {
         if let title = imageSelectionButton.title {
-            imageSelectionButton.width = title.width(withConstraintedHeight: toolbar.frame.size.height, font: UIFont.systemFont(ofSize: 20))
+            imageSelectionButton.width = title.width(withConstrainedHeight: toolbar.frame.size.height, font: UIFont.systemFont(ofSize: 20))
         }
     }
     
@@ -312,8 +312,6 @@ extension MarsImageViewController: ImageGalleryViewControllerDelegate {
             return catalog!.marsphotos
         }
     }
-    
-    
 }
 
 extension Notification.Name {
@@ -323,4 +321,12 @@ extension Notification.Name {
 
 extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
     
+}
+
+extension String {
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
+        return ceil(boundingBox.width)
+    }
 }
