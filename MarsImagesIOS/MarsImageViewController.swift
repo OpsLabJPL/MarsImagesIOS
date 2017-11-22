@@ -268,6 +268,7 @@ class MarsImageViewController :  ImageGalleryViewController {
     }
     
     @objc func showMosaicView() {
+        setControlsVisible(true)
         performSegue(withIdentifier: "mosaic", sender: self)
     }
     
