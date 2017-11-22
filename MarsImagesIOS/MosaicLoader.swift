@@ -40,10 +40,6 @@ class MosaicLoader {
         SDImageCache.shared().maxMemoryCost = 128000
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .endImagesetLoading, object: nil)
-    }
-    
     func addImagesToScene() {
         catalog.searchWords = String(format:"%06d-%06d", rmc.0, rmc.1)
         catalog.reload()

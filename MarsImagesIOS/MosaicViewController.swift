@@ -37,6 +37,13 @@ class MosaicViewController : UIViewController {
         scenekitView.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if let loader = mosaicLoader {
+            NotificationCenter.default.removeObserver(loader, name: .endImagesetLoading, object: nil)
+        }
+        super.viewWillDisappear(animated)
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
