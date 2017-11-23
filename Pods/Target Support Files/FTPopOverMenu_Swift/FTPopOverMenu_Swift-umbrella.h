@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "PSMenuItem.h"
 
-FOUNDATION_EXPORT double PSMenuItemVersionNumber;
-FOUNDATION_EXPORT const unsigned char PSMenuItemVersionString[];
+FOUNDATION_EXPORT double FTPopOverMenu_SwiftVersionNumber;
+FOUNDATION_EXPORT const unsigned char FTPopOverMenu_SwiftVersionString[];
 

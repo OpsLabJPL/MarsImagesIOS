@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C267FC163C0380DBDDC8C34C361C667"
-               BuildableName = "Pods_MarsImages.framework"
-               BlueprintName = "Pods-MarsImages"
+               BlueprintIdentifier = "61F8F8960942DCFB16A860009D88CBF7"
+               BuildableName = "EFInternetIndicator.framework"
+               BlueprintName = "EFInternetIndicator"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9C267FC163C0380DBDDC8C34C361C667"
-            BuildableName = "Pods_MarsImages.framework"
-            BlueprintName = "Pods-MarsImages"
+            BlueprintIdentifier = "61F8F8960942DCFB16A860009D88CBF7"
+            BuildableName = "EFInternetIndicator.framework"
+            BlueprintName = "EFInternetIndicator"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -48,6 +48,7 @@
 		4A9DE9D81F2C15D30059C9C9 /* Curiosity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */; };
 		4AA2EFE11F62404B00398E93 /* MosaicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */; };
 		4AAAB5301F2E388C001D810D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAAB52F1F2E388C001D810D /* Constants.swift */; };
+		4AC87A491FC748FB0024019D /* ImageSelectionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */; };
 		4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */; };
 		4ADBC6871F7A6E83004D98D2 /* ImageQuad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC6861F7A6E83004D98D2 /* ImageQuad.swift */; };
 		4ADBC6891F7A74A0004D98D2 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC6881F7A74A0004D98D2 /* Quaternion.swift */; };
@@ -131,6 +132,7 @@
 		4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curiosity.swift; sourceTree = "<group>"; };
 		4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicViewController.swift; sourceTree = "<group>"; };
 		4AAAB52F1F2E388C001D810D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionMenuViewController.swift; sourceTree = "<group>"; };
 		4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetReachabilityStatus.swift; sourceTree = "<group>"; };
 		4ADBC6861F7A6E83004D98D2 /* ImageQuad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuad.swift; sourceTree = "<group>"; };
 		4ADBC6881F7A74A0004D98D2 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				4A620E371F3BE79C00A82019 /* AboutViewController.swift */,
+				4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */,
 				4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */,
 				4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */,
 				4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */,
@@ -575,12 +578,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MarsImages/Pods-MarsImages-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework",
+				"${BUILT_PRODUCTS_DIR}/EFInternetIndicator/EFInternetIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/EvernoteSDK/EvernoteSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/FTPopOverMenu_Swift/FTPopOverMenu_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MKDropdownMenu/MKDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/MarsTimeConversion/MarsTimeConversion.framework",
 				"${BUILT_PRODUCTS_DIR}/POWImageGallery/POWImageGallery.framework",
-				"${BUILT_PRODUCTS_DIR}/PSMenuItem/PSMenuItem.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
@@ -592,12 +596,13 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSV.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EFInternetIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EvernoteSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FTPopOverMenu_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MKDropdownMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarsTimeConversion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/POWImageGallery.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSMenuItem.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
@@ -701,6 +706,7 @@
 				4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */,
 				4A1680EB1F2AAFE9004E30CC /* Mission.swift in Sources */,
 				4A9DE9D81F2C15D30059C9C9 /* Curiosity.swift in Sources */,
+				4AC87A491FC748FB0024019D /* ImageSelectionMenuViewController.swift in Sources */,
 				4A1680B71F2A8ECE004E30CC /* MarsImageTableViewController.swift in Sources */,
 				4A9DE9D41F2C15C00059C9C9 /* Opportunity.swift in Sources */,
 				4AE4036C1F4A794200163394 /* Math.swift in Sources */,
