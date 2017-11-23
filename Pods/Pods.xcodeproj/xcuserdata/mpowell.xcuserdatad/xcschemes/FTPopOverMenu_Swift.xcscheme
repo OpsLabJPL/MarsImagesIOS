@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F62C7C99FBCADA300B190574D936A59"
-               BuildableName = "PSMenuItem.framework"
-               BlueprintName = "PSMenuItem"
+               BlueprintIdentifier = "45E5686CF543A4C478F57B2C88313189"
+               BuildableName = "FTPopOverMenu_Swift.framework"
+               BlueprintName = "FTPopOverMenu_Swift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7F62C7C99FBCADA300B190574D936A59"
-            BuildableName = "PSMenuItem.framework"
-            BlueprintName = "PSMenuItem"
+            BlueprintIdentifier = "45E5686CF543A4C478F57B2C88313189"
+            BuildableName = "FTPopOverMenu_Swift.framework"
+            BlueprintName = "FTPopOverMenu_Swift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
