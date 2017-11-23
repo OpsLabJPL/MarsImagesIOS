@@ -8,7 +8,6 @@
 
 import UIKit
 import POWImageGallery
-import PSMenuItem
 import SDWebImage
 
 class MarsImageViewController :  ImageGalleryViewController {
@@ -51,7 +50,6 @@ class MarsImageViewController :  ImageGalleryViewController {
     override func viewDidLoad() {
         SDImageCache.shared().maxMemoryCost = 128000
 
-        PSMenuItem.installMenuHandler(for: self)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openDrawer), name: .openDrawer, object: nil)
@@ -194,49 +192,55 @@ class MarsImageViewController :  ImageGalleryViewController {
     }
     
     @objc func imageSelectionPressed() {
-        becomeFirstResponder()
         let imageset = catalog!.imagesets[Int(pageIndex)]
         let imageCount = catalog!.getImagesetCount(imageset: imageset)
+        guard imageCount > 1 else {
+            return
+        }
         
-        var menuItems:[PSMenuItem] = []
+        var menuItems:[String] = []
         for r in 0..<imageCount {
             let imageName = catalog!.imageName(imageset: imageset, imageIndexInSet: r)
-            let menuItem = PSMenuItem(title: imageName, block: {
-                self.catalog!.changeToImage(imagesetIndex: Int(self.pageIndex), imageIndexInSet: r)
-                self.reloadData()
-                self.imageSelectionButton.title = imageName
-                self.setImageSelectionButtonWidth()
-            })!
-            menuItems.append(menuItem)
+            menuItems.append(imageName)
         }
         
         let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(pageIndex))
-        if let leftAndRight = leftAndRight {
-            let menuItem = PSMenuItem(title: "Anaglyph", block: {
-                self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.pageIndex))
-                self.reloadData()
-                self.imageSelectionButton.title = "Anaglyph"
-                self.setImageSelectionButtonWidth()
-            })!
+        if leftAndRight != nil {
+            let menuItem = "Anaglyph"
             menuItems.append(menuItem)
         }
-                
-        if menuItems.count > 1 {
-            UIMenuController.shared.menuItems = menuItems
-            UIMenuController.shared.setTargetRect(toolbar.bounds, in: toolbar)
-            UIMenuController.shared.setMenuVisible(true, animated: true)
+
+        let imageMenuVC = showPopoverVC("imageMenuVC", compact:true)! as! ImageSelectionMenuViewController
+        imageMenuVC.imageNames = menuItems
+        imageMenuVC.imageVC = self
+    }
+    
+    func setImageAt(_ index: Int, _ imageName: String) {
+        self.catalog!.changeToImage(imagesetIndex: Int(self.pageIndex), imageIndexInSet: index)
+        self.reloadData()
+        self.imageSelectionButton.title = imageName
+        self.setImageSelectionButtonWidth()
+    }
+    
+    func showAnaglyph() {
+        let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(pageIndex))
+        if let leftAndRight = leftAndRight {
+            self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.pageIndex))
+            self.reloadData()
+            self.imageSelectionButton.title = "Anaglyph"
+            self.setImageSelectionButtonWidth()
         }
     }
     
     @objc func showAboutView() {
-        showPopoverVC("aboutVC")
+        _ = showPopoverVC("aboutVC", compact:false)
     }
     
     @objc func showTimeView() {
-        showPopoverVC("timeVC")
+        _ = showPopoverVC("timeVC", compact:false)
     }
     
-    func showPopoverVC(_ vcName:String) {
+    func showPopoverVC(_ vcName:String, compact: Bool) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: vcName)
         vc.modalPresentationStyle = .popover
@@ -245,12 +249,24 @@ class MarsImageViewController :  ImageGalleryViewController {
             presentationController.delegate = self
             presentationController.permittedArrowDirections =  UIPopoverArrowDirection(rawValue: 0)
             presentationController.sourceView = self.view
-            presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
-            presentationController.presentedViewController.preferredContentSize =
-                CGSize(width: self.view.bounds.size.width*0.8,
-                       height: self.view.bounds.size.height*0.8)
+            if !compact {
+                presentationController.sourceRect = sourceRectForPopupController(self.view.bounds)
+                presentationController.presentedViewController.preferredContentSize =
+                    CGSize(width: self.view.bounds.size.width*0.8,
+                           height: self.view.bounds.size.height*0.8)
+            } else {
+                var rect = self.view.bounds
+                rect.origin.y = rect.size.height/2
+                rect.origin.x = rect.origin.x - rect.size.width/2
+                presentationController.sourceRect = sourceRectForPopupController(rect)
+                presentationController.presentedViewController.preferredContentSize =
+                    CGSize(width: rect.size.width*0.4,
+                           height: rect.size.height*0.2)
+            }
             self.present(vc, animated: true, completion: nil)
+            return vc
         }
+        return nil
     }
     
     @objc func showMosaicView() {
