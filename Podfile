@@ -4,7 +4,7 @@ use_frameworks!
 target 'MarsImages' do
     pod 'Alamofire', '~> 4'
     pod 'CSV.swift', '~> 2'
-    pod 'EFInternetIndicator', '~> 0'
+    pod 'EFInternetIndicator', '~> 0.4'
     pod 'EvernoteSDK', '~> 3'
     pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
     pod 'MKDropdownMenu', '~> 1'
