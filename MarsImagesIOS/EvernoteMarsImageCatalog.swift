@@ -140,7 +140,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             print("DEBUG got zero notes back, notifying")
 
             NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:0])
-            isSearchComplete = true
+//            isSearchComplete = true
             return
         }
         

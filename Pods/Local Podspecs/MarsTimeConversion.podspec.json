@@ -1,6 +1,6 @@
 {
   "name": "MarsTimeConversion",
-  "version": "0.1.9",
+  "version": "1.0",
   "summary": "MarsTimeConversion library in Swift.",
   "description": "Conversion from Earth date and time to Mars date and time for a lander on the surface.",
   "homepage": "https://github.com/drmarkpowell/MarsTimeConversion",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/OpsLabJPL/MarsTimeConversion.git",
-    "tag": "0.1.9"
+    "tag": "1.0"
   },
   "platforms": {
     "ios": "8.0"

@@ -35,13 +35,13 @@ open class ImageCreator {
                 self.delegate?.progress?(receivedSize:receivedSize, expectedSize:expectedSize)
             },
             completed: { (image, data, error, cacheType, finished, imageURL) -> Void in
-            if let image = image {
-                self.delegate?.finished(image:image)
                 self.loadInProgress = false
-            } else {
-                self.delegate?.failure()
-            }
-        })
+                if let image = image {
+                    self.delegate?.finished(image:image)
+                } else {
+                    self.delegate?.failure()
+                }
+            })
     }
 }
 
