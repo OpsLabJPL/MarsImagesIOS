@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import EFInternetIndicator
 import POWImageGallery
+import ReachabilitySwift
 import SDWebImage
 
-class MarsImageViewController :  ImageGalleryViewController {
+class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndicable {
+    var internetConnectionIndicator: InternetViewIndicator?
+    var reachability:ReachabilitySwift.Reachability!
     
     var catalog:MarsImageCatalog?
     let leftIcon = UIImage.init(named: "leftArrow.png")
@@ -71,6 +75,24 @@ class MarsImageViewController :  ImageGalleryViewController {
         
         UINavigationBar.appearance().tintColor = UIColor.white
         toolbar.tintColor = UIColor.white
+
+        startMonitoringInternet()
+        reachability = Reachability(hostname:"evernote.com")!
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        reachability.whenReachable = { reachability in
+            if self.catalog!.hasMoreImages() {
+                self.catalog!.loadNextPage()
+            }
+            for vc in self.pageViewController.viewControllers! {
+                if let imageVC = vc as? ImageViewController {
+                    imageVC.image?.requestImage()
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
