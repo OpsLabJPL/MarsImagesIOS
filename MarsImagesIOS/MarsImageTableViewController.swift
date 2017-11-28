@@ -164,9 +164,13 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sol = catalog!.sols[section]
-        let imagesetsForSol = catalog!.imagesetsForSol[sol]!
-        return imagesetsForSol.count
+        if section < catalog!.sols.count {
+            let sol = catalog!.sols[section]
+            if let imagesetsForSol = catalog!.imagesetsForSol[sol] {
+                return imagesetsForSol.count
+            }
+        }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -184,18 +188,19 @@ class MarsImageTableViewController: UITableViewController {
         guard indexPath.section < catalog!.sols.count else {
             return tableView.dequeueReusableCell(withIdentifier: imageCell)!
         }
-        let sol = catalog!.sols[indexPath.section]
-        let imagesetsForSol = catalog!.imagesetsForSol[sol]!
-        loadAnotherPageIfAtEnd(indexPath, imagesets: imagesetsForSol)
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: imageCell)!
+
+        let sol = catalog!.sols[indexPath.section]
+        if let imagesetsForSol = catalog!.imagesetsForSol[sol] {
+            loadAnotherPageIfAtEnd(indexPath, imagesets: imagesetsForSol)
         
-        let imageset = imagesetsForSol[indexPath.row]
-        cell.textLabel?.text = imageset.rowTitle
-        cell.detailTextLabel?.text = imageset.subtitle
+            let imageset = imagesetsForSol[indexPath.row]
+            cell.textLabel?.text = imageset.rowTitle
+            cell.detailTextLabel?.text = imageset.subtitle
         
-        if let thumbnailUrl = imageset.thumbnailUrl {
-            cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder.png"))
+            if let thumbnailUrl = imageset.thumbnailUrl {
+                cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder.png"))
+            }
         }
         return cell
     }
@@ -228,7 +233,6 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     @objc func reachabilityChanged(_ note: Notification) {
-        
         let reachability = note.object as! Reachability
         
         var statusConfig = SwiftMessages.defaultConfig
