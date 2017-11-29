@@ -39,6 +39,18 @@ class MosaicLoader {
         
         SDImageCache.shared().maxMemoryCost = 128000
     }
+
+    func setRMC(_ rmc:(Int,Int)) {
+        for (_, quad) in imageQuads {
+            quad.node.removeFromParentNode()
+        }
+        deleteImages()
+        self.rmc = rmc
+        catalog.localLevelQuaternion(rmc, completionHandler: { [weak self] quaternion in
+            self?.qLL = quaternion
+            self?.addImagesToScene()
+        })
+    }
     
     func addImagesToScene() {
         catalog.searchWords = String(format:"%06d-%06d", rmc.0, rmc.1)

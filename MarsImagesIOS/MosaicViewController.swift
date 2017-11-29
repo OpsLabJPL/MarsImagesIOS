@@ -14,7 +14,10 @@ class MosaicViewController : UIViewController {
     
     var catalog:MarsImageCatalog?
     var mosaicLoader:MosaicLoader?
-    var scenekitView: SCNView!
+    @IBOutlet weak var scenekitView: SCNView!
+    @IBOutlet weak var previousLocationButton: UIButton!
+    @IBOutlet weak var nextLocationButton: UIButton!
+    
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
     private var previousTranslation = CGPoint.zero
@@ -26,7 +29,6 @@ class MosaicViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        scenekitView = self.view as! SCNView
         scenekitView.backgroundColor = UIColor.black
         scenekitView.allowsCameraControl = false
         setupScene()
@@ -57,6 +59,22 @@ class MosaicViewController : UIViewController {
             return .allButUpsideDown
         } else {
             return .all
+        }
+    }
+    
+    @IBAction func previousLocationSelected(_ sender: Any) {
+        if let currentRMC = mosaicLoader?.rmc {
+            if let previousRMC = catalog!.getPreviousRMC(rmc: currentRMC) {
+                mosaicLoader?.setRMC(previousRMC)
+            }
+        }
+    }
+    
+    @IBAction func nextLocationSelected(_ sender: Any) {
+        if let currentRMC = mosaicLoader?.rmc {
+            if let nextRMC = catalog!.getNextRMC(rmc: currentRMC) {
+                mosaicLoader?.setRMC(nextRMC)
+            }
         }
     }
     

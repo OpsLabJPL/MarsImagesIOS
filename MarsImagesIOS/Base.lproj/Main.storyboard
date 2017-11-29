@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -171,14 +172,53 @@
         <scene sceneID="wOy-rF-KbO">
             <objects>
                 <viewController id="HAv-bC-4HX" customClass="MosaicViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
-                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="vlH-XW-MiZ">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dFk-5r-LRK"/>
+                        <viewControllerLayoutGuide type="bottom" id="GdN-i5-7ao"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lwL-sR-4Df">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </sceneKitView>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wt-mM-MwB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </sceneKitView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPb-I4-Q4Y">
+                                <rect key="frame" x="28" y="668" width="31" height="30"/>
+                                <state key="normal" title="Prev"/>
+                                <connections>
+                                    <action selector="previousLocationSelected:" destination="HAv-bC-4HX" eventType="touchUpInside" id="wsm-6y-ky2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6c-Wu-coj">
+                                <rect key="frame" x="362" y="664" width="32" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextLocationSelected:" destination="HAv-bC-4HX" eventType="touchUpInside" id="xfe-g6-n6C"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oPb-I4-Q4Y" firstAttribute="leading" secondItem="lwL-sR-4Df" secondAttribute="leadingMargin" constant="8" id="3bh-9B-KcQ"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="centerY" secondItem="lwL-sR-4Df" secondAttribute="centerY" id="9Nn-XV-J8p"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="centerX" secondItem="lwL-sR-4Df" secondAttribute="centerX" id="ChO-Cc-yFd"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="width" secondItem="lwL-sR-4Df" secondAttribute="width" id="KsI-2M-Qmd"/>
+                            <constraint firstItem="GdN-i5-7ao" firstAttribute="top" secondItem="oPb-I4-Q4Y" secondAttribute="bottom" constant="38" id="aly-ph-uZS"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="height" secondItem="lwL-sR-4Df" secondAttribute="height" id="g4V-8R-J7E"/>
+                            <constraint firstItem="GdN-i5-7ao" firstAttribute="top" secondItem="g6c-Wu-coj" secondAttribute="bottom" constant="42" id="skz-1i-hYD"/>
+                            <constraint firstItem="g6c-Wu-coj" firstAttribute="trailing" secondItem="lwL-sR-4Df" secondAttribute="trailingMargin" id="uk9-N4-9Xa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nextLocationButton" destination="g6c-Wu-coj" id="4ed-hy-1or"/>
+                        <outlet property="previousLocationButton" destination="oPb-I4-Q4Y" id="7ti-eB-cvb"/>
+                        <outlet property="scenekitView" destination="0Wt-mM-MwB" id="gNB-yj-c0V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0T-ES-ThJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3197" y="208"/>
+            <point key="canvasLocation" x="3195.6521739130435" y="207.88043478260872"/>
         </scene>
         <!--Image Selection Menu View Controller-->
         <scene sceneID="ya6-GL-2dg">
