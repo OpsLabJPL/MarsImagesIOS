@@ -182,12 +182,13 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                         }
                         imagesetsInSol!.append(imageset)
                         self.imagesetsForSol[sol] = imagesetsInSol!
-                        let photo = self.getNotePhoto(j+startIndex, imageIndex:0)
-                        self.marsphotos.append(photo)
-                        self.captions.append(Mission.currentMission().caption(imageset.title))
-                        self.imagesetCountsBySol[sol] = imagesetsInSol!.count
-                        if self.imagesetCountsBySol.count != self.sols.count {
-                            print("Brown alert: sections and sols counts don't match each other.")
+                        if let photo = self.getNotePhoto(j+startIndex, imageIndex:0) {
+                            self.marsphotos.append(photo)
+                            self.captions.append(Mission.currentMission().caption(imageset.title))
+                            self.imagesetCountsBySol[sol] = imagesetsInSol!.count
+                            if self.imagesetCountsBySol.count != self.sols.count {
+                                print("Brown alert: sections and sols counts don't match each other.")
+                            }
                         }
                     }
                     
@@ -204,7 +205,11 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         }
     }
     
-    func getNotePhoto(_ noteIndex:Int, imageIndex: Int) -> MarsPhoto {
+    func getNotePhoto(_ noteIndex:Int, imageIndex: Int) -> MarsPhoto? {
+        guard noteIndex < imagesets.count else {
+            return nil
+        }
+        
         let imageset = imagesets[noteIndex] as! EvernoteImageset
         if imageIndex >= imageset.note.resources.count {
             print("Brown alert: requested image index is out of bounds.")
@@ -304,8 +309,9 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     }
     
     func changeToImage(imagesetIndex: Int, imageIndexInSet: Int) {        
-        let photo = getNotePhoto(imagesetIndex, imageIndex: imageIndexInSet)
-        marsphotos[imagesetIndex] = photo
+        if let photo = getNotePhoto(imagesetIndex, imageIndex: imageIndexInSet) {
+            marsphotos[imagesetIndex] = photo
+        }
     }
     
     func changeToAnaglyph(leftAndRight: (Int,Int), imageIndex: Int) {
