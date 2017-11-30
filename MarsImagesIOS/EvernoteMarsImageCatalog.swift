@@ -164,43 +164,38 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             if !self.searchWords.isEmpty {
                 filter.words = self.formatSearch(self.searchWords)
             }
-            do {
-                if let notelist = try self.notestore?.findNotes("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
-                    for (j, aNote) in notelist.notes.enumerated() {
-                        let note = self.reorderResources(aNote)
-                        let imageset = EvernoteImageset(note: note, userinfo: self.userinfo!)
-                        self.imagesets.append(imageset)
-                        let sol = self.sol(note.title)
-                        let lastSolIndex = self.sols.count-1
-                        if lastSolIndex < 0 || self.sols[lastSolIndex] != sol {
-                            self.sols.append(sol)
-                            self.solIndices[sol] = self.sols.count-1
-                        }
-                        var imagesetsInSol = self.imagesetsForSol[sol]
-                        if imagesetsInSol == nil {
-                            imagesetsInSol = []
-                        }
-                        imagesetsInSol!.append(imageset)
-                        self.imagesetsForSol[sol] = imagesetsInSol!
-                        let photo = self.getNotePhoto(j+startIndex, imageIndex:0)
-                        self.marsphotos.append(photo)
-                        self.captions.append(Mission.currentMission().caption(imageset.title))
-                        self.imagesetCountsBySol[sol] = imagesetsInSol!.count
-                        if self.imagesetCountsBySol.count != self.sols.count {
-                            print("Brown alert: sections and sols counts don't match each other.")
-                        }
+            if let notelist = self.notestore?.findNotes("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
+                for (j, aNote) in notelist.notes.enumerated() {
+                    let note = self.reorderResources(aNote)
+                    let imageset = EvernoteImageset(note: note, userinfo: self.userinfo!)
+                    self.imagesets.append(imageset)
+                    let sol = self.sol(note.title)
+                    let lastSolIndex = self.sols.count-1
+                    if lastSolIndex < 0 || self.sols[lastSolIndex] != sol {
+                        self.sols.append(sol)
+                        self.solIndices[sol] = self.sols.count-1
                     }
-                    
-                    self.isSearchComplete = notelist.totalNotes.intValue - notelist.startIndex.intValue + notelist.notes.count <= 0
-                    print("DEBUG got \(notelist.notes.count) notes back, notifying")
-                    NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
-                } else {
-                    self.isSearchComplete = true
+                    var imagesetsInSol = self.imagesetsForSol[sol]
+                    if imagesetsInSol == nil {
+                        imagesetsInSol = []
+                    }
+                    imagesetsInSol!.append(imageset)
+                    self.imagesetsForSol[sol] = imagesetsInSol!
+                    let photo = self.getNotePhoto(j+startIndex, imageIndex:0)
+                    self.marsphotos.append(photo)
+                    self.captions.append(Mission.currentMission().caption(imageset.title))
+                    self.imagesetCountsBySol[sol] = imagesetsInSol!.count
+                    if self.imagesetCountsBySol.count != self.sols.count {
+                        print("Brown alert: sections and sols counts don't match each other.")
+                    }
                 }
-            } catch {
-                print ("\(error)")
+                
+                self.isSearchComplete = notelist.totalNotes.intValue - notelist.startIndex.intValue + notelist.notes.count <= 0
+                print("DEBUG got \(notelist.notes.count) notes back, notifying")
+                NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
+            } else {
+                self.isSearchComplete = true
             }
-
         }
     }
     
