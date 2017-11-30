@@ -182,12 +182,13 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     }
                     imagesetsInSol!.append(imageset)
                     self.imagesetsForSol[sol] = imagesetsInSol!
-                    let photo = self.getNotePhoto(j+startIndex, imageIndex:0)
-                    self.marsphotos.append(photo)
-                    self.captions.append(Mission.currentMission().caption(imageset.title))
-                    self.imagesetCountsBySol[sol] = imagesetsInSol!.count
-                    if self.imagesetCountsBySol.count != self.sols.count {
-                        print("Brown alert: sections and sols counts don't match each other.")
+                    if let photo = self.getNotePhoto(j+startIndex, imageIndex:0) {
+                        self.marsphotos.append(photo)
+                        self.captions.append(Mission.currentMission().caption(imageset.title))
+                        self.imagesetCountsBySol[sol] = imagesetsInSol!.count
+                        if self.imagesetCountsBySol.count != self.sols.count {
+                            print("Brown alert: sections and sols counts don't match each other.")
+                        }
                     }
                 }
                 
