@@ -174,8 +174,11 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sol = catalog!.sols[section]
-        return Mission.currentMission().solAndDate(sol: sol)
+        if section < catalog!.sols.count {
+            let sol = catalog!.sols[section]
+            return Mission.currentMission().solAndDate(sol: sol)
+        }
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

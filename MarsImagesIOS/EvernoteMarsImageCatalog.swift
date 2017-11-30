@@ -164,6 +164,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             if !self.searchWords.isEmpty {
                 filter.words = self.formatSearch(self.searchWords)
             }
+
             if let notelist = self.notestore?.findNotes("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
                 for (j, aNote) in notelist.notes.enumerated() {
                     let note = self.reorderResources(aNote)
@@ -199,7 +200,11 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         }
     }
     
-    func getNotePhoto(_ noteIndex:Int, imageIndex: Int) -> MarsPhoto {
+    func getNotePhoto(_ noteIndex:Int, imageIndex: Int) -> MarsPhoto? {
+        guard noteIndex < imagesets.count else {
+            return nil
+        }
+        
         let imageset = imagesets[noteIndex] as! EvernoteImageset
         if imageIndex >= imageset.note.resources.count {
             print("Brown alert: requested image index is out of bounds.")
@@ -299,8 +304,9 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     }
     
     func changeToImage(imagesetIndex: Int, imageIndexInSet: Int) {        
-        let photo = getNotePhoto(imagesetIndex, imageIndex: imageIndexInSet)
-        marsphotos[imagesetIndex] = photo
+        if let photo = getNotePhoto(imagesetIndex, imageIndex: imageIndexInSet) {
+            marsphotos[imagesetIndex] = photo
+        }
     }
     
     func changeToAnaglyph(leftAndRight: (Int,Int), imageIndex: Int) {
