@@ -38,6 +38,7 @@
 		4A8AE58D1F6DFC5300FD729C /* panorama_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */; };
 		4A8AE58E1F6DFC5300FD729C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5881F6DFC5300FD729C /* clock.png */; };
 		4A8AE5941F6EF98E00FD729C /* MosaicLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */; };
+		4A8B727F1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8B727E1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m */; };
 		4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */; };
 		4A8BB26A1F2D498900E07B49 /* LeftDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */; };
 		4A8BB26C1F2D504200E07B49 /* MarsImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */; };
@@ -121,6 +122,8 @@
 		4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@3x.png"; sourceTree = "<group>"; };
 		4A8AE5881F6DFC5300FD729C /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLoader.swift; sourceTree = "<group>"; };
+		4A8B727D1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EDAMNoteStoreClient+ExceptionHandler.h"; sourceTree = "<group>"; };
+		4A8B727E1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "EDAMNoteStoreClient+ExceptionHandler.m"; sourceTree = "<group>"; };
 		4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		4A8BB2691F2D498900E07B49 /* LeftDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftDrawerViewController.swift; sourceTree = "<group>"; };
 		4A8BB26B1F2D504200E07B49 /* MarsImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +300,7 @@
 				4AAAB52F1F2E388C001D810D /* Constants.swift */,
 				4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */,
 				4A1680E81F2AA559004E30CC /* EvernoteMarsImageCatalog.swift */,
+				4AF1E9331FD09262003ABDA0 /* EvernoteObjcWrapper */,
 				4ADBC6861F7A6E83004D98D2 /* ImageQuad.swift */,
 				4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */,
 				4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */,
@@ -333,6 +337,15 @@
 				4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4AF1E9331FD09262003ABDA0 /* EvernoteObjcWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				4A8B727D1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.h */,
+				4A8B727E1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m */,
+			);
+			name = EvernoteObjcWrapper;
 			sourceTree = "<group>";
 		};
 		8E6DB2D67E50BF1989C53761 /* Frameworks */ = {
@@ -716,6 +729,7 @@
 				4A9DE9D61F2C15CC0059C9C9 /* Spirit.swift in Sources */,
 				4ADBC6891F7A74A0004D98D2 /* Quaternion.swift in Sources */,
 				4A9DE9D01F2BDA160059C9C9 /* MarsPhoto.swift in Sources */,
+				4A8B727F1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m in Sources */,
 				4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */,
 				4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */,
 				4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */,
