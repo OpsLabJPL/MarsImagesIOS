@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let mslLatestSol = mslLatestSol {
                 soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)
                 if mslLastKnownSol != nil && mslLatestSol > mslLastKnownSol as! Int {
-                    displayLocalNotification(UIApplication.shared, message:"New image from Curiosity sol \(mslLatestSol) have arrived!")
+                    displayLocalNotification(UIApplication.shared, message:"New images from Curiosity sol \(mslLatestSol) have arrived!")
                 }
             }
         }

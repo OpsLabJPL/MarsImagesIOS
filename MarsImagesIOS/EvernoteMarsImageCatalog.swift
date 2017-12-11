@@ -165,7 +165,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 filter.words = self.formatSearch(self.searchWords)
             }
 
-            if let notelist = self.notestore?.findNotes("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
+            if let notelist = self.notestore?.findNotesSafely("", filter: filter, offset: Int32(startIndex), maxNotes: Int32(total)) {
                 for (j, aNote) in notelist.notes.enumerated() {
                     let note = self.reorderResources(aNote)
                     let imageset = EvernoteImageset(note: note, userinfo: self.userinfo!)

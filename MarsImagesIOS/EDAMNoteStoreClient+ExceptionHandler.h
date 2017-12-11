@@ -9,7 +9,7 @@
 //  Copyright © 2017 Mark Powell. All rights reserved.
 //
 
-#import "EvernoteSDK.h"
+#import <EvernoteSDK/EvernoteSDK.h>
 
 @interface EDAMNoteStoreClient (ExceptionHandler)
 
