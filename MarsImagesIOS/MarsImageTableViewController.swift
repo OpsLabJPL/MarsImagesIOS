@@ -18,7 +18,7 @@ class MarsImageTableViewController: UITableViewController {
     let dropdownMenuWidth = 140
     let dropdownMenuRowHeight = 44
 
-    var catalog:MarsImageCatalog?
+    var catalogs:[String:MarsImageCatalog] = (UIApplication.shared.delegate as! AppDelegate).catalogs
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     let searchController = UISearchController(searchResultsController: nil)
     let aRefreshControl = UIRefreshControl()
@@ -70,7 +70,7 @@ class MarsImageTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(missionChanged), name: .missionChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: catalog?.reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: catalogs[Mission.currentMissionName()]!.reachability)
 
         internetStatusUnreachable = InternetReachabilityStatus.createStatus()
     }
@@ -81,13 +81,12 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     @objc func missionChanged() {
-        let mission = Mission.currentMissionName()        
-        catalog?.mission = mission //setting mission will reload catalog images and locations
+        catalogs[Mission.currentMissionName()]?.reload()
         navBarMenu?.reloadAllComponents()
     }
     
     @IBAction func refreshImages(_ sender: Any) {
-        catalog?.reload()
+        catalogs[Mission.currentMissionName()]!.reload()
         aRefreshControl.endRefreshing()
     }
     
@@ -116,14 +115,14 @@ class MarsImageTableViewController: UITableViewController {
 //    }
     
     func selectAndScrollToRow(imageIndex: Int) {
-        guard imageIndex >= 0 || imageIndex < catalog!.imagesetCount else {
+        guard imageIndex >= 0 || imageIndex < catalogs[Mission.currentMissionName()]!.imagesetCount else {
             return
         }
-        let imageset:Imageset = catalog!.imagesets[imageIndex]
+        let imageset:Imageset = catalogs[Mission.currentMissionName()]!.imagesets[imageIndex]
         let sol = Mission.currentMission().sol(imageset.title)
-        let section = catalog!.solIndices[sol]!
+        let section = catalogs[Mission.currentMissionName()]!.solIndices[sol]!
         var rowIndex = 0;
-        let imagesets = catalog!.imagesetsForSol[sol]!
+        let imagesets = catalogs[Mission.currentMissionName()]!.imagesetsForSol[sol]!
         for iset in imagesets {
             if iset == imageset {
                 break
@@ -160,13 +159,13 @@ class MarsImageTableViewController: UITableViewController {
     ///MARK UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return catalog!.sols.count
+        return catalogs[Mission.currentMissionName()]!.sols.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section < catalog!.sols.count {
-            let sol = catalog!.sols[section]
-            if let imagesetsForSol = catalog!.imagesetsForSol[sol] {
+        if section < catalogs[Mission.currentMissionName()]!.sols.count {
+            let sol = catalogs[Mission.currentMissionName()]!.sols[section]
+            if let imagesetsForSol = catalogs[Mission.currentMissionName()]!.imagesetsForSol[sol] {
                 return imagesetsForSol.count
             }
         }
@@ -174,8 +173,8 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < catalog!.sols.count {
-            let sol = catalog!.sols[section]
+        if section < catalogs[Mission.currentMissionName()]!.sols.count {
+            let sol = catalogs[Mission.currentMissionName()]!.sols[section]
             return Mission.currentMission().solAndDate(sol: sol)
         }
         return nil
@@ -188,13 +187,13 @@ class MarsImageTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.section < catalog!.sols.count else {
+        guard indexPath.section < catalogs[Mission.currentMissionName()]!.sols.count else {
             return tableView.dequeueReusableCell(withIdentifier: imageCell)!
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: imageCell)!
 
-        let sol = catalog!.sols[indexPath.section]
-        if let imagesetsForSol = catalog!.imagesetsForSol[sol] {
+        let sol = catalogs[Mission.currentMissionName()]!.sols[indexPath.section]
+        if let imagesetsForSol = catalogs[Mission.currentMissionName()]!.imagesetsForSol[sol] {
             loadAnotherPageIfAtEnd(indexPath, imagesets: imagesetsForSol)
         
             let imageset = imagesetsForSol[indexPath.row]
@@ -213,8 +212,8 @@ class MarsImageTableViewController: UITableViewController {
         let row = indexPath.row
         var imageIndex = 0
         for i in 0..<section {
-            let sol = catalog!.sols[i]
-            imageIndex += catalog!.imagesetCountsBySol[sol]!
+            let sol = catalogs[Mission.currentMissionName()]!.sols[i]
+            imageIndex += catalogs[Mission.currentMissionName()]!.imagesetCountsBySol[sol]!
         }
         imageIndex += row;
         let dict:[String:Any] = [ Constants.imageIndexKey: imageIndex, Constants.senderKey: self ]
@@ -224,14 +223,14 @@ class MarsImageTableViewController: UITableViewController {
     func loadAnotherPageIfAtEnd(_ indexPath:IndexPath, imagesets:[Imageset]) {
         //check for last row in last section & if so then load more imagesets
         //try to load more images if we are at the last cell in the table
-        let sectionCount = catalog!.imagesetCountsBySol.count
+        let sectionCount = catalogs[Mission.currentMissionName()]!.imagesetCountsBySol.count
         let imageCount = imagesets.count
         let lastSection = sectionCount - 1
         let lastImageset = imageCount - 1
-        if catalog!.hasMoreImages() &&
+        if catalogs[Mission.currentMissionName()]!.hasMoreImages() &&
             sectionCount > 0 &&
             lastSection == indexPath.section && lastImageset == indexPath.row {
-            catalog!.loadNextPage()
+            catalogs[Mission.currentMissionName()]!.loadNextPage()
         }
     }
     
@@ -259,7 +258,7 @@ extension MarsImageTableViewController: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(searchText: String) {
-        catalog?.searchWords = searchText
+        catalogs[Mission.currentMissionName()]!.searchWords = searchText
         tableView.reloadData()
     }
 }

@@ -16,7 +16,7 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     var internetConnectionIndicator: InternetViewIndicator?
     var reachability:ReachabilitySwift.Reachability!
     
-    var catalog:MarsImageCatalog?
+    var catalogs = (UIApplication.shared.delegate as! AppDelegate).catalogs
     let leftIcon = UIImage.init(named: "leftArrow.png")
     let rightIcon = UIImage.init(named: "rightArrow.png")
     
@@ -66,8 +66,8 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(openDrawerSwipe))
         swipeRight.direction = .right
         self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
-        catalog?.reload()
-        catalog?.reloadLocations()
+        catalogs[Mission.currentMissionName()]!.reload()
+        catalogs[Mission.currentMissionName()]!.reloadLocations()
         super.viewDidLoad()
         
         imageSelectionButton = UIBarButtonItem(title:"", style:.plain, target:self, action:#selector(imageSelectionPressed))
@@ -84,8 +84,8 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
             print("Unable to start notifier")
         }
         reachability.whenReachable = { reachability in
-            if self.catalog!.hasMoreImages() {
-                self.catalog!.loadNextPage()
+            if self.catalogs[Mission.currentMissionName()]!.hasMoreImages() {
+                self.catalogs[Mission.currentMissionName()]!.loadNextPage()
             }
             for vc in self.pageViewController.viewControllers! {
                 if let imageVC = vc as? ImageViewController {
@@ -206,15 +206,15 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
                 setPageIndex(index)
             }
         }
-        selectedImageIndexInImageset = catalog!.marsphotos[index].indexInImageset
+        selectedImageIndexInImageset = catalogs[Mission.currentMissionName()]!.marsphotos[index].indexInImageset
         
-        let imageset = catalog!.imagesets[Int(pageIndex)]
-        let photo = catalog!.marsphotos[Int(pageIndex)]
+        let imageset = catalogs[Mission.currentMissionName()]!.imagesets[Int(pageIndex)]
+        let photo = catalogs[Mission.currentMissionName()]!.marsphotos[Int(pageIndex)]
         if photo.leftAndRight != nil {
             setImageSelectionButtonTitle("Anaglyph")
         }
         else {
-            setImageSelectionButtonTitle(catalog!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset))
+            setImageSelectionButtonTitle(catalogs[Mission.currentMissionName()]!.imageName(imageset:imageset, imageIndexInSet:selectedImageIndexInImageset))
         }
         toolbar.setNeedsLayout()
     }
@@ -229,19 +229,19 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     }
     
     @objc func imageSelectionPressed() {
-        let imageset = catalog!.imagesets[Int(pageIndex)]
-        let imageCount = catalog!.getImagesetCount(imageset: imageset)
+        let imageset = catalogs[Mission.currentMissionName()]!.imagesets[Int(pageIndex)]
+        let imageCount = catalogs[Mission.currentMissionName()]!.getImagesetCount(imageset: imageset)
         guard imageCount > 1 else {
             return
         }
         
         var menuItems:[String] = []
         for r in 0..<imageCount {
-            let imageName = catalog!.imageName(imageset: imageset, imageIndexInSet: r)
+            let imageName = catalogs[Mission.currentMissionName()]!.imageName(imageset: imageset, imageIndexInSet: r)
             menuItems.append(imageName)
         }
         
-        let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(pageIndex))
+        let leftAndRight = catalogs[Mission.currentMissionName()]!.stereoForImages(imagesetIndex: Int(pageIndex))
         if leftAndRight != nil {
             let menuItem = "Anaglyph"
             menuItems.append(menuItem)
@@ -253,16 +253,16 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     }
     
     func setImageAt(_ index: Int, _ imageName: String) {
-        self.catalog!.changeToImage(imagesetIndex: Int(self.pageIndex), imageIndexInSet: index)
+        self.catalogs[Mission.currentMissionName()]!.changeToImage(imagesetIndex: Int(self.pageIndex), imageIndexInSet: index)
         self.reloadData()
         self.imageSelectionButton.title = imageName
         self.setImageSelectionButtonWidth()
     }
     
     func showAnaglyph() {
-        let leftAndRight = catalog!.stereoForImages(imagesetIndex: Int(pageIndex))
+        let leftAndRight = catalogs[Mission.currentMissionName()]!.stereoForImages(imagesetIndex: Int(pageIndex))
         if let leftAndRight = leftAndRight {
-            self.catalog!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.pageIndex))
+            self.catalogs[Mission.currentMissionName()]!.changeToAnaglyph(leftAndRight: leftAndRight, imageIndex: Int(self.pageIndex))
             self.reloadData()
             self.imageSelectionButton.title = "Anaglyph"
             self.setImageSelectionButtonWidth()
@@ -325,8 +325,8 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     
     override public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers:[UIViewController], transitionCompleted completed: Bool) {
         super.pageViewController(pageViewController, didFinishAnimating: finished, previousViewControllers: previousViewControllers, transitionCompleted: completed)
-        if pageIndex == catalog!.imagesetCount-1 && catalog!.hasMoreImages() {
-            catalog!.loadNextPage()
+        if pageIndex == catalogs[Mission.currentMissionName()]!.imagesetCount-1 && catalogs[Mission.currentMissionName()]!.hasMoreImages() {
+            catalogs[Mission.currentMissionName()]!.loadNextPage()
         }
         let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
         NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
@@ -336,9 +336,9 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
         //TODO: This was causing the tableview to scroll to back to the current image even if it was the table that was scrolled to the end that initiated the load, which I don't want. Keep an eye on this. Is this needed for anything else?
 //        let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
 //        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)
-        if imageSelectionButton.title == "" && pageIndex == 0  && catalog!.imagesetCount > 0 {
-            let imageset = catalog!.imagesets[0]
-            setImageSelectionButtonTitle(catalog!.imageName(imageset:imageset, imageIndexInSet:0))
+        if imageSelectionButton.title == "" && pageIndex == 0  && catalogs[Mission.currentMissionName()]!.imagesetCount > 0 {
+            let imageset = catalogs[Mission.currentMissionName()]!.imagesets[0]
+            setImageSelectionButtonTitle(catalogs[Mission.currentMissionName()]!.imageName(imageset:imageset, imageIndexInSet:0))
         }
     }
 }
@@ -347,13 +347,13 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
 extension MarsImageViewController: ImageGalleryViewControllerDelegate {
     var captions: [String?] {
         get {
-            return catalog!.captions
+            return catalogs[Mission.currentMissionName()]!.captions
         }
     }
     
     var images: [ImageCreator] {
         get {
-            return catalog!.marsphotos
+            return catalogs[Mission.currentMissionName()]!.marsphotos
         }
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import ReachabilitySwift
 
 let numImagesetsReturnedKey = "numImagesetsReturnedKey"
+let missionKey = "missionKey"
 
 extension Notification.Name {
     static let beginImagesetLoading = Notification.Name("BeginImagesetLoading")
@@ -26,7 +27,7 @@ protocol MarsImageCatalog {
     
     func loadNextPage()
     
-    var mission:String { get set }
+    var mission:String { get }
     
     var searchWords:String { get set }
     
@@ -46,7 +47,7 @@ protocol MarsImageCatalog {
     
     var imagesetCountsBySol:[Int:Int] { get }
     
-    var reachability:Reachability { get }
+    func reachability() -> Reachability
     
     func imageName(imageset: Imageset, imageIndexInSet: Int) -> String
     

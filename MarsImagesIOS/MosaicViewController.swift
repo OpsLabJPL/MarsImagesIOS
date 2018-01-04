@@ -12,7 +12,7 @@ import SceneKit
 
 class MosaicViewController : UIViewController {
     
-    var catalog:MarsImageCatalog?
+    var catalogs = (UIApplication.shared.delegate as! AppDelegate).catalogs
     var mosaicLoader:MosaicLoader?
     var scenekitView: SCNView!
     var scnScene: SCNScene!
@@ -35,6 +35,7 @@ class MosaicViewController : UIViewController {
         scenekitView.addGestureRecognizer(panRecognizer)
         scenekitView.addGestureRecognizer(pinchRecognizer)
         scenekitView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(missionChanged), name: .missionChanged, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,13 +61,23 @@ class MosaicViewController : UIViewController {
         }
     }
     
+    @objc func missionChanged() {
+        if let rmc = catalogs[Mission.currentMissionName()]!.getNearestRMC() {
+            mosaicLoader?.catalog = catalogs[Mission.currentMissionName()]!
+            mosaicLoader?.rmc = rmc
+            mosaicLoader?.catalog.localLevelQuaternion(rmc, completionHandler: { [weak self] quaternion in
+                self?.mosaicLoader?.qLL = quaternion
+            })
+        }
+    }
+    
     func setupScene() {
         scnScene = SCNScene(named: "mosaic.scnassets/mosaic.scn")
         let screenWidthPixels = Double(view.bounds.width * view.contentScaleFactor) //convert width from points to pixels
         scenekitView.scene = scnScene
         cameraNode = scnScene.rootNode.childNode(withName: "camera", recursively: true)!
-        if let rmc = catalog!.getNearestRMC() {
-            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalog!, scene: scnScene, view: scenekitView, camera: cameraNode!.camera!, screenWidthPixels: screenWidthPixels)
+        if let rmc = catalogs[Mission.currentMissionName()]!.getNearestRMC() {
+            mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalogs[Mission.currentMissionName()]!, scene: scnScene, view: scenekitView, camera: cameraNode!.camera!, screenWidthPixels: screenWidthPixels)
         }
     }
 
