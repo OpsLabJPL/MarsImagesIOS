@@ -136,15 +136,6 @@ class MosaicLoader {
     func loadImageAndTexture(_ title: String) {
         if let photo = imagesInScene[title] {
             photo.requestImage()
-//            if photo.underlyingImage == nil {
-//                if photo.isLoading == false {
-//                    photo.performLoadUnderlyingImageAndNotify()
-//                }
-//            } else {
-//                let quad = imageQuads[title]!
-//                let textureSize = computeBestTextureResolution(quad)
-//                imageTextures[title] = ImageUtility.image(photo.underlyingImage, scaledTo:CGSize(width:textureSize, height:textureSize))
-//             }
         }
     }
     

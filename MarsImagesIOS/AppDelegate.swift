@@ -7,13 +7,20 @@
 //
 
 import UIKit
-import SwinjectStoryboard
+import Swinject
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var catalog:MarsImageCatalog?
+    let container:Container = {
+        let container = Container()
+        container.register(MarsImageCatalog.self, name: Mission.OPPORTUNITY) { _ in EvernoteMarsImageCatalog(missionName: Mission.OPPORTUNITY)}
+        container.register(MarsImageCatalog.self, name: Mission.CURIOSITY) { _ in EvernoteMarsImageCatalog(missionName: Mission.CURIOSITY)}
+        container.register(MarsImageCatalog.self, name: Mission.SPIRIT) { _ in EvernoteMarsImageCatalog(missionName: Mission.SPIRIT)}
+        return container
+    }()
+    var catalogs:[String:MarsImageCatalog] = [:]
     var backgroundTask:UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     var soldata = NSMutableDictionary()
     var fetchCompletionHandler:((UIBackgroundFetchResult) -> Void)?
@@ -24,7 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BuddyBuildSDK.setup()
         
         // Override point for customization after application launch.
-        
+
+        catalogs[Mission.OPPORTUNITY] = container.resolve(MarsImageCatalog.self, name:Mission.OPPORTUNITY)
+        catalogs[Mission.CURIOSITY] = container.resolve(MarsImageCatalog.self, name:Mission.CURIOSITY)
+        catalogs[Mission.SPIRIT] = container.resolve(MarsImageCatalog.self, name:Mission.SPIRIT)
+
         if let options = launchOptions {
             let value = options[.localNotification] as? UILocalNotification
             if let notification = value {
@@ -34,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let settings = UIUserNotificationSettings(types: .alert, categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        catalog = SwinjectStoryboard.defaultContainer.resolve(MarsImageCatalog.self)
         
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         path = paths.appending("latestsols.plist")
@@ -64,13 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             soldata = dictFromFile
         }
         NotificationCenter.default.addObserver(self, selector: #selector(checkOppyImages), name: .endImagesetLoading, object: nil)
-        catalog?.mission = Mission.OPPORTUNITY
+        self.catalogs[Mission.OPPORTUNITY]?.reload()
     }
     
     @objc func checkOppyImages() {
         DispatchQueue.global().async {
             let oppyLastKnownSol = self.soldata.object(forKey: Mission.OPPORTUNITY)
-            if let oppyImageSet = self.catalog?.imagesets[0] {
+            if let oppyImageSet = self.catalogs[Mission.OPPORTUNITY]?.imagesets[0] {
                 let oppyLatestSol = oppyImageSet.sol
                 if let oppyLatestSol = oppyLatestSol {
                     self.soldata.setValue(oppyLatestSol, forKey: Mission.OPPORTUNITY)
@@ -81,13 +91,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             NotificationCenter.default.removeObserver(self)
             NotificationCenter.default.addObserver(self, selector: #selector(self.checkMslImages), name: .endImagesetLoading, object: nil)
-            self.catalog?.mission = Mission.CURIOSITY
+            self.catalogs[Mission.CURIOSITY]?.reload()
         }
     }
     
     @objc func checkMslImages() {
         let mslLastKnownSol = soldata.object(forKey: Mission.CURIOSITY)
-        if let mslImageSet = catalog?.imagesets[0] {
+        if let mslImageSet = catalogs[Mission.CURIOSITY]?.imagesets[0] {
             let mslLatestSol = mslImageSet.sol
             if let mslLatestSol = mslLatestSol {
                 soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)

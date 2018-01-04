@@ -15,19 +15,7 @@ import SwiftyJSON
 
 class EvernoteMarsImageCatalog : MarsImageCatalog {
    
-    var mission:String {
-        didSet {
-            notestore = nil //force reconnect for new notebook
-            locations = nil
-            namedLocations = nil
-            llQuaternions = nil
-            searchWords = ""
-            DispatchQueue.global().async {
-                _ = self.getLocations()
-                _ = self.getNamedLocations()
-            }
-        }
-    }
+    public private(set) var mission:String
     
     var searchWords = "" {
         didSet {
@@ -59,7 +47,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var namedLocations:[String:(Int,Int)]?
     var llQuaternions: [Int:[Int:Quaternion]]?
     
-    var reachability: Reachability
+    static var catalogReachability = Reachability(hostname:"evernote.com")!
     
     static let OPPY_NOTEBOOK_ID   = "a7271bf8-0b06-495a-bb48-7c0c7af29f70"
     static let MSL_NOTEBOOK_ID    = "0296f732-694d-4ccd-9f5b-5983dc98b9e0"
@@ -80,12 +68,18 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     init(missionName:String) {
         self.mission = missionName
         self.user = EvernoteMarsImageCatalog.users[missionName]
-        self.reachability = Reachability(hostname:"evernote.com")!
         do {
-            try reachability.startNotifier()
+            try self.reachability().startNotifier()
         } catch {
             return
         }
+        DispatchQueue.global().async {
+            self.reloadLocations()
+        }
+    }
+    
+    func reachability() -> Reachability {
+        return EvernoteMarsImageCatalog.catalogReachability
     }
     
     func hasMoreImages() -> Bool {
@@ -136,10 +130,12 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     
     func loadMoreNotes(startIndex:Int, total:Int) {
         
-        guard reachability.isReachable else {
+        guard reachability().isReachable else {
             print("DEBUG got zero notes back, notifying")
 
-            NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:0])
+            NotificationCenter.default.post(name: .endImagesetLoading, object: nil,
+                                            userInfo:[numImagesetsReturnedKey:0,
+                                                      missionKey:mission])
 //            isSearchComplete = true
             return
         }
@@ -184,7 +180,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     self.imagesetsForSol[sol] = imagesetsInSol!
                     if let photo = self.getNotePhoto(j+startIndex, imageIndex:0) {
                         self.marsphotos.append(photo)
-                        self.captions.append(Mission.currentMission().caption(imageset.title))
+                        self.captions.append(Mission.missions[self.mission]!.caption(imageset.title))
                         self.imagesetCountsBySol[sol] = imagesetsInSol!.count
                         if self.imagesetCountsBySol.count != self.sols.count {
                             print("Brown alert: sections and sols counts don't match each other.")
@@ -194,7 +190,9 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                 
                 self.isSearchComplete = notelist.totalNotes.intValue - notelist.startIndex.intValue + notelist.notes.count <= 0
                 print("DEBUG got \(notelist.notes.count) notes back, notifying")
-                NotificationCenter.default.post(name: .endImagesetLoading, object: nil, userInfo:[numImagesetsReturnedKey:notelist.notes.count])
+                NotificationCenter.default.post(name: .endImagesetLoading, object: nil,
+                                                userInfo:[numImagesetsReturnedKey:notelist.notes.count,
+                                                          missionKey:self.mission])
             } else {
                 self.isSearchComplete = true
             }
@@ -224,7 +222,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
         var resourcesByFile:[String:EDAMResource] = [:]
         
         for resource in note.resources {
-            let filename = Mission.currentMission().getSortableImageFilename(url: resource.attributes.sourceURL)
+            let filename = Mission.missions[self.mission]!.getSortableImageFilename(url: resource.attributes.sourceURL)
             resourceFilenames.append(filename)
             resourcesByFile[filename] = resource
         }
@@ -283,7 +281,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             if imageIndexInSet < imageset.note.resources.count {
                 let resource = imageset.note.resources[imageIndexInSet]
                 let imageId = imageID(url:resource.attributes.sourceURL)
-                return Mission.currentMission().imageName(imageId: imageId)
+                return Mission.missions[self.mission]!.imageName(imageId: imageId)
             }
         }
         return ""
@@ -332,7 +330,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             imageIDs.append(imageID(url:r.attributes.sourceURL))
         }
 
-        if let stereoImageIndices = Mission.currentMission().stereoImageIndices(imageIDs: imageIDs) {
+        if let stereoImageIndices = Mission.missions[self.mission]!.stereoImageIndices(imageIDs: imageIDs) {
             let leftImageIndex = stereoImageIndices.0
             let rightImageIndex = stereoImageIndices.1
             let leftResource = imageset.note.resources[leftImageIndex]
@@ -423,7 +421,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             return locations
         }
     
-        let urlPrefix = Mission.currentMission().urlPrefix()
+        let urlPrefix = Mission.missions[self.mission]!.urlPrefix()
         let locationsURL = URL(string: "\(urlPrefix)/locations/location_manifest.csv")!
         Alamofire.request(locationsURL).responseString{ response in
             if let csvString = response.result.value {
@@ -446,7 +444,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             return namedLocations
         }
         
-        let urlPrefix = Mission.currentMission().urlPrefix()
+        let urlPrefix = Mission.missions[self.mission]!.urlPrefix()
         let locationsURL = URL(string: "\(urlPrefix)/locations/named_locations.csv")!
         Alamofire.request(locationsURL).responseString{ response in
             if let csvString = response.result.value {
@@ -480,7 +478,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
             completionHandler(qLL)
         } else {
             //gotta go fetch it from the network
-            let urlPrefix = Mission.currentMission().urlPrefix()
+            let urlPrefix = Mission.missions[self.mission]!.urlPrefix()
             let site6 = String(format:"%06d", site)
             let siteCSVURL = URL(string: "\(urlPrefix)/locations/site_\(site6).csv")!
             Alamofire.request(siteCSVURL).responseString{ response in
