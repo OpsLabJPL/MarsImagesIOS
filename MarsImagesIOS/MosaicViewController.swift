@@ -71,6 +71,22 @@ class MosaicViewController : UIViewController {
         }
     }
     
+    @IBAction func previousLocationSelected(_ sender: Any) {
+        if let currentRMC = mosaicLoader?.rmc {
+            if let previousRMC = catalogs[Mission.currentMissionName()]!.getPreviousRMC(rmc: currentRMC) {
+                mosaicLoader?.setRMC(previousRMC)
+            }
+        }
+    }
+    
+    @IBAction func nextLocationSelected(_ sender: Any) {
+        if let currentRMC = mosaicLoader?.rmc {
+            if let nextRMC = catalogs[Mission.currentMissionName()]!.getNextRMC(rmc: currentRMC) {
+                mosaicLoader?.setRMC(nextRMC)
+            }
+        }
+    }
+    
     func setupScene() {
         scnScene = SCNScene(named: "mosaic.scnassets/mosaic.scn")
         let screenWidthPixels = Double(view.bounds.width * view.contentScaleFactor) //convert width from points to pixels

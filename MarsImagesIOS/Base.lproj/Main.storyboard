@@ -168,7 +168,7 @@
             </objects>
             <point key="canvasLocation" x="2724" y="-588"/>
         </scene>
-        <!--Title-->
+        <!--Mosaic-->
         <scene sceneID="wOy-rF-KbO">
             <objects>
                 <viewController id="HAv-bC-4HX" customClass="MosaicViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
@@ -193,7 +193,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="5vH-Ig-Nle">
+                    <navigationItem key="navigationItem" title="Mosaic" id="5vH-Ig-Nle">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="fastForward" id="ReT-qb-InM">
                                 <connections>
