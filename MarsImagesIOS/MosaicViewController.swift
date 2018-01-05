@@ -15,8 +15,6 @@ class MosaicViewController : UIViewController {
     var catalog:MarsImageCatalog?
     var mosaicLoader:MosaicLoader?
     @IBOutlet weak var scenekitView: SCNView!
-    @IBOutlet weak var previousLocationButton: UIButton!
-    @IBOutlet weak var nextLocationButton: UIButton!
     
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
