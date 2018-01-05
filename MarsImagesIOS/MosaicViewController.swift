@@ -14,7 +14,8 @@ class MosaicViewController : UIViewController {
     
     var catalogs = (UIApplication.shared.delegate as! AppDelegate).catalogs
     var mosaicLoader:MosaicLoader?
-    var scenekitView: SCNView!
+    @IBOutlet weak var scenekitView: SCNView!
+    
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
     private var previousTranslation = CGPoint.zero
@@ -26,7 +27,6 @@ class MosaicViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        scenekitView = self.view as! SCNView
         scenekitView.backgroundColor = UIColor.black
         scenekitView.allowsCameraControl = false
         setupScene()

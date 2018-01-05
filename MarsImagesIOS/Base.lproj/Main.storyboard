@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UuX-nW-vYs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UuX-nW-vYs">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -167,18 +168,53 @@
             </objects>
             <point key="canvasLocation" x="2724" y="-588"/>
         </scene>
-        <!--Mosaic View Controller-->
+        <!--Title-->
         <scene sceneID="wOy-rF-KbO">
             <objects>
                 <viewController id="HAv-bC-4HX" customClass="MosaicViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
-                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="vlH-XW-MiZ">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dFk-5r-LRK"/>
+                        <viewControllerLayoutGuide type="bottom" id="GdN-i5-7ao"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lwL-sR-4Df">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </sceneKitView>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wt-mM-MwB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </sceneKitView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="centerY" secondItem="lwL-sR-4Df" secondAttribute="centerY" id="9Nn-XV-J8p"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="centerX" secondItem="lwL-sR-4Df" secondAttribute="centerX" id="ChO-Cc-yFd"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="width" secondItem="lwL-sR-4Df" secondAttribute="width" id="KsI-2M-Qmd"/>
+                            <constraint firstItem="0Wt-mM-MwB" firstAttribute="height" secondItem="lwL-sR-4Df" secondAttribute="height" id="g4V-8R-J7E"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="5vH-Ig-Nle">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="fastForward" id="ReT-qb-InM">
+                                <connections>
+                                    <action selector="nextLocationSelected:" destination="HAv-bC-4HX" id="1em-OU-Zh7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="rewind" id="UGf-0G-NVX">
+                                <connections>
+                                    <action selector="previousLocationSelected:" destination="HAv-bC-4HX" id="u9T-dd-8i9"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="scenekitView" destination="0Wt-mM-MwB" id="gNB-yj-c0V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0T-ES-ThJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3197" y="208"/>
+            <point key="canvasLocation" x="3195.6521739130435" y="207.88043478260872"/>
         </scene>
         <!--Image Selection Menu View Controller-->
         <scene sceneID="ya6-GL-2dg">
