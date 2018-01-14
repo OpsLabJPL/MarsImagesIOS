@@ -100,7 +100,7 @@ class MosaicViewController : UIViewController {
     @IBAction func toggleMotion(_ sender: Any) {
         motionActive = !motionActive;
         if motionActive {
-            motionManager.deviceMotionUpdateInterval = 0.1
+            motionManager.deviceMotionUpdateInterval = 0.01
             if CMMotionManager.availableAttitudeReferenceFrames().contains(.xTrueNorthZVertical) {
                 motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) {
                     [weak self] (data: CMDeviceMotion?, error: Error?) in
