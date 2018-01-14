@@ -80,7 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func checkOppyImages() {
         DispatchQueue.global().async {
             let oppyLastKnownSol = self.soldata.object(forKey: Mission.OPPORTUNITY)
-            if let oppyImageSet = self.catalogs[Mission.OPPORTUNITY]?.imagesets[0] {
+            if let oppyImages = self.catalogs[Mission.OPPORTUNITY] {
+                let oppyImageSet = oppyImages.imagesets[0]
                 let oppyLatestSol = oppyImageSet.sol
                 if let oppyLatestSol = oppyLatestSol {
                     self.soldata.setValue(oppyLatestSol, forKey: Mission.OPPORTUNITY)
@@ -97,12 +98,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @objc func checkMslImages() {
         let mslLastKnownSol = soldata.object(forKey: Mission.CURIOSITY)
-        if let mslImageSet = catalogs[Mission.CURIOSITY]?.imagesets[0] {
-            let mslLatestSol = mslImageSet.sol
-            if let mslLatestSol = mslLatestSol {
-                soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)
-                if mslLastKnownSol != nil && mslLatestSol > mslLastKnownSol as! Int {
-                    displayLocalNotification(UIApplication.shared, message:"New images from Curiosity sol \(mslLatestSol) have arrived!")
+        if let mslImages = catalogs[Mission.CURIOSITY] {
+            if mslImages.imagesets.count > 0 {
+                let mslImageSet = mslImages.imagesets[0]
+                let mslLatestSol = mslImageSet.sol
+                if let mslLatestSol = mslLatestSol {
+                    soldata.setValue(mslLatestSol, forKey: Mission.CURIOSITY)
+                    if mslLastKnownSol != nil && mslLatestSol > mslLastKnownSol as! Int {
+                        displayLocalNotification(UIApplication.shared, message:"New images from Curiosity sol \(mslLatestSol) have arrived!")
+                    }
                 }
             }
         }
