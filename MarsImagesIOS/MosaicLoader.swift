@@ -12,7 +12,7 @@ import SDWebImage
 
 class MosaicLoader {
     
-    var rmc:(Int,Int)
+    public private(set) var rmc:(Int,Int)
     var catalog:MarsImageCatalog
     var imagesInScene = [String:MarsPhoto]()
     var imageQuads = [String:ImageQuad]()
@@ -30,6 +30,7 @@ class MosaicLoader {
         self.view = view
         self.camera = camera
         self.screenWidthPixels = screenWidthPixels
+        SDWebImageManager.shared().cancelAll()
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
 
         catalog.localLevelQuaternion(rmc, completionHandler: { [weak self] quaternion in
@@ -41,6 +42,7 @@ class MosaicLoader {
     }
 
     func setRMC(_ rmc:(Int,Int)) {
+        SDWebImageManager.shared().cancelAll()
         for (_, quad) in imageQuads {
             quad.node.removeFromParentNode()
         }
@@ -206,9 +208,12 @@ class MosaicImageDelegate : ImageDelegate {
     }
     
     func finished(image: UIImage) {
-        let quad = mosaicLoader.imageQuads[title]!
-        let textureSize = mosaicLoader.computeBestTextureResolution(quad)
-        mosaicLoader.imageTextures[title] = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize))
+        if let quad = mosaicLoader.imageQuads[title] {
+            let textureSize = mosaicLoader.computeBestTextureResolution(quad)
+            if let textureImage = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize)) {
+                mosaicLoader.imageTextures[title] = textureImage
+            }
+        }
     }
     
     func failure() {

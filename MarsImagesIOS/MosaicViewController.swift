@@ -64,7 +64,7 @@ class MosaicViewController : UIViewController {
     @objc func missionChanged() {
         if let rmc = catalogs[Mission.currentMissionName()]!.getNearestRMC() {
             mosaicLoader?.catalog = catalogs[Mission.currentMissionName()]!
-            mosaicLoader?.rmc = rmc
+            mosaicLoader?.setRMC(rmc)
             mosaicLoader?.catalog.localLevelQuaternion(rmc, completionHandler: { [weak self] quaternion in
                 self?.mosaicLoader?.qLL = quaternion
             })

@@ -380,6 +380,8 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
                     location = rmc
                 }
                 return location
+            } else {
+                return locations.last!
             }
         }
         return nil
