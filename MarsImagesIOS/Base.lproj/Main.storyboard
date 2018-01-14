@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -168,7 +169,7 @@
             </objects>
             <point key="canvasLocation" x="2724" y="-588"/>
         </scene>
-        <!--Mosaic-->
+        <!--Mosaic View Controller-->
         <scene sceneID="wOy-rF-KbO">
             <objects>
                 <viewController id="HAv-bC-4HX" customClass="MosaicViewController" customModule="MarsImages" customModuleProvider="target" sceneMemberID="viewController">
@@ -183,24 +184,63 @@
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wt-mM-MwB">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </sceneKitView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Azimuth: 360" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMA-Or-eAk">
+                                <rect key="frame" x="20" y="72" width="104" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="-1"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elevation: 360" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIQ-PF-c2O">
+                                <rect key="frame" x="284" y="72" width="110" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="-1"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dtf-EZ-bak">
+                                <rect key="frame" x="176.66666666666666" y="658" width="60.666666666666657" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="1" height="-1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YIQ-PF-c2O" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lwL-sR-4Df" secondAttribute="leadingMargin" id="0R9-aS-bmO"/>
+                            <constraint firstItem="Dtf-EZ-bak" firstAttribute="centerX" secondItem="lwL-sR-4Df" secondAttribute="centerX" id="7JC-vd-FNj"/>
                             <constraint firstItem="0Wt-mM-MwB" firstAttribute="centerY" secondItem="lwL-sR-4Df" secondAttribute="centerY" id="9Nn-XV-J8p"/>
                             <constraint firstItem="0Wt-mM-MwB" firstAttribute="centerX" secondItem="lwL-sR-4Df" secondAttribute="centerX" id="ChO-Cc-yFd"/>
+                            <constraint firstItem="GMA-Or-eAk" firstAttribute="leading" secondItem="lwL-sR-4Df" secondAttribute="leadingMargin" id="JY9-7I-PVZ"/>
                             <constraint firstItem="0Wt-mM-MwB" firstAttribute="width" secondItem="lwL-sR-4Df" secondAttribute="width" id="KsI-2M-Qmd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GMA-Or-eAk" secondAttribute="trailingMargin" id="NEG-r3-nLE"/>
+                            <constraint firstItem="YIQ-PF-c2O" firstAttribute="top" secondItem="dFk-5r-LRK" secondAttribute="bottom" constant="8" id="bfi-bL-Vv0"/>
                             <constraint firstItem="0Wt-mM-MwB" firstAttribute="height" secondItem="lwL-sR-4Df" secondAttribute="height" id="g4V-8R-J7E"/>
+                            <constraint firstItem="YIQ-PF-c2O" firstAttribute="centerY" secondItem="GMA-Or-eAk" secondAttribute="centerY" id="hl4-br-CsK"/>
+                            <constraint firstItem="GMA-Or-eAk" firstAttribute="top" secondItem="dFk-5r-LRK" secondAttribute="bottom" constant="8" id="tlw-6i-pdV"/>
+                            <constraint firstItem="YIQ-PF-c2O" firstAttribute="trailing" secondItem="lwL-sR-4Df" secondAttribute="trailingMargin" id="vsr-KJ-Dom"/>
+                            <constraint firstItem="GdN-i5-7ao" firstAttribute="top" secondItem="Dtf-EZ-bak" secondAttribute="bottom" constant="12" id="yge-TJ-E6G"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Mosaic" id="5vH-Ig-Nle">
+                    <navigationItem key="navigationItem" id="5vH-Ig-Nle">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="fastForward" id="ReT-qb-InM">
+                            <barButtonItem title="Item" image="compass" id="85B-Bm-zAD" userLabel="I">
+                                <connections>
+                                    <action selector="toggleMotion:" destination="HAv-bC-4HX" id="zyn-sT-ywn"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="binoculars" id="hyk-4D-8Ow" userLabel="List"/>
+                            <barButtonItem title="Item" image="right_arrow" id="ReT-qb-InM" userLabel="Next">
                                 <connections>
                                     <action selector="nextLocationSelected:" destination="HAv-bC-4HX" id="1em-OU-Zh7"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="rewind" id="UGf-0G-NVX">
+                            <barButtonItem image="left_arrow" id="UGf-0G-NVX" userLabel="Previous">
                                 <connections>
                                     <action selector="previousLocationSelected:" destination="HAv-bC-4HX" id="u9T-dd-8i9"/>
                                 </connections>
@@ -209,6 +249,10 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="azimuthLabel" destination="GMA-Or-eAk" id="gBl-oY-W7r"/>
+                        <outlet property="caption" destination="Dtf-EZ-bak" id="z6z-VP-ngt"/>
+                        <outlet property="elevationLabel" destination="YIQ-PF-c2O" id="kK3-MV-CSP"/>
+                        <outlet property="gyroButton" destination="85B-Bm-zAD" id="ESS-cf-vQr"/>
                         <outlet property="scenekitView" destination="0Wt-mM-MwB" id="gNB-yj-c0V"/>
                     </connections>
                 </viewController>
@@ -386,4 +430,10 @@
             <point key="canvasLocation" x="4337.68115942029" y="-589.4021739130435"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="binoculars" width="24" height="24"/>
+        <image name="compass" width="24" height="24"/>
+        <image name="left_arrow" width="22" height="22"/>
+        <image name="right_arrow" width="22" height="22"/>
+    </resources>
 </document>

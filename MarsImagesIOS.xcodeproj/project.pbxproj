@@ -12,7 +12,6 @@
 		1E8D641EF578C4A5D056727B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECCB11CC5E3AA5D41448189E /* CoreTelephony.framework */; };
 		363CB67181F2FC9220DD6ECB /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB0C2263DB5E4B4229F5069 /* BuddyBuildSDK.framework */; };
 		46ED118CB9869771224D2B78 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F689BFCDD74395A5A1C33FC2 /* AssetsLibrary.framework */; };
-		4A11484F1F2C67740046E047 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A11484E1F2C67740046E047 /* placeholder.png */; };
 		4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680B41F2A8ECE004E30CC /* AppDelegate.swift */; };
 		4A1680B71F2A8ECE004E30CC /* MarsImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */; };
 		4A1680BA1F2A8ECE004E30CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A1680B81F2A8ECE004E30CC /* Main.storyboard */; };
@@ -27,15 +26,7 @@
 		4A19B3071F6CA146008BA1E6 /* mosaic.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A19B3061F6CA146008BA1E6 /* mosaic.scnassets */; };
 		4A27873F1F4F22D200CA47C7 /* ImageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */; };
 		4A28AA6D1F40BF1E006DEA66 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */; };
-		4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */; };
-		4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */; };
 		4A620E381F3BE79C00A82019 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A620E371F3BE79C00A82019 /* AboutViewController.swift */; };
-		4A8AE5891F6DFC5300FD729C /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5831F6DFC5300FD729C /* clock@2x.png */; };
-		4A8AE58A1F6DFC5300FD729C /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5841F6DFC5300FD729C /* clock@3x.png */; };
-		4A8AE58B1F6DFC5300FD729C /* panorama_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5851F6DFC5300FD729C /* panorama_icon.png */; };
-		4A8AE58C1F6DFC5300FD729C /* panorama_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5861F6DFC5300FD729C /* panorama_icon@2x.png */; };
-		4A8AE58D1F6DFC5300FD729C /* panorama_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */; };
-		4A8AE58E1F6DFC5300FD729C /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8AE5881F6DFC5300FD729C /* clock.png */; };
 		4A8AE5941F6EF98E00FD729C /* MosaicLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */; };
 		4A8B727F1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8B727E1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m */; };
 		4A8BB2681F2D41FF00E07B49 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8BB2671F2D41FF00E07B49 /* ArrowButton.swift */; };
@@ -89,7 +80,6 @@
 		16D004CB83B15B2D0BD97730 /* Pods-MarsImages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarsImages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarsImages/Pods-MarsImages.debug.xcconfig"; sourceTree = "<group>"; };
 		3FBE5C98E80D1BBED3D290DF /* Pods_MarsImages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E3D9EDCB92E1DDA5B2CA33 /* Pods_MarsImagesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImagesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A11484E1F2C67740046E047 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		4A1680B11F2A8ECE004E30CC /* MarsImages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsImages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1680B41F2A8ECE004E30CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A1680B61F2A8ECE004E30CC /* MarsImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsImageTableViewController.swift; sourceTree = "<group>"; };
@@ -110,15 +100,7 @@
 		4A19B3061F6CA146008BA1E6 /* mosaic.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = mosaic.scnassets; sourceTree = "<group>"; };
 		4A27873E1F4F22D200CA47C7 /* ImageUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtility.swift; sourceTree = "<group>"; };
 		4A28AA6C1F40BF1E006DEA66 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
-		4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftArrow@3x.png"; sourceTree = "<group>"; };
-		4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@3x.png"; sourceTree = "<group>"; };
 		4A620E371F3BE79C00A82019 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		4A8AE5831F6DFC5300FD729C /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
-		4A8AE5841F6DFC5300FD729C /* clock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@3x.png"; sourceTree = "<group>"; };
-		4A8AE5851F6DFC5300FD729C /* panorama_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panorama_icon.png; sourceTree = "<group>"; };
-		4A8AE5861F6DFC5300FD729C /* panorama_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@2x.png"; sourceTree = "<group>"; };
-		4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panorama_icon@3x.png"; sourceTree = "<group>"; };
-		4A8AE5881F6DFC5300FD729C /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		4A8AE5931F6EF98E00FD729C /* MosaicLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLoader.swift; sourceTree = "<group>"; };
 		4A8B727D1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EDAMNoteStoreClient+ExceptionHandler.h"; sourceTree = "<group>"; };
 		4A8B727E1FD08D9F007B0971 /* EDAMNoteStoreClient+ExceptionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "EDAMNoteStoreClient+ExceptionHandler.m"; sourceTree = "<group>"; };
@@ -210,22 +192,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		4A1148501F2C67790046E047 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4A8AE5881F6DFC5300FD729C /* clock.png */,
-				4A8AE5831F6DFC5300FD729C /* clock@2x.png */,
-				4A8AE5841F6DFC5300FD729C /* clock@3x.png */,
-				4A8AE5851F6DFC5300FD729C /* panorama_icon.png */,
-				4A8AE5861F6DFC5300FD729C /* panorama_icon@2x.png */,
-				4A8AE5871F6DFC5300FD729C /* panorama_icon@3x.png */,
-				4A620E331F3BDB3F00A82019 /* leftArrow@3x.png */,
-				4A620E341F3BDB3F00A82019 /* rightArrow@3x.png */,
-				4A11484E1F2C67740046E047 /* placeholder.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		4A1680A81F2A8ECE004E30CC = {
 			isa = PBXGroup;
 			children = (
@@ -263,7 +229,6 @@
 				4A19B3061F6CA146008BA1E6 /* mosaic.scnassets */,
 				4A1680BD1F2A8ECE004E30CC /* LaunchScreen.storyboard */,
 				4A1680C01F2A8ECE004E30CC /* Info.plist */,
-				4A1148501F2C67790046E047 /* Supporting Files */,
 			);
 			path = MarsImagesIOS;
 			sourceTree = "<group>";
@@ -494,19 +459,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A8AE58A1F6DFC5300FD729C /* clock@3x.png in Resources */,
 				4A1680BF1F2A8ECE004E30CC /* LaunchScreen.storyboard in Resources */,
 				4A1680BC1F2A8ECE004E30CC /* Assets.xcassets in Resources */,
-				4A8AE58D1F6DFC5300FD729C /* panorama_icon@3x.png in Resources */,
-				4A620E361F3BDB3F00A82019 /* rightArrow@3x.png in Resources */,
-				4A8AE58C1F6DFC5300FD729C /* panorama_icon@2x.png in Resources */,
-				4A620E351F3BDB3F00A82019 /* leftArrow@3x.png in Resources */,
 				4A1680E31F2A8F32004E30CC /* Podfile in Resources */,
-				4A8AE58B1F6DFC5300FD729C /* panorama_icon.png in Resources */,
-				4A11484F1F2C67740046E047 /* placeholder.png in Resources */,
-				4A8AE5891F6DFC5300FD729C /* clock@2x.png in Resources */,
 				4A1680BA1F2A8ECE004E30CC /* Main.storyboard in Resources */,
-				4A8AE58E1F6DFC5300FD729C /* clock.png in Resources */,
 				4A19B3071F6CA146008BA1E6 /* mosaic.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

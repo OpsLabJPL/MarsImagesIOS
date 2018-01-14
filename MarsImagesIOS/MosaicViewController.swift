@@ -15,7 +15,15 @@ class MosaicViewController : UIViewController {
     var catalogs = (UIApplication.shared.delegate as! AppDelegate).catalogs
     var mosaicLoader:MosaicLoader?
     @IBOutlet weak var scenekitView: SCNView!
-    
+    @IBOutlet weak var azimuthLabel: UILabel!
+    @IBOutlet weak var elevationLabel: UILabel!
+    @IBOutlet weak var caption: UILabel!
+    @IBOutlet weak var gyroButton: UIBarButtonItem!
+    fileprivate var motionActive = false
+    let motionManager = CMMotionManager()
+    var deviceMotion: CMDeviceMotion? {
+        didSet { updateCameraOrientation() }
+    }
     var scnScene: SCNScene!
     var cameraNode: SCNNode!
     private var previousTranslation = CGPoint.zero
@@ -75,6 +83,7 @@ class MosaicViewController : UIViewController {
         if let currentRMC = mosaicLoader?.rmc {
             if let previousRMC = catalogs[Mission.currentMissionName()]!.getPreviousRMC(rmc: currentRMC) {
                 mosaicLoader?.setRMC(previousRMC)
+                updateCaption()
             }
         }
     }
@@ -83,7 +92,26 @@ class MosaicViewController : UIViewController {
         if let currentRMC = mosaicLoader?.rmc {
             if let nextRMC = catalogs[Mission.currentMissionName()]!.getNextRMC(rmc: currentRMC) {
                 mosaicLoader?.setRMC(nextRMC)
+                updateCaption()
             }
+        }
+    }
+    
+    @IBAction func toggleMotion(_ sender: Any) {
+        motionActive = !motionActive;
+        if motionActive {
+            motionManager.deviceMotionUpdateInterval = 0.01
+            if CMMotionManager.availableAttitudeReferenceFrames().contains(.xTrueNorthZVertical) {
+                motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical, to: .main) {
+                    [weak self] (data: CMDeviceMotion?, error: Error?) in
+                    self?.deviceMotion = data
+                }
+            }
+            gyroButton.tintColor = UIColor(red:0.722, green:0.882, blue:0.169, alpha:1)
+        } else {
+            motionManager.stopDeviceMotionUpdates()
+            deviceMotion = nil
+            gyroButton.tintColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         }
     }
     
@@ -94,9 +122,17 @@ class MosaicViewController : UIViewController {
         cameraNode = scnScene.rootNode.childNode(withName: "camera", recursively: true)!
         if let rmc = catalogs[Mission.currentMissionName()]!.getNearestRMC() {
             mosaicLoader = MosaicLoader(rmc:rmc, catalog:catalogs[Mission.currentMissionName()]!, scene: scnScene, view: scenekitView, camera: cameraNode!.camera!, screenWidthPixels: screenWidthPixels)
+            updateCaption()
+            updateHeadingDisplay(az: 0, el: 0)
         }
     }
 
+    func updateCaption() {
+        let missionName = Mission.currentMissionName()
+        let site = mosaicLoader?.rmc.0 ?? 0
+        let drive = mosaicLoader?.rmc.1 ?? 0
+        caption.text = "\(missionName) at location \(site)-\(drive)"
+    }
     
     @objc func pinchGesture(gestureRecognize: UIPinchGestureRecognizer) {
         
@@ -140,6 +176,13 @@ class MosaicViewController : UIViewController {
         updateCameraOrientation()
     }
     
+    func updateHeadingDisplay(az:Float, el:Float) {
+        let azDegrees = az * 180.0 / Float.pi
+        let elDegrees = el * 180.0 / Float.pi
+        azimuthLabel.text = String(format:"Azimuth: %03.1f", azDegrees)
+        elevationLabel.text = String(format:"Elevation: %03.1f", elDegrees)
+    }
+    
     //based on some nice work here: https://github.com/keithbhunter/PanoramicImageView/blob/master/PanoramicImageView.swift
     private func updateCameraOrientation() {
         let y = (currentTranslationDelta.x / CGFloat(lastScale) / scenekitView.bounds.size.width) * CGFloat.pi * 2
@@ -150,13 +193,17 @@ class MosaicViewController : UIViewController {
         
         // If we are using core motion, combine the device motion data with the pan gesture data.
         // Else, just use the pan gesture data.
-//        if let motion = deviceMotion {
-//            cumulativeRotationOffset.x += x
-//            cumulativeRotationOffset.y += y
-//            cameraNode.orientation = rotate(motion.gaze(at: UIApplication.shared.statusBarOrientation), by: cumulativeRotationOffset)
-//        } else {
+        if let motion = deviceMotion {
+            cumulativeRotationOffset.x += x
+            cumulativeRotationOffset.y += y
+            cameraNode.orientation = rotate(motion.gaze(at: UIApplication.shared.statusBarOrientation), by: cumulativeRotationOffset)
+        } else {
             cameraNode.orientation = rotate(cameraNode.orientation, by: CGPoint(x: x, y: y))
-//        }
+        }
+        let mat = cameraNode.transform
+        let el = asin(-mat.m32)
+        let az = atan2(mat.m13, mat.m11)
+        updateHeadingDisplay(az: az > 0 ? az : 2*Float.pi + az, el: el) //az will be 0 to +2pi, el will be -pi/2 to pi/2
     }
     
     // Quaternion math from: https://github.com/alfiehanssen/ThreeSixtyPlayer

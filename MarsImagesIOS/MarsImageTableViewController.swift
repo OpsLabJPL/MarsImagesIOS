@@ -201,7 +201,7 @@ class MarsImageTableViewController: UITableViewController {
             cell.detailTextLabel?.text = imageset.subtitle
         
             if let thumbnailUrl = imageset.thumbnailUrl {
-                cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder.png"))
+                cell.imageView?.sd_setImage(with: URL(string:thumbnailUrl), placeholderImage: UIImage.init(named: "placeholder"))
             }
         }
         return cell
