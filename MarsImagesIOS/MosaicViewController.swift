@@ -112,7 +112,7 @@ class MosaicViewController : UIViewController {
         } else {
             motionManager.stopDeviceMotionUpdates()
             deviceMotion = nil
-            gyroButton.tintColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+            gyroButton.tintColor = view.tintColor
         }
     }
     
