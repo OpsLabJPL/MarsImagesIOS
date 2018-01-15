@@ -2,6 +2,10 @@
 *.xcuserstate
 *.xccheckout
 *.xcbkptlist
+MarsImagesIOS.xcodeproj/xcuserdata/
+MarsImagesIOS.xcworkspace/xcuserdata/
+xcuserdata/
+
 #Pods
 #Podfile.lock
 .ruby-version

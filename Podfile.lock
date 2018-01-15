@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.5.1)
   - CSV.swift (2.1.0)
   - EFInternetIndicator (0.4.0):
@@ -23,6 +24,7 @@ PODS:
     - Swinject (~> 2.1)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.3)
   - Alamofire (~> 4)
   - CSV.swift (~> 2)
   - EFInternetIndicator (~> 0.4)
@@ -51,6 +53,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/OpsLabJPL/POWImageGallery.git
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
   EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
@@ -66,6 +69,6 @@ SPEC CHECKSUMS:
   Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwinjectStoryboard: 92e75763c3299cdf627bef98a5180dc894864336
 
-PODFILE CHECKSUM: 19849fbc951b177fc59a771e3825e35a2d8cf27a
+PODFILE CHECKSUM: 9801e19ddb2a998042de9573e3af0c215cd15eff
 
 COCOAPODS: 1.3.1
