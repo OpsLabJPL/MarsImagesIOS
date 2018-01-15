@@ -9,6 +9,7 @@
 import UIKit
 import CoreMotion
 import SceneKit
+import ActionSheetPicker_3_0
 
 class MosaicViewController : UIViewController {
     
@@ -112,6 +113,21 @@ class MosaicViewController : UIViewController {
             motionManager.stopDeviceMotionUpdates()
             deviceMotion = nil
             gyroButton.tintColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        }
+    }
+    
+    @IBAction func chooseLocation(_ sender: Any) {
+        if let locations = catalogs[Mission.currentMissionName()]!.getNamedLocations() {
+            let names = Array(locations.keys)
+
+            ActionSheetStringPicker.show(withTitle: "Choose a location", rows: names, initialSelection: 0, doneBlock: {
+                picker, value, index in
+                if let desiredLocation = locations[names[value]] {
+                    self.mosaicLoader?.setRMC(desiredLocation)
+                    self.updateCaption()
+                }
+                return
+                }, cancel: { ActionStringDoneBlock in return }, origin: sender)
         }
     }
     

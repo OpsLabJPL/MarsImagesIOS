@@ -229,18 +229,22 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="5vH-Ig-Nle">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="compass" id="85B-Bm-zAD" userLabel="I">
+                            <barButtonItem title="Item" image="compass" id="85B-Bm-zAD" userLabel="Toggle Motion">
                                 <connections>
                                     <action selector="toggleMotion:" destination="HAv-bC-4HX" id="zyn-sT-ywn"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="binoculars" id="hyk-4D-8Ow" userLabel="List"/>
-                            <barButtonItem title="Item" image="right_arrow" id="ReT-qb-InM" userLabel="Next">
+                            <barButtonItem title="Item" image="binoculars" id="hyk-4D-8Ow" userLabel="Choose Location">
+                                <connections>
+                                    <action selector="chooseLocation:" destination="HAv-bC-4HX" id="FQS-7v-S2u"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="right_arrow" id="ReT-qb-InM" userLabel="Next Location">
                                 <connections>
                                     <action selector="nextLocationSelected:" destination="HAv-bC-4HX" id="1em-OU-Zh7"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="left_arrow" id="UGf-0G-NVX" userLabel="Previous">
+                            <barButtonItem image="left_arrow" id="UGf-0G-NVX" userLabel="Previous Location">
                                 <connections>
                                     <action selector="previousLocationSelected:" destination="HAv-bC-4HX" id="u9T-dd-8i9"/>
                                 </connections>

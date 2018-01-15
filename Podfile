@@ -2,6 +2,7 @@ platform :ios, '9.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
 target 'MarsImages' do
+    pod 'ActionSheetPicker-3.0', '~> 2.3'
     pod 'Alamofire', '~> 4'
     pod 'CSV.swift', '~> 2'
     pod 'EFInternetIndicator', '~> 0.4'

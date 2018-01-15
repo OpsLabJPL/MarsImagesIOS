@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0910"
+   LastUpgradeVersion = "0920"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DFF8EF007D2EF041D473E12293677953"
+               BlueprintIdentifier = "5BD89D547DF7584346C84AE960D41887"
                BuildableName = "Swinject.framework"
                BlueprintName = "Swinject"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DFF8EF007D2EF041D473E12293677953"
+            BlueprintIdentifier = "5BD89D547DF7584346C84AE960D41887"
             BuildableName = "Swinject.framework"
             BlueprintName = "Swinject"
             ReferencedContainer = "container:Pods.xcodeproj">
