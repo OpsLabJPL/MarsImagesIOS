@@ -18,7 +18,6 @@
 		4A1680BC1F2A8ECE004E30CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A1680BB1F2A8ECE004E30CC /* Assets.xcassets */; };
 		4A1680BF1F2A8ECE004E30CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A1680BD1F2A8ECE004E30CC /* LaunchScreen.storyboard */; };
 		4A1680CA1F2A8ECE004E30CC /* MarsImagesIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680C91F2A8ECE004E30CC /* MarsImagesIOSTests.swift */; };
-		4A1680D51F2A8ECE004E30CC /* MarsImagesIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680D41F2A8ECE004E30CC /* MarsImagesIOSUITests.swift */; };
 		4A1680E31F2A8F32004E30CC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 4A1680E21F2A8F32004E30CC /* Podfile */; };
 		4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */; };
 		4A1680E91F2AA559004E30CC /* EvernoteMarsImageCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1680E81F2AA559004E30CC /* EvernoteMarsImageCatalog.swift */; };
@@ -41,6 +40,8 @@
 		4AAAB5301F2E388C001D810D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAAB52F1F2E388C001D810D /* Constants.swift */; };
 		4AC87A491FC748FB0024019D /* ImageSelectionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */; };
 		4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */; };
+		4ACDF36A2012A47C00775FC0 /* fastlane in Resources */ = {isa = PBXBuildFile; fileRef = 4ACDF3692012A47C00775FC0 /* fastlane */; };
+		4ACDF36C2012A50600775FC0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4ACDF36B2012A50600775FC0 /* .gitignore */; };
 		4ADBC6871F7A6E83004D98D2 /* ImageQuad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC6861F7A6E83004D98D2 /* ImageQuad.swift */; };
 		4ADBC6891F7A74A0004D98D2 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADBC6881F7A74A0004D98D2 /* Quaternion.swift */; };
 		4AE403661F4A4A5F00163394 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE403651F4A4A5F00163394 /* CameraModel.swift */; };
@@ -55,18 +56,10 @@
 		BF4A1B16C55CE630ECBE5159 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21B79A2C2DDC09341648D39 /* SystemConfiguration.framework */; };
 		C9D96EC87A90F36FB4F5847A /* Pods_MarsImages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBE5C98E80D1BBED3D290DF /* Pods_MarsImages.framework */; };
 		CF38A2CE2269693FE308B551 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A22408CEE08A874793958F /* CoreMedia.framework */; };
-		D0EAB7103E739E82F49374B8 /* Pods_MarsImagesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E3D9EDCB92E1DDA5B2CA33 /* Pods_MarsImagesUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		4A1680C61F2A8ECE004E30CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A1680A91F2A8ECE004E30CC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A1680B01F2A8ECE004E30CC;
-			remoteInfo = MarsImagesIOS;
-		};
-		4A1680D11F2A8ECE004E30CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A1680A91F2A8ECE004E30CC /* Project object */;
 			proxyType = 1;
@@ -90,9 +83,6 @@
 		4A1680C51F2A8ECE004E30CC /* MarsImagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsImagesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1680C91F2A8ECE004E30CC /* MarsImagesIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsImagesIOSTests.swift; sourceTree = "<group>"; };
 		4A1680CB1F2A8ECE004E30CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A1680D01F2A8ECE004E30CC /* MarsImagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsImagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A1680D41F2A8ECE004E30CC /* MarsImagesIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsImagesIOSUITests.swift; sourceTree = "<group>"; };
-		4A1680D61F2A8ECE004E30CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A1680E21F2A8F32004E30CC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4A1680E61F2AA4C1004E30CC /* MarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsImageCatalog.swift; sourceTree = "<group>"; };
 		4A1680E81F2AA559004E30CC /* EvernoteMarsImageCatalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvernoteMarsImageCatalog.swift; sourceTree = "<group>"; };
@@ -117,6 +107,8 @@
 		4AAAB52F1F2E388C001D810D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionMenuViewController.swift; sourceTree = "<group>"; };
 		4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetReachabilityStatus.swift; sourceTree = "<group>"; };
+		4ACDF3692012A47C00775FC0 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
+		4ACDF36B2012A50600775FC0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		4ADBC6861F7A6E83004D98D2 /* ImageQuad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageQuad.swift; sourceTree = "<group>"; };
 		4ADBC6881F7A74A0004D98D2 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quaternion.swift; sourceTree = "<group>"; };
 		4AE403651F4A4A5F00163394 /* CameraModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
@@ -168,14 +160,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A1680CD1F2A8ECE004E30CC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0EAB7103E739E82F49374B8 /* Pods_MarsImagesUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -195,11 +179,12 @@
 		4A1680A81F2A8ECE004E30CC = {
 			isa = PBXGroup;
 			children = (
+				4ACDF36B2012A50600775FC0 /* .gitignore */,
+				4ACDF3692012A47C00775FC0 /* fastlane */,
 				4A9A88C91F550ACF00DF9378 /* MarsImages.entitlements */,
 				4A1680E21F2A8F32004E30CC /* Podfile */,
 				4A1680B31F2A8ECE004E30CC /* MarsImagesIOS */,
 				4A1680C81F2A8ECE004E30CC /* MarsImagesIOSTests */,
-				4A1680D31F2A8ECE004E30CC /* MarsImagesIOSUITests */,
 				4A1680B21F2A8ECE004E30CC /* Products */,
 				44781952AD078E579E83D215 /* Pods */,
 				8E6DB2D67E50BF1989C53761 /* Frameworks */,
@@ -212,7 +197,6 @@
 			children = (
 				4A1680B11F2A8ECE004E30CC /* MarsImages.app */,
 				4A1680C51F2A8ECE004E30CC /* MarsImagesTests.xctest */,
-				4A1680D01F2A8ECE004E30CC /* MarsImagesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,15 +224,6 @@
 				4A1680CB1F2A8ECE004E30CC /* Info.plist */,
 			);
 			path = MarsImagesIOSTests;
-			sourceTree = "<group>";
-		};
-		4A1680D31F2A8ECE004E30CC /* MarsImagesIOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4A1680D41F2A8ECE004E30CC /* MarsImagesIOSUITests.swift */,
-				4A1680D61F2A8ECE004E30CC /* Info.plist */,
-			);
-			path = MarsImagesIOSUITests;
 			sourceTree = "<group>";
 		};
 		4AAAB5311F2E4459001D810D /* Models */ = {
@@ -373,27 +348,6 @@
 			productReference = 4A1680C51F2A8ECE004E30CC /* MarsImagesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4A1680CF1F2A8ECE004E30CC /* MarsImagesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4A1680DF1F2A8ECE004E30CC /* Build configuration list for PBXNativeTarget "MarsImagesUITests" */;
-			buildPhases = (
-				4A2820C39C362E03A7AF8E00 /* [CP] Check Pods Manifest.lock */,
-				4A1680CC1F2A8ECE004E30CC /* Sources */,
-				4A1680CD1F2A8ECE004E30CC /* Frameworks */,
-				4A1680CE1F2A8ECE004E30CC /* Resources */,
-				ECFDA0E01602B6BD0A95A7B5 /* [CP] Embed Pods Frameworks */,
-				0F67BBB10AA8679E206B39BA /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4A1680D21F2A8ECE004E30CC /* PBXTargetDependency */,
-			);
-			name = MarsImagesUITests;
-			productName = MarsImagesIOSUITests;
-			productReference = 4A1680D01F2A8ECE004E30CC /* MarsImagesUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -425,13 +379,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4A1680B01F2A8ECE004E30CC;
 					};
-					4A1680CF1F2A8ECE004E30CC = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3SJ2422ERE;
-						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 4A1680B01F2A8ECE004E30CC;
-					};
 				};
 			};
 			buildConfigurationList = 4A1680AC1F2A8ECE004E30CC /* Build configuration list for PBXProject "MarsImagesIOS" */;
@@ -449,7 +396,6 @@
 			targets = (
 				4A1680B01F2A8ECE004E30CC /* MarsImages */,
 				4A1680C41F2A8ECE004E30CC /* MarsImagesTests */,
-				4A1680CF1F2A8ECE004E30CC /* MarsImagesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -459,6 +405,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACDF36A2012A47C00775FC0 /* fastlane in Resources */,
+				4ACDF36C2012A50600775FC0 /* .gitignore in Resources */,
 				4A1680BF1F2A8ECE004E30CC /* LaunchScreen.storyboard in Resources */,
 				4A1680BC1F2A8ECE004E30CC /* Assets.xcassets in Resources */,
 				4A1680E31F2A8F32004E30CC /* Podfile in Resources */,
@@ -474,31 +422,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A1680CE1F2A8ECE004E30CC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F67BBB10AA8679E206B39BA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MarsImagesUITests/Pods-MarsImagesUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		37FDFABA9827C8AB3B8642E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,24 +437,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MarsImagesTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A2820C39C362E03A7AF8E00 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MarsImagesUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -629,21 +537,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MarsImages/Pods-MarsImages-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ECFDA0E01602B6BD0A95A7B5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MarsImagesUITests/Pods-MarsImagesUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F4173D72FAA70478AC97BC04 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -707,14 +600,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A1680CC1F2A8ECE004E30CC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A1680D51F2A8ECE004E30CC /* MarsImagesIOSUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -722,11 +607,6 @@
 			isa = PBXTargetDependency;
 			target = 4A1680B01F2A8ECE004E30CC /* MarsImages */;
 			targetProxy = 4A1680C61F2A8ECE004E30CC /* PBXContainerItemProxy */;
-		};
-		4A1680D21F2A8ECE004E30CC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A1680B01F2A8ECE004E30CC /* MarsImages */;
-			targetProxy = 4A1680D11F2A8ECE004E30CC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -863,6 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
+				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -876,6 +757,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -885,6 +767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MarsImages.entitlements;
+				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = 3SJ2422ERE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -898,6 +781,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -933,40 +817,6 @@
 			};
 			name = Release;
 		};
-		4A1680E01F2A8ECE004E30CC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 954E79874BFB4D625133B5C2 /* Pods-MarsImagesUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 3SJ2422ERE;
-				INFOPLIST_FILE = MarsImagesIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.powellware.MarsImagesIOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = MarsImages;
-			};
-			name = Debug;
-		};
-		4A1680E11F2A8ECE004E30CC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07E36DC40E6E05FD0473BC27 /* Pods-MarsImagesUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 3SJ2422ERE;
-				INFOPLIST_FILE = MarsImagesIOSUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.powellware.MarsImagesIOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = MarsImages;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -993,15 +843,6 @@
 			buildConfigurations = (
 				4A1680DD1F2A8ECE004E30CC /* Debug */,
 				4A1680DE1F2A8ECE004E30CC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4A1680DF1F2A8ECE004E30CC /* Build configuration list for PBXNativeTarget "MarsImagesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4A1680E01F2A8ECE004E30CC /* Debug */,
-				4A1680E11F2A8ECE004E30CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
