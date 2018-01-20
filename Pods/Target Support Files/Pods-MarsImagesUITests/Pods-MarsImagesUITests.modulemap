@@ -1,6 +1,0 @@
-framework module Pods_MarsImagesUITests {
-  umbrella header "Pods-MarsImagesUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
