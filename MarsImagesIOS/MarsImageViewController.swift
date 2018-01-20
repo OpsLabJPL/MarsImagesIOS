@@ -172,6 +172,7 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         if let presentationController = popover {
             presentationController.presentedViewController.dismiss(animated: true, completion: nil)
         }
@@ -333,6 +334,7 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     }
     
     override func imageLoaded() {
+        super.imageLoaded()
         //TODO: This was causing the tableview to scroll to back to the current image even if it was the table that was scrolled to the end that initiated the load, which I don't want. Keep an eye on this. Is this needed for anything else?
 //        let dict:[String:Any] = [ Constants.imageIndexKey: pageIndex, Constants.senderKey: self ]
 //        NotificationCenter.default.post(name: .imageSelected, object: nil, userInfo: dict)

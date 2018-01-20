@@ -1,6 +1,6 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - CSV.swift (2.1.0)
   - EFInternetIndicator (0.4.0):
     - EFInternetIndicator/Interface (= 0.4.0)
@@ -10,13 +10,13 @@ PODS:
   - MarsTimeConversion (1.0)
   - MBProgressHUD (1.1.0)
   - MKDropdownMenu (1.4)
-  - POWImageGallery (0.1.3):
+  - POWImageGallery (0.1.5):
     - MBProgressHUD (~> 1.1)
     - SDWebImage (~> 4.2)
   - ReachabilitySwift (3)
-  - SDWebImage (4.2.2):
-    - SDWebImage/Core (= 4.2.2)
-  - SDWebImage/Core (4.2.2)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
   - SwiftMessages (4.1.0)
   - SwiftyJSON (3.1.4)
   - Swinject (2.1.1)
@@ -49,26 +49,26 @@ CHECKOUT OPTIONS:
     :commit: 6e540c2ced6b67078f681fb633a35afd83098eb8
     :git: https://github.com/OpsLabJPL/MarsTimeConversion.git
   POWImageGallery:
-    :commit: 40b70f6ac37f49f5bb048b1588e27988d1068772
+    :commit: bbc2e50c0629eabd5581e523815d48f155512986
     :git: https://github.com/OpsLabJPL/POWImageGallery.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
   EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
   MarsTimeConversion: 2f571fd700c8469a8510e51a561a7f88cf5858d3
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
-  POWImageGallery: c29002b82f8583792bc849ffb08b01367aeb38c3
+  POWImageGallery: f1304f46ba875b611bc0f9651a66f813c2acd8bb
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwinjectStoryboard: 92e75763c3299cdf627bef98a5180dc894864336
 
-PODFILE CHECKSUM: 9801e19ddb2a998042de9573e3af0c215cd15eff
+PODFILE CHECKSUM: a4a4fc08857e58d064764c6ed5b516f0f5170edf
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

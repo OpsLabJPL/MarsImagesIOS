@@ -45,6 +45,26 @@ open class ImageGalleryViewController : UIViewController {
         reloadData() //load for the first time, really
     }
     
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateCaptionViewConstraints()
+    }
+    
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: nil, completion: { [weak self] _ in
+            self?.updateCaptionViewConstraints()
+        })
+    }
+    
+    open func updateCaptionViewConstraints() {
+        let fixedWidth = captionView.frame.size.width
+        let newSize = captionView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        captionViewHeightConstraint.constant = newSize.height
+        captionView.updateConstraints()
+    }
+    
     open func setPageIndex(_ pageIndex:Int) {
         self.pageIndex = pageIndex
         reloadData()
@@ -77,6 +97,7 @@ open class ImageGalleryViewController : UIViewController {
         captionView.textAlignment = .center
         
         captionView.font = UIFont.systemFont(ofSize: 17)
+        captionView.isScrollEnabled = false
         captionView.isSelectable = false
         captionView.isEditable = false
         view.addSubview(pageViewController.view)
@@ -92,8 +113,8 @@ open class ImageGalleryViewController : UIViewController {
             toolbarBottomConstraint,
             toolbar.leftAnchor.constraint(equalTo: view.leftAnchor, constant:0),
             toolbar.rightAnchor.constraint(equalTo: view.rightAnchor, constant:0),
-            captionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant:0),
-            captionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant:0),
+            captionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            captionView.widthAnchor.constraint(equalTo: view.widthAnchor),
             captionView.bottomAnchor.constraint(equalTo: toolbar.topAnchor, constant:0),
             captionViewHeightConstraint
         ]
@@ -205,10 +226,6 @@ extension ImageGalleryViewController : UIPageViewControllerDataSource {
     open func updateCaptionsText() {
         if delegate.captions.count > self.pageIndex {
             captionView.text = delegate.captions[pageIndex] ?? ""
-            captionView.layoutIfNeeded()
-            captionView.sizeToFit()
-            captionViewHeightConstraint.constant = captionView.bounds.size.height
-            captionView.layoutIfNeeded()
        }
     }
 }

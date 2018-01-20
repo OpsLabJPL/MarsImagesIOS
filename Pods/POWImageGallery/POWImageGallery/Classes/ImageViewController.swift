@@ -18,6 +18,7 @@ open class ImageViewController : UIViewController {
     @objc public var imageView: UIImageView!
     @objc public var scrollView: UIScrollView!
     public var loadInProgress = false
+    var lastZoomScale: CGFloat = -1
     public var image: ImageCreator? {
         didSet {
             loadInProgress = true
@@ -85,7 +86,7 @@ open class ImageViewController : UIViewController {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateMinZoomScaleForSize(view.bounds.size)
+        updateZoom()
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -94,30 +95,58 @@ open class ImageViewController : UIViewController {
     
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        updateMinZoomScaleForSize(view.bounds.size)
+        updateZoom()
     }
     
-    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
+    // Update zoom scale and constraints with animation.
+    @available(iOS 8.0, *)
+    open override func viewWillTransition(to size: CGSize,
+                                          with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.updateZoom()
+            }, completion: nil)
+    }
+    
+    fileprivate func updateZoom() {
         if let image = imageView.image {
-            let widthScale = size.width / image.size.width
-            let heightScale = size.height / image.size.height
-            let minScale = min(widthScale, heightScale)
+            var minZoom = min(scrollView.bounds.size.width / image.size.width,
+                              scrollView.bounds.size.height / image.size.height)
             
-            scrollView.minimumZoomScale = minScale
-            scrollView.zoomScale = minScale
-            updateConstraintsForSize(size)
+            if minZoom > 1 { minZoom = 1 }
+            
+            scrollView.minimumZoomScale = 0.3 * minZoom
+            
+            // Force scrollViewDidZoom fire if zoom did not change
+            if minZoom == lastZoomScale { minZoom += 0.000001 }
+            
+            scrollView.zoomScale = minZoom
+            lastZoomScale = minZoom
         }
     }
     
-    fileprivate func updateConstraintsForSize(_ size: CGSize) {
+    fileprivate func updateConstraints() {
         if let image = imageView.image {
-            let yOffset = max(0, (size.height - image.size.height*scrollView.minimumZoomScale) / 2)
-            imageViewTopConstraint.constant = yOffset
-            imageViewBottomConstraint.constant = yOffset
+            let imageWidth = image.size.width
+            let imageHeight = image.size.height
             
-            let xOffset = max(0, (size.width - image.size.width*scrollView.minimumZoomScale) / 2)
-            imageViewLeftConstraint.constant = xOffset
-            imageViewRightConstraint.constant = xOffset
+            let viewWidth = scrollView.bounds.size.width
+            let viewHeight = scrollView.bounds.size.height
+            
+            // center image if it is smaller than the scroll view
+            var hPadding = (viewWidth - scrollView.zoomScale * imageWidth) / 2
+            if hPadding < 0 { hPadding = 0 }
+            
+            var vPadding = (viewHeight - scrollView.zoomScale * imageHeight) / 2
+            if vPadding < 0 { vPadding = 0 }
+            
+            imageViewLeftConstraint.constant = hPadding
+            imageViewRightConstraint.constant = hPadding
+            
+            imageViewTopConstraint.constant = vPadding
+            imageViewBottomConstraint.constant = vPadding
         }
         
         view.layoutIfNeeded()
@@ -130,7 +159,7 @@ extension ImageViewController : UIScrollViewDelegate {
     }
     
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraintsForSize(view.bounds.size)
+        updateConstraints()
     }
 }
 
