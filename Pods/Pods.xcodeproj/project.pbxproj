@@ -597,9 +597,9 @@
 		00715332E07534B9D2919C647790F2FB /* StatusLine.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = StatusLine.xib; path = SwiftMessages/Resources/StatusLine.xib; sourceTree = "<group>"; };
 		01D16CCF26D2EB2340D98F4ECEE93B30 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageGalleryViewController.swift; path = POWImageGallery/Classes/ImageGalleryViewController.swift; sourceTree = "<group>"; };
 		027A3E69A3EBF5F556DAF798F757A734 /* Swinject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Swinject.h; path = Sources/Swinject.h; sourceTree = "<group>"; };
-		03005560E996E53BDC3984A4974DFD55 /* MarsTimeConversion.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MarsTimeConversion.modulemap; sourceTree = "<group>"; };
+		03005560E996E53BDC3984A4974DFD55 /* MarsTimeConversion.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MarsTimeConversion.modulemap; sourceTree = "<group>"; };
 		0320D788C8B0E1D3B6E245CEA2781EF9 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0385C10F7E8E0A41478FE70EDA18AA5B /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		0385C10F7E8E0A41478FE70EDA18AA5B /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		0427210577E16279197F8017C2E3AA2A /* SDWebImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-umbrella.h"; sourceTree = "<group>"; };
 		04346000521A354E3B36B910B6D2F264 /* infoIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "infoIcon@3x.png"; path = "SwiftMessages/Resources/infoIcon@3x.png"; sourceTree = "<group>"; };
 		044AD69513CC05A57B054D3CAB388757 /* ENAFURLConnectionOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENAFURLConnectionOperation.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/AFNetworking/ENAFURLConnectionOperation.h"; sourceTree = "<group>"; };
@@ -629,7 +629,7 @@
 		113D188571DED81F35F70A01F3625C58 /* EFInternetIndicator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFInternetIndicator-umbrella.h"; sourceTree = "<group>"; };
 		1398DC5905AD51F44F8EFB1382299F4F /* warningIconLight.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = warningIconLight.png; path = SwiftMessages/Resources/warningIconLight.png; sourceTree = "<group>"; };
 		140DA342E53C84A8DAF8E55018385587 /* TabView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TabView.xib; path = SwiftMessages/Resources/TabView.xib; sourceTree = "<group>"; };
-		141EC091BED27569D0955AC5E1B93BE1 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDWebImage.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		141EC091BED27569D0955AC5E1B93BE1 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		145DE926053161E34F22A4419469FAE8 /* ENNote.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNote.h; path = "evernote-sdk-ios/ENSDK/ENNote.h"; sourceTree = "<group>"; };
 		14E1A8316BC4DF90A45DCFECC7715DBC /* ENLinkedNoteStoreClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENLinkedNoteStoreClient.h; path = "evernote-sdk-ios/ENSDK/Private/ENLinkedNoteStoreClient.h"; sourceTree = "<group>"; };
 		14F9336DAE0C798F9DD653E23002D425 /* Identifiable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Identifiable.swift; path = SwiftMessages/Identifiable.swift; sourceTree = "<group>"; };
@@ -660,13 +660,13 @@
 		1FA1BF437748C625C4B124EE76C1B4F2 /* ENStoreClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENStoreClient.m; path = "evernote-sdk-ios/ENSDK/Private/ENStoreClient.m"; sourceTree = "<group>"; };
 		202B65A5CD1DE66DF0412C3070E3A7E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		20716A396A45B84C2E706149573DE0CD /* ENNotebook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebook.h; path = "evernote-sdk-ios/ENSDK/ENNotebook.h"; sourceTree = "<group>"; };
-		20A0D14F5BF9FEBF7FBC038E3ABDF6EF /* MKDropdownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MKDropdownMenu.framework; path = MKDropdownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20A0D14F5BF9FEBF7FBC038E3ABDF6EF /* MKDropdownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MKDropdownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B5BBBDD8429B681DDB5AC710CC65DB /* ENAuthCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENAuthCache.h; path = "evernote-sdk-ios/ENSDK/Private/ENAuthCache.h"; sourceTree = "<group>"; };
 		20E1F15A118902EB5D58C8D18DCDD729 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = Pickers/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
 		218F720AA459D682D22E299343367E66 /* ActionSheetPicker-3.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-prefix.pch"; sourceTree = "<group>"; };
 		2193D72A667AA7C9ADE0D2B4FE56B982 /* ENSSKeychain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENSSKeychain.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/SSKeychain/ENSSKeychain.m"; sourceTree = "<group>"; };
 		219F3752178695A49E016BA8D263FAAC /* SwinjectStoryboard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SwinjectStoryboard.h; path = Sources/SwinjectStoryboard.h; sourceTree = "<group>"; };
-		224CED5836324677F806EA0C9E99DA63 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
+		224CED5836324677F806EA0C9E99DA63 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
 		23431FDAB0305646080CA338EA634B3A /* ENSDKPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSDKPrivate.h; path = "evernote-sdk-ios/ENSDK/Private/ENSDKPrivate.h"; sourceTree = "<group>"; };
 		238A2D2A4472D30D816ECE4A93A7F3E3 /* SwiftMessages.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftMessages.xcconfig; sourceTree = "<group>"; };
 		23F2043196CD121A8C3D9681A88655F9 /* SDWebImageCodersManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCodersManager.h; path = SDWebImage/SDWebImageCodersManager.h; sourceTree = "<group>"; };
@@ -689,7 +689,7 @@
 		2ACA95BA08B81B8013F65A89B790E008 /* Endian.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Endian.swift; path = Sources/Endian.swift; sourceTree = "<group>"; };
 		2B13E1992A6475E2BD9E5BCD164CEF60 /* ENNotebookCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebookCell.h; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookCell.h"; sourceTree = "<group>"; };
 		2B39F356277DF18627FE8EF033C318F4 /* ENSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENSession.m; path = "evernote-sdk-ios/ENSDK/ENSession.m"; sourceTree = "<group>"; };
-		2B6B56C18A0AAC9DD58874AC0847D77C /* EFInternetIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EFInternetIndicator.modulemap; sourceTree = "<group>"; };
+		2B6B56C18A0AAC9DD58874AC0847D77C /* EFInternetIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EFInternetIndicator.modulemap; sourceTree = "<group>"; };
 		2BD336E7F18D0ED51202642123866565 /* EvernoteSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EvernoteSDK.h; path = "evernote-sdk-ios/ENSDK/EvernoteSDK.h"; sourceTree = "<group>"; };
 		2C872711C6B7D893D76C33B7130D1779 /* ENGCOAuth.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENGCOAuth.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/cocoa-oauth/ENGCOAuth.m"; sourceTree = "<group>"; };
 		2D6A824020E677B57CA3FA98FB49837B /* KSXMLWriter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSXMLWriter.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/KSXMLWriter.m"; sourceTree = "<group>"; };
@@ -709,7 +709,7 @@
 		316199BB9BA3E13EF80A42B59B2C50BF /* SpinLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpinLock.swift; path = Sources/SpinLock.swift; sourceTree = "<group>"; };
 		32008DAA6A4AAD7F8F29A3E2B65F1F24 /* successIconLight@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "successIconLight@2x.png"; path = "SwiftMessages/Resources/successIconLight@2x.png"; sourceTree = "<group>"; };
 		3294B9BEEBC756EC4AB4AC2950F9E4AC /* ENMLWriter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENMLWriter.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENMLWriter.h"; sourceTree = "<group>"; };
-		329EB5936F133ABACD6E111EB33BE6EE /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CSV.framework; path = CSV.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		329EB5936F133ABACD6E111EB33BE6EE /* CSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3313E96CC1B3D26840E8067FAC287167 /* ENError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENError.m; path = "evernote-sdk-ios/ENSDK/ENError.m"; sourceTree = "<group>"; };
 		33DB279A2AD48EEFE53546D79495CE96 /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedResolver.Arguments.swift; path = Sources/SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
 		3403724A8FDC018D776DE6C0BD7377B3 /* ENSDKAdvanced.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSDKAdvanced.h; path = "evernote-sdk-ios/ENSDK/Advanced/ENSDKAdvanced.h"; sourceTree = "<group>"; };
@@ -722,12 +722,12 @@
 		3901DFE1195B29DE7E0DFA66CAC78259 /* Container+SwinjectStoryboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Container+SwinjectStoryboard.swift"; path = "Sources/Container+SwinjectStoryboard.swift"; sourceTree = "<group>"; };
 		3955B65BB0C1BEF6BB7DEC184A82D41A /* POWImageGallery.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = POWImageGallery.xcconfig; sourceTree = "<group>"; };
 		3958800D46E23B1836D48640A5F03D75 /* ObjectScope.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectScope.swift; path = Sources/ObjectScope.swift; sourceTree = "<group>"; };
-		39A6EA4A652D4B2564A149B27925E6E5 /* Pods-MarsImages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MarsImages.modulemap"; sourceTree = "<group>"; };
-		3A2066CF4CA7B9D3C0EB52306B2CCEF4 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ReachabilitySwift.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39A6EA4A652D4B2564A149B27925E6E5 /* Pods-MarsImages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MarsImages.modulemap"; sourceTree = "<group>"; };
+		3A2066CF4CA7B9D3C0EB52306B2CCEF4 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AC9924E880459BFB221EA80063BBEB8 /* ENOAuthViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENOAuthViewController.m; path = "evernote-sdk-ios/ENSDK/Private/ENOAuthViewController.m"; sourceTree = "<group>"; };
 		3B0B55438E4DB27230C5CE5139EA4CD7 /* ENHTMLNoteContent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENHTMLNoteContent.h; path = "evernote-sdk-ios/ENSDK/Private/ENHTMLNoteContent.h"; sourceTree = "<group>"; };
 		3BF0F0F39D86CD19F32DF3D2C2CB8E35 /* Assembly.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assembly.swift; path = Sources/Assembly.swift; sourceTree = "<group>"; };
-		3C0A349A5EBA90ED6525AF61EB593E15 /* MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MBProgressHUD.modulemap; sourceTree = "<group>"; };
+		3C0A349A5EBA90ED6525AF61EB593E15 /* MBProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MBProgressHUD.modulemap; sourceTree = "<group>"; };
 		3C287427FB8B581BDBA8F7EE5B057065 /* ENEncryptedContentInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENEncryptedContentInfo.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENEncryptedContentInfo.m"; sourceTree = "<group>"; };
 		3D73DFA9E289D9B517ED0CD9746EF7F6 /* ENTTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENTTransport.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTTransport.h"; sourceTree = "<group>"; };
 		3D8DBBD39A6FF7F9E960FD640E4D8975 /* SDWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDWebImage-dummy.m"; sourceTree = "<group>"; };
@@ -757,11 +757,11 @@
 		4BF57F723293E4E1EEF81D748C3F453F /* Box.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Box.swift; path = Sources/Box.swift; sourceTree = "<group>"; };
 		4C23F8930C58280CD15D785924A751AA /* CSV.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CSV.swift-dummy.m"; sourceTree = "<group>"; };
 		4C653CB1CD06A65F7D16AF8EB8233ADB /* errorIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "errorIcon@2x.png"; path = "SwiftMessages/Resources/errorIcon@2x.png"; sourceTree = "<group>"; };
-		4CED6C862E1A26B93BC7519ACBD3CEDE /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Swinject.framework; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CED6C862E1A26B93BC7519ACBD3CEDE /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D9F9392D953EDA9DBE648BF188A9686 /* SwinjectStoryboard+SetUp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "SwinjectStoryboard+SetUp.m"; path = "Sources/SwinjectStoryboard+SetUp.m"; sourceTree = "<group>"; };
 		4E53A2D6987B182FC8C0633A2E862412 /* errorIconLight.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = errorIconLight.png; path = SwiftMessages/Resources/errorIconLight.png; sourceTree = "<group>"; };
 		4F2EDCA5411B2A03BDCA19443CBB0498 /* ENUserStoreClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENUserStoreClient.m; path = "evernote-sdk-ios/ENSDK/Advanced/ENUserStoreClient.m"; sourceTree = "<group>"; };
-		4FC8B88CF69D738DC2791BBFC7034621 /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftMessages.bundle; path = "SwiftMessages-SwiftMessages.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC8B88CF69D738DC2791BBFC7034621 /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMessages.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		50132E65104316FCFF3CA85FEE2D4BC0 /* ENHTMLtoENMLConverter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENHTMLtoENMLConverter.h; path = "evernote-sdk-ios/ENSDK/Private/ENHTMLtoENMLConverter.h"; sourceTree = "<group>"; };
 		501BC373BDA4676068C7D3BAD9A94711 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50F5D18BFFBE40791C2D5FC4125E8B0E /* NSString+XMLAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+XMLAdditions.h"; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/NSString+XMLAdditions.h"; sourceTree = "<group>"; };
@@ -812,7 +812,7 @@
 		6574A197BC36F23875951526F738DCF7 /* EDAMErrors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAMErrors.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMErrors.h"; sourceTree = "<group>"; };
 		657A00776BAF928E1F6DEDF42202ECE7 /* infoIconSubtle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = infoIconSubtle.png; path = SwiftMessages/Resources/infoIconSubtle.png; sourceTree = "<group>"; };
 		6659FBF9048EC284D3B33637D524DB8B /* EFInternetIndicator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EFInternetIndicator.xcconfig; sourceTree = "<group>"; };
-		66A8899739CBBED1E8547512B776B8F7 /* Pods-MarsImagesTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-MarsImagesTests.modulemap"; sourceTree = "<group>"; };
+		66A8899739CBBED1E8547512B776B8F7 /* Pods-MarsImagesTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MarsImagesTests.modulemap"; sourceTree = "<group>"; };
 		671BB1E0326AD537AA9D0D9AAB9674E9 /* ENMIMEUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENMIMEUtils.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENMIMEUtils.m"; sourceTree = "<group>"; };
 		676472AD55DD57FE3EFCB50238360259 /* PhysicsAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhysicsAnimation.swift; path = SwiftMessages/PhysicsAnimation.swift; sourceTree = "<group>"; };
 		67CCDC313906AE9DDBBB98F8114603AA /* ENNotebookChooserViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebookChooserViewController.h; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookChooserViewController.h"; sourceTree = "<group>"; };
@@ -830,12 +830,12 @@
 		6CB517E9C4E1562898988055480A7F8E /* ENNoteRefInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNoteRefInternal.h; path = "evernote-sdk-ios/ENSDK/Private/ENNoteRefInternal.h"; sourceTree = "<group>"; };
 		6D55DD8130C022DE615C554872AEB805 /* NSString+ENScrubbing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+ENScrubbing.m"; path = "evernote-sdk-ios/ENSDK/Private/NSString+ENScrubbing.m"; sourceTree = "<group>"; };
 		6DA5CABFEF0C43BF44DEBC8D14E55422 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "evernote-sdk-ios/ENSDK/Private/NSString+URLEncoding.h"; sourceTree = "<group>"; };
-		6DFC674131FAAC49BB1C193636BAFB36 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MBProgressHUD.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFC674131FAAC49BB1C193636BAFB36 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E65C40A9B7556295783752CF7F5E0B4 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		6EA227D340E360D10DC429423124B3ED /* EDAMNoteStoreClient+Utilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EDAMNoteStoreClient+Utilities.h"; path = "evernote-sdk-ios/ENSDK/Private/EDAMNoteStoreClient+Utilities.h"; sourceTree = "<group>"; };
 		6EA3988A6E28AF63C1159F93C5FC1299 /* Pods-MarsImagesTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MarsImagesTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6F1B3844565F3505AC3B5E5EF9E4E33A /* ReachabilitySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReachabilitySwift-dummy.m"; sourceTree = "<group>"; };
-		6F3F2FAC5F15A509AC49069F4A74C4F7 /* MKDropdownMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MKDropdownMenu.modulemap; sourceTree = "<group>"; };
+		6F3F2FAC5F15A509AC49069F4A74C4F7 /* MKDropdownMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MKDropdownMenu.modulemap; sourceTree = "<group>"; };
 		6F48C4E2121A1EEC096A1825FA11FE8D /* Pods-MarsImages-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MarsImages-dummy.m"; sourceTree = "<group>"; };
 		6FB83E79769A76131768DA270DEC9F24 /* ENHTMLtoENMLConverter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENHTMLtoENMLConverter.m; path = "evernote-sdk-ios/ENSDK/Private/ENHTMLtoENMLConverter.m"; sourceTree = "<group>"; };
 		6FFA01703E8403957569ADDFB16D0832 /* ENTHTTPClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENTHTTPClient.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTHTTPClient.h"; sourceTree = "<group>"; };
@@ -863,7 +863,7 @@
 		7BC66037CFAA03AF10B59A4D1C985ADB /* SDWebImageCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCoder.h; path = SDWebImage/SDWebImageCoder.h; sourceTree = "<group>"; };
 		7C6B2A76351210CFA32BC7EACA0F4D6E /* InternetStatusIndicable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InternetStatusIndicable.swift; path = EFInternetIndicator/Classes/InternetStatusIndicable.swift; sourceTree = "<group>"; };
 		7C9CC486F1F8B77BD64A50D93F370537 /* SDImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = SDWebImage/SDImageCache.m; sourceTree = "<group>"; };
-		7CF4317282CE5786292A1508F85F8EEE /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
+		7CF4317282CE5786292A1508F85F8EEE /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
 		7DE509A7EBDF869EDCAFE64C4AD794DB /* ENSSKeychain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSSKeychain.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/SSKeychain/ENSSKeychain.h"; sourceTree = "<group>"; };
 		7DFC6F6A0AAAC8C6D624E0D87617AEC5 /* SDWebImageCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoder.m; path = SDWebImage/SDWebImageCoder.m; sourceTree = "<group>"; };
 		7F2058349121301EB118E83D34795E4A /* ENWebContentTransformer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENWebContentTransformer.h; path = "evernote-sdk-ios/ENSDK/Private/ENWebContentTransformer.h"; sourceTree = "<group>"; };
@@ -880,7 +880,7 @@
 		82FBD0241AF5B3A13042C954385FBFA7 /* MessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageView.swift; path = SwiftMessages/MessageView.swift; sourceTree = "<group>"; };
 		831E69B15410E51A7ACAA5144D95D722 /* ENNote.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNote.m; path = "evernote-sdk-ios/ENSDK/ENNote.m"; sourceTree = "<group>"; };
 		83B968F84AC2502B66DC5EE70CE84DC7 /* ENXMLSaxParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENXMLSaxParser.h; path = "evernote-sdk-ios/ENSDK/Private/ENXMLSaxParser.h"; sourceTree = "<group>"; };
-		844EA6F71A2A5D4C14EDD632DEEF6128 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftMessages.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		844EA6F71A2A5D4C14EDD632DEEF6128 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		845990B156310DB68AC86421888DF505 /* SwinjectStoryboardOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwinjectStoryboardOption.swift; path = Sources/SwinjectStoryboardOption.swift; sourceTree = "<group>"; };
 		84D188EF8084977F7B0EC7342FFC106F /* warningIconLight@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "warningIconLight@3x.png"; path = "SwiftMessages/Resources/warningIconLight@3x.png"; sourceTree = "<group>"; };
 		85653F14DE1A39BDCFFE1907997D3D7F /* ENMLConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENMLConstants.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLConstants.h"; sourceTree = "<group>"; };
@@ -890,7 +890,7 @@
 		86B83ECA21F96C64CCBA47BD7AE42FC9 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+HighlightedWebCache.h"; path = "SDWebImage/UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
 		86D036AB3F5C4F3FAFFDDDCE2CEF9577 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
 		86D2270376D9557D7414780850EC541F /* ENMLUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENMLUtility.h; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLUtility.h"; sourceTree = "<group>"; };
-		86FBA05C928F1BA32111CB23C2BE6544 /* EvernoteSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EvernoteSDK.modulemap; sourceTree = "<group>"; };
+		86FBA05C928F1BA32111CB23C2BE6544 /* EvernoteSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EvernoteSDK.modulemap; sourceTree = "<group>"; };
 		8775674B8E6B2FBDB23F6F2EF144C317 /* CenteredView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CenteredView.xib; path = SwiftMessages/Resources/CenteredView.xib; sourceTree = "<group>"; };
 		89A03F3ACAA7DA9C214AD170026B9F49 /* SwiftMessages-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMessages-umbrella.h"; sourceTree = "<group>"; };
 		8AF4A22E45B4530441FCD39FBE3092CA /* Pods-MarsImages-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImages-frameworks.sh"; sourceTree = "<group>"; };
@@ -908,7 +908,7 @@
 		91A6EF66E98DCA65F8997E4ED2B6C2DD /* CSVWriter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSVWriter.swift; path = Sources/CSVWriter.swift; sourceTree = "<group>"; };
 		9301F03B2AAB2E3D8E0ADD7D43374119 /* ENOAuthViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENOAuthViewController.h; path = "evernote-sdk-ios/ENSDK/Private/ENOAuthViewController.h"; sourceTree = "<group>"; };
 		93A3E811DFEB8E35298D4104E8D48C89 /* warningIconSubtle@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "warningIconSubtle@3x.png"; path = "SwiftMessages/Resources/warningIconSubtle@3x.png"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93BCCD4C906D0A5BC2315F8D9A43922D /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		94337368DCCF5E44C7EEAD10B23CC0CA /* NSBundle+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBundle+Utils.swift"; path = "SwiftMessages/NSBundle+Utils.swift"; sourceTree = "<group>"; };
 		945A6F8E5823090B375F55D264032CB8 /* ENXMLDTD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENXMLDTD.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/ENXMLDTD.m"; sourceTree = "<group>"; };
@@ -919,14 +919,14 @@
 		96DBF57BA5335620CDC4FEC2573479DF /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		96EE4408130E76E052DC671C144326E5 /* ENTTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENTTransport.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTTransport.m"; sourceTree = "<group>"; };
 		96F69883E2B9F1FAC8AE80991AE1625D /* SDWebImageCoderHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCoderHelper.h; path = SDWebImage/SDWebImageCoderHelper.h; sourceTree = "<group>"; };
-		972F1D3CB554B509272720CC64554277 /* Swinject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Swinject.modulemap; sourceTree = "<group>"; };
+		972F1D3CB554B509272720CC64554277 /* Swinject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Swinject.modulemap; sourceTree = "<group>"; };
 		984C0B9FB838EDC48E087AAF3429121B /* ENOAuthAuthenticator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENOAuthAuthenticator.h; path = "evernote-sdk-ios/ENSDK/Private/ENOAuthAuthenticator.h"; sourceTree = "<group>"; };
 		98874D847E12E13026B77132B24B5E8F /* infoIconSubtle@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "infoIconSubtle@2x.png"; path = "SwiftMessages/Resources/infoIconSubtle@2x.png"; sourceTree = "<group>"; };
-		989ABA8A8EA24ED0A8EA9F15EFCD2CE8 /* EvernoteSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EvernoteSDK.framework; path = EvernoteSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		989ABA8A8EA24ED0A8EA9F15EFCD2CE8 /* EvernoteSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EvernoteSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6297AF25F6A8E199FE5250704F512E /* errorIconSubtle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = errorIconSubtle.png; path = SwiftMessages/Resources/errorIconSubtle.png; sourceTree = "<group>"; };
 		9B1F2221221C2263A75F00B002432DC3 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "evernote-sdk-ios/ENSDK/Private/NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		9B3D294BFC3B8E965297FE1FAAEA2A77 /* EFInternetIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EFInternetIndicator.framework; path = EFInternetIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B91B7E720E4C08136399A9D5824CF6D /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B3D294BFC3B8E965297FE1FAAEA2A77 /* EFInternetIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFInternetIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B91B7E720E4C08136399A9D5824CF6D /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BDCFC78A30C7C122CC68A650D62EFFE /* MaskingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaskingView.swift; path = SwiftMessages/MaskingView.swift; sourceTree = "<group>"; };
 		9C00A523E339239E46464B9E6F786466 /* Pods-MarsImages-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MarsImages-acknowledgements.plist"; sourceTree = "<group>"; };
 		9C9680B0583951B486978300C06E4257 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
@@ -948,16 +948,16 @@
 		A6A04F35718BF92E3A16DFEF50408FEE /* ENNotebookTypeView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNotebookTypeView.m; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookTypeView.m"; sourceTree = "<group>"; };
 		A724E5D70AA89BB6ED91D6DF6F8E9639 /* Pods-MarsImages-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MarsImages-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A7C0FC7D6CBDD6811B8A46611E1F7BA6 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		A90C9827AAAF7CF21286DD9AF8C079D2 /* SwiftMessages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftMessages.modulemap; sourceTree = "<group>"; };
+		A90C9827AAAF7CF21286DD9AF8C079D2 /* SwiftMessages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftMessages.modulemap; sourceTree = "<group>"; };
 		ABE98F4163AA1891D2BC038487DE8415 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "SDWebImage/UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		AE6D70DCB03987F3266831E940DEC5BD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE70BB4EEB4C017EFD47D5ECF7947BAB /* EDAMTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EDAMTypes.h; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMTypes.h"; sourceTree = "<group>"; };
 		AEEB30391D394E1F9036CF65FAE63152 /* ENNotebookTypeView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebookTypeView.h; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookTypeView.h"; sourceTree = "<group>"; };
-		AF88E50E317FDD7C167963D63BF594F0 /* CSV.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CSV.swift.modulemap; sourceTree = "<group>"; };
+		AF88E50E317FDD7C167963D63BF594F0 /* CSV.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CSV.swift.modulemap; sourceTree = "<group>"; };
 		AFD8B228515AC5AD3F1B511DA96BB722 /* warningIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "warningIcon@3x.png"; path = "SwiftMessages/Resources/warningIcon@3x.png"; sourceTree = "<group>"; };
 		B0DA2A2E6DEFFDF67388AD6A2580D6A9 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "SDWebImage/NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		B1A2064B7DBBE74F5F7B7C59586D5BD2 /* ENNotebookPickerButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENNotebookPickerButton.h; path = "evernote-sdk-ios/ENSDK/SendToEvernoteActivity/ENNotebookPickerButton.h"; sourceTree = "<group>"; };
-		B23A7705B40D418F3C47B03AE35289C1 /* POWImageGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = POWImageGallery.framework; path = POWImageGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B23A7705B40D418F3C47B03AE35289C1 /* POWImageGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = POWImageGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D6F2493D2BC19F26AFA03EEDF226AC /* NSDate+EDAMAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+EDAMAdditions.m"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/NSDate+EDAMAdditions.m"; sourceTree = "<group>"; };
 		B3D48C25BCD4047DF464026577E9B744 /* errorIconSubtle@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "errorIconSubtle@2x.png"; path = "SwiftMessages/Resources/errorIconSubtle@2x.png"; sourceTree = "<group>"; };
 		B402518A46F8D23B3562834CAC036B9F /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderOperation.h; path = SDWebImage/SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
@@ -971,7 +971,7 @@
 		BA8DB63260607E8BF1F572EA3B5F6577 /* CSV.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSV.swift-prefix.pch"; sourceTree = "<group>"; };
 		BAA1AF8BEF2A89A762B10E9CED401773 /* MarginAdjustable+Animation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MarginAdjustable+Animation.swift"; path = "SwiftMessages/MarginAdjustable+Animation.swift"; sourceTree = "<group>"; };
 		BBAD81EF85B09FB447DB0EA7F9E01A0D /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
-		BBC1175A10612FB90181F7A96F2DC7DB /* Pods_MarsImagesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MarsImagesTests.framework; path = "Pods-MarsImagesTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBC1175A10612FB90181F7A96F2DC7DB /* Pods_MarsImagesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImagesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8CBF4CFF3CE89211D0F9C305AF9A94 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCA26CCFCBEA9C0876B49BBEC6589A3D /* AccessibleMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibleMessage.swift; path = SwiftMessages/AccessibleMessage.swift; sourceTree = "<group>"; };
 		BD851A01F16BE48C01508DC11C7132CB /* ENLoadingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENLoadingViewController.m; path = "evernote-sdk-ios/ENSDK/Private/ENLoadingViewController.m"; sourceTree = "<group>"; };
@@ -1000,7 +1000,7 @@
 		CCC51BB8EB5301B8176DEEE111FFDD9C /* ENTBinaryProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENTBinaryProtocol.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTBinaryProtocol.m"; sourceTree = "<group>"; };
 		D045193B278F65DBA98F48A88F503F59 /* ENWebResource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENWebResource.h; path = "evernote-sdk-ios/ENSDK/Private/ENWebResource.h"; sourceTree = "<group>"; };
 		D1565625DD5164A07FCFA8CF53BB76C1 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
-		D16C2280577310F6C64241C5202CCD8E /* FLA_397506083EDR_F0010008AUT_04096M_.JPG */ = {isa = PBXFileReference; includeInIndex = 1; name = FLA_397506083EDR_F0010008AUT_04096M_.JPG; path = POWImageGallery/Assets/FLA_397506083EDR_F0010008AUT_04096M_.JPG; sourceTree = "<group>"; };
+		D16C2280577310F6C64241C5202CCD8E /* FLA_397506083EDR_F0010008AUT_04096M_.JPG */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = FLA_397506083EDR_F0010008AUT_04096M_.JPG; path = POWImageGallery/Assets/FLA_397506083EDR_F0010008AUT_04096M_.JPG; sourceTree = "<group>"; };
 		D186C6B0CC87C462A9AD1B289F5D2D18 /* SWActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Pickers/SWActionSheet.h; sourceTree = "<group>"; };
 		D3D920B731D178DCE298D12E2AE1B091 /* BaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseView.swift; path = SwiftMessages/BaseView.swift; sourceTree = "<group>"; };
 		D3ECA7BF89BB0FB49E74E13B8FF5F6E9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1008,30 +1008,30 @@
 		D47A0F38F95722CA2712886EEE64F2DD /* ENMLConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENMLConstants.m; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLConstants.m"; sourceTree = "<group>"; };
 		D4AE9E37DFAA69BA75AFBAB01F2F8EA7 /* ENNoteContent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNoteContent.m; path = "evernote-sdk-ios/ENSDK/ENNoteContent.m"; sourceTree = "<group>"; };
 		D54F736ACAB440328EA0B2F5CEF1EEF2 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
-		D5C2B93AF842D5AAEE242324896D214C /* Pods_MarsImages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MarsImages.framework; path = "Pods-MarsImages.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C2B93AF842D5AAEE242324896D214C /* Pods_MarsImages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarsImages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66FC7375FD03F7EA0545E60B71A57D0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7F8557C66753346F410CC67E06288B1 /* ENSDKLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENSDKLogging.h; path = "evernote-sdk-ios/ENSDK/ENSDKLogging.h"; sourceTree = "<group>"; };
 		D8348A5462966670FB96077E30740C92 /* Pods-MarsImagesTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MarsImagesTests-resources.sh"; sourceTree = "<group>"; };
 		D8979C85C8309909D53C4EBB27233DBB /* MessageViewIOS8.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MessageViewIOS8.xib; path = SwiftMessages/Resources/MessageViewIOS8.xib; sourceTree = "<group>"; };
-		D905CEC18C902C1A7830CE0C29EDD2C7 /* POWImageGallery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = POWImageGallery.modulemap; sourceTree = "<group>"; };
-		DAAF97C0311F6ECF6D4C883C6D69D83E /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SDWebImage.modulemap; sourceTree = "<group>"; };
+		D905CEC18C902C1A7830CE0C29EDD2C7 /* POWImageGallery.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = POWImageGallery.modulemap; sourceTree = "<group>"; };
+		DAAF97C0311F6ECF6D4C883C6D69D83E /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SDWebImage.modulemap; sourceTree = "<group>"; };
 		DACE327659A938DB2C46D4B25FCA1E5A /* NSRegularExpression+ENAGRegex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSRegularExpression+ENAGRegex.h"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/NSRegularExpression+ENAGRegex.h"; sourceTree = "<group>"; };
 		DAFC3DCE45E2FE215886FDADC8C9B863 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBEB7E4BF6AC9E9EFFDEBA3562D40E6B /* ENPlainNoteContent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENPlainNoteContent.m; path = "evernote-sdk-ios/ENSDK/Private/ENPlainNoteContent.m"; sourceTree = "<group>"; };
 		DC2FDFCC77EE84320A7DCB55698670C8 /* ENTBinaryProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENTBinaryProtocol.h; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTBinaryProtocol.h"; sourceTree = "<group>"; };
-		DC94D9F6F6F9FEAD4C6814D30C4C6F43 /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
+		DC94D9F6F6F9FEAD4C6814D30C4C6F43 /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
 		DCBC115DE114CF605CB2C921078FB3CF /* UIImage+ForceDecode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ForceDecode.m"; path = "SDWebImage/UIImage+ForceDecode.m"; sourceTree = "<group>"; };
 		DDDB9CB0B50801A9490B59C334A94B9C /* successIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "successIcon@3x.png"; path = "SwiftMessages/Resources/successIcon@3x.png"; sourceTree = "<group>"; };
 		DE356E60589E7753DCA77A9DA5DD0E35 /* EDAMLimits.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EDAMLimits.m; path = "evernote-sdk-ios/ENSDK/Advanced/EDAM/EDAMLimits.m"; sourceTree = "<group>"; };
 		DE3A501914ED28D741BC936A7C93C5FA /* MarsTimeConversion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MarsTimeConversion.swift; path = MarsTimeConversion/Classes/MarsTimeConversion.swift; sourceTree = "<group>"; };
-		DE56072A64ACB1A22269612CCD04399A /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE56072A64ACB1A22269612CCD04399A /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF2FDAB4C060EDB507FA58799ED2954F /* WindowViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WindowViewController.swift; path = SwiftMessages/WindowViewController.swift; sourceTree = "<group>"; };
 		E113A5FEE6DBDCA4C4C4D7A4A5A89961 /* successIconLight@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "successIconLight@3x.png"; path = "SwiftMessages/Resources/successIconLight@3x.png"; sourceTree = "<group>"; };
 		E14F5014CAFC07BB34B758BA5A894580 /* PassthroughView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PassthroughView.swift; path = SwiftMessages/PassthroughView.swift; sourceTree = "<group>"; };
-		E1E9259D9461050E537510ECC1739DDD /* MarsTimeConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MarsTimeConversion.framework; path = MarsTimeConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1E9259D9461050E537510ECC1739DDD /* MarsTimeConversion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarsTimeConversion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EEFBFFA0D2B8DDF9127EEDCE7AC5B1 /* NSString+XMLAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+XMLAdditions.m"; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/KSHTMLWriter/NSString+XMLAdditions.m"; sourceTree = "<group>"; };
 		E2668D45A3F8FABB3EF1EFB94C585584 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		E29A487EC66C6850BA087A346A6BA337 /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ActionSheetPicker_3_0.framework; path = "ActionSheetPicker-3.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29A487EC66C6850BA087A346A6BA337 /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActionSheetPicker_3_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C699BD635F8002450BFB498BDBD08C /* ENTHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENTHTTPClient.m; path = "evernote-sdk-ios/ENSDK/Private/3rdParty/Thrift/ENTHTTPClient.m"; sourceTree = "<group>"; };
 		E2C90466AF2E825835E68FB091E1ACC2 /* SwinjectStoryboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwinjectStoryboard.xcconfig; sourceTree = "<group>"; };
 		E2E8522A525E356913C26ED6B9443EDC /* EvernoteSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EvernoteSDK-prefix.pch"; sourceTree = "<group>"; };
@@ -1048,7 +1048,7 @@
 		E65BD458361829704B51BEC5F32FE9C3 /* ENNotebookCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNotebookCell.m; path = "evernote-sdk-ios/ENSDK/Private/ENNotebookCell.m"; sourceTree = "<group>"; };
 		E6601E2DDD80F4DAE0FDCC2C87F374C9 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		E6894B09F31B42A0486D89CFACB06F3F /* ActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = Pickers/ActionSheetPicker.h; sourceTree = "<group>"; };
-		E6914A5B1D6469CDBF5854935624737E /* SwinjectStoryboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwinjectStoryboard.framework; path = SwinjectStoryboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6914A5B1D6469CDBF5854935624737E /* SwinjectStoryboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwinjectStoryboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7145CEC6D14B620F01B8152F3BEA631 /* ENSDKResources.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = ENSDKResources.bundle; sourceTree = "<group>"; };
 		E742CD0F01E33D4184703F1F6F62F9E6 /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = SwiftMessages/Animator.swift; sourceTree = "<group>"; };
 		E788FB54575D0B4463FA5F5B6FEA0BA1 /* warningIconSubtle@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "warningIconSubtle@2x.png"; path = "SwiftMessages/Resources/warningIconSubtle@2x.png"; sourceTree = "<group>"; };
@@ -1109,7 +1109,7 @@
 		FEC05A2CC12AD6D84B808304D77FAA42 /* successIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = successIcon.png; path = SwiftMessages/Resources/successIcon.png; sourceTree = "<group>"; };
 		FF62C5BE4771BD1FE95C53D3E95250AD /* ENLoadingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ENLoadingViewController.h; path = "evernote-sdk-ios/ENSDK/Private/ENLoadingViewController.h"; sourceTree = "<group>"; };
 		FF873FA8349B6A1CFEAD9D5C67E8EB35 /* ENNotebookPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ENNotebookPickerView.m; path = "evernote-sdk-ios/ENSDK/SendToEvernoteActivity/ENNotebookPickerView.m"; sourceTree = "<group>"; };
-		FFDD62669E7605CEA21528EB91C4D913 /* SwinjectStoryboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwinjectStoryboard.modulemap; sourceTree = "<group>"; };
+		FFDD62669E7605CEA21528EB91C4D913 /* SwinjectStoryboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwinjectStoryboard.modulemap; sourceTree = "<group>"; };
 		FFFE45F3D600E12665184B7418F4C856 /* NSString+EDAMNilAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+EDAMNilAdditions.h"; path = "evernote-sdk-ios/ENSDK/Advanced/Utilities/ENMLWriter/NSString+EDAMNilAdditions.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1279,7 +1279,6 @@
 				DE3A501914ED28D741BC936A7C93C5FA /* MarsTimeConversion.swift */,
 				9D511F94BB67C4F137522051AF14ED62 /* Support Files */,
 			);
-			name = MarsTimeConversion;
 			path = MarsTimeConversion;
 			sourceTree = "<group>";
 		};
@@ -1290,7 +1289,6 @@
 				6898A142562A8BBF35C18D86A2FFFD9B /* MBProgressHUD.m */,
 				64A4368D7BB23B1D47F0E5544C9F152A /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -1314,7 +1312,6 @@
 				C1082480B608D65FFEFD533F40D8969D /* Reachability.swift */,
 				78B3E0A50DCFE9200A15A5715BED859A /* Support Files */,
 			);
-			name = ReachabilitySwift;
 			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
@@ -1324,7 +1321,6 @@
 				ED35D915F296E486B8B8E81FC8B7CA76 /* SwiftyJSON.swift */,
 				B342F732E80EEA113060DE7117AA374F /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -1357,7 +1353,6 @@
 				4D7062AF6F0E89E0559F4DB50CC9CDC4 /* Resources */,
 				B88A0906F4D9808EBFE620615EAE9199 /* Support Files */,
 			);
-			name = SwiftMessages;
 			path = SwiftMessages;
 			sourceTree = "<group>";
 		};
@@ -1564,7 +1559,6 @@
 				90233A5D04A1701155FB4E0F46FA9F5E /* Resources */,
 				18AF03D7B454A24B689B66BAF5F9C604 /* Support Files */,
 			);
-			name = EvernoteSDK;
 			path = EvernoteSDK;
 			sourceTree = "<group>";
 		};
@@ -1616,7 +1610,6 @@
 				6777FAD056C9FD94B4055D3BCA2E4683 /* Core */,
 				4966A9B0396773613E91593C9C028A41 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1677,7 +1670,6 @@
 				E36C8680AED55FB1DFC700FBA26D0264 /* Reachability.swift */,
 				32256C9AF57A176CE15830541DDDAA64 /* Support Files */,
 			);
-			name = EFInternetIndicator;
 			path = EFInternetIndicator;
 			sourceTree = "<group>";
 		};
@@ -1724,7 +1716,6 @@
 				61EA0AEF5147F5564E214D162E737F71 /* SWActionSheet.m */,
 				9B3A14C5DA1D6A9CFD0AFF96A41159B5 /* Support Files */,
 			);
-			name = "ActionSheetPicker-3.0";
 			path = "ActionSheetPicker-3.0";
 			sourceTree = "<group>";
 		};
@@ -1803,7 +1794,6 @@
 				8B574ED47024318903E88FF99094E530 /* MKDropdownMenu.m */,
 				BB180F8532063FB97790212FAF7EFADB /* Support Files */,
 			);
-			name = MKDropdownMenu;
 			path = MKDropdownMenu;
 			sourceTree = "<group>";
 		};
@@ -1870,7 +1860,6 @@
 				D44E184F737004E18A177C95DE972D9A /* ViewController+Swinject.swift */,
 				2867CD1BDA485EDC7E0012C4E7DF37C2 /* Support Files */,
 			);
-			name = SwinjectStoryboard;
 			path = SwinjectStoryboard;
 			sourceTree = "<group>";
 		};
@@ -1986,7 +1975,6 @@
 				E9A37E29092202C593AB43D11A869E53 /* UnavailableItems.swift */,
 				EE6F63B96A23D624C1C1AEBAF88244C7 /* Support Files */,
 			);
-			name = Swinject;
 			path = Swinject;
 			sourceTree = "<group>";
 		};
@@ -2043,7 +2031,6 @@
 				C6FAE02D5B605D9E7849A2DB4E7CF740 /* UnicodeIterator.swift */,
 				B2AE32F215B3C2E1FF5310862E1F7B0F /* Support Files */,
 			);
-			name = CSV.swift;
 			path = CSV.swift;
 			sourceTree = "<group>";
 		};
@@ -2057,7 +2044,6 @@
 				F8D01B1E339439702CADA1A68BF8872F /* Resources */,
 				AC74729C43262B26C6570775FF3B58DF /* Support Files */,
 			);
-			name = POWImageGallery;
 			path = POWImageGallery;
 			sourceTree = "<group>";
 		};
@@ -2083,7 +2069,6 @@
 				55A89D3614283C118F14EB2F15E88FF4 /* Validation.swift */,
 				42782AF24DFD90E743BD768157879505 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -2764,7 +2749,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0920;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3810,6 +3795,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;

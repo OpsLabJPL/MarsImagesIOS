@@ -18,7 +18,6 @@ open class ImageViewController : UIViewController {
     @objc public var imageView: UIImageView!
     @objc public var scrollView: UIScrollView!
     public var loadInProgress = false
-    var lastZoomScale: CGFloat = -1
     public var image: ImageCreator? {
         didSet {
             loadInProgress = true
@@ -28,7 +27,7 @@ open class ImageViewController : UIViewController {
                 self.progressHUD.label.text = "Loading"
             }
             self.image?.requestImage()
-         }
+        }
     }
     
     public var imageIndex:Int?
@@ -37,10 +36,10 @@ open class ImageViewController : UIViewController {
     var imageViewRightConstraint = NSLayoutConstraint()
     var imageViewTopConstraint = NSLayoutConstraint()
     var imageViewBottomConstraint = NSLayoutConstraint()
-
+    
     public var delegate: ImageViewControllerDelegate?
     @objc public var progressHUD: MBProgressHUD!
-
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -86,7 +85,7 @@ open class ImageViewController : UIViewController {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateZoom()
+        updateMinZoomScale()
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -95,58 +94,32 @@ open class ImageViewController : UIViewController {
     
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        updateZoom()
+        updateMinZoomScale()
     }
     
-    // Update zoom scale and constraints with animation.
-    @available(iOS 8.0, *)
-    open override func viewWillTransition(to size: CGSize,
-                                          with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.updateZoom()
-            }, completion: nil)
-    }
-    
-    fileprivate func updateZoom() {
+    fileprivate func updateMinZoomScale() {
         if let image = imageView.image {
-            var minZoom = min(scrollView.bounds.size.width / image.size.width,
-                              scrollView.bounds.size.height / image.size.height)
+            let size = view.bounds.size
+            let widthScale = size.width / image.size.width
+            let heightScale = size.height / image.size.height
+            let minScale = min(widthScale, heightScale)
             
-            if minZoom > 1 { minZoom = 1 }
-            
-            scrollView.minimumZoomScale = 0.3 * minZoom
-            
-            // Force scrollViewDidZoom fire if zoom did not change
-            if minZoom == lastZoomScale { minZoom += 0.000001 }
-            
-            scrollView.zoomScale = minZoom
-            lastZoomScale = minZoom
+            scrollView.minimumZoomScale = minScale
+            scrollView.zoomScale = minScale
+            updateConstraints()
         }
     }
     
     fileprivate func updateConstraints() {
         if let image = imageView.image {
-            let imageWidth = image.size.width
-            let imageHeight = image.size.height
+            let size = view.bounds.size
+            let yOffset = max(0, (size.height - image.size.height*scrollView.zoomScale) / 2)
+            imageViewTopConstraint.constant = yOffset
+            imageViewBottomConstraint.constant = yOffset
             
-            let viewWidth = scrollView.bounds.size.width
-            let viewHeight = scrollView.bounds.size.height
-            
-            // center image if it is smaller than the scroll view
-            var hPadding = (viewWidth - scrollView.zoomScale * imageWidth) / 2
-            if hPadding < 0 { hPadding = 0 }
-            
-            var vPadding = (viewHeight - scrollView.zoomScale * imageHeight) / 2
-            if vPadding < 0 { vPadding = 0 }
-            
-            imageViewLeftConstraint.constant = hPadding
-            imageViewRightConstraint.constant = hPadding
-            
-            imageViewTopConstraint.constant = vPadding
-            imageViewBottomConstraint.constant = vPadding
+            let xOffset = max(0, (size.width - image.size.width*scrollView.zoomScale) / 2)
+            imageViewLeftConstraint.constant = xOffset
+            imageViewRightConstraint.constant = xOffset
         }
         
         view.layoutIfNeeded()
@@ -188,3 +161,4 @@ extension ImageViewController: ImageDelegate {
         }
     }
 }
+

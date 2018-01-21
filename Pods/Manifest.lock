@@ -10,7 +10,7 @@ PODS:
   - MarsTimeConversion (1.0)
   - MBProgressHUD (1.1.0)
   - MKDropdownMenu (1.4)
-  - POWImageGallery (0.1.5):
+  - POWImageGallery (0.1.6):
     - MBProgressHUD (~> 1.1)
     - SDWebImage (~> 4.2)
   - ReachabilitySwift (3)
@@ -49,7 +49,7 @@ CHECKOUT OPTIONS:
     :commit: 6e540c2ced6b67078f681fb633a35afd83098eb8
     :git: https://github.com/OpsLabJPL/MarsTimeConversion.git
   POWImageGallery:
-    :commit: bbc2e50c0629eabd5581e523815d48f155512986
+    :commit: cea406c43ee9cfc957402fff33cd4c22545c2f47
     :git: https://github.com/OpsLabJPL/POWImageGallery.git
 
 SPEC CHECKSUMS:
@@ -61,7 +61,7 @@ SPEC CHECKSUMS:
   MarsTimeConversion: 2f571fd700c8469a8510e51a561a7f88cf5858d3
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
-  POWImageGallery: f1304f46ba875b611bc0f9651a66f813c2acd8bb
+  POWImageGallery: 24d68e57dbef3e9ca878259b72f188dfd4752d5d
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
