@@ -40,15 +40,18 @@ class MER: Mission {
     
     override func getSortableImageFilename(url: String) -> String {
         let tokens = url.components(separatedBy: "/")
-        let filename = tokens[tokens.count-1]
-        if filename.hasPrefix("Sol") {
-            return "0" //sort Cornell Pancam images first
+        if tokens.count > 0 {
+            let filename = tokens[tokens.count-1]
+            if filename.hasPrefix("Sol") {
+                return "0" //sort Cornell Pancam images first
+            }
+            else if (filename.hasPrefix("1") || filename.hasPrefix("2")) && filename.count == 31 {
+                let index = filename.index(filename.startIndex, offsetBy: 23)
+                return filename.substring(from: index)
+            }
+            return filename
         }
-        else if (filename.hasPrefix("1") || filename.hasPrefix("2")) && filename.count == 31 {
-            let index = filename.index(filename.startIndex, offsetBy: 23)
-            return filename.substring(from: index)
-        }
-        return filename
+        return url
     }
     
     override func rowTitle(_ title: String) -> String {
