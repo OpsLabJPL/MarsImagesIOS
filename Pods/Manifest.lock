@@ -1,12 +1,15 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.6.0)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
   - CSV.swift (2.1.0)
   - EFInternetIndicator (0.4.0):
     - EFInternetIndicator/Interface (= 0.4.0)
   - EFInternetIndicator/Interface (0.4.0):
     - SwiftMessages
   - EvernoteSDK (3.0.0)
+  - Fabric (1.7.5)
   - MarsTimeConversion (1.0)
   - MBProgressHUD (1.1.0)
   - MKDropdownMenu (1.4)
@@ -26,9 +29,11 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3)
   - Alamofire (~> 4)
+  - Crashlytics
   - CSV.swift (~> 2)
   - EFInternetIndicator (~> 0.4)
   - EvernoteSDK (~> 3)
+  - Fabric
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
   - MKDropdownMenu (~> 1)
   - POWImageGallery (from `https://github.com/OpsLabJPL/POWImageGallery.git`)
@@ -55,9 +60,11 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
   EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
+  Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
   MarsTimeConversion: 2f571fd700c8469a8510e51a561a7f88cf5858d3
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
@@ -69,6 +76,6 @@ SPEC CHECKSUMS:
   Swinject: afea49fd95f392b41171669f165842879c48fad6
   SwinjectStoryboard: 92e75763c3299cdf627bef98a5180dc894864336
 
-PODFILE CHECKSUM: a4a4fc08857e58d064764c6ed5b516f0f5170edf
+PODFILE CHECKSUM: 2511667490e2729015e7e13d88c364c235730478
 
 COCOAPODS: 1.4.0

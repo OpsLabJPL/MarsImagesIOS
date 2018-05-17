@@ -38,6 +38,7 @@
 		4A9DE9D81F2C15D30059C9C9 /* Curiosity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */; };
 		4AA2EFE11F62404B00398E93 /* MosaicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */; };
 		4AAAB5301F2E388C001D810D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAAB52F1F2E388C001D810D /* Constants.swift */; };
+		4AB4012D20AD25EA0073895A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4012C20AD25EA0073895A /* Log.swift */; };
 		4AC87A491FC748FB0024019D /* ImageSelectionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */; };
 		4ACBEAA41F34CD4700F03F43 /* InternetReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */; };
 		4ACDF36A2012A47C00775FC0 /* fastlane in Resources */ = {isa = PBXBuildFile; fileRef = 4ACDF3692012A47C00775FC0 /* fastlane */; };
@@ -105,6 +106,7 @@
 		4A9DE9D71F2C15D30059C9C9 /* Curiosity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curiosity.swift; sourceTree = "<group>"; };
 		4AA2EFE01F62404B00398E93 /* MosaicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicViewController.swift; sourceTree = "<group>"; };
 		4AAAB52F1F2E388C001D810D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4AB4012C20AD25EA0073895A /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		4AC87A481FC748FB0024019D /* ImageSelectionMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionMenuViewController.swift; sourceTree = "<group>"; };
 		4ACBEAA31F34CD4700F03F43 /* InternetReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetReachabilityStatus.swift; sourceTree = "<group>"; };
 		4ACDF3692012A47C00775FC0 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				4A9DE9D31F2C15C00059C9C9 /* Opportunity.swift */,
 				4ADBC6881F7A74A0004D98D2 /* Quaternion.swift */,
 				4A9DE9D51F2C15CC0059C9C9 /* Spirit.swift */,
+				4AB4012C20AD25EA0073895A /* Log.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				4A1680AF1F2A8ECE004E30CC /* Resources */,
 				508F34749F1E035687CAAA25 /* [CP] Embed Pods Frameworks */,
 				E8693822EDFE6050C804FCE4 /* [CP] Copy Pods Resources */,
+				4AB4012B20AD25AE0073895A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -442,6 +446,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4AB4012B20AD25AE0073895A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6e9d3ecbb77d91b551f4d0d7f31da08a10a1fc43 606c9ca4a1dbe4c269d0edd64c3fbc97c34f285487e744842a4d6ee9989188ce";
 		};
 		508F34749F1E035687CAAA25 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -586,6 +603,7 @@
 				4A1680E91F2AA559004E30CC /* EvernoteMarsImageCatalog.swift in Sources */,
 				4A1680B51F2A8ECE004E30CC /* AppDelegate.swift in Sources */,
 				4A1680E71F2AA4C1004E30CC /* MarsImageCatalog.swift in Sources */,
+				4AB4012D20AD25EA0073895A /* Log.swift in Sources */,
 				4A27873F1F4F22D200CA47C7 /* ImageUtility.swift in Sources */,
 				4AE403681F4A524100163394 /* CameraModelUtils.swift in Sources */,
 				4AE4036A1F4A5B5600163394 /* CAHV.swift in Sources */,
