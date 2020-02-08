@@ -17,9 +17,9 @@ PODS:
   - SDWebImage (4.4.8):
     - SDWebImage/Core (= 4.4.8)
   - SDWebImage/Core (4.4.8)
-  - SwiftMessages (4.1.4):
-    - SwiftMessages/App (= 4.1.4)
-  - SwiftMessages/App (4.1.4)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
   - SwiftyJSON (5.0.0)
   - Swinject (2.7.1)
   - SwinjectStoryboard (2.2.0):
@@ -29,13 +29,13 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3)
   - Alamofire (~> 4)
   - CSV.swift (~> 2)
-  - EFInternetIndicator (~> 0.4)
+  - EFInternetIndicator
   - EvernoteSDK (~> 3)
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
   - MKDropdownMenu (~> 1)
   - POWImageGallery (from `https://github.com/OpsLabJPL/POWImageGallery.git`)
   - ReachabilitySwift (~> 5)
-  - SwiftMessages (~> 4)
+  - SwiftMessages (~> 7)
   - SwiftyJSON (~> 5)
   - Swinject (~> 2)
   - SwinjectStoryboard (~> 2)
@@ -82,11 +82,11 @@ SPEC CHECKSUMS:
   POWImageGallery: 24d68e57dbef3e9ca878259b72f188dfd4752d5d
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
-  SwiftMessages: 2c33fdee8b8f38dfc7e1036684456b505891da8c
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: bfeb3679272f73382b49650ca5d2bce4b1ceef46
+PODFILE CHECKSUM: 6c032b80ef81bba70d782dd7de34d6fb7949a735
 
 COCOAPODS: 1.8.4

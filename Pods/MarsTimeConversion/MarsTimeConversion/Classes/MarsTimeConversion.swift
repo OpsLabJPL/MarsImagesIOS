@@ -27,9 +27,9 @@ public struct MarsTime {
 }
 
 open class MarsTimeConversion {
-    open static let EARTH_SECS_PER_MARS_SEC = 1.027491252
-    open static let CURIOSITY_WEST_LONGITUDE = 137.4
-    open static let DEG_TO_RAD = Double.pi/180.0
+    public static let EARTH_SECS_PER_MARS_SEC = 1.027491252
+    public static let CURIOSITY_WEST_LONGITUDE = 137.4
+    public static let DEG_TO_RAD = Double.pi/180.0
     
     //    i 	Ai 	τi 	φi
     //    1 	0.0071 	2.2353 	49.409
@@ -86,7 +86,7 @@ open class MarsTimeConversion {
      */
     
     /* return the TAI-UTC lookup table value of leap seconds for a given date */
-    open static func taiutc(_ date:Date) -> (Double) {
+    public static func taiutc(_ date:Date) -> (Double) {
         let julianDate = getJulianDate(date)
         if julianDate >= 2456109.5 {
             return 35.0
@@ -210,7 +210,7 @@ open class MarsTimeConversion {
         return 0;
     }
     
-    open static func canonicalValue24(_ hours:Double) -> (Double) {
+    public static func canonicalValue24(_ hours:Double) -> (Double) {
         if hours < 0 {
             return 24 + hours
         }
@@ -220,7 +220,7 @@ open class MarsTimeConversion {
         return hours
     }
     
-    open static func getMarsTime(_ date:Date, longitude:Double) -> MarsTime {
+    public static func getMarsTime(_ date:Date, longitude:Double) -> MarsTime {
         let times = getMarsTimes(date, longitude: longitude)
         var time = MarsTime()
         time.jdut = times.0
@@ -240,7 +240,7 @@ open class MarsTimeConversion {
         return time
     }
     
-    open static func getMarsTimes(_ date:Date, longitude:Double) -> (Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double) {
+    public static func getMarsTimes(_ date:Date, longitude:Double) -> (Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double,Double) {
         //A-1 millis since Jan 1 1970
         //    NSTimeInterval millis = 1000 * [date timeIntervalSince1970];
         
@@ -310,18 +310,18 @@ open class MarsTimeConversion {
         return (jdut, tt_utc_diff, jdtt, deltaJ2000, marsMeanAnomaly, angleFictiousMeanSun, pbs, v_M_diff, ls, eot, msd, mtc, lmst, ltst)
     }
     
-    open static func getJulianDate(_ date:Date) -> (Double) {
+    public static func getJulianDate(_ date:Date) -> (Double) {
         return date.timeIntervalSince1970 / 86400.0 + 2440587.5
     }
     
     /**
      return timeIntervalSince1970 in seconds to construct NSDate
      */
-    open static func convertFromJulianDateToCanonicalDate(_ julian:Double) -> (Double) {
+    public static func convertFromJulianDateToCanonicalDate(_ julian:Double) -> (Double) {
         return (julian - 2440587.5) * 86400.0
     }
     
-    open static func getUTCTimeForMSL(_ sol:Int, hours:Int, minutes:Int, seconds:Double) -> (Date) {
+    public static func getUTCTimeForMSL(_ sol:Int, hours:Int, minutes:Int, seconds:Double) -> (Date) {
         
         let totalHours = Double(hours) + Double(minutes)/60.0 + seconds/3600.0
         let mtc:Double = totalHours + (360.0-CURIOSITY_WEST_LONGITUDE)*24.0/360.0 //in Mars hours

@@ -155,9 +155,9 @@ class MosaicViewController : UIViewController {
         if gestureRecognize.numberOfTouches == 2 {
             
             let zoom = Double(gestureRecognize.scale)
-            if (gestureRecognize.state == UIGestureRecognizerState.began){
+            if (gestureRecognize.state == UIGestureRecognizer.State.began){
                 startScale = lastScale
-            } else if (gestureRecognize.state == UIGestureRecognizerState.changed){
+            } else if (gestureRecognize.state == UIGestureRecognizer.State.changed){
                 let newScale = boundedZoom(zoom)
                 let fov = Double(100/newScale)
                 cameraNode.camera!.xFov = fov
@@ -241,7 +241,9 @@ class MosaicViewController : UIViewController {
 
 extension MosaicViewController : SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        mosaicLoader?.updateOrRemoveImages(camera: cameraNode, renderer: renderer)
+        mosaicLoader?.semaphore.wait()
+        self.mosaicLoader?.updateOrRemoveImages(camera: self.cameraNode, renderer: renderer)
+        mosaicLoader?.semaphore.signal()
     }
 }
 

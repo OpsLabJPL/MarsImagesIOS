@@ -85,7 +85,7 @@ open class ImageGalleryViewController : UIViewController {
     }
     
     open func setupPageViewController() {
-        addChildViewController(pageViewController)
+        addChild(pageViewController)
         pageViewController.dataSource = self
         pageViewController.delegate = self
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false

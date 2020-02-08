@@ -23,7 +23,7 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
     var drawerClosed = true
     var drawerButton = UIBarButtonItem()
     var imageSelectionButton = UIBarButtonItem()
-    var infoButton = UIButton(type: UIButtonType.infoLight)
+    var infoButton = UIButton(type: UIButton.ButtonType.infoLight)
     var aboutTheAppButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(MarsImageViewController.showAboutView))
     var mosaicViewButton = UIBarButtonItem(image: UIImage(named: "panorama_icon.png"), style: .plain, target: self, action: #selector(MarsImageViewController.showMosaicView))
     var timeViewButton = UIBarButtonItem(image: UIImage(named: "clock.png"), style: .plain, target: self, action: #selector(MarsImageViewController.showTimeView))
@@ -372,7 +372,7 @@ extension MarsImageViewController: UIPopoverPresentationControllerDelegate {
 extension String {
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
         return ceil(boundingBox.width)
     }
 }

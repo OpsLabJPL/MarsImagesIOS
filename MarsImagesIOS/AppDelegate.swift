@@ -21,13 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     var catalogs:[String:MarsImageCatalog] = [:]
-    var backgroundTask:UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+    var backgroundTask:UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
     var soldata = NSMutableDictionary()
     var fetchCompletionHandler:((UIBackgroundFetchResult) -> Void)?
     var path:String?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         BuddyBuildSDK.setup()
         
         // Override point for customization after application launch.
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         if notificationSettings.types == [] {
-            application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalNever)
+            application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalNever)
             return
         }
         
@@ -66,8 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fetchCompletionHandler = completionHandler
         
         self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
-            application.endBackgroundTask(self.backgroundTask)
-            self.backgroundTask = UIBackgroundTaskInvalid
+            application.endBackgroundTask(convertToUIBackgroundTaskIdentifier(self.backgroundTask.rawValue))
+            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
         })
         let dictFromFile = NSMutableDictionary(contentsOfFile:path!)
         if let dictFromFile = dictFromFile {
@@ -114,8 +114,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         soldata.write(toFile: path!, atomically: true)
         fetchCompletionHandler!(.newData)
-        UIApplication.shared.endBackgroundTask(self.backgroundTask)
-        self.backgroundTask = UIBackgroundTaskInvalid
+        UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(self.backgroundTask.rawValue))
+        self.backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
     
     func displayLocalNotification(_ application: UIApplication, message:String) {
@@ -155,3 +155,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
+	return UIBackgroundTaskIdentifier(rawValue: input)
+}

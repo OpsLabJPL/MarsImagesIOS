@@ -12,6 +12,8 @@ import SDWebImage
 
 class MosaicLoader {
     
+    let semaphore = DispatchSemaphore(value: 1)
+    
     public private(set) var rmc:(Int,Int)
     var catalog:MarsImageCatalog
     var imagesInScene = [String:MarsPhoto]()
@@ -161,7 +163,9 @@ class MosaicLoader {
     
     func deleteImages() {
         imagesInScene.removeAll()
+        semaphore.wait()
         imageTextures.removeAll()
+        semaphore.signal()
         imageQuads.removeAll()
     }
     
@@ -211,7 +215,9 @@ class MosaicImageDelegate : ImageDelegate {
         if let quad = mosaicLoader.imageQuads[title] {
             let textureSize = mosaicLoader.computeBestTextureResolution(quad)
             if let textureImage = ImageUtility.image(image, scaledTo:CGSize(width:textureSize, height:textureSize)) {
+                mosaicLoader.semaphore.wait()
                 mosaicLoader.imageTextures[title] = textureImage
+                mosaicLoader.semaphore.signal()
             }
         }
     }

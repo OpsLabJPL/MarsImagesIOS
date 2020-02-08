@@ -5,7 +5,7 @@ target 'MarsImages' do
     pod 'ActionSheetPicker-3.0', '~> 2.3'
     pod 'Alamofire', '~> 4'
     pod 'CSV.swift', '~> 2'
-    pod 'EFInternetIndicator', '~> 0.4'
+    pod 'EFInternetIndicator'
     pod 'EvernoteSDK', '~> 3'
     pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
     pod 'MKDropdownMenu', '~> 1'
@@ -13,7 +13,7 @@ target 'MarsImages' do
     pod 'ReachabilitySwift', '~> 5'
     pod 'SwiftyJSON', '~> 5'
     pod 'Swinject', '~> 2'
-    pod 'SwiftMessages', '~> 4'
+    pod 'SwiftMessages', '~> 7'
     pod 'SwinjectStoryboard', '~> 2'
 
     target 'MarsImagesTests' do

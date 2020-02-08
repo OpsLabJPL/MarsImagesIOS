@@ -52,7 +52,7 @@ public class InternetViewIndicator {
         
         var statusConfig = SwiftMessages.defaultConfig
         statusConfig.duration = .forever
-        statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        statusConfig.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
         
         if reachability.connection != .none {
             SwiftMessages.hide()

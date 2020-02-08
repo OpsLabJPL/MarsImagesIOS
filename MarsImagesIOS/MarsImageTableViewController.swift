@@ -146,14 +146,14 @@ class MarsImageTableViewController: UITableViewController {
         var cellRect = tableView.rectForRow(at: indexPath)
         cellRect = cellRect.offsetBy(dx: -tableView.contentOffset.x, dy: -tableView.contentOffset.y)
         let searchBarHeight = searchController.searchBar.frame.size.height
-        var scrollPosition = UITableViewScrollPosition.none
+        var scrollPosition = UITableView.ScrollPosition.none
         let height1 = cellRect.origin.y+cellRect.size.height
         let height2 = tableView.frame.origin.y+tableView.frame.size.height-searchBarHeight
         if cellRect.origin.y < tableView.frame.origin.y + searchBarHeight {
-            scrollPosition = UITableViewScrollPosition.top
+            scrollPosition = UITableView.ScrollPosition.top
         }
         else if height1 > height2 {
-            scrollPosition = UITableViewScrollPosition.bottom
+            scrollPosition = UITableView.ScrollPosition.bottom
         }
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: scrollPosition)
     }
@@ -241,7 +241,7 @@ class MarsImageTableViewController: UITableViewController {
         
         var statusConfig = SwiftMessages.defaultConfig
         statusConfig.duration = .forever
-        statusConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+        statusConfig.presentationContext = .window(windowLevel: UIWindow.Level(rawValue: UIWindow.Level.statusBar.rawValue))
         
         if let status = self.internetStatusUnreachable {
             if reachability.isReachable {

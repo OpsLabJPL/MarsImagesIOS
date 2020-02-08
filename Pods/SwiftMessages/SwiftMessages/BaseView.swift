@@ -9,7 +9,7 @@
 
 import UIKit
 
-/*
+/**
  The `BaseView` class is a reusable message view base class that implements some
  of the optional SwiftMessages protocols and provides some convenience functions
  and a configurable tap handler. Message views do not need to inherit from `BaseVew`.
@@ -30,6 +30,7 @@ open class BaseView: UIView, BackgroundViewable, MarginAdjustable {
                 old.removeGestureRecognizer(tapRecognizer)
             }
             installTapRecognizer()
+            updateBackgroundHeightConstraint()
         }
     }
 
@@ -48,14 +49,12 @@ open class BaseView: UIView, BackgroundViewable, MarginAdjustable {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundView = self
+        layoutMargins = UIEdgeInsets.zero
     }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundView = self
-    }
-
-    open override func awakeFromNib() {
         layoutMargins = UIEdgeInsets.zero
     }
 
@@ -64,45 +63,89 @@ open class BaseView: UIView, BackgroundViewable, MarginAdjustable {
      */
 
     /**
+     A convenience function for installing a content view as a subview of `backgroundView`
+     and pinning the edges to `backgroundView` with the specified `insets`.
+
+     - Parameter contentView: The view to be installed into the background view
+       and assigned to the `contentView` property.
+     - Parameter insets: The amount to inset the content view from the background view.
+       Default is zero inset.
+     */
+    open func installContentView(_ contentView: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.addSubview(contentView)
+        contentView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: insets.top).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -insets.bottom).isActive = true
+        contentView.leftAnchor.constraint(equalTo: backgroundView.leftAnchor, constant: insets.left).isActive = true
+        contentView.rightAnchor.constraint(equalTo: backgroundView.rightAnchor, constant: -insets.right).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 350).with(priority: UILayoutPriority(rawValue: 200)).isActive = true
+    }
+
+    /**
      A convenience function for installing a background view and pinning to the layout margins.
      This is useful for creating programatic layouts where the background view needs to be
-     inset from the message view's bounds.
+     inset from the message view's edges (like a card-style layout).
 
      - Parameter backgroundView: The view to be installed as a subview and
-     assigned to the `backgroundView` property.
+       assigned to the `backgroundView` property.
+     - Parameter insets: The amount to inset the content view from the margins. Default is zero inset.
      */
-    open func installBackgroundView(_ backgroundView: UIView) {
+    open func installBackgroundView(_ backgroundView: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         if backgroundView != self {
             backgroundView.removeFromSuperview()
         }
         addSubview(backgroundView)
         self.backgroundView = backgroundView
-        let top = NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .topMargin, multiplier: 1.0, constant: 0)
-        let left = NSLayoutConstraint(item: backgroundView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .leftMargin, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottomMargin, multiplier: 1.0, constant: 0)
-        let right = NSLayoutConstraint(item: backgroundView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .rightMargin, multiplier: 1.0, constant: 0)
-        addConstraints([top, left, bottom, right])
+        backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor).with(priority: UILayoutPriority(rawValue: 950)).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: insets.top).with(priority: UILayoutPriority(rawValue: 900)).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -insets.bottom).with(priority: UILayoutPriority(rawValue: 900)).isActive = true
+        backgroundView.heightAnchor.constraint(equalToConstant: 350).with(priority: UILayoutPriority(rawValue: 200)).isActive = true
+        layoutConstraints = [
+            backgroundView.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor, constant: insets.left).with(priority: UILayoutPriority(rawValue: 900)),
+            backgroundView.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor, constant: -insets.right).with(priority: UILayoutPriority(rawValue: 900)),
+        ]
+        regularWidthLayoutConstraints = [
+            backgroundView.leftAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.leftAnchor, constant: insets.left).with(priority: UILayoutPriority(rawValue: 900)),
+            backgroundView.rightAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.rightAnchor, constant: -insets.right).with(priority: UILayoutPriority(rawValue: 900)),
+            backgroundView.widthAnchor.constraint(lessThanOrEqualToConstant: 500).with(priority: UILayoutPriority(rawValue: 950)),
+            backgroundView.widthAnchor.constraint(equalToConstant: 500).with(priority: UILayoutPriority(rawValue: 200)),
+        ]
         installTapRecognizer()
     }
 
     /**
-     A convenience function for installing a content view as a subview of `backgroundView`
-     and pinning the edges to `backgroundView` with the specified `insets`.
+     A convenience function for installing a background view and pinning to the horizontal
+     layout margins and to the vertical edges. This is useful for creating programatic layouts where
+     the background view needs to be inset from the message view's horizontal edges (like a tab-style layout).
 
-     - Parameter contentView: The view to be installed into the background view
-     and assigned to the `contentView` property.
-     - Parameter insets: The amount to inset the content view from the background view.
-     Default is zero inset.
+     - Parameter backgroundView: The view to be installed as a subview and
+       assigned to the `backgroundView` property.
+     - Parameter insets: The amount to inset the content view from the horizontal margins and vertical edges.
+       Default is zero inset.
      */
-    open func installContentView(_ contentView: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.addSubview(contentView)
-        let top = NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: backgroundView, attribute: .top, multiplier: 1.0, constant: insets.top)
-        let left = NSLayoutConstraint(item: contentView, attribute: .left, relatedBy: .equal, toItem: backgroundView, attribute: .left, multiplier: 1.0, constant: insets.left)
-        let bottom = NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: backgroundView, attribute: .bottom, multiplier: 1.0, constant: -insets.bottom)
-        let right = NSLayoutConstraint(item: contentView, attribute: .right, relatedBy: .equal, toItem: backgroundView, attribute: .right, multiplier: 1.0, constant: -insets.right)
-        backgroundView.addConstraints([top, left, bottom, right])
+    open func installBackgroundVerticalView(_ backgroundView: UIView, insets: UIEdgeInsets = UIEdgeInsets.zero) {
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        if backgroundView != self {
+            backgroundView.removeFromSuperview()
+        }
+        addSubview(backgroundView)
+        self.backgroundView = backgroundView
+        backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor).with(priority: UILayoutPriority(rawValue: 950)).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: insets.top).with(priority: UILayoutPriority(rawValue: 1000)).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -insets.bottom).with(priority: UILayoutPriority(rawValue: 1000)).isActive = true
+        backgroundView.heightAnchor.constraint(equalToConstant: 350).with(priority: UILayoutPriority(rawValue: 200)).isActive = true
+        layoutConstraints = [
+            backgroundView.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor, constant: insets.left).with(priority: UILayoutPriority(rawValue: 900)),
+            backgroundView.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor, constant: -insets.right).with(priority: UILayoutPriority(rawValue: 900)),
+        ]
+        regularWidthLayoutConstraints = [
+            backgroundView.leftAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.leftAnchor, constant: insets.left).with(priority: UILayoutPriority(rawValue: 900)),
+            backgroundView.rightAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.rightAnchor, constant: -insets.right).with(priority: UILayoutPriority(rawValue: 900)),
+            backgroundView.widthAnchor.constraint(lessThanOrEqualToConstant: 500).with(priority: UILayoutPriority(rawValue: 950)),
+            backgroundView.widthAnchor.constraint(equalToConstant: 500).with(priority: UILayoutPriority(rawValue: 200)),
+        ]
+        installTapRecognizer()
     }
 
     /*
@@ -155,53 +198,85 @@ open class BaseView: UIView, BackgroundViewable, MarginAdjustable {
      (see MessageView.nib).
      */
 
-    @IBInspectable open var bounceAnimationOffset: CGFloat = 5.0
-     
-    /**
-     For iOS 10 and lower, an optional absolute value for the top margin for cases
-     where the view appears behind the status bar.
-     */
-    @IBInspectable open var statusBarOffset: CGFloat = 20.0
-    
-    /**
-     For iOS 11 and greater, an optional top margin adjustment for cases where the
-     view appears behind known safe zone elements, such as the status bar and the
-     iPhone X notch, as determined by the `safeZoneConflicts` property. This
-     value is added to adjustments already made by SwiftMessages in case the
-     defaults don't work for a particular layout.
-     */
-    @IBInspectable open var safeAreaTopOffset: CGFloat = 0.0
+    public var layoutMarginAdditions: UIEdgeInsets {
+        get {
+            return UIEdgeInsets(top: topLayoutMarginAddition, left: leftLayoutMarginAddition, bottom: bottomLayoutMarginAddition, right: rightLayoutMarginAddition)
+        }
+        set {
+            topLayoutMarginAddition = newValue.top
+            leftLayoutMarginAddition = newValue.left
+            bottomLayoutMarginAddition = newValue.bottom
+            rightLayoutMarginAddition = newValue.right
+        }
+    }
 
-    /**
-     For iOS 11 and greater, an optional bottom margin adjustment for cases where the view
-     appears behind known safe zone elements, such as the home indicator, as determined
-     by the `safeZoneConflicts` property. This value is added to adjustments already made
-     by SwiftMessages in case the defaults don't work for a particular layout.
-     */
-    @IBInspectable open var safeAreaBottomOffset: CGFloat = 0.0
+    /// IBInspectable access to layoutMarginAdditions.top
+    @IBInspectable open var topLayoutMarginAddition: CGFloat = 0
+
+    /// IBInspectable access to layoutMarginAdditions.left
+    @IBInspectable open var leftLayoutMarginAddition: CGFloat = 0
+
+    /// IBInspectable access to layoutMarginAdditions.bottom
+    @IBInspectable open var bottomLayoutMarginAddition: CGFloat = 0
+
+    /// IBInspectable access to layoutMarginAdditions.right
+    @IBInspectable open var rightLayoutMarginAddition: CGFloat = 0
+
+    @IBInspectable open var collapseLayoutMarginAdditions: Bool = true
+
+    @IBInspectable open var bounceAnimationOffset: CGFloat = 5
 
     /*
-     MARK: - Setting preferred height
+     MARK: - Setting the height
      */
 
     /**
-     An optional value that sets the message view's intrinsic content height.
-     This can be used as a way to specify a fixed height for the message view.
-     Note that this height is not guaranteed depending on anyt Auto Layout
-     constraints used within the message view.
+     An optional explicit height for the background view, which can be used if
+     the message view's intrinsic content size does not produce the desired height.
      */
-    open var preferredHeight: CGFloat? {
+    open var backgroundHeight: CGFloat? {
         didSet {
-            setNeedsLayout()
+            updateBackgroundHeightConstraint()
         }
     }
 
-    open override var intrinsicContentSize: CGSize {
-        if let preferredHeight = preferredHeight {
-            return CGSize(width: UIViewNoIntrinsicMetric, height: preferredHeight)
+    private func updateBackgroundHeightConstraint() {
+        if let existing = backgroundHeightConstraint {
+            let view = existing.firstItem as! UIView
+            view.removeConstraint(existing)
+            backgroundHeightConstraint = nil
         }
-        return super.intrinsicContentSize
+        if let height = backgroundHeight, let backgroundView = backgroundView {
+            let constraint = NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height)
+            backgroundView.addConstraint(constraint)
+            backgroundHeightConstraint = constraint
+        }
     }
+
+    private var backgroundHeightConstraint: NSLayoutConstraint?
+
+    /*
+     Mark: - Layout
+    */
+
+    open override func updateConstraints() {
+        super.updateConstraints()
+        let on: [NSLayoutConstraint]
+        let off: [NSLayoutConstraint]
+        switch traitCollection.horizontalSizeClass {
+        case .regular:
+            on = regularWidthLayoutConstraints
+            off = layoutConstraints
+        default:
+            on = layoutConstraints
+            off = regularWidthLayoutConstraints
+        }
+        on.forEach { $0.isActive = true }
+        off.forEach { $0.isActive = false }
+    }
+
+    private var layoutConstraints: [NSLayoutConstraint] = []
+    private var regularWidthLayoutConstraints: [NSLayoutConstraint] = []
 }
 
 /*
@@ -211,8 +286,11 @@ open class BaseView: UIView, BackgroundViewable, MarginAdjustable {
 extension BaseView {
 
     /// A convenience function to configure a default drop shadow effect.
+    /// The shadow is to this view's layer instead of that of the background view
+    /// because the background view may be masked. So, when modifying the drop shadow,
+    /// be sure to set the shadow properties of this view's layer. The shadow path is
+    /// updated for you automatically.
     open func configureDropShadow() {
-        let layer = backgroundView.layer
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         layer.shadowRadius = 6.0
@@ -221,8 +299,37 @@ extension BaseView {
         updateShadowPath()
     }
 
+    /// A convenience function to turn off drop shadow
+    open func configureNoDropShadow() {
+        layer.shadowOpacity = 0
+    }
+
     private func updateShadowPath() {
-        layer.shadowPath = UIBezierPath(roundedRect: layer.bounds, cornerRadius: layer.cornerRadius).cgPath
+        backgroundView?.layoutIfNeeded()
+        let shadowLayer = backgroundView?.layer ?? layer
+        let shadowRect = layer.convert(shadowLayer.bounds, from: shadowLayer)
+        let shadowPath: CGPath?
+        if let backgroundMaskLayer = shadowLayer.mask as? CAShapeLayer,
+            let backgroundMaskPath = backgroundMaskLayer.path {
+            var transform = CGAffineTransform(translationX: shadowRect.minX, y: shadowRect.minY)
+            shadowPath = backgroundMaskPath.copy(using: &transform)
+        } else {
+            shadowPath = UIBezierPath(roundedRect: shadowRect, cornerRadius: shadowLayer.cornerRadius).cgPath
+        }
+        // This is a workaround needed for smooth rotation animations.
+        if let foundAnimation = layer.findAnimation(forKeyPath: "bounds.size") {
+            // Update the layer's `shadowPath` with animation, copying the relevant properties
+            // from the found animation.
+            let animation = CABasicAnimation(keyPath: "shadowPath")
+            animation.duration = foundAnimation.duration
+            animation.timingFunction = foundAnimation.timingFunction
+            animation.fromValue = layer.shadowPath
+            animation.toValue = shadowPath
+            layer.add(animation, forKey: "shadowPath")
+            layer.shadowPath = shadowPath
+        } else {
+            // Update the layer's `shadowPath` without animation
+            layer.shadowPath = shadowPath        }
     }
 
     open override func layoutSubviews() {
@@ -230,4 +337,36 @@ extension BaseView {
         updateShadowPath()
     }
 }
-    
+
+/*
+ MARK: - Configuring the width
+
+ This extension provides a few convenience functions for configuring the
+ background view's width. You are encouraged to write your own such functions
+ if these don't exactly meet your needs.
+ */
+
+extension BaseView {
+
+    /**
+     A shortcut for configuring the left and right layout margins. For views that
+     have `backgroundView` as a subview of `MessageView`, the background view should
+     be pinned to the left and right `layoutMargins` in order for this configuration to work.
+     */
+    public func configureBackgroundView(sideMargin: CGFloat) {
+        layoutMargins.left = sideMargin
+        layoutMargins.right = sideMargin
+    }
+
+    /**
+     A shortcut for adding a width constraint to the `backgroundView`. When calling this
+     method, it is important to ensure that the width constraint doesn't conflict with
+     other constraints. The CardView.nib and TabView.nib layouts are compatible with
+     this method.
+     */
+    public func configureBackgroundView(width: CGFloat) {
+        guard let backgroundView = backgroundView else { return }
+        let constraint = NSLayoutConstraint(item: backgroundView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width)
+        backgroundView.addConstraint(constraint)
+    }
+}
