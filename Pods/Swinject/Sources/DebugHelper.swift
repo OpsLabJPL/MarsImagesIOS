@@ -1,9 +1,5 @@
 //
-//  DebugHelper.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 26/09/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 internal protocol DebugHelper {
@@ -15,7 +11,6 @@ internal protocol DebugHelper {
 }
 
 internal final class LoggingDebugHelper: DebugHelper {
-
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
@@ -24,7 +19,7 @@ internal final class LoggingDebugHelper: DebugHelper {
         var output = [
             "Swinject: Resolution failed. Expected registration:",
             "\t{ \(description(serviceType: serviceType, serviceKey: key)) }",
-            "Available registrations:"
+            "Available registrations:",
         ]
         output += availableRegistrations
             .filter { $0.1 is ServiceEntry<Service> }
@@ -34,21 +29,22 @@ internal final class LoggingDebugHelper: DebugHelper {
     }
 }
 
-internal func description<Service>(
-    serviceType: Service.Type,
+internal func description(
+    serviceType: Any.Type,
     serviceKey: ServiceKey,
     objectScope: ObjectScopeProtocol? = nil,
-    initCompleted: FunctionType? = nil
+    initCompleted: [Any] = []
 ) -> String {
     // The protocol order in "protocol<>" is non-deterministic.
     let nameDescription = serviceKey.name.map { ", Name: \"\($0)\"" } ?? ""
     let optionDescription = serviceKey.option.map { ", \($0)" } ?? ""
-    let initCompletedDescription = initCompleted.map { _ in ", InitCompleted: Specified" } ?? ""
+    let initCompletedDescription = initCompleted.isEmpty ?
+        "" : ", InitCompleted: Specified \(initCompleted.count) closures"
     let objectScopeDescription = objectScope.map { ", ObjectScope: \($0)" } ?? ""
     return "Service: \(serviceType)"
         + nameDescription
         + optionDescription
-        + ", Factory: \(serviceKey.factoryType)"
+        + ", Factory: \(serviceKey.argumentsType) -> \(serviceKey.serviceType)"
         + objectScopeDescription
         + initCompletedDescription
 }

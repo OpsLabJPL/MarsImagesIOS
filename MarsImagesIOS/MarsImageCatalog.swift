@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ReachabilitySwift
+import Reachability
 
 let numImagesetsReturnedKey = "numImagesetsReturnedKey"
 let missionKey = "missionKey"

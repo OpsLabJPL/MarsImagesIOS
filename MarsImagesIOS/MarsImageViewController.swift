@@ -9,12 +9,12 @@
 import UIKit
 import EFInternetIndicator
 import POWImageGallery
-import ReachabilitySwift
+import Reachability
 import SDWebImage
 
 class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndicable {
     var internetConnectionIndicator: InternetViewIndicator?
-    var reachability:ReachabilitySwift.Reachability!
+    var reachability = try! Reachability(hostname:"evernote.com")!
     
     var catalogs = (UIApplication.shared.delegate as! AppDelegate).catalogs
     let leftIcon = UIImage.init(named: "leftArrow.png")
@@ -77,7 +77,7 @@ class MarsImageViewController :  ImageGalleryViewController, InternetStatusIndic
         toolbar.tintColor = UIColor.white
 
         startMonitoringInternet()
-        reachability = Reachability(hostname:"evernote.com")!
+        
         do {
             try reachability.startNotifier()
         } catch {

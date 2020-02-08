@@ -1,9 +1,5 @@
 //
-//  Container.Logging.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 30/09/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 public typealias LoggingFunctionType = (String) -> Void
@@ -11,7 +7,7 @@ public typealias LoggingFunctionType = (String) -> Void
 public extension Container {
     /// Function to be used for logging debugging data.
     /// Default implementation writes to standard output.
-    public static var loggingFunction: LoggingFunctionType? {
+    static var loggingFunction: LoggingFunctionType? {
         get { return _loggingFunction }
         set { _loggingFunction = newValue }
     }

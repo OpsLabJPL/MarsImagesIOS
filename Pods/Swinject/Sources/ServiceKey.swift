@@ -1,42 +1,53 @@
 //
-//  ServiceKey.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 7/23/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 import Foundation
 
 // MARK: ServiceKeyOption
+
 public protocol ServiceKeyOption: CustomStringConvertible {
     func isEqualTo(_ another: ServiceKeyOption) -> Bool
-    var hashValue: Int { get }
+    func hash(into: inout Hasher)
 }
 
 // MARK: - ServiceKey
+
 internal struct ServiceKey {
-    internal let factoryType: FunctionType.Type
+    internal let serviceType: Any.Type
+    internal let argumentsType: Any.Type
     internal let name: String?
     internal let option: ServiceKeyOption? // Used for SwinjectStoryboard or other extensions.
 
-    internal init(factoryType: FunctionType.Type, name: String? = nil, option: ServiceKeyOption? = nil) {
-        self.factoryType = factoryType
+    internal init(
+        serviceType: Any.Type,
+        argumentsType: Any.Type,
+        name: String? = nil,
+        option: ServiceKeyOption? = nil
+    ) {
+        self.serviceType = serviceType
+        self.argumentsType = argumentsType
         self.name = name
         self.option = option
     }
 }
 
 // MARK: Hashable
+
 extension ServiceKey: Hashable {
-    var hashValue: Int {
-        return String(describing: factoryType).hashValue ^ (name?.hashValue ?? 0) ^ (option?.hashValue ?? 0)
+    public func hash(into hasher: inout Hasher) {
+        ObjectIdentifier(serviceType).hash(into: &hasher)
+        ObjectIdentifier(argumentsType).hash(into: &hasher)
+        name?.hash(into: &hasher)
+        option?.hash(into: &hasher)
     }
 }
 
 // MARK: Equatable
+
 func == (lhs: ServiceKey, rhs: ServiceKey) -> Bool {
-    return lhs.factoryType == rhs.factoryType
+    return lhs.serviceType == rhs.serviceType
+        && lhs.argumentsType == rhs.argumentsType
         && lhs.name == rhs.name
         && equalOptions(opt1: lhs.option, opt2: rhs.option)
 }

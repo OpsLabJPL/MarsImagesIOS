@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import CSV
 import EvernoteSDK
-import ReachabilitySwift
+import Reachability
 import SwiftyJSON
 
 class EvernoteMarsImageCatalog : MarsImageCatalog {
@@ -47,7 +47,7 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     var namedLocations:[String:(Int,Int)]?
     var llQuaternions: [Int:[Int:Quaternion]]?
     
-    static var catalogReachability = Reachability(hostname:"evernote.com")!
+    static var catalogReachability = try! Reachability(hostname:"evernote.com")
     
     static let OPPY_NOTEBOOK_ID   = "a7271bf8-0b06-495a-bb48-7c0c7af29f70"
     static let MSL_NOTEBOOK_ID    = "0296f732-694d-4ccd-9f5b-5983dc98b9e0"
@@ -353,7 +353,11 @@ class EvernoteMarsImageCatalog : MarsImageCatalog {
     func getModelJSON(_ resource: EDAMResource) -> JSON {
         let cmod_string = resource.attributes.cameraModel!
         let jsondata = cmod_string.data(using: .utf8)!
-        return JSON(data:jsondata)
+        do {
+            return try JSON(data:jsondata)
+        } catch {
+            return JSON()
+        }
     }
     
     func getNearestRMC() -> (Int,Int)? {

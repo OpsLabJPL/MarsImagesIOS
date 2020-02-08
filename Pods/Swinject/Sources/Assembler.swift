@@ -1,14 +1,9 @@
 //
-//  Assembler.swift
-//  Swinject
-//
-//  Created by mike.owens on 12/9/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 /// The `Assembler` provides a means to build a container via `Assembly` instances.
 public final class Assembler {
-
     /// the container that each assembly will build its `Service` definitions into
     private let container: Container
 
@@ -28,9 +23,14 @@ public final class Assembler {
     /// Will create an empty `Assembler`
     ///
     /// - parameter parentAssembler: the baseline assembler
-    ///
-    public init(parentAssembler: Assembler?) {
-        container = Container(parent: parentAssembler?.container)
+    /// - parameter defaultObjectScope: default object scope for container
+    /// - parameter behaviors: list of behaviors to be added to the container
+    public init(parentAssembler: Assembler?, defaultObjectScope: ObjectScope = .graph, behaviors: [Behavior] = []) {
+        container = Container(
+            parent: parentAssembler?.container,
+            defaultObjectScope: defaultObjectScope,
+            behaviors: behaviors
+        )
     }
 
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
@@ -69,15 +69,21 @@ public final class Assembler {
 
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
     ///
-    /// - parameter assemblies: the list of assemblies to build the container from
-    /// - parameter parent:     the baseline assembler
-    ///
-    public init(_ assemblies: [Assembly], parent: Assembler?) {
-        container = Container(parent: parent?.container)
+    /// - parameter assemblies:         the list of assemblies to build the container from
+    /// - parameter parent:             the baseline assembler
+    /// - parameter defaultObjectScope: default object scope for container
+    /// - parameter behaviors:          list of behaviors to be added to the container
+    public init(
+        _ assemblies: [Assembly],
+        parent: Assembler?,
+        defaultObjectScope: ObjectScope = .graph,
+        behaviors: [Behavior] = []
+    ) {
+        container = Container(parent: parent?.container, defaultObjectScope: defaultObjectScope, behaviors: behaviors)
         run(assemblies: assemblies)
     }
 
-    /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the 
+    /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the
     /// assembler's container.
     ///
     /// If this assembly type is load aware, the loaded hook will be invoked right after the container has assembled
@@ -90,7 +96,7 @@ public final class Assembler {
         run(assemblies: [assembly])
     }
 
-    /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the 
+    /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the
     /// assembler's container
     ///
     /// If this assembly type is load aware, the loaded hook will be invoked right after the container has assembled
@@ -107,12 +113,12 @@ public final class Assembler {
     private func run(assemblies: [Assembly]) {
         // build the container from each assembly
         for assembly in assemblies {
-            assembly.assemble(container: self.container)
+            assembly.assemble(container: container)
         }
 
         // inform all of the assemblies that the container is loaded
         for assembly in assemblies {
-            assembly.loaded(resolver: self.resolver)
+            assembly.loaded(resolver: resolver)
         }
     }
 }

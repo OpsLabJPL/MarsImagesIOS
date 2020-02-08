@@ -23,6 +23,6 @@ class Opportunity: MER {
     }
     
     override func urlPrefix() -> String {
-        return "https://s3-us-west-1.amazonaws.com/merpublic"
+        return "https://mars.nasa.gov/mer-raw-images"
     }
 }

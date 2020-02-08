@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import MKDropdownMenu
 import SwiftMessages
-import ReachabilitySwift
+import Reachability
 
 class MarsImageTableViewController: UITableViewController {
     
@@ -70,7 +70,7 @@ class MarsImageTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(missionChanged), name: .missionChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imageSelected), name: .imageSelected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(imagesetsLoaded), name: .endImagesetLoading, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: ReachabilityChangedNotification, object: catalogs[Mission.currentMissionName()]!.reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)), name: Notification.Name("reachabilityChanged"), object: catalogs[Mission.currentMissionName()]!.reachability)
 
         internetStatusUnreachable = InternetReachabilityStatus.createStatus()
     }
@@ -147,10 +147,12 @@ class MarsImageTableViewController: UITableViewController {
         cellRect = cellRect.offsetBy(dx: -tableView.contentOffset.x, dy: -tableView.contentOffset.y)
         let searchBarHeight = searchController.searchBar.frame.size.height
         var scrollPosition = UITableViewScrollPosition.none
+        let height1 = cellRect.origin.y+cellRect.size.height
+        let height2 = tableView.frame.origin.y+tableView.frame.size.height-searchBarHeight
         if cellRect.origin.y < tableView.frame.origin.y + searchBarHeight {
             scrollPosition = UITableViewScrollPosition.top
         }
-        else if cellRect.origin.y+cellRect.size.height > tableView.frame.origin.y+tableView.frame.size.height-searchBarHeight {
+        else if height1 > height2 {
             scrollPosition = UITableViewScrollPosition.bottom
         }
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: scrollPosition)

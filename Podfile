@@ -10,11 +10,11 @@ target 'MarsImages' do
     pod 'MarsTimeConversion', :git => 'https://github.com/OpsLabJPL/MarsTimeConversion.git'
     pod 'MKDropdownMenu', '~> 1'
     pod 'POWImageGallery', :git => 'https://github.com/OpsLabJPL/POWImageGallery.git'
-    pod 'ReachabilitySwift', '~> 3'
-    pod 'SwiftyJSON', '~> 3'
+    pod 'ReachabilitySwift', '~> 5'
+    pod 'SwiftyJSON', '~> 5'
     pod 'Swinject', '~> 2'
     pod 'SwiftMessages', '~> 4'
-    pod 'SwinjectStoryboard', '~> 1'
+    pod 'SwinjectStoryboard', '~> 2'
 
     target 'MarsImagesTests' do
         inherit! :search_paths

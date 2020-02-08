@@ -11,7 +11,14 @@
 #import "SDWebImageOperation.h"
 
 typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
+    /**
+     * Put the download in the low queue priority and task priority.
+     */
     SDWebImageDownloaderLowPriority = 1 << 0,
+    
+    /**
+     * This flag enables progressive download, the image is displayed progressively during download as a browser would do.
+     */
     SDWebImageDownloaderProgressiveDownload = 1 << 1,
 
     /**
@@ -45,7 +52,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
     SDWebImageDownloaderAllowInvalidSSLCertificates = 1 << 6,
 
     /**
-     * Put the image in the high priority queue.
+     * Put the download in the high queue priority and task priority.
      */
     SDWebImageDownloaderHighPriority = 1 << 7,
     
@@ -82,9 +89,16 @@ typedef SDHTTPHeadersDictionary * _Nullable (^SDWebImageDownloaderHeadersFilterB
 /**
  *  A token associated with each download. Can be used to cancel a download
  */
-@interface SDWebImageDownloadToken : NSObject
+@interface SDWebImageDownloadToken : NSObject <SDWebImageOperation>
 
+/**
+ The download's URL. This should be readonly and you should not modify
+ */
 @property (nonatomic, strong, nullable) NSURL *url;
+/**
+ The cancel token taken from `addHandlersForProgress:completed`. This should be readonly and you should not modify
+ @note use `-[SDWebImageDownloadToken cancel]` to cancel the token
+ */
 @property (nonatomic, strong, nullable) id downloadOperationCancelToken;
 
 @end
@@ -183,14 +197,35 @@ typedef SDHTTPHeadersDictionary * _Nullable (^SDWebImageDownloaderHeadersFilterB
 - (nullable NSString *)valueForHTTPHeaderField:(nullable NSString *)field;
 
 /**
- * Sets a subclass of `SDWebImageDownloaderOperation` as the default
- * `NSOperation` to be used each time SDWebImage constructs a request
+ * Sets a subclass of `NSOperation` and conforms to `SDWebImageDownloaderOperationInterface`.
+ * Default is `SDWebImageDownloaderOperation`.
+ * Can be used each time SDWebImage constructs a request
  * operation to download an image.
  *
- * @param operationClass The subclass of `SDWebImageDownloaderOperation` to set 
- *        as default. Passing `nil` will revert to `SDWebImageDownloaderOperation`.
+ * @param operationClass The subclass of `NSOperation` and conforms to `SDWebImageDownloaderOperationInterface`.
+ * Default is `SDWebImageDownloaderOperation`, Passing `nil` will revert to `SDWebImageDownloaderOperation`.
  */
 - (void)setOperationClass:(nullable Class)operationClass;
+
+/**
+ * Creates a SDWebImageDownloader async downloader instance with a given URL
+ *
+ * The delegate will be informed when the image is finish downloaded or an error has happen.
+ *
+ * @see SDWebImageDownloaderDelegate
+ *
+ * @param url            The URL to the image to download
+ * @param completedBlock A block called once the download is completed.
+ *                       If the download succeeded, the image parameter is set, in case of error,
+ *                       error parameter is set with the error. The last parameter is always YES
+ *                       if SDWebImageDownloaderProgressiveDownload isn't use. With the
+ *                       SDWebImageDownloaderProgressiveDownload option, this block is called
+ *                       repeatedly with the partial image object and the finished argument set to NO
+ *                       before to be called a last time with the full image and finished argument
+ *                       set to YES. In case of error, the finished argument is always YES.
+ */
+- (nullable SDWebImageDownloadToken *)downloadImageWithURL:(nullable NSURL *)url
+                                                 completed:(nullable SDWebImageDownloaderCompletedBlock)completedBlock;
 
 /**
  * Creates a SDWebImageDownloader async downloader instance with a given URL
@@ -250,6 +285,7 @@ typedef SDHTTPHeadersDictionary * _Nullable (^SDWebImageDownloaderHeadersFilterB
  * Invalidates the managed session, optionally canceling pending operations.
  * @note If you use custom downloader instead of the shared downloader, you need call this method when you do not use it to avoid memory leak
  * @param cancelPendingOperations Whether or not to cancel pending operations.
+ * @note Calling this method on the shared downloader has no effect.
  */
 - (void)invalidateSessionAndCancel:(BOOL)cancelPendingOperations;
 
