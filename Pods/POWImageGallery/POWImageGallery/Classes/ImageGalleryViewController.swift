@@ -103,7 +103,11 @@ open class ImageGalleryViewController : UIViewController {
         view.addSubview(pageViewController.view)
         view.addSubview(toolbar)
         view.addSubview(captionView)
-        toolbarBottomConstraint = toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        if #available(iOS 11.0, *) {
+            toolbarBottomConstraint = toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        } else {
+            toolbarBottomConstraint = toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        }
         captionViewHeightConstraint = captionView.heightAnchor.constraint(equalToConstant: 120)
         let constraints = [
             pageViewController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),

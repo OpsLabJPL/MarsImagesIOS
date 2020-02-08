@@ -388,7 +388,11 @@ static UIImage *disclosureIndicatorImage = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    } else {
+        // Fallback on earlier versions
+    }
     self.view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kDefaultBackgroundDimmingOpacity];
     self.view.clipsToBounds = YES;
     

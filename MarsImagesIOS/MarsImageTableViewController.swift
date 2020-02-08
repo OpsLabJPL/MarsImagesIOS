@@ -31,7 +31,7 @@ class MarsImageTableViewController: UITableViewController {
         navBarMenu = MKDropdownMenu(frame: CGRect(x:0,y:0,width:dropdownMenuWidth,height:dropdownMenuRowHeight))
         navBarMenu?.dataSource = self
         navBarMenu?.delegate = self
-        navBarMenu?.backgroundDimmingOpacity = -0.67
+        navBarMenu?.backgroundDimmingOpacity = 0
         navBarMenu?.adjustsContentOffset = true
         navBarMenu?.adjustsContentInset = true
         navBarMenu?.dropdownShowsTopRowSeparator = false
