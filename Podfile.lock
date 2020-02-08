@@ -1,27 +1,29 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.3.0)
-  - Alamofire (4.6.0)
-  - CSV.swift (2.1.0)
+  - ActionSheetPicker-3.0 (2.4.1)
+  - Alamofire (4.9.1)
+  - CSV.swift (2.4.2)
   - EFInternetIndicator (0.4.0):
     - EFInternetIndicator/Interface (= 0.4.0)
   - EFInternetIndicator/Interface (0.4.0):
     - SwiftMessages
   - EvernoteSDK (3.0.0)
   - MarsTimeConversion (1.0)
-  - MBProgressHUD (1.1.0)
+  - MBProgressHUD (1.2.0)
   - MKDropdownMenu (1.4)
   - POWImageGallery (0.1.6):
     - MBProgressHUD (~> 1.1)
     - SDWebImage (~> 4.2)
-  - ReachabilitySwift (3)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
-  - SwiftMessages (4.1.0)
-  - SwiftyJSON (3.1.4)
-  - Swinject (2.1.1)
-  - SwinjectStoryboard (1.1.2):
-    - Swinject (~> 2.1)
+  - ReachabilitySwift (5.0.0)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SwiftMessages (4.1.4):
+    - SwiftMessages/App (= 4.1.4)
+  - SwiftMessages/App (4.1.4)
+  - SwiftyJSON (5.0.0)
+  - Swinject (2.7.1)
+  - SwinjectStoryboard (2.2.0):
+    - Swinject (~> 2.6)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3)
@@ -32,11 +34,27 @@ DEPENDENCIES:
   - MarsTimeConversion (from `https://github.com/OpsLabJPL/MarsTimeConversion.git`)
   - MKDropdownMenu (~> 1)
   - POWImageGallery (from `https://github.com/OpsLabJPL/POWImageGallery.git`)
-  - ReachabilitySwift (~> 3)
+  - ReachabilitySwift (~> 5)
   - SwiftMessages (~> 4)
-  - SwiftyJSON (~> 3)
+  - SwiftyJSON (~> 5)
   - Swinject (~> 2)
-  - SwinjectStoryboard (~> 1)
+  - SwinjectStoryboard (~> 2)
+
+SPEC REPOS:
+  trunk:
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - CSV.swift
+    - EFInternetIndicator
+    - EvernoteSDK
+    - MBProgressHUD
+    - MKDropdownMenu
+    - ReachabilitySwift
+    - SDWebImage
+    - SwiftMessages
+    - SwiftyJSON
+    - Swinject
+    - SwinjectStoryboard
 
 EXTERNAL SOURCES:
   MarsTimeConversion:
@@ -53,22 +71,22 @@ CHECKOUT OPTIONS:
     :git: https://github.com/OpsLabJPL/POWImageGallery.git
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
+  ActionSheetPicker-3.0: d236f0b663123e4b404a3bc04b338c1e805ac910
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  CSV.swift: 9670cc1b3e3f01e9eebb1aeb603b17b4459e7493
   EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
   EvernoteSDK: 7e9de762a9c281e714f3e6d0ae10657db3046792
   MarsTimeConversion: 2f571fd700c8469a8510e51a561a7f88cf5858d3
-  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MKDropdownMenu: 269df4a41d21a1db684ce8bc709befe419fc5bae
   POWImageGallery: 24d68e57dbef3e9ca878259b72f188dfd4752d5d
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
-  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  Swinject: afea49fd95f392b41171669f165842879c48fad6
-  SwinjectStoryboard: 92e75763c3299cdf627bef98a5180dc894864336
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  SwiftMessages: 2c33fdee8b8f38dfc7e1036684456b505891da8c
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: a4a4fc08857e58d064764c6ed5b516f0f5170edf
+PODFILE CHECKSUM: bfeb3679272f73382b49650ca5d2bce4b1ceef46
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.8.4

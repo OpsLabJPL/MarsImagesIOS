@@ -53,10 +53,6 @@ public class CSVReader {
     public fileprivate (set) var error: Error?
 
     fileprivate var back: UnicodeScalar?
-    fileprivate var fieldBuffer = String.UnicodeScalarView()
-
-    fileprivate var currentRowIndex: Int = 0
-    fileprivate var currentFieldIndex: Int = 0
 
     /// CSV header row. To set a value for this property,
     /// you set `true` to `headerRow` in initializer.
@@ -77,6 +73,7 @@ public class CSVReader {
                 throw CSVError.cannotReadHeaderRow
             }
             self.headerRow = headerRow
+            self.currentRow = nil
         }
     }
 
@@ -233,10 +230,9 @@ extension CSVReader {
 extension CSVReader {
 
     fileprivate func readRow() -> [String]? {
-        currentFieldIndex = 0
-
         var c = moveNext()
         if c == nil {
+            currentRow = nil
             return nil
         }
 
@@ -269,19 +265,15 @@ extension CSVReader {
                 break
             }
 
-            currentFieldIndex += 1
-
             c = moveNext()
         }
-
-        currentRowIndex += 1
 
         currentRow = row
         return row
     }
 
     private func readField(quoted: Bool) -> (String, Bool) {
-        fieldBuffer.removeAll(keepingCapacity: true)
+        var fieldBuffer = String.UnicodeScalarView()
 
         while let c = moveNext() {
             if quoted {
@@ -384,14 +376,14 @@ extension CSVReader {
         guard let header = headerRow else {
             fatalError("CSVReader.headerRow must not be nil")
         }
-        guard let index = header.index(of: key) else {
+        guard let index = header.firstIndex(of: key) else {
             return nil
         }
         guard let row = currentRow else {
             fatalError("CSVReader.currentRow must not be nil")
         }
-        if index >= row.count {
-            return nil
+        guard index < row.count else {
+            return ""
         }
         return row[index]
     }

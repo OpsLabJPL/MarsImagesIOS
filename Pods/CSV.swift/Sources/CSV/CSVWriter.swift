@@ -89,7 +89,7 @@ extension CSVWriter {
 
         let config = Configuration(delimiter: delimiter, newline: newline)
         try self.init(stream: stream, configuration: config) { (scalar: UnicodeScalar) throws in
-            var error: CSVError? = nil
+            var error: CSVError?
             codecType.encode(scalar) { (code: UInt8) in
                 var code = code
                 let count = stream.write(&code, maxLength: 1)
@@ -113,7 +113,7 @@ extension CSVWriter {
 
         let config = Configuration(delimiter: delimiter, newline: newline)
         try self.init(stream: stream, configuration: config) { (scalar: UnicodeScalar) throws in
-            var error: CSVError? = nil
+            var error: CSVError?
             codecType.encode(scalar) { (code: UInt16) in
                 var code = (endian == .big) ? code.bigEndian : code.littleEndian
                 withUnsafeBytes(of: &code) { (buffer) -> Void in
@@ -140,7 +140,7 @@ extension CSVWriter {
 
         let config = Configuration(delimiter: delimiter, newline: newline)
         try self.init(stream: stream, configuration: config) { (scalar: UnicodeScalar) throws in
-            var error: CSVError? = nil
+            var error: CSVError?
             codecType.encode(scalar) { (code: UInt32) in
                 var code = (endian == .big) ? code.bigEndian : code.littleEndian
                 withUnsafeBytes(of: &code) { (buffer) -> Void in
@@ -181,6 +181,11 @@ extension CSVWriter {
         }
 
         var value = value
+
+        var quoted = quoted
+        if value.contains("\"") || value.contains(",") {
+            quoted = true
+        }
 
         if quoted {
             value = value.replacingOccurrences(of: DQUOTE_STR, with: DQUOTE2_STR)
